@@ -5,46 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>泰山 A 股模型</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
   </head>
   <body>
-    <main class="shell">
-      <header class="topbar">
-        <div><p class="eyebrow">TAISHAN / A-SHARE RESEARCH</p><h1>泰山 A 股模型</h1><p class="subtitle">一个融合后的主板研究模型，不展示内部研发版本。</p></div>
-        <div class="refresh"><span>研究快照</span><strong id="updatedAt">加载中</strong></div>
-      </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand"><span>泰山</span><strong>A 股模型</strong><small>融合研究观察台</small></div>
+        <div class="side-status"><span class="pulse"></span><div><b id="sideSnapshot">等待快照</b><small>每 60 秒检查新快照</small></div></div>
+        <section><div class="side-heading"><h2>我的观察栏</h2><button id="clearWatch" title="清空本机观察栏">清空</button></div><p class="side-note">本机浏览器保存；加入时记录价格与时间。</p><div id="watchList" class="watch-list"></div></section>
+        <section class="side-explain"><h2>观察节点</h2><ol><li><b>第 0 日</b><span>记录加入价格</span></li><li><b>第 3 日</b><span>短期表现复核</span></li><li><b>第 5 日</b><span>趋势持续性复核</span></li><li><b>第 7 日</b><span>中继或降级判断</span></li></ol></section>
+        <p class="side-foot">一级研究关注不是买入指令。模型不执行下单，也不承诺收益。</p>
+      </aside>
 
-      <section class="hero">
-        <div><span class="status" id="coreStatus">正在读取</span><h2 id="coreTitle">融合模型状态</h2><p id="coreSummary">--</p></div>
-        <dl><div><dt>正式状态</dt><dd id="formalStatus">--</dd></div><div><dt>日线截止</dt><dd id="dataEnd">--</dd></div><div><dt>主板范围</dt><dd>仅主板非 ST</dd></div></dl>
-      </section>
+      <main class="main">
+        <header class="topbar"><div><p class="eyebrow">TAISHAN / FUSION RESEARCH MODEL</p><h1>泰山 A 股模型</h1><p class="subtitle">只展示融合后的一个模型与当前研究观察池。</p></div><button id="refreshNow" class="refresh-button">刷新快照</button></header>
 
-      <section class="grid metrics">
-        <article><span>3 日</span><strong id="m3">--</strong><small id="m3sub">--</small></article>
-        <article><span>5 日</span><strong id="m5">--</strong><small id="m5sub">--</small></article>
-        <article><span>7 日</span><strong id="m7">--</strong><small id="m7sub">--</small></article>
-        <article><span>数据状态</span><strong id="dataStatus">--</strong><small id="dataSub">--</small></article>
-      </section>
+        <section class="hero"><div><span class="status" id="coreStatus">正在读取</span><h2 id="coreTitle">融合模型状态</h2><p id="coreSummary">--</p></div><dl><div><dt>快照更新</dt><dd id="updatedAt">--</dd></div><div><dt>正式状态</dt><dd id="formalStatus">--</dd></div><div><dt>日线截止</dt><dd id="dataEnd">--</dd></div></dl></section>
 
-      <section class="panel">
-        <div class="heading"><div><p class="eyebrow">核心规则</p><h2>模型如何筛选</h2></div><span>只保留验证后规则</span></div>
-        <div class="rule-grid">
-          <div><b>1</b><strong>市场与板块</strong><p>先检查市场环境、板块扩散和成交活跃度；环境不通过时自动降级为观察。</p></div>
-          <div><b>2</b><strong>趋势质量</strong><p>趋势模板、阶段位置、强势中继、板块轮动和风险控制共同决定候选优先级。</p></div>
-          <div><b>3</b><strong>双样本验证</strong><p>前复权日线与通达信历史日线都要支持，单一回测好看不保留。</p></div>
-          <div><b>4</b><strong>风险优先</strong><p>候选仅供研究观察；止损线、数据新鲜度和前验期未通过时不输出自动交易结论。</p></div>
-        </div>
-      </section>
+        <section class="metric-grid"><article><span>3 日历史验证</span><strong id="m3">--</strong><small id="m3sub">--</small></article><article><span>5 日历史验证</span><strong id="m5">--</strong><small id="m5sub">--</small></article><article><span>7 日历史验证</span><strong id="m7">--</strong><small id="m7sub">--</small></article><article><span>市场环境</span><strong id="marketStatus">--</strong><small id="marketSub">--</small></article></section>
 
-      <section class="panel">
-        <div class="heading"><div><p class="eyebrow">研究观察池</p><h2>趋势质量候选</h2></div><span id="candidateCount">--</span></div>
-        <div class="table-wrap"><table><thead><tr><th>股票</th><th>板块</th><th>类型</th><th>质量分</th><th>日线价</th><th>观察区</th><th>风险线</th><th>说明</th></tr></thead><tbody id="candidateRows"></tbody></table></div>
-      </section>
+        <section class="panel"><div class="heading"><div><p class="eyebrow">一级研究关注</p><h2>当前优先观察</h2></div><span>动态综合排序后仅保留前 4 名</span></div><p class="section-note">一级表示当前研究质量最高，仍须结合实时价格、成交与个人风险承受能力判断；不是直接买入指令。</p><div id="tierOne" class="focus-grid"></div></section>
 
-      <section class="grid two">
-        <article class="panel"><div class="heading"><div><p class="eyebrow">数据</p><h2>数据与刷新</h2></div></div><p id="dataNote">--</p><p class="fine">GitHub 版为去敏静态镜像：不含持仓、账户、成本或 Token；实时行情不在网页端读取。</p></article>
-        <article class="panel"><div class="heading"><div><p class="eyebrow">边界</p><h2>重要说明</h2></div></div><p>历史回测不保证未来收益。模型目前是唯一的核心研究层，尚未取得自动交易资格；实际决策需要独立判断和风险管理。</p></article>
-      </section>
-    </main>
+        <section class="panel"><div class="heading"><div><p class="eyebrow">研究观察池</p><h2>候选分级</h2></div><span id="candidateCount">--</span></div><div class="tier-tabs"><span><i class="tier tier-1"></i>一级：综合趋势、板块与风险后优先观察</span><span><i class="tier tier-2"></i>二级：方向仍好，等待更多确认</span><span><i class="tier tier-3"></i>三级：仅记录，不主动追逐</span></div><div class="table-wrap"><table><thead><tr><th>级别</th><th>股票 / 板块</th><th>综合分</th><th>质量拆解</th><th>日线价</th><th>观察区</th><th>风险线</th><th>历史表现</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div></section>
+
+        <section class="grid two"><article class="panel"><div class="heading"><div><p class="eyebrow">核心规则</p><h2>模型只保留四件事</h2></div></div><div class="rule-grid"><div><b>1</b><strong>市场环境</strong><p>市场、板块和成交条件未通过时，自动降级。</p></div><div><b>2</b><strong>趋势质量</strong><p>趋势、阶段、轮动和风险共同评分。</p></div><div><b>3</b><strong>双样本</strong><p>前复权与通达信历史数据均需支持。</p></div><div><b>4</b><strong>前验验证</strong><p>历史表现不能替代未来实际验证。</p></div></div></article><article class="panel"><div class="heading"><div><p class="eyebrow">数据边界</p><h2>更新与风险</h2></div></div><p id="dataNote">--</p><p class="fine">GitHub 版为去敏镜像，不含持仓、账户、成本或 Token。它会在发布新的研究快照后自动刷新；真正盘中实时价格需要安全后台代理。</p></article></section>
+      </main>
+    </div>
     <script src="./app.js"></script>
   </body>
 </html>
