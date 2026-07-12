@@ -3,32 +3,63 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>泰山 A 股模型</title>
+    <title>泰山 A 股研究台</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./dashboard.css" />
   </head>
   <body>
-    <div class="layout">
+    <div class="app-shell">
       <aside class="sidebar">
-        <div class="brand"><span>泰山</span><strong>A 股模型</strong><small>融合研究观察台</small></div>
-        <div class="side-status"><span class="pulse"></span><div><b id="sideSnapshot">等待快照</b><small>每 60 秒检查新快照</small></div></div>
-        <section><div class="side-heading"><h2>我的观察栏</h2><button id="clearWatch" title="清空本机观察栏">清空</button></div><p class="side-note">本机浏览器保存；加入时记录价格与时间。</p><div id="watchList" class="watch-list"></div></section>
-        <section class="side-explain"><h2>观察节点</h2><ol><li><b>第 0 日</b><span>记录加入价格</span></li><li><b>第 3 日</b><span>短期表现复核</span></li><li><b>第 5 日</b><span>趋势持续性复核</span></li><li><b>第 7 日</b><span>中继或降级判断</span></li></ol></section>
-        <p class="side-foot">一级研究关注不是买入指令。模型不执行下单，也不承诺收益。</p>
+        <div class="brand"><span>TAISHAN</span><strong>A 股研究台</strong><small>一个融合模型 · 研究与观察</small></div>
+        <div class="side-status"><i></i><div><b id="sideSnapshot">等待快照</b><small>浏览器每 60 秒检查新快照</small></div></div>
+        <nav class="nav" aria-label="研究台导航">
+          <button type="button" data-view="holdings">我的持仓 <small>私密</small></button>
+          <button type="button" data-view="overview" class="active">研究总览</button>
+          <button type="button" data-view="watch">我的观察栏 <small id="watchBadge">0</small></button>
+          <button type="button" data-view="history">历史候选库</button>
+        </nav>
+        <section class="sidebar-note">
+          <h2>颜色说明</h2>
+          <p><b class="dot green"></b>继续观察：质量与风险条件仍通过</p>
+          <p><b class="dot blue"></b>等确认：信号未完整，不做结论</p>
+          <p><b class="dot red"></b>撤出观察：条件失效或偏离过大</p>
+        </section>
+        <section class="sidebar-note cadence">
+          <h2>观察节点</h2>
+          <p>加入日记录价格，随后复核 3、5、20、60 日的可用快照。</p>
+        </section>
+        <p class="side-foot">一级研究关注不是买入指令。模型不下单，也不承诺收益。</p>
       </aside>
 
       <main class="main">
-        <header class="topbar"><div><p class="eyebrow">TAISHAN / FUSION RESEARCH MODEL</p><h1>泰山 A 股模型</h1><p class="subtitle">只展示融合后的一个模型与当前研究观察池。</p></div><button id="refreshNow" class="refresh-button">刷新快照</button></header>
+        <header class="topbar">
+          <div><p class="eyebrow">TAISHAN / FUSION RESEARCH MODEL</p><h1 id="viewTitle">研究总览</h1><p class="subtitle" id="viewSubtitle">融合后的单一模型、候选质量与风险状态。</p></div>
+          <button id="refreshNow" class="refresh-button" type="button">刷新快照</button>
+        </header>
 
-        <section class="hero"><div><span class="status" id="coreStatus">正在读取</span><h2 id="coreTitle">融合模型状态</h2><p id="coreSummary">--</p></div><dl><div><dt>快照更新</dt><dd id="updatedAt">--</dd></div><div><dt>正式状态</dt><dd id="formalStatus">--</dd></div><div><dt>日线截止</dt><dd id="dataEnd">--</dd></div></dl></section>
+        <section id="overviewView" class="view">
+          <section class="hero"><div><span class="status" id="coreStatus">正在读取</span><h2 id="coreTitle">融合模型状态</h2><p id="coreSummary">--</p></div><dl><div><dt>快照更新</dt><dd id="updatedAt">--</dd></div><div><dt>正式状态</dt><dd id="formalStatus">--</dd></div><div><dt>日线截止</dt><dd id="dataEnd">--</dd></div></dl></section>
 
-        <section class="metric-grid"><article><span>3 日历史验证</span><strong id="m3">--</strong><small id="m3sub">--</small></article><article><span>5 日历史验证</span><strong id="m5">--</strong><small id="m5sub">--</small></article><article><span>7 日历史验证</span><strong id="m7">--</strong><small id="m7sub">--</small></article><article><span>市场环境</span><strong id="marketStatus">--</strong><small id="marketSub">--</small></article></section>
+          <section class="metric-grid"><article><span>3 日历史验证</span><strong id="m3">--</strong><small id="m3sub">--</small></article><article><span>5 日历史验证</span><strong id="m5">--</strong><small id="m5sub">--</small></article><article><span>7 日历史验证</span><strong id="m7">--</strong><small id="m7sub">--</small></article><article><span>市场环境</span><strong id="marketStatus">--</strong><small id="marketSub">--</small></article></section>
 
-        <section class="panel"><div class="heading"><div><p class="eyebrow">一级研究关注</p><h2>当前优先观察</h2></div><span>动态综合排序后仅保留前 4 名</span></div><p class="section-note">一级表示当前研究质量最高，仍须结合实时价格、成交与个人风险承受能力判断；不是直接买入指令。</p><div id="tierOne" class="focus-grid"></div></section>
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">一级研究关注</p><h2>当前优先观察</h2></div><span>动态综合排序后最多 4 只</span></div><p class="section-note">这里只显示研究优先级最高的样本；观察区、风险线和第一目标是研究锚点，不是自动交易指令。</p><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>综合</th><th>近5日</th><th>近10日</th><th>近20日</th><th>近60日</th><th>日线价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>研究周期</th><th>观察</th></tr></thead><tbody id="tierOneRows"></tbody></table></div></section>
 
-        <section class="panel"><div class="heading"><div><p class="eyebrow">研究观察池</p><h2>候选分级</h2></div><span id="candidateCount">--</span></div><div class="tier-tabs"><span><i class="tier tier-1"></i>一级：综合趋势、板块与风险后优先观察</span><span><i class="tier tier-2"></i>二级：方向仍好，等待更多确认</span><span><i class="tier tier-3"></i>三级：仅记录，不主动追逐</span></div><div class="table-wrap"><table><thead><tr><th>级别</th><th>股票 / 板块</th><th>综合分</th><th>质量拆解</th><th>日线价</th><th>观察区</th><th>风险线</th><th>历史表现</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div></section>
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">研究观察池</p><h2>候选分级</h2></div><span id="candidateCount">--</span></div><div class="tier-legend"><span><i class="dot green"></i>一级：优先研究</span><span><i class="dot blue"></i>二级：等确认</span><span><i class="dot red"></i>三级：撤出或仅记录</span></div><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>综合</th><th>趋势 / 板块 / 风控</th><th>近5日</th><th>近10日</th><th>近20日</th><th>近60日</th><th>日线价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div></section>
 
-        <section class="grid two"><article class="panel"><div class="heading"><div><p class="eyebrow">核心规则</p><h2>模型只保留四件事</h2></div></div><div class="rule-grid"><div><b>1</b><strong>市场环境</strong><p>市场、板块和成交条件未通过时，自动降级。</p></div><div><b>2</b><strong>趋势质量</strong><p>趋势、阶段、轮动和风险共同评分。</p></div><div><b>3</b><strong>双样本</strong><p>前复权与通达信历史数据均需支持。</p></div><div><b>4</b><strong>前验验证</strong><p>历史表现不能替代未来实际验证。</p></div></div></article><article class="panel"><div class="heading"><div><p class="eyebrow">数据边界</p><h2>更新与风险</h2></div></div><p id="dataNote">--</p><p class="fine">GitHub 版为去敏镜像，不含持仓、账户、成本或 Token。它会在发布新的研究快照后自动刷新；真正盘中实时价格需要安全后台代理。</p></article></section>
+          <section class="grid two"><article class="panel"><div class="heading"><div><p class="eyebrow">核心规则</p><h2>模型只保留四件事</h2></div></div><div class="rule-grid"><div><b>1</b><strong>市场环境</strong><p>市场、板块和成交条件未通过时自动降级。</p></div><div><b>2</b><strong>趋势质量</strong><p>趋势、阶段、轮动和风险共同评分。</p></div><div><b>3</b><strong>双样本</strong><p>前复权与通达信历史数据均需支持。</p></div><div><b>4</b><strong>前验验证</strong><p>历史表现不能替代未来实际验证。</p></div></div></article><article class="panel"><div class="heading"><div><p class="eyebrow">数据边界</p><h2>更新与隐私</h2></div></div><p id="dataNote">--</p><p class="fine">公开版只展示去敏研究快照。持仓、成本、账户与 Token 永不上传 GitHub；真实盘中逐笔数据需要安全后台代理。</p></article></section>
+        </section>
+
+        <section id="watchView" class="view" hidden>
+          <section class="panel view-panel"><div class="heading"><div><p class="eyebrow">PERSONAL WATCHLIST</p><h2>我的观察栏</h2></div><button type="button" id="clearWatch" class="text-button">清空本机观察栏</button></div><p class="section-note">每次加入会记录当时价格与历史表现。后续快照会在此累计；取消后，候选池会立即恢复“加入观察”按钮。</p><div class="table-wrap"><table class="dense-table"><thead><tr><th>股票</th><th>加入时间</th><th>加入价</th><th>加入前20日</th><th>最新可用价</th><th>加入后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchRows"></tbody></table></div></section>
+        </section>
+
+        <section id="historyView" class="view" hidden>
+          <section class="panel view-panel"><div class="heading"><div><p class="eyebrow">HISTORICAL RESEARCH ARCHIVE</p><h2>历史候选库</h2></div><div class="history-controls"><label>研究日期 <select id="historySelect"></select></label><label>排序 <select id="historySort"><option value="post">后验收益</option><option value="score">综合分</option><option value="ret20">当日近20日涨幅</option><option value="drawdown">后验回撤</option></select></label></div></div><p class="section-note">这里保留当日候选和已可获得的后验记录。没有成熟后验的样本会明确标记“等待后验”，不拿它充当成绩。</p><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th><button data-history-sort="score" type="button">综合分</button></th><th><button data-history-sort="post" type="button">后验收益</button></th><th><button data-history-sort="drawdown" type="button">后验回撤</button></th><th>已验证周期</th><th>审阅状态</th><th><button data-history-sort="ret20" type="button">当日近20日</button></th><th>研究说明</th></tr></thead><tbody id="historyRows"></tbody></table></div></section>
+        </section>
+
+        <section id="holdingsView" class="view" hidden>
+          <section class="panel view-panel"><div class="heading"><div><p class="eyebrow">PRIVATE HOLDINGS</p><h2>我的持仓</h2></div><span class="private-tag">本机私密</span></div><p class="section-note">公开网页不读取或上传你的账户、成本和数量。这里仅允许在当前浏览器保存股票代码，用公开研究快照给出状态匹配；本地自动化仍会在私有工作区读取持仓文件做分析。</p><form id="holdingForm" class="holdings-form"><label for="holdingCodes">持仓代码</label><input id="holdingCodes" placeholder="例如：002768、601066，多个代码用逗号分隔" autocomplete="off" /><button type="submit">本机保存</button></form><div class="table-wrap"><table class="dense-table"><thead><tr><th>股票</th><th>当前研究状态</th><th>日线价</th><th>风险线</th><th>第一目标</th><th>研究周期</th><th>说明</th><th>移除</th></tr></thead><tbody id="holdingRows"></tbody></table></div></section>
+        </section>
       </main>
     </div>
     <script src="./app.js"></script>

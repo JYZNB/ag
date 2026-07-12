@@ -1,42 +1,78 @@
 const $ = (id) => document.getElementById(id);
-const STORAGE = "taishan-fusion-watch-v1";
-let snapshot = null;
+const WATCH_STORAGE = "taishan-fusion-watch-v2";
+const HOLDING_STORAGE = "taishan-private-holdings-v1";
+const VIEWS = {
+  overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
+  watch: { title: "我的观察栏", subtitle: "从加入时刻开始记录可用快照与后续表现。" },
+  history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
+  holdings: { title: "我的持仓", subtitle: "公开页面只保存本机输入的代码，不上传账户或成本。" },
+};
 
-const n = (v) => Number.isFinite(Number(v)) ? Number(v) : NaN;
-const pct = (v) => Number.isFinite(n(v)) ? `${n(v) >= 0 ? "+" : ""}${(n(v) * 100).toFixed(2)}%` : "--";
-const rawPct = (v) => Number.isFinite(n(v)) ? `${n(v) >= 0 ? "+" : ""}${n(v).toFixed(2)}%` : "--";
-const num = (v) => Number.isFinite(n(v)) ? n(v).toFixed(2) : "--";
-const text = (v, d = "--") => v === undefined || v === null || v === "" ? d : String(v);
-const getWatch = () => { try { return JSON.parse(localStorage.getItem(STORAGE) || "[]"); } catch { return []; } };
-const saveWatch = (items) => localStorage.setItem(STORAGE, JSON.stringify(items));
-const sourceCandidates = () => snapshot?.momentumQuality?.candidates || [];
+let snapshot = null;
+let historyIndex = [];
+let historyData = null;
+let historySort = "post";
+
+const n = (value) => Number.isFinite(Number(value)) ? Number(value) : NaN;
+const safe = (value) => Number.isFinite(n(value)) ? n(value) : 0;
+const pct = (value) => Number.isFinite(n(value)) ? `${n(value) >= 0 ? "+" : ""}${(n(value) * 100).toFixed(2)}%` : "--";
+const rawPct = (value) => Number.isFinite(n(value)) ? `${n(value) >= 0 ? "+" : ""}${n(value).toFixed(2)}%` : "--";
+const num = (value) => Number.isFinite(n(value)) ? n(value).toFixed(2) : "--";
+const text = (value, fallback = "--") => value === undefined || value === null || value === "" ? fallback : String(value);
+const codeOf = (value) => String(value || "").padStart(6, "0");
+const getWatch = () => { try { return JSON.parse(localStorage.getItem(WATCH_STORAGE) || "[]"); } catch { return []; } };
+const saveWatch = (rows) => localStorage.setItem(WATCH_STORAGE, JSON.stringify(rows));
+const getHoldings = () => { try { return JSON.parse(localStorage.getItem(HOLDING_STORAGE) || "[]"); } catch { return []; } };
+const saveHoldings = (rows) => localStorage.setItem(HOLDING_STORAGE, JSON.stringify(rows));
+
+function candidateSource(data = snapshot) {
+  return data?.momentumQuality?.candidates || [];
+}
 
 function researchScore(row) {
-  const base = n(row.quality_score) * .36 + n(row.risk_control_score) * .22 + n(row.trend_template_score) * .14 + n(row.stage_score) * .10 + n(row.sector_rotation_score) * .12 + n(row.relay_score) * .06;
-  const extendedPenalty = Math.max(0, n(row.ma20_gap) - .12) * 85;
-  const drawdownPenalty = Math.max(0, Math.abs(n(row.drawdown20)) - .10) * 28;
+  const base = safe(row.quality_score) * .36 + safe(row.risk_control_score) * .22 + safe(row.trend_template_score) * .14 + safe(row.stage_score) * .10 + safe(row.sector_rotation_score) * .12 + safe(row.relay_score) * .06;
+  const extendedPenalty = Math.max(0, safe(row.ma20_gap) - .12) * 85;
+  const drawdownPenalty = Math.max(0, Math.abs(safe(row.drawdown20)) - .10) * 28;
   return base - extendedPenalty - drawdownPenalty;
 }
 
-function candidates() {
-  const ranked = sourceCandidates()
+function rankedCandidates(data = snapshot) {
+  const rows = candidateSource(data)
     .map((row) => ({ ...row, research_score: researchScore(row) }))
-    .sort((a, b) => n(b.research_score) - n(a.research_score));
-  return ranked.map((row, index) => ({
+    .sort((left, right) => n(right.research_score) - n(left.research_score));
+  return rows.map((row, index) => ({
     ...row,
     rank: index + 1,
-    _tier: index < 4 && n(row.research_score) >= 83 ? 1 : index < 12 && n(row.research_score) >= 75 ? 2 : 3,
+    tier: index < 4 && n(row.research_score) >= 83 ? 1 : index < 12 && n(row.research_score) >= 75 ? 2 : 3,
   }));
 }
 
-const tier = (row) => row._tier || 3;
-const tierText = (value) => value === 1 ? "一级研究关注" : value === 2 ? "二级等确认" : "三级观察";
+function tierText(value) {
+  return value === 1 ? "一级研究关注" : value === 2 ? "二级等确认" : "三级观察";
+}
 
-function levelReason(row) {
-  const extension = n(row.ma20_gap);
-  const extensionText = Number.isFinite(extension) ? `距20日线 ${pct(extension)}` : "均线偏离待补";
-  const chase = extension > .12 ? "偏离偏大，不追高" : "价格仍在合理观察区";
-  return `趋势 ${num(row.trend_template_score)} / 板块 ${num(row.sector_rotation_score)} / 风控 ${num(row.risk_control_score)}；${extensionText}，${chase}`;
+function researchPeriod(row) {
+  return row.tier === 1 ? "10-20交易日" : row.tier === 2 ? "5-10交易日" : "3-5交易日";
+}
+
+function rowState(row) {
+  const extension = safe(row.ma20_gap);
+  const risk = safe(row.risk_control_score);
+  const weak = risk < 65 || extension > .18 || safe(row.ret5) < -.08;
+  if (weak) return { tone: "red", label: "撤出观察" };
+  if (row.tier === 1 && risk >= 80 && extension <= .12) return { tone: "green", label: "继续观察" };
+  return { tone: "blue", label: "等确认" };
+}
+
+function reason(row) {
+  const extension = safe(row.ma20_gap);
+  const extensionText = extension > .12 ? `距20日线 ${pct(extension)}，不追高` : `距20日线 ${pct(extension)}`;
+  return `趋势 ${num(row.trend_template_score)} / 板块 ${num(row.sector_rotation_score)} / 风控 ${num(row.risk_control_score)}；${extensionText}`;
+}
+
+function retCell(value) {
+  const className = !Number.isFinite(n(value)) ? "ret-neutral" : n(value) >= 0 ? "ret-up" : "ret-down";
+  return `<span class="${className}">${pct(value)}</span>`;
 }
 
 function metric(check, id) {
@@ -46,123 +82,243 @@ function metric(check, id) {
   $(`${id}sub`).textContent = `前复权胜率 ${pct(qfq.winRate)} / 通达信胜率 ${pct(raw.winRate)}`;
 }
 
-function daysSince(value) {
-  return Math.max(0, Math.floor((Date.now() - new Date(value).getTime()) / 86400000));
+function archiveDate(data) {
+  return String(data?.generatedAt || data?.latestDate || "").slice(0, 10).replaceAll("/", "-");
 }
 
-function watchRows() {
-  const byCode = new Map(candidates().map((row) => [String(row.code).padStart(6, "0"), row]));
-  return getWatch().map((item) => ({ ...item, latest: byCode.get(item.code) || null }));
+function formatTime(value) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "--" : date.toLocaleString("zh-CN");
 }
 
-function renderWatch() {
-  const rows = watchRows();
-  const root = $("watchList");
-  if (!rows.length) {
-    root.innerHTML = '<div class="watch-empty">点击候选行的“加入观察”后，会记录加入时间、加入价、加入前历史趋势与后续快照表现。</div>';
-    return;
-  }
-
-  root.innerHTML = rows.map((item) => {
-    const now = n(item.latest?.close);
-    const price = Number.isFinite(now) ? now : n(item.addedPrice);
-    const ret = Number.isFinite(price) && n(item.addedPrice) > 0 ? price / n(item.addedPrice) - 1 : NaN;
-    const days = daysSince(item.addedAt);
-    const stages = [3, 5, 7].map((day) => `<i class="${days >= day ? "done" : days >= (day - 1) ? "current" : ""}"></i>`).join("");
-    return `<article class="watch-card"><header><div><strong>${text(item.name)}</strong><small>${item.code} / 加入 ${new Date(item.addedAt).toLocaleDateString("zh-CN")}</small></div><button class="remove-watch" data-code="${item.code}" title="移出观察">×</button></header><div class="watch-metrics"><div><small>加入前 20 日</small><b class="${n(item.historicalTrend) >= 0 ? "up" : "down"}">${pct(item.historicalTrend)}</b></div><div><small>加入后跟踪</small><b class="${n(ret) >= 0 ? "up" : "down"}">${pct(ret)}</b></div></div><div class="watch-return ${n(ret) >= 0 ? "up" : "down"}">第 ${days} 天 / 最新快照 ${num(price)}</div><div class="timeline" title="3、5、7日观察节点">${stages}</div></article>`;
-  }).join("");
-
-  document.querySelectorAll(".remove-watch").forEach((button) => {
-    button.onclick = () => {
-      saveWatch(getWatch().filter((item) => item.code !== button.dataset.code));
-      renderWatch();
-      renderCandidates();
-    };
+function priceMap(data = snapshot) {
+  const map = new Map();
+  candidateSource(data).forEach((row) => map.set(codeOf(row.code), n(row.close)));
+  (data?.candidates || []).forEach((row) => {
+    const value = n(row.live_price ?? row.close);
+    if (Number.isFinite(value)) map.set(codeOf(row.code), value);
   });
+  return map;
+}
+
+function recordWatchSnapshots(data = snapshot) {
+  const key = data?.generatedAt || data?.latestDate;
+  if (!key) return;
+  const prices = priceMap(data);
+  let changed = false;
+  const next = getWatch().map((item) => {
+    const price = prices.get(item.code);
+    if (!Number.isFinite(price)) return item;
+    const records = Array.isArray(item.records) ? item.records : [];
+    if (records.some((record) => record.at === key)) return item;
+    changed = true;
+    return { ...item, records: [...records, { at: key, price }] };
+  });
+  if (changed) saveWatch(next);
+}
+
+function returnAt(item, days) {
+  const target = new Date(item.addedAt);
+  target.setDate(target.getDate() + days);
+  const record = (item.records || []).find((point) => new Date(point.at).getTime() >= target.getTime());
+  if (!record || !Number.isFinite(n(item.addedPrice)) || n(item.addedPrice) <= 0) return NaN;
+  return n(record.price) / n(item.addedPrice) - 1;
+}
+
+function watchStatus(item, row) {
+  if (!row) return { tone: "blue", label: "等待数据" };
+  return rowState(row);
+}
+
+function renderCandidateRow(row, compact = false) {
+  const code = codeOf(row.code);
+  const watched = getWatch().some((item) => item.code === code);
+  const state = rowState(row);
+  const tierClass = `t${row.tier}`;
+  const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
+  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(row.close)}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? "已观察" : "加入"}</button></td></tr>`;
+}
+
+function bindWatchButtons(scope) {
+  document.querySelectorAll(`${scope} .watch-add:not([disabled])`).forEach((button) => {
+    button.onclick = () => addWatch(button.dataset.code);
+  });
+}
+
+function renderOverviewTables() {
+  const rows = rankedCandidates();
+  $("candidateCount").textContent = `${rows.length} 只研究观察`;
+  $("tierOneRows").innerHTML = rows.filter((row) => row.tier === 1).map((row) => renderCandidateRow(row, true)).join("") || '<tr><td colspan="14" class="empty">当前没有达到一级研究关注门槛的样本。</td></tr>';
+  $("candidateRows").innerHTML = rows.map((row) => renderCandidateRow(row, false)).join("") || '<tr><td colspan="15" class="empty">当前没有符合过滤条件的研究观察样本。</td></tr>';
+  bindWatchButtons("#tierOneRows");
+  bindWatchButtons("#candidateRows");
 }
 
 function addWatch(code) {
-  const row = candidates().find((candidate) => String(candidate.code).padStart(6, "0") === code);
+  const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code);
   if (!row) return;
   const items = getWatch();
   if (!items.some((item) => item.code === code)) {
-    items.unshift({
-      code,
-      name: row.name,
-      sector: row.sector,
-      addedAt: new Date().toISOString(),
-      addedPrice: n(row.close),
-      historicalTrend: n(row.ret20),
-    });
+    const initial = { at: snapshot?.generatedAt || snapshot?.latestDate || new Date().toISOString(), price: n(row.close) };
+    items.unshift({ code, name: row.name, sector: row.sector, addedAt: new Date().toISOString(), addedPrice: n(row.close), historicalTrend: n(row.ret20), records: [initial] });
     saveWatch(items);
   }
-  renderWatch();
-  renderFocus(candidates());
-  renderCandidates();
+  renderAllLocal();
 }
 
-function renderFocus(rows) {
-  const root = $("tierOne");
-  const top = rows.filter((row) => tier(row) === 1);
-  const watched = new Set(getWatch().map((item) => item.code));
-  root.innerHTML = top.map((row) => { const code = String(row.code).padStart(6, "0"); return `<article class="focus-card"><span class="tier-label t1">一级研究关注 / 排名 ${row.rank}</span><h3>${text(row.name)} <small>${text(row.code)}</small></h3><p>${text(row.sector)} / 综合 ${num(row.research_score)}</p><p>${levelReason(row)}</p><p>观察区 ${num(row.entry_low)} - ${num(row.entry_high)} / 风险 ${num(row.risk_line)}</p><button class="watch-add" data-code="${code}" ${watched.has(code) ? "disabled" : ""}>${watched.has(code) ? "✓ 已观察" : "✓ 加入观察"}</button></article>`; }).join("") || "<p>当前没有达到一级研究关注门槛的样本，不强行凑数。</p>";
-  document.querySelectorAll("#tierOne .watch-add:not([disabled])").forEach((button) => {
-    button.onclick = () => addWatch(button.dataset.code);
+function removeWatch(code) {
+  saveWatch(getWatch().filter((item) => item.code !== code));
+  renderAllLocal();
+}
+
+function renderWatchTable() {
+  recordWatchSnapshots();
+  const current = new Map(rankedCandidates().map((row) => [codeOf(row.code), row]));
+  const prices = priceMap();
+  const rows = getWatch();
+  $("watchBadge").textContent = String(rows.length);
+  $("watchRows").innerHTML = rows.map((item) => {
+    const latest = prices.get(item.code);
+    const currentReturn = Number.isFinite(latest) && n(item.addedPrice) > 0 ? latest / n(item.addedPrice) - 1 : NaN;
+    const state = watchStatus(item, current.get(item.code));
+    return `<tr><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${num(item.addedPrice)}</td><td>${retCell(item.historicalTrend)}</td><td>${num(latest)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><button class="remove-watch" data-code="${item.code}">取消观察</button></td></tr>`;
+  }).join("") || '<tr><td colspan="12" class="empty">还没有观察样本。请在研究总览中点击“加入”。</td></tr>';
+  document.querySelectorAll(".remove-watch").forEach((button) => { button.onclick = () => removeWatch(button.dataset.code); });
+}
+
+function getHoldingRows() {
+  const map = new Map(rankedCandidates().map((row) => [codeOf(row.code), row]));
+  return getHoldings().map((code) => ({ code, row: map.get(code) || null }));
+}
+
+function renderHoldings() {
+  const rows = getHoldingRows();
+  const input = $("holdingCodes");
+  if (document.activeElement !== input) input.value = getHoldings().join("、");
+  $("holdingRows").innerHTML = rows.map(({ code, row }) => {
+    const state = row ? rowState(row) : { tone: "blue", label: "等待数据" };
+    return `<tr><td class="stock-cell"><strong>${row ? text(row.name) : code}</strong><small>${code}${row ? ` / ${text(row.sector)}` : ""}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row?.close)}</td><td>${num(row?.risk_line)}</td><td>${num(row?.target1)}</td><td>${row ? researchPeriod(row) : "--"}</td><td class="reason">${row ? reason(row) : "当前公开研究池中没有该代码，等待后续快照覆盖。"}</td><td><button class="remove-holding" data-code="${code}">移除</button></td></tr>`;
+  }).join("") || '<tr><td colspan="8" class="empty">尚未在本机保存持仓代码。</td></tr>';
+  document.querySelectorAll(".remove-holding").forEach((button) => {
+    button.onclick = () => { saveHoldings(getHoldings().filter((code) => code !== button.dataset.code)); renderHoldings(); };
   });
 }
 
-function renderCandidates() {
-  const rows = candidates();
-  const watched = new Set(getWatch().map((item) => item.code));
-  $("candidateCount").textContent = `${rows.length} 只研究观察`;
-  $("candidateRows").innerHTML = rows.slice(0, 28).map((row) => {
-    const code = String(row.code).padStart(6, "0");
-    const value = tier(row);
-    return `<tr><td><span class="tier-label t${value}">${tierText(value)}<small>排名 ${row.rank}</small></span></td><td><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td>${num(row.research_score)}</td><td class="analysis-copy">${levelReason(row)}</td><td>${num(row.close)}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>5日 ${pct(row.ret5)}<small>20日 ${pct(row.ret20)}</small></td><td><button class="watch-add" data-code="${code}" ${watched.has(code) ? "disabled" : ""}>${watched.has(code) ? "✓ 已观察" : "✓ 加入"}</button></td></tr>`;
-  }).join("") || '<tr><td colspan="9">当前没有符合过滤条件的研究观察样本。</td></tr>';
-
-  document.querySelectorAll("#candidateRows .watch-add:not([disabled])").forEach((button) => {
-    button.onclick = () => addWatch(button.dataset.code);
-  });
+function performanceMetric(performance) {
+  const horizons = Array.isArray(performance?.available_horizons) ? performance.available_horizons.map(Number).filter(Number.isFinite).sort((a, b) => b - a) : [];
+  const horizon = horizons[0];
+  const value = horizon === undefined ? NaN : n(performance?.returns?.[String(horizon)]);
+  const drawdown = horizon === undefined ? NaN : n(performance?.drawdowns?.[String(horizon)]);
+  return { horizon: horizon === undefined ? "等待后验" : `${horizon}日`, value, drawdown };
 }
 
-function render(data) {
+function renderHistoryRows(data) {
+  const performance = new Map((data?.candidatePerformanceRows || []).map((row) => [codeOf(row.code), row]));
+  const rows = rankedCandidates(data).map((row) => {
+    const review = performance.get(codeOf(row.code));
+    return { row, review, post: performanceMetric(review) };
+  });
+  const valueFor = (item) => {
+    if (historySort === "score") return n(item.row.research_score);
+    if (historySort === "ret20") return n(item.row.ret20);
+    if (historySort === "drawdown") return n(item.post.drawdown);
+    return n(item.post.value);
+  };
+  rows.sort((left, right) => {
+    const a = valueFor(left);
+    const b = valueFor(right);
+    if (!Number.isFinite(a)) return 1;
+    if (!Number.isFinite(b)) return -1;
+    return historySort === "drawdown" ? a - b : b - a;
+  });
+  $("historyRows").innerHTML = rows.map(({ row, review, post }) => `<tr><td><span class="tier-label t${row.tier}">${tierText(row.tier)}</span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)}</small></td><td>${num(row.research_score)}</td><td>${Number.isFinite(post.value) ? rawPct(post.value) : "等待后验"}</td><td>${Number.isFinite(post.drawdown) ? rawPct(post.drawdown) : "--"}</td><td>${post.horizon}</td><td>${text(review?.review_status, "等待后验")}</td><td>${retCell(row.ret20)}</td><td class="reason">${text(review?.review_note, row.explain || row.quality_type)}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">该日期没有可显示的候选。</td></tr>';
+}
+
+async function selectHistory(date) {
+  const currentDate = archiveDate(snapshot);
+  if (!date || date === currentDate) {
+    historyData = snapshot;
+  } else {
+    try {
+      const response = await fetch(`./history/${date}.json?t=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) throw new Error("历史归档暂不可用");
+      historyData = await response.json();
+    } catch {
+      historyData = snapshot;
+    }
+  }
+  renderHistoryRows(historyData);
+}
+
+async function loadHistoryIndex() {
+  try {
+    const response = await fetch(`./history/index.json?t=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error("archive unavailable");
+    historyIndex = await response.json();
+  } catch {
+    historyIndex = [];
+  }
+  const currentDate = archiveDate(snapshot);
+  if (currentDate && !historyIndex.some((item) => item.date === currentDate)) historyIndex.unshift({ date: currentDate, generatedAt: snapshot?.generatedAt, candidateCount: rankedCandidates().length });
+  const select = $("historySelect");
+  const selected = select.value || currentDate;
+  select.innerHTML = historyIndex.map((item) => `<option value="${text(item.date)}">${text(item.date)} / ${text(item.candidateCount, 0)} 只</option>`).join("") || '<option value="">暂无归档</option>';
+  if (selected && historyIndex.some((item) => item.date === selected)) select.value = selected;
+  await selectHistory(select.value);
+}
+
+function renderSnapshot(data) {
   snapshot = data;
   const fusion = data.fusionModelV73 || {};
   const selected = fusion.selectedResearchCore;
   const market = data.market || {};
-  const generatedAt = data.generatedAt ? new Date(data.generatedAt).toLocaleString("zh-CN") : "--";
-
-  $("sideSnapshot").textContent = data.generatedAt ? `快照 ${generatedAt}` : "等待快照";
-  $("updatedAt").textContent = generatedAt;
+  const generated = data.generatedAt ? formatTime(data.generatedAt) : "--";
+  $("sideSnapshot").textContent = data.generatedAt ? `快照 ${generated}` : "等待快照";
+  $("updatedAt").textContent = generated;
   $("coreStatus").textContent = selected ? "双样本研究通过" : "等待双样本验证";
   $("coreTitle").textContent = selected === "V50_momentum_quality" ? "趋势质量融合模型" : "暂无可用融合核心";
   $("coreSummary").textContent = fusion.summary || "等待融合验证";
   $("formalStatus").textContent = fusion.formalPromotion ? "已晋级" : "研究观察";
   $("dataEnd").textContent = text(data.dataReadiness?.history?.latestDate || data.latestDate);
-
   const coreRow = (fusion.rows || []).find((row) => row.layer === selected);
   const checks = coreRow?.checks || [];
   metric(checks.find((check) => check.horizon === 3), "m3");
   metric(checks.find((check) => check.horizon === 5), "m5");
   metric(checks.find((check) => check.horizon === 7), "m7");
-
   const broad = n(market.up_ratio);
   const median = n(market.median_pct);
   $("marketStatus").textContent = broad >= .60 && median >= 0 ? "环境偏强" : broad >= .45 ? "环境中性" : "环境偏弱";
   $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)}`;
   $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
+  renderAllLocal();
+}
 
-  const rows = candidates();
-  renderFocus(rows);
-  renderCandidates();
-  renderWatch();
+function renderAllLocal() {
+  renderOverviewTables();
+  renderWatchTable();
+  renderHoldings();
+  if (historyData) renderHistoryRows(historyData);
+}
+
+function applyView(view) {
+  const active = VIEWS[view] ? view : "overview";
+  document.querySelectorAll(".view").forEach((section) => { section.hidden = section.id !== `${active}View`; });
+  document.querySelectorAll(".nav [data-view]").forEach((button) => button.classList.toggle("active", button.dataset.view === active));
+  $("viewTitle").textContent = VIEWS[active].title;
+  $("viewSubtitle").textContent = VIEWS[active].subtitle;
+  if (active === "history") loadHistoryIndex();
+}
+
+function setView(view) {
+  location.hash = view;
 }
 
 async function load() {
   try {
     const response = await fetch(`./snapshot.json?t=${Date.now()}`, { cache: "no-store" });
-    render(await response.json());
+    if (!response.ok) throw new Error("快照读取失败");
+    renderSnapshot(await response.json());
+    await loadHistoryIndex();
   } catch (error) {
     $("coreTitle").textContent = "快照读取失败";
     $("coreSummary").textContent = error.message;
@@ -170,13 +326,14 @@ async function load() {
 }
 
 $("refreshNow").onclick = load;
-$("clearWatch").onclick = () => {
-  if (confirm("清空本机浏览器中的观察栏？")) {
-    saveWatch([]);
-    renderWatch();
-    renderCandidates();
-  }
-};
-
+$("clearWatch").onclick = () => { if (confirm("清空本机浏览器中的观察栏？")) { saveWatch([]); renderAllLocal(); } };
+$("historySelect").onchange = (event) => selectHistory(event.target.value);
+$("historySort").onchange = (event) => { historySort = event.target.value; if (historyData) renderHistoryRows(historyData); };
+document.querySelectorAll("[data-history-sort]").forEach((button) => { button.onclick = () => { historySort = button.dataset.historySort; $("historySort").value = historySort; if (historyData) renderHistoryRows(historyData); }; });
+document.querySelectorAll(".nav [data-view]").forEach((button) => { button.onclick = () => setView(button.dataset.view); });
+$("holdingForm").onsubmit = (event) => { event.preventDefault(); const codes = [...new Set(($("holdingCodes").value.match(/\d{6}/g) || []).map(codeOf))]; saveHoldings(codes); renderHoldings(); };
+window.addEventListener("hashchange", () => applyView(location.hash.replace("#", "")));
+if (!location.hash) location.hash = "overview";
+applyView(location.hash.replace("#", ""));
 load();
 setInterval(load, 60000);

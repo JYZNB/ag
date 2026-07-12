@@ -1,9 +1,1 @@
-.section-note{margin:10px 0 0!important;color:var(--muted)!important;font-size:12px!important}
-.watch-metrics{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
-.watch-metrics div{padding:7px;border-radius:5px;background:#0e2741}
-.watch-metrics small,.watch-metrics b{display:block;font-size:11px}
-.watch-metrics b{margin-top:3px;font-size:13px}
-.watch-metrics .up{color:#ff9592}.watch-metrics .down{color:#69d3ae}
-.watch-add[disabled]{border-color:#ccd6e0;color:#8290a0;cursor:default}
-.analysis-copy{max-width:235px;color:#526275;line-height:1.5;font-size:12px}
-table{min-width:1160px}
+.dense-panel{padding-bottom:12px}.view{animation:fade-in .16s ease-out}@keyframes fade-in{from{opacity:.4}to{opacity:1}}
