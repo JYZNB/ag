@@ -58,7 +58,29 @@
         </section>
 
         <section id="holdingsView" class="view" hidden>
-          <section class="panel view-panel"><div class="heading"><div><p class="eyebrow">PRIVATE HOLDINGS</p><h2>我的持仓</h2></div><span class="private-tag">本机私密</span></div><p class="section-note">公开网页不读取或上传你的账户、成本和数量。这里仅允许在当前浏览器保存股票代码，用公开研究快照给出状态匹配；本地自动化仍会在私有工作区读取持仓文件做分析。</p><form id="holdingForm" class="holdings-form"><label for="holdingCodes">持仓代码</label><input id="holdingCodes" placeholder="例如：002768、601066，多个代码用逗号分隔" autocomplete="off" /><button type="submit">本机保存</button></form><div class="table-wrap"><table class="dense-table"><thead><tr><th>股票</th><th>当前研究状态</th><th>日线价</th><th>风险线</th><th>第一目标</th><th>研究周期</th><th>说明</th><th>移除</th></tr></thead><tbody id="holdingRows"></tbody></table></div></section>
+          <section class="panel view-panel">
+            <div class="heading"><div><p class="eyebrow">PRIVATE HOLDINGS</p><h2>我的持仓</h2></div><span class="private-tag">端到端本机解锁</span></div>
+            <p class="section-note">持仓、成本、数量与复核记录先在本机加密，再发布到网页。密码只用于当前浏览器解密，不上传、不保存到 GitHub。此区仅做持仓研究和风险复核，不构成交易指令。</p>
+
+            <section id="privateLockPanel" class="lock-panel">
+              <div><p class="eyebrow">LOCKED</p><h3>输入持仓密码后查看</h3><p>网页上只有加密包；没有正确密码，任何人都无法读到持仓明细。</p></div>
+              <form id="unlockForm" class="unlock-form">
+                <label for="privatePassword">持仓密码</label>
+                <input id="privatePassword" type="password" autocomplete="current-password" placeholder="仅在当前浏览器使用" required />
+                <button type="submit">解锁持仓</button>
+              </form>
+              <p id="unlockMessage" class="unlock-message" role="status"></p>
+            </section>
+
+            <section id="holdingUnlocked" hidden>
+              <div class="private-toolbar">
+                <div class="history-controls"><label>复核节点 <select id="holdingTimeline"></select></label></div>
+                <div><span id="holdingSnapshotMeta" class="private-meta">--</span><button id="lockHoldings" type="button" class="text-button">锁定页面</button></div>
+              </div>
+              <section class="metric-grid private-metrics"><article><span>持仓数量</span><strong id="holdingCount">--</strong><small id="holdingPhase">--</small></article><article><span>持仓成本</span><strong id="holdingCostValue">--</strong><small>仅本机解锁后可见</small></article><article><span>参考市值</span><strong id="holdingMarketValue">--</strong><small id="holdingDate">--</small></article><article><span>参考浮盈亏</span><strong id="holdingPnlValue">--</strong><small id="holdingPnlPct">--</small></article></section>
+              <div class="table-wrap"><table class="dense-table private-holdings-table"><thead><tr><th>股票</th><th>持仓 / 可卖</th><th>成本价</th><th>参考价</th><th>参考盈亏</th><th>复核状态</th><th>风险线</th><th>第一目标</th><th>研究周期</th><th>价格来源</th><th>本节点说明</th></tr></thead><tbody id="holdingRows"></tbody></table></div>
+            </section>
+          </section>
         </section>
       </main>
     </div>

@@ -1,17 +1,18 @@
 const $ = (id) => document.getElementById(id);
 const WATCH_STORAGE = "taishan-fusion-watch-v2";
-const HOLDING_STORAGE = "taishan-private-holdings-v1";
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
   watch: { title: "我的观察栏", subtitle: "从加入时刻开始记录可用快照与后续表现。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
-  holdings: { title: "我的持仓", subtitle: "公开页面只保存本机输入的代码，不上传账户或成本。" },
+  holdings: { title: "我的持仓", subtitle: "本机加密包，输入密码后仅在当前浏览器解锁。" },
 };
 
 let snapshot = null;
 let historyIndex = [];
 let historyData = null;
 let historySort = "post";
+let privateHoldingsData = null;
+let selectedHoldingEventKey = "";
 
 const n = (value) => Number.isFinite(Number(value)) ? Number(value) : NaN;
 const safe = (value) => Number.isFinite(n(value)) ? n(value) : 0;
@@ -22,8 +23,6 @@ const text = (value, fallback = "--") => value === undefined || value === null |
 const codeOf = (value) => String(value || "").padStart(6, "0");
 const getWatch = () => { try { return JSON.parse(localStorage.getItem(WATCH_STORAGE) || "[]"); } catch { return []; } };
 const saveWatch = (rows) => localStorage.setItem(WATCH_STORAGE, JSON.stringify(rows));
-const getHoldings = () => { try { return JSON.parse(localStorage.getItem(HOLDING_STORAGE) || "[]"); } catch { return []; } };
-const saveHoldings = (rows) => localStorage.setItem(HOLDING_STORAGE, JSON.stringify(rows));
 
 function candidateSource(data = snapshot) {
   return data?.momentumQuality?.candidates || [];
@@ -186,22 +185,121 @@ function renderWatchTable() {
   document.querySelectorAll(".remove-watch").forEach((button) => { button.onclick = () => removeWatch(button.dataset.code); });
 }
 
-function getHoldingRows() {
-  const map = new Map(rankedCandidates().map((row) => [codeOf(row.code), row]));
-  return getHoldings().map((code) => ({ code, row: map.get(code) || null }));
+function base64Bytes(value) {
+  const raw = atob(value);
+  return Uint8Array.from(raw, (char) => char.charCodeAt(0));
+}
+
+async function decryptHoldingsEnvelope(envelope, password) {
+  if (!window.crypto?.subtle) throw new Error("当前浏览器不支持本机安全解密，请使用最新版 Chrome。" );
+  if (envelope?.version !== 1 || envelope?.algorithm !== "AES-GCM") throw new Error("持仓加密包格式不受支持。" );
+  const passwordBytes = new TextEncoder().encode(password);
+  const material = await crypto.subtle.importKey("raw", passwordBytes, "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: base64Bytes(envelope.kdf?.salt || ""),
+      iterations: Number(envelope.kdf?.iterations || 0),
+      hash: "SHA-256",
+    },
+    material,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["decrypt"],
+  );
+  const plaintext = await crypto.subtle.decrypt(
+    {
+      name: "AES-GCM",
+      iv: base64Bytes(envelope.nonce || ""),
+      additionalData: new TextEncoder().encode(envelope.aad || "taishan-holdings-v1"),
+    },
+    key,
+    base64Bytes(envelope.ciphertext || ""),
+  );
+  return JSON.parse(new TextDecoder().decode(plaintext));
+}
+
+function holdingEventKey(event) {
+  return `${event?.at || ""}|${event?.phase || ""}`;
+}
+
+function holdingMoney(value) {
+  return Number.isFinite(n(value)) ? `¥${n(value).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "--";
+}
+
+function selectedHoldingEvent() {
+  const events = Array.isArray(privateHoldingsData?.timeline) ? privateHoldingsData.timeline : [];
+  const sorted = [...events].sort((left, right) => String(right.at).localeCompare(String(left.at)));
+  return sorted.find((event) => holdingEventKey(event) === selectedHoldingEventKey) || sorted[0] || {
+    at: privateHoldingsData?.generatedAt,
+    phase: privateHoldingsData?.phase,
+    latestDate: privateHoldingsData?.latestDate,
+    holdings: privateHoldingsData?.holdings || [],
+    portfolio: privateHoldingsData?.portfolio || {},
+  };
 }
 
 function renderHoldings() {
-  const rows = getHoldingRows();
-  const input = $("holdingCodes");
-  if (document.activeElement !== input) input.value = getHoldings().join("、");
-  $("holdingRows").innerHTML = rows.map(({ code, row }) => {
-    const state = row ? rowState(row) : { tone: "blue", label: "等待数据" };
-    return `<tr><td class="stock-cell"><strong>${row ? text(row.name) : code}</strong><small>${code}${row ? ` / ${text(row.sector)}` : ""}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row?.close)}</td><td>${num(row?.risk_line)}</td><td>${num(row?.target1)}</td><td>${row ? researchPeriod(row) : "--"}</td><td class="reason">${row ? reason(row) : "当前公开研究池中没有该代码，等待后续快照覆盖。"}</td><td><button class="remove-holding" data-code="${code}">移除</button></td></tr>`;
-  }).join("") || '<tr><td colspan="8" class="empty">尚未在本机保存持仓代码。</td></tr>';
-  document.querySelectorAll(".remove-holding").forEach((button) => {
-    button.onclick = () => { saveHoldings(getHoldings().filter((code) => code !== button.dataset.code)); renderHoldings(); };
-  });
+  if (!privateHoldingsData) {
+    $("privateLockPanel").hidden = false;
+    $("holdingUnlocked").hidden = true;
+    return;
+  }
+  const event = selectedHoldingEvent();
+  const events = Array.isArray(privateHoldingsData.timeline) ? [...privateHoldingsData.timeline].sort((left, right) => String(right.at).localeCompare(String(left.at))) : [];
+  const select = $("holdingTimeline");
+  const current = selectedHoldingEventKey || holdingEventKey(event);
+  select.innerHTML = events.map((item) => `<option value="${holdingEventKey(item)}">${formatTime(item.at)} / ${text(item.phase)}</option>`).join("") || '<option value="">当前解锁快照</option>';
+  select.value = current;
+  selectedHoldingEventKey = select.value;
+
+  const portfolio = event.portfolio || {};
+  $("holdingCount").textContent = `${safe(portfolio.holdingCount || (event.holdings || []).length)} 只`;
+  $("holdingPhase").textContent = text(event.phase, "持仓复核");
+  $("holdingCostValue").textContent = holdingMoney(portfolio.costValue);
+  $("holdingMarketValue").textContent = holdingMoney(portfolio.marketValue);
+  $("holdingDate").textContent = `日线截止 ${text(event.latestDate, privateHoldingsData.latestDate)}`;
+  $("holdingPnlValue").textContent = holdingMoney(portfolio.pnlValue);
+  $("holdingPnlValue").className = Number.isFinite(n(portfolio.pnlValue)) && n(portfolio.pnlValue) >= 0 ? "positive-value" : "negative-value";
+  $("holdingPnlPct").textContent = `参考比例 ${pct(portfolio.pnlPct)}`;
+  const sourceUpdatedAt = event.holdingsSourceUpdatedAt || privateHoldingsData.holdingsSourceUpdatedAt;
+  $("holdingSnapshotMeta").textContent = `加密包更新 ${formatTime(privateHoldingsData.generatedAt)} / 持仓源 ${formatTime(sourceUpdatedAt)}`;
+
+  $("holdingRows").innerHTML = (event.holdings || []).map((row) => {
+    const shares = Number.isFinite(n(row.shares)) ? n(row.shares).toLocaleString("zh-CN") : "--";
+    const available = Number.isFinite(n(row.available)) ? n(row.available).toLocaleString("zh-CN") : "--";
+    return `<tr><td class="stock-cell"><strong>${text(row.name, row.code)}</strong><small>${codeOf(row.code)}</small></td><td>${shares} / ${available}</td><td>${num(row.costPrice)}</td><td>${num(row.price)}</td><td><span class="${safe(row.pnlPct) >= 0 ? "ret-up" : "ret-down"}">${holdingMoney(row.pnlValue)}<small>${pct(row.pnlPct)}</small></span></td><td><span class="state ${text(row.tone, "blue")}">${text(row.state)}</span></td><td>${num(row.riskLine)}</td><td>${num(row.target1)}</td><td>${text(row.researchPeriod)}</td><td>${text(row.quoteSource)}</td><td class="reason">${text(row.note)}</td></tr>`;
+  }).join("") || '<tr><td colspan="11" class="empty">此复核节点没有可显示的持仓。</td></tr>';
+  $("privateLockPanel").hidden = true;
+  $("holdingUnlocked").hidden = false;
+}
+
+async function unlockHoldings() {
+  const message = $("unlockMessage");
+  const passwordInput = $("privatePassword");
+  message.textContent = "正在本机解锁加密持仓包...";
+  try {
+    const response = await fetch(`./private/holdings.enc.json?t=${Date.now()}`, { cache: "no-store" });
+    if (response.status === 404) throw new Error("私密持仓包尚未生成。请先在本机设置密码并完成一次刷新。" );
+    if (!response.ok) throw new Error("私密持仓包暂时无法读取。" );
+    privateHoldingsData = await decryptHoldingsEnvelope(await response.json(), passwordInput.value);
+    passwordInput.value = "";
+    selectedHoldingEventKey = "";
+    message.textContent = "";
+    renderHoldings();
+  } catch (error) {
+    privateHoldingsData = null;
+    message.textContent = error?.name === "OperationError" ? "密码不正确，或加密包已由不同密码生成。" : error.message || "解锁失败。";
+    renderHoldings();
+  }
+}
+
+function lockHoldings() {
+  privateHoldingsData = null;
+  selectedHoldingEventKey = "";
+  $("privatePassword").value = "";
+  $("unlockMessage").textContent = "持仓明细已从当前页面内存中锁定。";
+  renderHoldings();
 }
 
 function performanceMetric(performance) {
@@ -331,7 +429,9 @@ $("historySelect").onchange = (event) => selectHistory(event.target.value);
 $("historySort").onchange = (event) => { historySort = event.target.value; if (historyData) renderHistoryRows(historyData); };
 document.querySelectorAll("[data-history-sort]").forEach((button) => { button.onclick = () => { historySort = button.dataset.historySort; $("historySort").value = historySort; if (historyData) renderHistoryRows(historyData); }; });
 document.querySelectorAll(".nav [data-view]").forEach((button) => { button.onclick = () => setView(button.dataset.view); });
-$("holdingForm").onsubmit = (event) => { event.preventDefault(); const codes = [...new Set(($("holdingCodes").value.match(/\d{6}/g) || []).map(codeOf))]; saveHoldings(codes); renderHoldings(); };
+$("unlockForm").onsubmit = (event) => { event.preventDefault(); unlockHoldings(); };
+$("lockHoldings").onclick = lockHoldings;
+$("holdingTimeline").onchange = (event) => { selectedHoldingEventKey = event.target.value; renderHoldings(); };
 window.addEventListener("hashchange", () => applyView(location.hash.replace("#", "")));
 if (!location.hash) location.hash = "overview";
 applyView(location.hash.replace("#", ""));
