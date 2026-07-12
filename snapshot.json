@@ -11900,6 +11900,63 @@
     "summary": "唯一通过双样本鲁棒性门槛的是 V50_momentum_quality；仅保留为核心研究层，仍等待冻结前验。",
     "guardrail": "原始 TDX 数据只作鲁棒性对照，不能代替前复权正式回测；通过双样本不等于未来盈利或自动下单资格。"
   },
+  "publicHoldings": {
+    "rows": [
+      {
+        "code": "002179",
+        "name": "AVIC_OPTRONICS",
+        "shares": 200.0,
+        "available": 200.0,
+        "costPrice": 44.8555,
+        "price": 43.2,
+        "pnlValue": -331.10000000000036,
+        "pnlPct": -0.03690740265965159,
+        "quoteSource": "本地持仓屏幕价"
+      },
+      {
+        "code": "601388",
+        "name": "YIQIU_RESOURCES",
+        "shares": 2800.0,
+        "available": 2800.0,
+        "costPrice": 5.0489,
+        "price": 2.92,
+        "pnlValue": -5960.92,
+        "pnlPct": -0.421656202341104,
+        "quoteSource": "本地持仓屏幕价"
+      },
+      {
+        "code": "002709",
+        "name": "TINCI_MATERIALS",
+        "shares": 100.0,
+        "available": 100.0,
+        "costPrice": 54.9005,
+        "price": 53.71,
+        "pnlValue": -119.05000000000018,
+        "pnlPct": -0.02168468411034511,
+        "quoteSource": "本地持仓屏幕价"
+      },
+      {
+        "code": "002050",
+        "name": "SANHUA_INTELLIGENT",
+        "shares": 100.0,
+        "available": 0.0,
+        "costPrice": 45.8405,
+        "price": 49.41,
+        "pnlValue": 356.9499999999998,
+        "pnlPct": 0.07786782430383608,
+        "quoteSource": "本地持仓屏幕价"
+      }
+    ],
+    "portfolio": {
+      "holdingCount": 4,
+      "costValue": 33182.12,
+      "marketValue": 27128.0,
+      "pnlValue": -6054.120000000003,
+      "pnlPct": -0.18245127195007438
+    },
+    "sourceUpdatedAt": "2026-07-03T13:19:18+08:00",
+    "notice": "公开持仓来自本地 current_holdings.csv；仅含证券代码、数量、成本与参考价，不含姓名、账户或登录凭证。请以券商实际持仓为准。"
+  },
   "githubPagesStatic": true,
-  "publicMirrorNotice": "去敏 GitHub Pages 镜像：不含持仓、成本、账户或 Token；实时行情不在本镜像运行。"
+  "publicMirrorNotice": "GitHub Pages 公开研究镜像：研究快照会随本机构建更新；当前持仓由用户授权公开展示，不含姓名、账户或 Token。实时行情不在本镜像运行。"
 }

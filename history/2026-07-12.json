@@ -11901,5 +11901,5 @@
     "guardrail": "原始 TDX 数据只作鲁棒性对照，不能代替前复权正式回测；通过双样本不等于未来盈利或自动下单资格。"
   },
   "githubPagesStatic": true,
-  "publicMirrorNotice": "去敏 GitHub Pages 镜像：不含持仓、成本、账户或 Token；实时行情不在本镜像运行。"
+  "publicMirrorNotice": "GitHub Pages 公开研究镜像：研究快照会随本机构建更新；当前持仓由用户授权公开展示，不含姓名、账户或 Token。实时行情不在本镜像运行。"
 }
