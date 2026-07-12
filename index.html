@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>泰山 A 股研究驾驶舱</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">泰山 A 股研究驾驶舱</p>
+          <h1>候选池、持仓风控、实时热度</h1>
+        </div>
+        <div class="top-actions">
+          <a class="doc-link" href="/downloads/泰山A股研究模型说明与回测摘要_V72.docx" download>下载模型说明</a>
+          <div class="sync" id="liveStatus">等待实时行情</div>
+        </div>
+      </header>
+
+      <section class="hero-grid">
+        <article class="panel primary-panel">
+          <div class="model-line">
+            <span class="pill green" id="formalVersion">正式模型</span>
+            <span class="pill amber" id="learningVersion">学习版本</span>
+            <span class="pill red" id="marketState">大盘状态</span>
+          </div>
+          <h2 id="modelName">加载模型中...</h2>
+          <p id="modelNote">只做研究和风控提示，不承诺盈利，不执行下单。</p>
+          <div class="metrics">
+            <div class="metric"><span>正式日线</span><strong id="latestDate">--</strong></div>
+            <div class="metric"><span>生成时间</span><strong id="generatedAt">--</strong></div>
+            <div class="metric"><span>学习结论</span><strong id="learningVerdict">--</strong></div>
+          </div>
+          <p class="freshness" id="freshnessNote">等待数据覆盖率检查</p>
+        </article>
+
+        <article class="panel">
+          <div class="section-title"><h2>盘中实时监控</h2><span id="liveTime">--</span></div>
+          <div class="live-status"><span class="dot" id="liveDot"></span><p id="liveMessage">正在准备实时连接</p></div>
+          <div class="split-list">
+            <div>
+              <h3>强势上行</h3>
+              <div id="strongRisers" class="live-list"></div>
+            </div>
+            <div>
+              <h3>涨停/高热度</h3>
+              <div id="limitWatch" class="live-list"></div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="ops-strip" aria-label="自动运行状态">
+        <div class="ops-card"><span>自动任务</span><strong id="autoRunState">工作日 18:30</strong><small id="autoSchedule">每日研究刷新</small></div>
+        <div class="ops-card"><span>最近完成</span><strong id="autoLastRun">--</strong><small id="autoRunAge">等待快照</small></div>
+        <div class="ops-card"><span>下一次计划</span><strong id="autoNextRun">--</strong><small>本地时区</small></div>
+        <div class="ops-card"><span>正式截面</span><strong id="autoDataSlice">--</strong><small id="autoDataGate">等待覆盖率检查</small></div>
+        <div class="ops-card"><span>盘中行情</span><strong id="autoLiveSource">连接中</strong><small id="autoLiveTime">每 60 秒刷新</small></div>
+      </section>
+
+      <section class="panel readiness-panel">
+        <div class="section-title"><h2>V63 数据就绪度</h2><span id="dataReadinessState">等待刷新</span></div>
+        <div class="readiness-grid">
+          <div><span>实时主板快照</span><strong id="dataReadinessRt">--</strong><small id="dataReadinessRtNote">--</small></div>
+          <div><span>历史日线覆盖</span><strong id="dataReadinessHistory">--</strong><small id="dataReadinessHistoryNote">--</small></div>
+        </div>
+        <p class="freshness" id="dataReadinessAllowed">--</p>
+        <p class="freshness" id="dataReadinessGuardrail">--</p>
+      </section>
+
+      <section class="panel readiness-panel">
+        <div class="section-title"><h2>V73 融合模型门槛</h2><span id="fusionModelStatus">等待双样本核验</span></div>
+        <p class="freshness" id="fusionModelSummary">--</p>
+        <p class="freshness" id="fusionModelGuardrail">--</p>
+      </section>
+
+      <section class="panel proxy-panel">
+        <div class="section-title"><h2>V66 实时收盘代理观察</h2><span id="liveProxyStatus">等待 RT 收盘快照</span></div>
+        <p class="freshness" id="liveProxyGuardrail">--</p>
+        <div class="proxy-list" id="liveProxyRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V64 另类信息审计</h2><span id="alternativeDataSummary">等待刷新</span></div>
+        <p class="freshness" id="alternativeDataGuardrail">--</p>
+        <p class="freshness" id="alternativeBacktestSummary">--</p>
+        <div class="alternative-list" id="alternativeDataRows"></div>
+      </section>
+
+      <section class="panel emphasis-panel">
+        <div class="section-title">
+          <h2 id="strengthTitle">强势观察池</h2>
+          <span id="strengthSummary">涨停延续 / 持续上涨，不等于买入信号</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>股票</th><th>板块</th><th>类型</th><th>分数</th><th>日线价</th>
+                <th>5日</th><th>20日</th><th>观察区</th><th>风险线</th><th>备注</th>
+              </tr>
+            </thead>
+            <tbody id="strengthRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel emphasis-panel">
+        <div class="section-title">
+          <h2 id="momentumTitle">强势质量分层</h2>
+          <span id="momentumSummary">涨停延续 / 持续上涨中继 / 强势回踩修复</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>股票</th><th>板块</th><th>质量类型</th><th>总分</th><th>五项拆解</th>
+                <th>日线价</th><th>20日</th><th>观察区</th><th>风险线</th><th>解释</th>
+              </tr>
+            </thead>
+            <tbody id="momentumRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="section-title"><h2>模型观察池</h2><span>主板优先 / 不是下单指令</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>股票</th><th>板块</th><th>状态</th><th>评分</th>
+                  <th>买入区</th><th>风控线</th><th>目标1</th><th>说明</th>
+                </tr>
+              </thead>
+              <tbody id="candidateRows"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="section-title"><h2>持仓风控</h2><span>先看风险，再谈买入</span></div>
+          <div class="table-wrap compact">
+            <table>
+              <thead>
+                <tr>
+                  <th>持仓</th><th>可卖</th><th>成本</th><th>现价</th><th>浮盈亏</th><th>动作</th><th>关键线</th>
+                </tr>
+              </thead>
+              <tbody id="holdingRows"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="section-title"><h2>板块强度</h2><span>质量 / 持续性 / 回撤一起看</span></div>
+          <div class="sector-grid" id="sectorGrid"></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-title"><h2>13:00 清晰指令</h2><span id="intradayTime">最新跑批</span></div>
+          <div id="intradayAction" class="action-card"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>模型学习记录</h2><span>只有跑赢基准的版本才晋级</span></div>
+        <div class="learning" id="learningRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>外部学习源</h2><span>来源 -> 可验证规则 -> 先观察再晋级</span></div>
+        <div class="learning" id="sourceRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>规则补丁与晋级纪律</h2><span>每条优化都要有来源、边界和状态</span></div>
+        <div class="rule-grid" id="rulePatchRows"></div>
+        <div class="pipeline" id="learningPipelineRows"></div>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="section-title"><h2>学习源健康</h2><span id="sourceHealthSummary">等待刷新</span></div>
+          <div class="health-list" id="sourceHealthRows"></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-title"><h2>待吸收队列</h2><span>先记录任务，再决定是否进模型</span></div>
+          <div class="backlog-list" id="learningBacklogRows"></div>
+        </article>
+      </section>
+      <section class="panel">
+        <div class="section-title"><h2>V52 源摘要与规则候选</h2><span id="learningReviewSummary">等待刷新</span></div>
+        <div class="review-grid" id="sourceLearningSummaryRows"></div>
+      </section>
+
+      <section class="panel emphasis-panel">
+        <div class="section-title"><h2>V62 来源到模型台账</h2><span id="learningLedgerSummary">等待刷新</span></div>
+        <div class="ledger-list" id="learningLedgerRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V53 候选与方法论映射</h2><span id="candidateLearningSummary">等待刷新</span></div>
+        <div class="method-list" id="candidateLearningRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V54 候选后验复盘</h2><span id="candidatePerformanceSummary">等待刷新</span></div>
+        <div class="perf-grid" id="typePerformanceRows"></div>
+        <div class="perf-list" id="candidatePerformanceRows"></div>
+      </section>
+
+      <section class="panel emphasis-panel">
+        <div class="section-title"><h2>V60 方法回测与适用周期</h2><span id="methodBacktestSummary">等待刷新</span></div>
+        <div class="method-backtest-grid" id="methodBacktestRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V69 冻结前验追踪</h2><span id="methodForwardValidationSummary">等待归档</span></div>
+        <p class="freshness" id="methodForwardValidationGuardrail">--</p>
+        <div class="method-backtest-grid" id="methodForwardValidationRows"></div>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="section-title"><h2>每日关键研究时间点</h2><span>只作筛选与风控观察</span></div>
+          <div class="timeline-list" id="dailyDecisionTimeline"></div>
+        </article>
+        <article class="panel">
+          <div class="section-title"><h2>算力节省策略</h2><span>增量更新 / 指纹复用</span></div>
+          <div class="freshness-note" id="backtestFreshness">等待回测状态</div>
+          <div class="compute-policy" id="computePolicyRows"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V55 失败归因与降权规则</h2><span id="failureAttributionSummary">等待刷新</span></div>
+        <div class="cause-grid" id="failureCauseRows"></div>
+        <div class="failure-list" id="failureAttributionRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V58 数据新鲜度修复</h2><span id="dataFreshnessSummary">等待刷新</span></div>
+        <div class="freshness-metrics" id="dataFreshnessMetrics"></div>
+        <div class="coverage-list" id="dataFreshnessCoverageRows"></div>
+        <div class="repair-list" id="dataFreshnessRepairQueue"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V57 最佳观察队列</h2><span id="bestQueueSummary">等待刷新</span></div>
+        <div class="freshness-note" id="bestQueueFreshness">等待数据新鲜度</div>
+        <div class="best-lane-grid" id="bestObservationLaneRows"></div>
+        <div class="best-queue-list" id="bestObservationQueueRows"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>V56 风险调整观察池</h2><span id="riskAdjustedSummary">等待刷新</span></div>
+        <div class="risk-status-grid" id="riskAdjustedStatusRows"></div>
+        <div class="risk-adjusted-list" id="riskAdjustedRows"></div>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
