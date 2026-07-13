@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T09:57:40+08:00",
+  "generatedAt": "2026-07-13T10:08:22+08:00",
   "latestDate": "2026-07-09",
   "modelName": "swing_quality_v31_clean_sizing_tilt_035_target_108",
   "formalVersion": "正式模型 V31",
@@ -764,7 +764,7 @@
       "horizonUnit": "不适用",
       "validationType": "工程验收",
       "methodVerdict": "用于数据、回测、执行或绩效审计；没有独立交易周期，不能伪装成选股收益。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "QuantConnect LEAN",
@@ -779,7 +779,7 @@
       "horizonUnit": "不适用",
       "validationType": "工程验收",
       "methodVerdict": "用于数据、回测、执行或绩效审计；没有独立交易周期，不能伪装成选股收益。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Backtrader",
@@ -794,7 +794,7 @@
       "horizonUnit": "不适用",
       "validationType": "工程验收",
       "methodVerdict": "用于数据、回测、执行或绩效审计；没有独立交易周期，不能伪装成选股收益。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "vectorbt",
@@ -809,7 +809,7 @@
       "horizonUnit": "不适用",
       "validationType": "工程验收",
       "methodVerdict": "用于数据、回测、执行或绩效审计；没有独立交易周期，不能伪装成选股收益。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "MLFinLab Purged Cross-Validation",
@@ -824,7 +824,7 @@
       "horizonUnit": "不适用",
       "validationType": "治理审计",
       "methodVerdict": "用于反证、周期和防过拟合纪律；不产生独立选股收益或持有周期。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Riskfolio-Lib",
@@ -839,7 +839,7 @@
       "horizonUnit": "交易日",
       "validationType": "组合模拟",
       "methodVerdict": "组合模拟优于等权基线，但时间去重后的连续折验证未通过；不把单一市场阶段晋级为正式观察。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "PyPortfolioOpt",
@@ -854,7 +854,7 @@
       "horizonUnit": "交易日",
       "validationType": "组合模拟",
       "methodVerdict": "组合模拟优于等权基线，但时间去重后的连续折验证未通过；不把单一市场阶段晋级为正式观察。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "QuantStats",
@@ -869,7 +869,7 @@
       "horizonUnit": "不适用",
       "validationType": "工程验收",
       "methodVerdict": "用于数据、回测、执行或绩效审计；没有独立交易周期，不能伪装成选股收益。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "AQR Time Series Momentum",
@@ -884,7 +884,7 @@
       "horizonUnit": "交易日",
       "validationType": "历史回测",
       "methodVerdict": "整体样本满足收益门槛，但按持有期去重后的时间折样本不足；先积累更多完整交易日，不把不足样本晋级为正式观察。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "AQR Trend Following Evidence",
@@ -899,7 +899,7 @@
       "horizonUnit": "交易日",
       "validationType": "历史回测",
       "methodVerdict": "整体样本满足收益门槛，但按持有期去重后的时间折样本不足；先积累更多完整交易日，不把不足样本晋级为正式观察。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Goldman Sachs Insights",
@@ -914,7 +914,7 @@
       "horizonUnit": "交易日",
       "validationType": "条件分层回测",
       "methodVerdict": "指数趋势确认 条件样本优于全样本，但时间去重后的连续折验证未通过；不晋级。价格趋势代理，不把机构观点当成直接交易信号。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "J.P. Morgan Guide to the Markets",
@@ -929,7 +929,7 @@
       "horizonUnit": "交易日",
       "validationType": "条件分层回测",
       "methodVerdict": "市场参与度确认 条件样本优于全样本，但持有期去重后的连续折样本不足；不晋级。指数短中期同向代理，不等同于完整跨资产模型。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "BlackRock Investment Institute",
@@ -944,7 +944,7 @@
       "horizonUnit": "交易日",
       "validationType": "条件分层回测",
       "methodVerdict": "已完成 低波动风险偏好确认 条件分层，但未稳定改善全样本的风险调整结果。风险偏好代理，仅用于条件分层，不覆盖个股风险线。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Howard Marks / Oaktree Memos",
@@ -959,7 +959,7 @@
       "horizonUnit": "不适用",
       "validationType": "治理审计",
       "methodVerdict": "用于反证、周期和防过拟合纪律；不产生独立选股收益或持有周期。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Kenneth French Data Library",
@@ -974,7 +974,7 @@
       "horizonUnit": "交易日",
       "validationType": "条件分层回测",
       "methodVerdict": "已完成 市场风格确认 条件分层，但未稳定改善全样本的风险调整结果。本地市场风格代理，不是对 Fama-French 因子的严格复刻。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Rob Carver Systematic Trading",
@@ -989,7 +989,7 @@
       "horizonUnit": "不适用",
       "validationType": "治理审计",
       "methodVerdict": "用于反证、周期和防过拟合纪律；不产生独立选股收益或持有周期。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     },
     {
       "name": "Investor's Business Daily CAN SLIM",
@@ -1004,7 +1004,7 @@
       "horizonUnit": "交易日",
       "validationType": "历史回测",
       "methodVerdict": "整体样本满足收益门槛，但时间顺序三折稳定性检查未通过；不把单一行情阶段的结果晋级为正式观察。",
-      "methodGeneratedAt": "2026-07-13T09:32:59+08:00"
+      "methodGeneratedAt": "2026-07-13T09:57:28+08:00"
     }
   ],
   "learningPipeline": [
@@ -1015,6 +1015,12 @@
     "晋级门槛：跑赢基准、回撤可控、样本足够、执行可行，才允许进入正式模型。"
   ],
   "modelRulePatches": [
+    {
+      "rule_id": "data_freshness_v58",
+      "scope": "data_quality",
+      "change": "新增数据新鲜度诊断与高优先级修复队列，优先修复候选、强势股和高成交主板票的日线缓存。",
+      "promotion": "进入每日刷新前置层；覆盖率不足时，后续观察队列必须标记等新数据确认。"
+    },
     {
       "rule_id": "momentum_quality_layer_v50",
       "scope": "candidate_pool",
@@ -1072,7 +1078,7 @@
   ],
   "strengthObserver": {
     "version": "V48",
-    "generatedAt": "2026-07-13T09:55:21+08:00",
+    "generatedAt": "2026-07-13T10:05:57+08:00",
     "latestDate": "2026-07-09",
     "latestCoverage": 1949,
     "dataMaxDate": "2026-07-10",
@@ -1962,7 +1968,7 @@
   },
   "refreshStatus": {
     "version": "daily_observation_refresh_v1_interim",
-    "generated_at": "2026-07-13T09:49:38+08:00",
+    "generated_at": "2026-07-13T10:01:10+08:00",
     "data_dir": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\data\\eastmoney_full_mainboard",
     "end": "20260710",
     "source": "auto",
@@ -1973,7 +1979,7 @@
     "index": [],
     "observer": {
       "version": "V48",
-      "generated_at": "2026-07-13T09:55:21+08:00",
+      "generated_at": "2026-07-13T10:05:57+08:00",
       "latest_date": "2026-07-09",
       "data_max_date": "2026-07-10",
       "data_max_coverage": 93,
@@ -2018,15 +2024,15 @@
         ]
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_094952_v48_refresh\\strength_observation_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_094952_v48_refresh\\strength_observer_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_094952_v48_refresh\\strength_observer_summary.json",
+        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_100121_v48_refresh\\strength_observation_pool.csv",
+        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_100121_v48_refresh\\strength_observer_backtest.csv",
+        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_100121_v48_refresh\\strength_observer_summary.json",
         "learning_log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\MODEL_LEARNING_LOG_20260713_V48.md"
       }
     },
     "momentum_quality": {
       "version": "V50",
-      "generated_at": "2026-07-13T09:57:05+08:00",
+      "generated_at": "2026-07-13T10:07:39+08:00",
       "latest_date": "2026-07-09",
       "pool_count": 32,
       "limit_relay_count": 24,
@@ -2068,9 +2074,9 @@
         ]
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_095521_v50_refresh\\momentum_quality_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_095521_v50_refresh\\momentum_quality_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_095521_v50_refresh\\momentum_quality_summary.json"
+        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_100557_v50_refresh\\momentum_quality_pool.csv",
+        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_100557_v50_refresh\\momentum_quality_backtest.csv",
+        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_100557_v50_refresh\\momentum_quality_summary.json"
       }
     },
     "data_freshness": {
@@ -2099,10 +2105,10 @@
   "latestCoverage": 1949,
   "dataMaxCoverage": 93,
   "learningSourceVersion": "V65",
-  "learningSourceUpdatedAt": "2026-07-13T09:49:38+08:00",
+  "learningSourceUpdatedAt": "2026-07-13T10:01:10+08:00",
   "momentumQuality": {
     "version": "V50",
-    "generatedAt": "2026-07-13T09:57:05+08:00",
+    "generatedAt": "2026-07-13T10:07:39+08:00",
     "latestDate": "2026-07-09",
     "poolCount": 32,
     "limitRelayCount": 24,
@@ -2917,7 +2923,7 @@
   },
   "learningSourceHealth": {
     "version": "V51",
-    "generatedAt": "2026-07-13T09:57:05+08:00",
+    "generatedAt": "2026-07-13T10:07:39+08:00",
     "total": 17,
     "okCount": 16,
     "blockedCount": 1,
@@ -2929,11 +2935,11 @@
         "url": "https://github.com/microsoft/qlib",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1082,
+        "latency_ms": 3410,
         "title": "GitHub - microsoft/qlib: Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Rese",
         "error": "",
         "rule": "表盘必须长期展示数据日期、候选池、持仓风控、学习版本、未晋级原因和自动刷新状态。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "QuantConnect LEAN",
@@ -2941,11 +2947,11 @@
         "url": "https://github.com/QuantConnect/Lean",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1030,
+        "latency_ms": 2472,
         "title": "GitHub - QuantConnect/Lean: Lean Algorithmic Trading Engine by QuantConnect (Python, C#) · GitHub",
         "error": "",
         "rule": "模型继续拆成市场闸门、板块强度、个股质量、仓位限制、持仓风控五层；单一分数不能直接给买入。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Backtrader",
@@ -2953,11 +2959,11 @@
         "url": "https://github.com/mementum/backtrader",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1064,
+        "latency_ms": 1182,
         "title": "GitHub - mementum/backtrader: Python Backtesting library for trading strategies · GitHub",
         "error": "",
         "rule": "新增/修改因子必须写入规则补丁、回测摘要和晋级状态；不能只留下口头结论。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "vectorbt",
@@ -2965,11 +2971,11 @@
         "url": "https://github.com/polakowo/vectorbt",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 990,
+        "latency_ms": 1134,
         "title": "GitHub - polakowo/vectorbt: The backtesting engine that gives you an unfair advantage. Run thousands of trading ideas be",
         "error": "",
         "rule": "大规模参数扫描只能进入研究沙箱；晋级前必须用次日成交、涨停不可买、费用和滑点口径复核。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "MLFinLab Purged Cross-Validation",
@@ -2977,11 +2983,11 @@
         "url": "https://github.com/hudson-and-thames/mlfinlab",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1177,
+        "latency_ms": 1219,
         "title": "GitHub - hudson-and-thames/mlfinlab: MlFinLab helps portfolio managers and traders who want to leverage the power of mac",
         "error": "",
         "rule": "所有有持有期标签的方法必须通过时间顺序稳定性检查；新增参数或多重筛选不能只看最佳回测，必须保留失败试验和独立验证段。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Riskfolio-Lib",
@@ -2989,11 +2995,11 @@
         "url": "https://github.com/dcajasn/Riskfolio-Lib",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1157,
+        "latency_ms": 1120,
         "title": "GitHub - dcajasn/Riskfolio-Lib: Portfolio Optimization in Python · GitHub",
         "error": "",
         "rule": "候选排序之后必须再过组合层：单票上限、板块集中度、相关性和组合回撤预算不能由选股分数替代。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "PyPortfolioOpt",
@@ -3001,11 +3007,11 @@
         "url": "https://github.com/PyPortfolio/PyPortfolioOpt",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 999,
+        "latency_ms": 1060,
         "title": "GitHub - PyPortfolio/PyPortfolioOpt: Financial portfolio optimization in python, including classical efficient frontier,",
         "error": "",
         "rule": "观察池分数只能决定研究优先级；在没有稳定协方差和资金约束前，不允许自动换算成仓位。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "QuantStats",
@@ -3013,11 +3019,11 @@
         "url": "https://github.com/ranaroussi/quantstats",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1102,
+        "latency_ms": 1029,
         "title": "GitHub - ranaroussi/quantstats: Portfolio analytics for quants, written in Python · GitHub",
         "error": "",
         "rule": "每次模型晋级必须保留完整净值和回撤序列，并分市场阶段、板块和候选类型做后验归因。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "AQR Time Series Momentum",
@@ -3025,11 +3031,11 @@
         "url": "https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 2073,
+        "latency_ms": 2536,
         "title": "Time Series Momentum",
         "error": "",
         "rule": "V48 已加入 10/20/60/120 日趋势证据；V49 要把短期热度和中期趋势分栏展示。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "AQR Trend Following Evidence",
@@ -3037,11 +3043,11 @@
         "url": "https://www.aqr.com/Insights/Research/Journal-Article/A-Century-of-Evidence-on-Trend-Following-Investing",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1955,
+        "latency_ms": 1866,
         "title": "A Century of Evidence on Trend-Following Investing",
         "error": "",
         "rule": "学习版只有在样本足够、回撤可接受、跑赢基准后才允许进入正式模型。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Goldman Sachs Insights",
@@ -3049,11 +3055,11 @@
         "url": "https://www.goldmansachs.com/insights/",
         "ok": false,
         "status_code": 403,
-        "latency_ms": 164,
+        "latency_ms": 172,
         "title": "Access Denied",
         "error": "HTTP Error 403: Forbidden",
         "rule": "板块候选必须标注产业叙事位置，并和大盘闸门、成交扩散一起看。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "J.P. Morgan Guide to the Markets",
@@ -3061,11 +3067,11 @@
         "url": "https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/guide-to-the-markets/",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 577,
+        "latency_ms": 1241,
         "title": "Guide to the Markets | J.P. Morgan Asset Management",
         "error": "",
         "rule": "候选池必须保留市场状态字段；市场未通过时只允许观察/降风险，不输出可买。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "BlackRock Investment Institute",
@@ -3073,11 +3079,11 @@
         "url": "https://www.blackrock.com/corporate/insights/blackrock-investment-institute/publications/weekly-commentary",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 521,
+        "latency_ms": 657,
         "title": "Weekly market commentary | BlackRock Investment Institute",
         "error": "",
         "rule": "市场闸门增加风险偏好和跨资产分化说明；宏观叙事只能调整置信度，不能覆盖价格和风险线。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Howard Marks / Oaktree Memos",
@@ -3085,11 +3091,11 @@
         "url": "https://www.oaktreecapital.com/insights/memo",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 945,
+        "latency_ms": 1412,
         "title": "Insights",
         "error": "",
         "rule": "每个核心观察候选必须有反方证据和放弃条件；禁止使用一定涨、最佳买点等确定性措辞。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Kenneth French Data Library",
@@ -3097,11 +3103,11 @@
         "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1807,
+        "latency_ms": 2053,
         "title": "Kenneth R. French - Data Library",
         "error": "",
         "rule": "候选复盘增加板块和风格归因；只有扣除市场、板块与风格后仍稳定的部分才算潜在增量。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Rob Carver Systematic Trading",
@@ -3109,11 +3115,11 @@
         "url": "https://qoppac.blogspot.com/p/systematic-trading-start-here.html",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 1273,
+        "latency_ms": 1642,
         "title": "This Blog is Systematic: Systematic trading",
         "error": "",
         "rule": "每次失败只允许进入复盘队列，必须归因到数据、市场、板块、个股、执行中的某一层。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       },
       {
         "name": "Investor's Business Daily CAN SLIM",
@@ -3121,11 +3127,11 @@
         "url": "https://www.investors.com/ibd-university/can-slim/",
         "ok": true,
         "status_code": 200,
-        "latency_ms": 960,
+        "latency_ms": 2265,
         "title": "How To Invest In Stocks: Investing For Beginners | Investor&#039;s Business Daily",
         "error": "",
         "rule": "涨停/持续上涨股票只能进入强势观察池；必须同时通过市场方向、板块扩散、成交流动性和回撤风险过滤。",
-        "last_checked_at": "2026-07-13T09:57:05+08:00"
+        "last_checked_at": "2026-07-13T10:07:39+08:00"
       }
     ],
     "note": "V51 只检查学习源健康和待吸收任务，不改变买入模型。"
@@ -3269,7 +3275,7 @@
       "validation_gate": "需要证明数据覆盖率、样本期、回测口径和每日刷新状态都可复现。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "a3adba5535725f88",
       "cache_status": "复用缓存"
     },
@@ -3290,7 +3296,7 @@
       "validation_gate": "每条候选必须同时给出入池原因、失效条件、仓位上限和退出触发。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "3e42fd7c68808fd2",
       "cache_status": "复用缓存"
     },
@@ -3311,7 +3317,7 @@
       "validation_gate": "同一因子至少跑过主板样本，且能解释失败样本。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "278eafe85be6812d",
       "cache_status": "复用缓存"
     },
@@ -3332,7 +3338,7 @@
       "validation_gate": "研究结果必须在独立时段和执行回放中保持方向一致，不能只保留最优参数。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "87da384ac702f70f",
       "cache_status": "复用缓存"
     },
@@ -3353,7 +3359,7 @@
       "validation_gate": "至少通过连续时间折和独立样本验证；若任一时间段收益中位数为负，不得晋级正式观察。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "66bda2dbb5bfc0ff",
       "cache_status": "复用缓存"
     },
@@ -3374,7 +3380,7 @@
       "validation_gate": "需要真实持仓、资金、相关性和回撤预算后才可影响仓位。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "c62287074fe9e92c",
       "cache_status": "复用缓存"
     },
@@ -3395,7 +3401,7 @@
       "validation_gate": "至少通过样本外和参数扰动测试，且结果不依赖单一协方差窗口。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "1ce86e4097734bd1",
       "cache_status": "复用缓存"
     },
@@ -3416,7 +3422,7 @@
       "validation_gate": "需要非重叠组合净值、基准、费用和分阶段统计。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "63ddb3c3c36ae12b",
       "cache_status": "复用缓存"
     },
@@ -3437,7 +3443,7 @@
       "validation_gate": "必须同时通过中期趋势、回撤可控和成交流动性过滤。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "e9f5253208f71fa6",
       "cache_status": "复用缓存"
     },
@@ -3458,7 +3464,7 @@
       "validation_gate": "需要按类别分别观察胜率、回撤和持有期表现。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "40abed7e5dcbe1d4",
       "cache_status": "复用缓存"
     },
@@ -3479,7 +3485,7 @@
       "validation_gate": "公开页面受限时只保留为人工复核源，不提高模型权重。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "9dec224be54da1c3",
       "cache_status": "复用缓存"
     },
@@ -3500,7 +3506,7 @@
       "validation_gate": "需要用指数趋势、成交额扩散和板块宽度证明市场环境支持。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "3b5b539e2cc48c8c",
       "cache_status": "复用缓存"
     },
@@ -3521,7 +3527,7 @@
       "validation_gate": "必须映射到可观察代理变量，并验证对A股样本有增量解释力。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "27ed5e3fccbc7233",
       "cache_status": "复用缓存"
     },
@@ -3542,7 +3548,7 @@
       "validation_gate": "反方证据必须能被数据触发；不能只是泛泛风险提示。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "fa3a99a401e3c074",
       "cache_status": "复用缓存"
     },
@@ -3563,7 +3569,7 @@
       "validation_gate": "需要稳定的风格代理和足够样本，才能用于模型降权或中性化。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "a8f810a765bdbeeb",
       "cache_status": "复用缓存"
     },
@@ -3584,7 +3590,7 @@
       "validation_gate": "规则晋级前必须记录反例和失效边界。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "be877c24b92b5d18",
       "cache_status": "复用缓存"
     },
@@ -3605,15 +3611,15 @@
       "validation_gate": "不追高，只有回踩不破或站稳观察区才进入可操作观察。",
       "model_change": "进入学习/治理层，不直接提高买入权重。",
       "why_not_direct_buy": "外部经验只能提供结构约束，不能替代当日行情、板块、流动性、回撤和持仓风控。",
-      "checked_at": "2026-07-13T09:57:24+08:00",
+      "checked_at": "2026-07-13T10:08:06+08:00",
       "profile_fingerprint": "c06c1d7c2d5aecf4",
       "cache_status": "复用缓存"
     }
   ],
   "learningReviewVersion": "V52 源摘要和规则候选",
-  "learningReviewUpdatedAt": "2026-07-13T09:57:24+08:00",
+  "learningReviewUpdatedAt": "2026-07-13T10:08:06+08:00",
   "candidateLearningVersion": "V53 候选-方法论映射",
-  "candidateLearningUpdatedAt": "2026-07-13T09:57:24+08:00",
+  "candidateLearningUpdatedAt": "2026-07-13T10:08:06+08:00",
   "candidateLearningSummary": "已把 24 个强势候选映射到外部方法论；分类为 涨停延续19只, 持续趋势1只, 回踩修复3只, 强势观察1只。这些是可解释观察池，不是买入指令。",
   "candidateLearningLinks": [
     {
@@ -4933,7 +4939,7 @@
     }
   ],
   "candidatePerformanceVersion": "V54 候选后验复盘",
-  "candidatePerformanceUpdatedAt": "2026-07-13T09:57:24+08:00",
+  "candidatePerformanceUpdatedAt": "2026-07-13T10:08:06+08:00",
   "candidatePerformanceSummary": "已复盘 24/24 个 V53 候选，信号日 20260709；3日可评估正收益 0 个，失效 5 个。这是后验评价层，不是买入指令。",
   "candidatePerformanceRows": [
     {
@@ -6094,7 +6100,7 @@
     }
   ],
   "failureAttributionVersion": "V55 失败归因层",
-  "failureAttributionUpdatedAt": "2026-07-13T09:57:24+08:00",
+  "failureAttributionUpdatedAt": "2026-07-13T10:08:06+08:00",
   "failureAttributionSummary": "已对 24 个 V54 后验样本做失败归因；高风险 6 个。主因集中在 模式拥挤、回撤破坏、有效样本。这些结论只用于压低同类候选权重，不是买卖指令。",
   "failureAttributionRows": [
     {
@@ -6919,7 +6925,7 @@
     }
   ],
   "riskAdjustedVersion": "V56 风险调整观察池",
-  "riskAdjustedUpdatedAt": "2026-07-13T09:57:40+08:00",
+  "riskAdjustedUpdatedAt": "2026-07-13T10:08:22+08:00",
   "riskAdjustedSummary": "已用 V55 失败归因重排 V50 强势池，保留 32 个风险调整样本；强观察 3 个，观察 10 个，降权 6 个。这是观察排序，不是买入指令。",
   "riskAdjustedRows": [
     {
@@ -7865,7 +7871,7 @@
     }
   ],
   "bestQueueVersion": "V57 最佳观察队列",
-  "bestQueueUpdatedAt": "2026-07-13T09:57:40+08:00",
+  "bestQueueUpdatedAt": "2026-07-13T10:08:22+08:00",
   "bestQueueSummary": "已把 V56 风险调整池升级为持续观察队列：核心观察 13 个，次级观察 6 个，仅记录 2 个，排除 9 个。数据新鲜度 中；这是研究观察队列，不是买入指令。",
   "bestQueueFreshness": {
     "latestDate": "2026-07-09",
@@ -8669,7 +8675,7 @@
     }
   ],
   "dataFreshnessVersion": "V58 数据新鲜度修复",
-  "dataFreshnessUpdatedAt": "2026-07-13T09:49:38+08:00",
+  "dataFreshnessUpdatedAt": "2026-07-13T10:01:10+08:00",
   "dataFreshnessSummary": "目标日 2026-07-10 覆盖 93/2818 (3.3%)； eligible 截面 2026-07-09。本轮修复额度 0 只，成功 0 只，错误 0 只；下一批建议修复队列 30 只。",
   "dataFreshnessCoverageRows": [
     {
@@ -9201,7 +9207,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "整体样本满足收益门槛，但按持有期去重后的时间折样本不足；先积累更多完整交易日，不把不足样本晋级为正式观察。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_094952_v48_refresh\\strength_observer_backtest.csv",
+      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_100121_v48_refresh\\strength_observer_backtest.csv",
       "horizons": [
         {
           "horizon": 10,
@@ -9283,7 +9289,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "整体样本满足收益门槛，但按持有期去重后的时间折样本不足；先积累更多完整交易日，不把不足样本晋级为正式观察。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_094952_v48_refresh\\strength_observer_backtest.csv",
+      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_100121_v48_refresh\\strength_observer_backtest.csv",
       "horizons": [
         {
           "horizon": 10,
@@ -9632,7 +9638,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "整体样本满足收益门槛，但时间顺序三折稳定性检查未通过；不把单一行情阶段的结果晋级为正式观察。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_095521_v50_refresh\\momentum_quality_backtest.csv",
+      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_100557_v50_refresh\\momentum_quality_backtest.csv",
       "horizons": [
         {
           "horizon": 5,
@@ -9714,7 +9720,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "当前没有同时通过样本、均值、中位数和胜率门槛的周期；仅记录表现相对最好的 5 日截面。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_095521_v50_refresh\\momentum_quality_backtest.csv",
+      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_100557_v50_refresh\\momentum_quality_backtest.csv",
       "horizons": [
         {
           "horizon": 5,
@@ -9819,7 +9825,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为数据、回测或绩效审计约束，不产生独立候选。",
       "nextStep": "持续检查数据覆盖、执行假设和可复现性。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 2,
@@ -9833,7 +9839,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为数据、回测或绩效审计约束，不产生独立候选。",
       "nextStep": "持续检查数据覆盖、执行假设和可复现性。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 3,
@@ -9847,7 +9853,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为数据、回测或绩效审计约束，不产生独立候选。",
       "nextStep": "持续检查数据覆盖、执行假设和可复现性。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 4,
@@ -9861,7 +9867,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为数据、回测或绩效审计约束，不产生独立候选。",
       "nextStep": "持续检查数据覆盖、执行假设和可复现性。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 5,
@@ -9875,7 +9881,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为反证和防过拟合纪律生效，不增加信号分数。",
       "nextStep": "在每次规则变更时检查是否违反反方证据或边界。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 6,
@@ -9889,7 +9895,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 7,
@@ -9903,7 +9909,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 8,
@@ -9917,7 +9923,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为数据、回测或绩效审计约束，不产生独立候选。",
       "nextStep": "持续检查数据覆盖、执行假设和可复现性。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 9,
@@ -9931,7 +9937,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 10,
@@ -9945,7 +9951,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 11,
@@ -9959,7 +9965,7 @@
       "recommendedHorizon": null,
       "modelEffect": "公开页面当前不可稳定复读；不吸收新增内容，只保留既有代理回测记录。",
       "nextStep": "等待可复核的公开材料；在此之前不因该来源提高任何模型权重。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 12,
@@ -9973,7 +9979,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 13,
@@ -9987,7 +9993,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 14,
@@ -10001,7 +10007,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为反证和防过拟合纪律生效，不增加信号分数。",
       "nextStep": "在每次规则变更时检查是否违反反方证据或边界。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 15,
@@ -10015,7 +10021,7 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 16,
@@ -10029,7 +10035,7 @@
       "recommendedHorizon": null,
       "modelEffect": "作为反证和防过拟合纪律生效，不增加信号分数。",
       "nextStep": "在每次规则变更时检查是否违反反方证据或边界。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     },
     {
       "priority": 17,
@@ -10043,12 +10049,12 @@
       "recommendedHorizon": null,
       "modelEffect": "未增加正式模型权重，保留为反例与拒绝记录。",
       "nextStep": "除非新样本与代理定义出现实质变化，否则保持拒绝。",
-      "reviewedAt": "2026-07-13T09:57:24+08:00"
+      "reviewedAt": "2026-07-13T10:08:06+08:00"
     }
   ],
   "dataReadiness": {
     "version": "V63",
-    "generatedAt": "2026-07-13T09:57:37",
+    "generatedAt": "2026-07-13T10:08:19",
     "tradeDate": "20260710",
     "state": "实时可用，历史部分覆盖",
     "realtime": {
@@ -10070,7 +10076,7 @@
   },
   "alternativeDataV64": {
     "version": "V71",
-    "generatedAt": "2026-07-13T09:57:40",
+    "generatedAt": "2026-07-13T10:08:22",
     "summary": "12 类另类信息；10 个入口可达；全部正式权重 0.00%，先完成点时归档、行业映射与样本外增量验证。",
     "weightPolicy": {
       "max_total_weight_after_validation": 0.1,
@@ -10086,7 +10092,7 @@
     },
     "archive": {
       "version": "V71",
-      "generatedAt": "2026-07-13T09:57:38",
+      "generatedAt": "2026-07-13T10:08:20",
       "tushareRt": {
         "status": "reused",
         "quoteDate": "20260713",
@@ -10235,7 +10241,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 265,
+          "latencyMs": 286,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "公告、问询、回购、股东变动、风险提示的时间戳事件",
@@ -10293,7 +10299,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 177,
+          "latencyMs": 241,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "公司、品牌、产品、产业关键词的搜索强度与异常变化",
@@ -10323,7 +10329,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 261,
+          "latencyMs": 234,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "岗位数、岗位结构、城市和技能需求的变化",
@@ -10353,7 +10359,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 275,
+          "latencyMs": 266,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "信用卡/支付聚合、线上零售、外卖与电商销量的同比、环比和行业份额变化",
@@ -10383,7 +10389,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 402,
+          "latencyMs": 298,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "App 活跃、门店/商圈客流、行业用户变化",
@@ -10413,7 +10419,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 70,
+          "latencyMs": 89,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "专利申请、授权、技术主题与申请人网络",
@@ -10499,7 +10505,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 120,
+          "latencyMs": 105,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "社零、工业增加值、固定资产投资、分行业产量等月度公开统计",
@@ -10529,7 +10535,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 177,
+          "latencyMs": 136,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "公路、水路、港口、快递及客货运活动的行业级公开数据",
@@ -10559,7 +10565,7 @@
         "probe": {
           "status": "reachable",
           "httpStatus": 200,
-          "latencyMs": 201,
+          "latencyMs": 234,
           "detail": "Public landing page reachable; no data scraping is performed."
         },
         "feature": "全社会用电量、分产业用电、发电装机与能源运行的公开统计",
@@ -10580,7 +10586,7 @@
   },
   "alternativeBacktestV64": {
     "version": "V64",
-    "generatedAt": "2026-07-13T09:57:40",
+    "generatedAt": "2026-07-13T10:08:22",
     "summary": "0 个已接入另类因子文件；0 个通过研究门槛；正式升权仍需独立样本确认。",
     "rows": [],
     "contract": "Only point-in-time features.csv inputs are tested. Signal enters at next open; no same-day look-ahead is allowed."
@@ -10593,14 +10599,14 @@
   },
   "liveCloseProxyV66": {
     "version": "V66",
-    "generatedAt": "2026-07-13T09:57:40+08:00",
+    "generatedAt": "2026-07-13T10:08:22+08:00",
     "status": "intraday_snapshot",
     "archive": "data\\alternative_data\\tushare_rt_market\\rt_mainboard_20260713.csv",
     "rows": []
   },
   "liveCloseProxyReviewV67": {
     "version": "V67",
-    "generatedAt": "2026-07-13T09:57:40+08:00",
+    "generatedAt": "2026-07-13T10:08:22+08:00",
     "archiveDays": 1,
     "observationRows": 87,
     "reviewedRows": 0,
@@ -10655,7 +10661,7 @@
   },
   "methodForwardValidationV69": {
     "version": "V70",
-    "generatedAt": "2026-07-13T09:57:28+08:00",
+    "generatedAt": "2026-07-13T10:08:10+08:00",
     "signalDate": "20260709",
     "archiveStatus": "reused_immutable",
     "entryRule": "next_available_session_open",
@@ -11320,7 +11326,7 @@
     "summary": "唯一通过双样本鲁棒性门槛的是 V50_momentum_quality；仅保留为核心研究层，仍等待冻结前验。",
     "guardrail": "原始 TDX 数据只作鲁棒性对照，不能代替前复权正式回测；通过双样本不等于未来盈利或自动下单资格。"
   },
-  "phase": "开盘15分钟 09:45",
+  "phase": "开盘30分钟 10:00",
   "publicHoldings": {
     "rows": [
       {
@@ -11332,7 +11338,7 @@
         "price": 43.2,
         "pnlValue": -331.10000000000036,
         "pnlPct": -0.03690740265965159,
-        "reviewPhase": "开盘15分钟 09:45",
+        "reviewPhase": "开盘30分钟 10:00",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -11350,7 +11356,7 @@
         "price": 2.92,
         "pnlValue": -5960.92,
         "pnlPct": -0.421656202341104,
-        "reviewPhase": "开盘15分钟 09:45",
+        "reviewPhase": "开盘30分钟 10:00",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -11368,7 +11374,7 @@
         "price": 53.71,
         "pnlValue": -119.05000000000018,
         "pnlPct": -0.02168468411034511,
-        "reviewPhase": "开盘15分钟 09:45",
+        "reviewPhase": "开盘30分钟 10:00",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -11386,7 +11392,7 @@
         "price": 49.41,
         "pnlValue": 356.9499999999998,
         "pnlPct": 0.07786782430383608,
-        "reviewPhase": "开盘15分钟 09:45",
+        "reviewPhase": "开盘30分钟 10:00",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
