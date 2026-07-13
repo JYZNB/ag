@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "high-52w-component-audit-publish",
+  "phase": "方法证据更新 2026-07-14",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -13129,27 +13129,43 @@
         "name": "基本面质量",
         "source": "AQR",
         "url": "https://www.aqr.com/Insights/Research/Working-Paper/Quality-Minus-Junk",
-        "status": "待接入",
+        "status": "固定消融已完成，拒绝融合",
         "horizonDays": [
-          60,
-          250
+          20,
+          45,
+          60
         ],
-        "claim": "盈利能力、成长性、稳健性和治理质量共同构成质量，不能用价格平滑度冒充财务质量。",
+        "claim": "原研究把质量拆为盈利能力、成长性、稳健性和治理质量；本地不能用价格平滑度冒充财务质量，也不能把主板多头代理说成原论文复现。",
         "localProxy": [
           "roe",
           "gross_margin",
-          "operating_cashflow",
-          "leverage",
-          "earnings_stability"
+          "net_margin",
+          "operating_cashflow_to_revenue",
+          "operating_cashflow_to_net_profit",
+          "inverse_leverage",
+          "revenue_growth",
+          "deducted_profit_growth",
+          "four_report_stability"
         ],
         "failureModes": [
-          "财务数据滞后",
+          "财务公告滞后",
           "一次性损益",
-          "行业间不可直接横比"
+          "行业间不可直接横比",
+          "当前季度包可能含后续修订",
+          "金融行业报表结构不同"
         ],
-        "validationGate": "先核实 Tushare 财务接口权限和公告时点，再用公告可得日构造防前视样本；未通过前不进入买入评分。",
-        "modelUse": "pending_data_permission",
-        "localResult": {}
+        "validationGate": "规则已在 configs/fundamental_quality_preregistration.json 预注册。只能使用公告日次日可得的最近一期报告；主变体固定为 20 日、0.10 权重，需在至少两个评估阶段改善冻结基线的同池主动收益、最大回撤恶化不超过 2 个百分点且覆盖率不低于 70%。由于当前季度包无法排除修订偏差，本轮禁止自动晋级正式配置。",
+        "modelUse": "rejected_after_fixed_ablation",
+        "localResult": {
+          "artifact": "runs/fundamental_quality_ablation/latest.json",
+          "coverage": 0.9902855372049353,
+          "primary_variant": "fundamental_quality_20d_w10",
+          "primary_active_total_delta": -0.35475384997054027,
+          "primary_active_fold_improvements": 0,
+          "primary_max_drawdown_delta": 0.0019137504070240174,
+          "horizon_direction_consistent": false,
+          "decision": "rejected"
+        }
       },
       {
         "id": "qlib_research_governance",
