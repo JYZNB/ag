@@ -640,12 +640,15 @@ function methodEvidence(method) {
   if (Number.isFinite(n(result.retained_positive_horizons)) && Number.isFinite(n(result.removed_positive_horizons))) items.push(`周期胜出 保留${n(result.retained_positive_horizons)} / 删除${n(result.removed_positive_horizons)}`);
   if (result.counterfactual_degenerate === true) items.push("删除组0笔交易，非纯因子对照");
   if (result.mapping_placebo_audit_complete === true) items.push("同分布映射安慰剂已完成");
+  if (result.subfactor_diagnostic_complete === true) items.push("板块子因子诊断已完成");
+  if (result.subfactor_portfolio_recheck_complete === true && result.production_challenger_selected === false) items.push("持续性/宽度组合复核未晋级");
   if (result.long_horizon_warning === true) items.push("60日不外推");
   if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
   if (result.decision === "retain_component") items.push("裁决 保留组件");
   if (result.decision === "remove_component") items.push("裁决 移除组件");
   if (result.decision === "rejected") items.push("裁决 拒绝融合");
   if (result.decision === "inconclusive_keep_frozen_pending_more_forward_evidence") items.push("裁决 证据冲突，冻结等待前验");
+  if (result.decision === "freeze_current_mapping_after_subfactor_recheck") items.push("裁决 子项未晋级，维持综合映射");
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }
 
