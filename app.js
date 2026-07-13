@@ -5,8 +5,7 @@ const WATCH_MIGRATION_MARKER = "taishan-fusion-watch-ledgers-v1-migrated";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v4", "taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
-  watch: { title: "未买观察", subtitle: "加入时刷新行情并锁定观察价格，之后只更新现价。" },
-  ownedWatch: { title: "已买观察", subtitle: "填写真实成交价格，独立记录买入后的价格变化。" },
+  watch: { title: "我的观察栏", subtitle: "未买锁定观察价，已买填写真实成交价；两套账本独立记录。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
