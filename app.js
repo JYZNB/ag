@@ -1,9 +1,12 @@
 const $ = (id) => document.getElementById(id);
-const WATCH_STORAGE = "taishan-fusion-watch-v4";
-const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
+const WATCH_ONLY_STORAGE = "taishan-fusion-watch-only-v1";
+const OWNED_WATCH_STORAGE = "taishan-fusion-owned-watch-v1";
+const WATCH_MIGRATION_MARKER = "taishan-fusion-watch-ledgers-v1-migrated";
+const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v4", "taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
-  watch: { title: "我的观察栏", subtitle: "未买观察与已买观察分开记账，观察价格或买入价格始终和现价并列核对。" },
+  watch: { title: "未买观察", subtitle: "加入时自动核对最新可用行情，并锁定观察价格和时间。" },
+  ownedWatch: { title: "已买观察", subtitle: "按你填写的真实买入价格独立记账，不与未买观察混用。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
@@ -37,24 +40,74 @@ function normalizeWatch(item = {}) {
   };
 }
 
-function getWatch() {
+function readWatchRows(key, forcedMode) {
   try {
-    const legacy = LEGACY_WATCH_STORAGES.map((key) => localStorage.getItem(key)).find(Boolean);
-    const stored = localStorage.getItem(WATCH_STORAGE) || legacy || "[]";
+    const stored = localStorage.getItem(key) || "[]";
     const rows = JSON.parse(stored);
-    return Array.isArray(rows) ? rows.map(normalizeWatch) : [];
+    return Array.isArray(rows)
+      ? rows.map((item) => normalizeWatch({ ...item, mode: forcedMode }))
+      : [];
   } catch {
     return [];
   }
 }
 
-function saveWatch(rows) {
-  localStorage.setItem(WATCH_STORAGE, JSON.stringify(rows.map(normalizeWatch)));
+function writeWatchRows(key, rows, forcedMode) {
+  localStorage.setItem(
+    key,
+    JSON.stringify(rows.map((item) => normalizeWatch({ ...item, mode: forcedMode }))),
+  );
 }
 
-function clearWatch() {
-  localStorage.removeItem(WATCH_STORAGE);
+function migrateWatchLedgers() {
+  if (localStorage.getItem(WATCH_MIGRATION_MARKER)) return;
+  let legacyRows = [];
+  for (const key of LEGACY_WATCH_STORAGES) {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(key) || "[]");
+      if (Array.isArray(parsed) && parsed.length) {
+        legacyRows = parsed.map(normalizeWatch);
+        break;
+      }
+    } catch {
+      // Ignore one malformed legacy key and continue to the next one.
+    }
+  }
+  if (!localStorage.getItem(WATCH_ONLY_STORAGE)) {
+    writeWatchRows(WATCH_ONLY_STORAGE, legacyRows.filter((item) => item.mode !== "owned"), "watch");
+  }
+  if (!localStorage.getItem(OWNED_WATCH_STORAGE)) {
+    writeWatchRows(OWNED_WATCH_STORAGE, legacyRows.filter((item) => item.mode === "owned"), "owned");
+  }
   LEGACY_WATCH_STORAGES.forEach((key) => localStorage.removeItem(key));
+  localStorage.setItem(WATCH_MIGRATION_MARKER, "1");
+}
+
+function getWatchOnly() {
+  migrateWatchLedgers();
+  return readWatchRows(WATCH_ONLY_STORAGE, "watch");
+}
+
+function getOwnedWatch() {
+  migrateWatchLedgers();
+  return readWatchRows(OWNED_WATCH_STORAGE, "owned");
+}
+
+function getWatch() {
+  return [...getWatchOnly(), ...getOwnedWatch()];
+}
+
+function saveWatch(rows) {
+  writeWatchRows(WATCH_ONLY_STORAGE, rows.filter((item) => item.mode !== "owned"), "watch");
+  writeWatchRows(OWNED_WATCH_STORAGE, rows.filter((item) => item.mode === "owned"), "owned");
+}
+
+function clearWatchOnly() {
+  writeWatchRows(WATCH_ONLY_STORAGE, [], "watch");
+}
+
+function clearOwnedWatch() {
+  writeWatchRows(OWNED_WATCH_STORAGE, [], "owned");
 }
 
 function watchModeLabel(item) {
@@ -191,7 +244,7 @@ function recordWatchSnapshots(data = snapshot) {
     changed = true;
     return { ...item, records: [...records, { at: key, price }] };
   });
-  if (changed || !localStorage.getItem(WATCH_STORAGE)) saveWatch(next);
+  if (changed) saveWatch(next);
 }
 
 function returnAt(item, days) {
@@ -221,7 +274,7 @@ function renderCandidateRow(row, compact = false) {
 
 function bindWatchButtons(scope) {
   document.querySelectorAll(`${scope} .watch-add:not([disabled])`).forEach((button) => {
-    button.onclick = () => addWatch(button.dataset.code, "watch");
+    button.onclick = () => addObservation(button.dataset.code);
   });
   document.querySelectorAll(`${scope} .watch-buy:not([disabled])`).forEach((button) => {
     button.onclick = () => openPurchaseDialog(button.dataset.code);
@@ -253,8 +306,9 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
   }
 
   const addedAt = new Date().toISOString();
-  const referencePriceAt = mode === "owned" ? addedAt : (snapshot?.generatedAt || addedAt);
-  const initial = { at: addedAt, price: referencePrice };
+  const quoteAt = snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt;
+  const referencePriceAt = mode === "owned" ? addedAt : (quoteAt || addedAt);
+  const initial = { at: referencePriceAt, price: referencePrice };
   if (existingIndex >= 0) {
     if (mode !== "owned") return;
     items[existingIndex] = {
@@ -291,6 +345,15 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
   renderAllLocal();
 }
 
+async function addObservation(code) {
+  const refreshed = await load();
+  if (!refreshed) {
+    alert("最新行情快照核对失败，本次没有写入观察价。请稍后重试。");
+    return;
+  }
+  addWatch(code, "watch");
+}
+
 let pendingPurchaseCode = null;
 
 function openPurchaseDialog(code) {
@@ -323,9 +386,10 @@ function renderWatchTable() {
   const current = new Map(rankedCandidates().map((row) => [codeOf(row.code), row]));
   const prices = priceMap();
   const rows = getWatch();
-  const watchRows = rows.filter((item) => item.mode !== "owned");
-  const ownedRows = rows.filter((item) => item.mode === "owned");
-  $("watchBadge").textContent = String(rows.length);
+  const watchRows = getWatchOnly();
+  const ownedRows = getOwnedWatch();
+  $("watchOnlyBadge").textContent = String(watchRows.length);
+  $("ownedWatchBadge").textContent = String(ownedRows.length);
   $("watchOnlyCount").textContent = `${watchRows.length} 只`;
   $("ownedWatchCount").textContent = `${ownedRows.length} 只`;
 
@@ -339,7 +403,8 @@ function renderWatchTable() {
       : "";
     const removeLabel = mode === "owned" ? "结束已买观察" : "取消未买观察";
     const referenceLabel = mode === "owned" ? "买入价格 · 用户填写" : "观察价格 · 点击时锁定";
-    const currentLabel = snapshot?.generatedAt ? `行情快照 ${compactTime(snapshot.generatedAt)}` : "最新可用行情";
+    const currentAt = snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt;
+    const currentLabel = currentAt ? `行情快照 ${compactTime(currentAt)}` : "最新可用行情";
     return `<tr><td class="price-cell reference-price" data-price-role="reference"><strong>${num(referencePrice)}</strong><small>${referenceLabel}</small><small>${compactTime(item.referencePriceAt)}</small></td><td class="price-cell current-price" data-price-role="current"><strong>${num(latest)}</strong><small>${currentLabel}</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
   }).join("");
 
@@ -586,7 +651,7 @@ async function load() {
     $("coreTitle").textContent = "快照读取失败";
     $("coreSummary").textContent = error.message || "无法读取 snapshot.json。";
     $("sideSnapshot").textContent = "快照请求失败";
-    return;
+    return false;
   }
   try {
     renderSnapshot(data);
@@ -596,11 +661,14 @@ async function load() {
     $("coreTitle").textContent = "快照已读取，但页面渲染异常";
     $("coreSummary").textContent = error.message || "请刷新页面；已记录到浏览器控制台。";
     $("sideSnapshot").textContent = "快照已读取，渲染异常";
+    return false;
   }
+  return true;
 }
 
 $("refreshNow").onclick = load;
-$("clearWatch").onclick = () => { if (confirm("清空本机浏览器中的观察栏？")) { clearWatch(); renderAllLocal(); } };
+$("clearWatchOnly").onclick = () => { if (confirm("清空本机浏览器中的未买观察？")) { clearWatchOnly(); renderAllLocal(); } };
+$("clearOwnedWatch").onclick = () => { if (confirm("清空本机浏览器中的已买观察？")) { clearOwnedWatch(); renderAllLocal(); } };
 $("purchaseCancel").onclick = () => $("purchaseDialog").close();
 $("purchaseForm").onsubmit = (event) => {
   event.preventDefault();

@@ -84,6 +84,11 @@ button, input, select { font: inherit; }
 .nav button:hover { background: #1c3440; }
 .nav button.active { border-color: #397d79; background: #1e4c4c; color: #fff; }
 .nav small { color: #9fc7c1; font-size: 11px; }
+.nav-group-label { display: block; margin: 10px 10px 4px; color: #8eb8b6; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+.nav button.nav-subitem { min-height: 34px; padding-left: 20px; border-left: 3px solid #385b65; }
+.nav button.nav-subitem[data-view="watch"] { color: #c8dcf3; }
+.nav button.nav-subitem[data-view="ownedWatch"] { color: #c9e8db; }
+.nav button.nav-subitem.active { border-left-color: #fff; }
 
 .sidebar-note { margin-top: 22px; padding: 14px 10px; border-top: 1px solid #39525d; }
 .sidebar-note h2 { margin: 0 0 9px; font-size: 13px; }
