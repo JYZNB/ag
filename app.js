@@ -445,6 +445,11 @@ function methodEvidence(method) {
   if (Number.isFinite(n(result.worst_rolling_60d_return))) items.push(`最差60日 ${pct(result.worst_rolling_60d_return)}`);
   if (Number.isFinite(n(result.average_market_exposure))) items.push(`平均暴露 ${pct(result.average_market_exposure)}`);
   if (Number.isFinite(n(result.recommended_research_horizon_days))) items.push(`研究周期 ${n(result.recommended_research_horizon_days)}日`);
+  if (typeof result.dedicated_promotion_gate_passed === "boolean") {
+    const improved = Number.isFinite(n(result.evaluation_fold_active_improvements)) ? n(result.evaluation_fold_active_improvements) : "--";
+    const required = Number.isFinite(n(result.required_evaluation_fold_active_improvements)) ? n(result.required_evaluation_fold_active_improvements) : "--";
+    items.push(`专属晋级 ${result.dedicated_promotion_gate_passed ? "通过" : "未通过"} (${improved}/${required}阶段)`);
+  }
   if (Number.isFinite(n(result.required_forward_signals))) items.push(`前验门槛 ${n(result.required_forward_signals)}个信号`);
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }

@@ -12679,13 +12679,13 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "渐进信息动量固定样本复核 2026-07-14",
+  "phase": "residual-momentum-evidence",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-14T01:29:32+08:00",
+    "generatedAt": "2026-07-14T01:52:48+08:00",
     "horizonDays": [
       15,
       45
@@ -12735,6 +12735,7 @@
     },
     "methodCards": [
       {
+        "id": "cross_sectional_momentum",
         "name": "横截面动量",
         "source": "AQR",
         "url": "https://www.aqr.com/insights/research/journal-article/fact-fiction-and-momentum-investing",
@@ -12760,6 +12761,7 @@
         "localResult": {}
       },
       {
+        "id": "time_series_trend_regime",
         "name": "趋势与市场环境",
         "source": "AQR",
         "url": "https://www.aqr.com/Insights/Research/Journal-Article/A-Century-of-Evidence-on-Trend-Following-Investing",
@@ -12785,6 +12787,7 @@
         "localResult": {}
       },
       {
+        "id": "volatility_managed_risk_budget",
         "name": "波动管理与逆波动风险预算",
         "source": "NBER / Moreira & Muir",
         "url": "https://www.nber.org/papers/w22208",
@@ -12820,6 +12823,7 @@
         }
       },
       {
+        "id": "gradual_information_momentum",
         "name": "渐进信息动量与路径连续性",
         "source": "Da、Gurun、Warachka / Review of Financial Studies",
         "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1745247",
@@ -12891,6 +12895,80 @@
         }
       },
       {
+        "id": "residual_momentum_proxy",
+        "name": "残差动量与共同波动剥离",
+        "source": "Blitz、Huij、Martens / Journal of Empirical Finance",
+        "url": "https://doi.org/10.1016/j.jempfin.2011.01.003",
+        "status": "保留观察，未晋级统一配置",
+        "horizonDays": [
+          15,
+          20,
+          30,
+          45
+        ],
+        "claim": "原研究用 Fama-French 三因子回归后的残差收益排序，发现其动态因子暴露和波动低于总收益动量，风险调整表现更稳定；发表后研究在不同股票池和样本期继续检验了这一结论。",
+        "localProxy": [
+          "stock_minus_sector_ret20_60",
+          "stock_minus_market_ret20_60",
+          "residual_direction_consistency",
+          "beta60_risk_guard",
+          "one_day_spike_and_extension_guard"
+        ],
+        "failureModes": [
+          "本地代理没有完整 SMB、HML 和 36 个月回归历史，不能等同于论文复现",
+          "板块分类变化会影响相对收益",
+          "强主题行情中剥离共同涨幅可能错过龙头",
+          "四个周期比较存在多重检验风险"
+        ],
+        "validationGate": "15、20、30、45 日持有上限在回测前固定；只有 20 日主变体可参与影子选择。主变体必须通过统一稳健门槛，在至少两个评估阶段改善当前冻结配置的同池主动收益，且最大回撤不得恶化超过 2 个百分点；否则只保留为研究证据，不进入唯一配置。",
+        "modelUse": "active_ablation",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "robustness_gate_passed": true,
+          "dedicated_promotion_gate_passed": false,
+          "selected": false,
+          "recommended_research_horizon_days": 20,
+          "total_return": 2.1982,
+          "max_drawdown": -0.1731,
+          "worst_rolling_60d_return": -0.1167,
+          "active_vs_equal_weight_total_return": 2.1095,
+          "evaluation_fold_active_improvements": 1,
+          "required_evaluation_fold_active_improvements": 2,
+          "horizon_comparison": [
+            {
+              "days": 15,
+              "gate_passed": false,
+              "total_return": 0.4859,
+              "max_drawdown": -0.3635,
+              "stability_score": 0.4424
+            },
+            {
+              "days": 20,
+              "gate_passed": true,
+              "total_return": 2.1982,
+              "max_drawdown": -0.1731,
+              "stability_score": 1.4777
+            },
+            {
+              "days": 30,
+              "gate_passed": true,
+              "total_return": 0.9538,
+              "max_drawdown": -0.1815,
+              "stability_score": 0.9081
+            },
+            {
+              "days": 45,
+              "gate_passed": true,
+              "total_return": 0.6373,
+              "max_drawdown": -0.1465,
+              "stability_score": 0.1593
+            }
+          ],
+          "decision": "20 日代理改善全样本收益、最大回撤和最差 60 日窗口，但只在 2026YTD 改善同池主动收益，2025H1 与 2025H2 均变差，稳定性分数也低于当前冻结配置。保留为风险调整研究证据，不替换唯一融合模型。"
+        }
+      },
+      {
+        "id": "quality_minus_junk",
         "name": "基本面质量",
         "source": "AQR",
         "url": "https://www.aqr.com/Insights/Research/Working-Paper/Quality-Minus-Junk",
@@ -12917,6 +12995,7 @@
         "localResult": {}
       },
       {
+        "id": "qlib_research_governance",
         "name": "实验记录与成本约束",
         "source": "Microsoft Qlib",
         "url": "https://github.com/microsoft/qlib/blob/main/docs/component/recorder.rst",
