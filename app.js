@@ -3,7 +3,7 @@ const WATCH_STORAGE = "taishan-fusion-watch-v4";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
-  watch: { title: "我的观察栏", subtitle: "未买观察与已买跟踪分开记账，起始价和现价并列核对。" },
+  watch: { title: "我的观察栏", subtitle: "未买观察与已买观察分开记账，观察价格或买入价格始终和现价并列核对。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
@@ -58,7 +58,7 @@ function clearWatch() {
 }
 
 function watchModeLabel(item) {
-  return item.mode === "owned" ? "已买入跟踪" : "未买观察";
+  return item.mode === "owned" ? "已买观察" : "未买观察";
 }
 
 function candidateSource(data = snapshot) {
@@ -214,8 +214,8 @@ function renderCandidateRow(row, compact = false) {
   const state = rowState(row);
   const tierClass = `t${row.tier}`;
   const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
-  const watchButton = `<button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? (watched.mode === "owned" ? "已买入" : "已观察") : "加入观察"}</button>`;
-  const buyButton = `<button class="watch-buy" data-code="${code}" ${watched?.mode === "owned" ? "disabled" : ""}>${watched?.mode === "owned" ? "已买入" : "记录买入"}</button>`;
+  const watchButton = `<button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? (watched.mode === "owned" ? "已买观察" : "未买已观察") : "未买：加入观察"}</button>`;
+  const buyButton = `<button class="watch-buy" data-code="${code}" ${watched?.mode === "owned" ? "disabled" : ""}>${watched?.mode === "owned" ? "已填买入价" : "已买：填买入价"}</button>`;
   return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><div class="watch-actions">${watchButton}${buyButton}</div></td></tr>`;
 }
 
@@ -335,10 +335,10 @@ function renderWatchTable() {
     const currentReturn = Number.isFinite(latest) && referencePrice > 0 ? latest / referencePrice - 1 : NaN;
     const state = watchStatus(item, current.get(item.code));
     const buyAction = mode === "watch"
-      ? `<button class="watch-buy watch-convert" data-code="${item.code}">记录买入</button>`
+      ? `<button class="watch-buy watch-convert" data-code="${item.code}">转为已买并填价</button>`
       : "";
-    const removeLabel = mode === "owned" ? "结束跟踪" : "取消观察";
-    const referenceLabel = mode === "owned" ? "成交价 · 用户填写" : "观察价 · 点击时锁定";
+    const removeLabel = mode === "owned" ? "结束已买观察" : "取消未买观察";
+    const referenceLabel = mode === "owned" ? "买入价格 · 用户填写" : "观察价格 · 点击时锁定";
     const currentLabel = snapshot?.generatedAt ? `行情快照 ${compactTime(snapshot.generatedAt)}` : "最新可用行情";
     return `<tr><td class="price-cell reference-price" data-price-role="reference"><strong>${num(referencePrice)}</strong><small>${referenceLabel}</small><small>${compactTime(item.referencePriceAt)}</small></td><td class="price-cell current-price" data-price-role="current"><strong>${num(latest)}</strong><small>${currentLabel}</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
   }).join("");
@@ -346,7 +346,7 @@ function renderWatchTable() {
   $("watchOnlyRows").innerHTML = renderRows(watchRows, "watch")
     || '<tr><td colspan="12" class="empty">暂无未买观察。请在研究总览点击“加入观察”，系统会记录当时的观察价。</td></tr>';
   $("ownedWatchRows").innerHTML = renderRows(ownedRows, "owned")
-    || '<tr><td colspan="12" class="empty">暂无已买跟踪。买入后点击“记录买入”，填入真实成交价。</td></tr>';
+    || '<tr><td colspan="12" class="empty">暂无已买观察。买入时点击“已买：填买入价”，填入真实成交价。</td></tr>';
   document.querySelectorAll(".watch-convert").forEach((button) => { button.onclick = () => openPurchaseDialog(button.dataset.code); });
   document.querySelectorAll(".remove-watch").forEach((button) => { button.onclick = () => removeWatch(button.dataset.code); });
 }
