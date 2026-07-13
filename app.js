@@ -1,6 +1,6 @@
 const $ = (id) => document.getElementById(id);
-const WATCH_STORAGE = "taishan-fusion-watch-v3";
-const LEGACY_WATCH_STORAGE = "taishan-fusion-watch-v2";
+const WATCH_STORAGE = "taishan-fusion-watch-v4";
+const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
   watch: { title: "我的观察栏", subtitle: "从加入时刻开始记录可用快照与后续表现。" },
@@ -23,6 +23,7 @@ const codeOf = (value) => String(value || "").padStart(6, "0");
 function normalizeWatch(item = {}) {
   const mode = item.mode === "owned" ? "owned" : "watch";
   const referencePrice = n(item.referencePrice ?? item.addedPrice);
+  const fallbackAt = item.addedAt || new Date().toISOString();
   return {
     ...item,
     code: codeOf(item.code),
@@ -30,14 +31,16 @@ function normalizeWatch(item = {}) {
     referencePrice,
     // Keep the old name as an alias so old local records remain compatible.
     addedPrice: referencePrice,
-    addedAt: item.addedAt || new Date().toISOString(),
+    addedAt: fallbackAt,
+    referencePriceAt: item.referencePriceAt || item.boughtAt || item.observedAt || fallbackAt,
     records: Array.isArray(item.records) ? item.records : [],
   };
 }
 
 function getWatch() {
   try {
-    const stored = localStorage.getItem(WATCH_STORAGE) || localStorage.getItem(LEGACY_WATCH_STORAGE) || "[]";
+    const legacy = LEGACY_WATCH_STORAGES.map((key) => localStorage.getItem(key)).find(Boolean);
+    const stored = localStorage.getItem(WATCH_STORAGE) || legacy || "[]";
     const rows = JSON.parse(stored);
     return Array.isArray(rows) ? rows.map(normalizeWatch) : [];
   } catch {
@@ -51,7 +54,7 @@ function saveWatch(rows) {
 
 function clearWatch() {
   localStorage.removeItem(WATCH_STORAGE);
-  localStorage.removeItem(LEGACY_WATCH_STORAGE);
+  LEGACY_WATCH_STORAGES.forEach((key) => localStorage.removeItem(key));
 }
 
 function watchModeLabel(item) {
@@ -153,6 +156,18 @@ function formatTime(value) {
   return Number.isNaN(date.getTime()) ? "--" : date.toLocaleString("zh-CN");
 }
 
+function compactTime(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "时间待核实";
+  return date.toLocaleString("zh-CN", {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+}
+
 function priceMap(data = snapshot) {
   const map = new Map();
   candidateSource(data).forEach((row) => map.set(codeOf(row.code), currentPrice(row)));
@@ -238,6 +253,7 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
   }
 
   const addedAt = new Date().toISOString();
+  const referencePriceAt = mode === "owned" ? addedAt : (snapshot?.generatedAt || addedAt);
   const initial = { at: addedAt, price: referencePrice };
   if (existingIndex >= 0) {
     if (mode !== "owned") return;
@@ -249,6 +265,7 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
       referencePrice,
       addedPrice: referencePrice,
       addedAt,
+      referencePriceAt,
       observedAt: existing.observedAt || existing.addedAt,
       boughtAt: addedAt,
       historicalTrend: n(row.ret20),
@@ -261,6 +278,7 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
       sector: row.sector,
       mode,
       addedAt,
+      referencePriceAt,
       observedAt: mode === "watch" ? addedAt : null,
       boughtAt: mode === "owned" ? addedAt : null,
       referencePrice,
@@ -320,7 +338,9 @@ function renderWatchTable() {
       ? `<button class="watch-buy watch-convert" data-code="${item.code}">记录买入</button>`
       : "";
     const removeLabel = mode === "owned" ? "结束跟踪" : "取消观察";
-    return `<tr><td class="price-cell"><strong>${num(referencePrice)}</strong><small>${mode === "owned" ? "实际买入价" : "加入观察价"}</small></td><td class="price-cell"><strong>${num(latest)}</strong><small>最新可用价</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
+    const referenceLabel = mode === "owned" ? "成交价 · 用户填写" : "观察价 · 点击时锁定";
+    const currentLabel = snapshot?.generatedAt ? `行情快照 ${compactTime(snapshot.generatedAt)}` : "最新可用行情";
+    return `<tr><td class="price-cell reference-price"><strong>${num(referencePrice)}</strong><small>${referenceLabel}</small><small>${compactTime(item.referencePriceAt)}</small></td><td class="price-cell current-price"><strong>${num(latest)}</strong><small>${currentLabel}</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
   }).join("");
 
   $("watchOnlyRows").innerHTML = renderRows(watchRows, "watch")

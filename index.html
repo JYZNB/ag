@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>泰山 A 股研究台</title>
-    <link rel="stylesheet" href="./styles.css?v=20260713-unified-swing" />
+    <link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers" />
     <link rel="stylesheet" href="./dashboard.css" />
   </head>
   <body>
@@ -52,16 +52,16 @@
         <section id="watchView" class="view" hidden>
           <section class="panel view-panel">
             <div class="heading"><div><p class="eyebrow">PERSONAL WATCHLIST</p><h2>我的观察栏</h2></div><button type="button" id="clearWatch" class="text-button">清空本机观察栏</button></div>
-            <p class="section-note">观察与买入是两套独立口径：未买时记录加入那一刻的观察价；实际买入后记录真实成交价。两张表都从各自起始时刻计算后续表现。</p>
+            <p class="section-note">这里是两本独立账：未买观察会永久锁定加入时的可用价格；已买跟踪只使用你填写的真实成交价。后续刷新只更新当前价，不会覆盖两类起始价格。</p>
 
-            <section class="watch-group watch-group-observe">
-              <div class="watch-group-heading"><div><p class="eyebrow">WATCHING / NOT OWNED</p><h3>未买观察</h3><p>点击“加入观察”时自动锁定当时可用价格。</p></div><strong id="watchOnlyCount">0 只</strong></div>
-              <div class="table-wrap"><table class="dense-table watch-table"><thead><tr><th>观察价</th><th>现价</th><th>股票 / 板块</th><th>加入观察时间</th><th>加入前20日</th><th>观察后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchOnlyRows"></tbody></table></div>
+            <section class="watch-group watch-group-observe" data-testid="watch-not-owned">
+              <div class="watch-group-heading"><div><p class="eyebrow">WATCHING / NOT OWNED</p><h3>未买观察</h3><p>点击“加入观察”时锁定该时点的可用行情；没有买入之前一直留在这里。</p></div><strong id="watchOnlyCount">0 只</strong></div>
+              <div class="table-wrap"><table class="dense-table watch-table"><thead><tr><th>加入时观察价</th><th>当前价</th><th>股票 / 板块</th><th>加入观察时间</th><th>加入前20日</th><th>观察后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchOnlyRows"></tbody></table></div>
             </section>
 
-            <section class="watch-group watch-group-owned">
-              <div class="watch-group-heading"><div><p class="eyebrow">PURCHASED / TRACKING</p><h3>已买跟踪</h3><p>点击“记录买入”并填入实际成交价后，从该价格重新计算。</p></div><strong id="ownedWatchCount">0 只</strong></div>
-              <div class="table-wrap"><table class="dense-table watch-table"><thead><tr><th>买入价</th><th>现价</th><th>股票 / 板块</th><th>买入时间</th><th>买入前20日</th><th>买入后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="ownedWatchRows"></tbody></table></div>
+            <section class="watch-group watch-group-owned" data-testid="watch-owned">
+              <div class="watch-group-heading"><div><p class="eyebrow">PURCHASED / TRACKING</p><h3>已买跟踪</h3><p>点击“记录买入”并填写真实成交价；买入后从新的价格和时间重新计算。</p></div><strong id="ownedWatchCount">0 只</strong></div>
+              <div class="table-wrap"><table class="dense-table watch-table"><thead><tr><th>实际买入价</th><th>当前价</th><th>股票 / 板块</th><th>买入记录时间</th><th>买入前20日</th><th>买入后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="ownedWatchRows"></tbody></table></div>
             </section>
           </section>
         </section>
@@ -91,6 +91,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-    <script src="./app.js?v=20260713-unified-swing"></script>
+    <script src="./app.js?v=20260714-watch-ledgers"></script>
   </body>
 </html>

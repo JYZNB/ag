@@ -12679,13 +12679,13 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "统一模型影子验证",
+  "phase": "观察栏双账本修复",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-13T23:55:26+08:00",
+    "generatedAt": "2026-07-14T00:10:44+08:00",
     "horizonDays": [
       15,
       45

@@ -173,6 +173,9 @@ button, input, select { font: inherit; }
 .watch-add[disabled], .watch-buy[disabled] { border-color: #cbd5df; color: #8291a1; cursor: default; }
 .remove-watch, .remove-holding { border-color: #d6a2ae; color: var(--red); }
 .price-cell strong { font-variant-numeric: tabular-nums; }
+.price-cell { min-width: 116px; }
+.price-cell strong { font-size: 14px; }
+.price-cell small + small { margin-top: 1px; color: #7d8996; }
 .watch-mode { display: inline-flex; padding: 4px 7px; border-radius: 999px; font-size: 11px; font-weight: 700; }
 .watch-mode.watch { background: var(--blue-soft); color: var(--blue); }
 .watch-mode.owned { background: var(--green-soft); color: var(--green); }
@@ -184,11 +187,23 @@ button, input, select { font: inherit; }
 .watch-group-heading > strong { min-width: 52px; padding: 5px 8px; border-radius: 5px; text-align: center; font-size: 11px; }
 .watch-group-observe .watch-group-heading > strong { background: var(--blue-soft); color: var(--blue); }
 .watch-group-owned .watch-group-heading > strong { background: var(--green-soft); color: var(--green); }
+.watch-group-observe { padding-left: 10px; border-left: 3px solid var(--blue); }
+.watch-group-owned { padding-left: 10px; border-left: 3px solid var(--green); }
 .watch-group-observe .table-wrap { border-top: 3px solid var(--blue); }
 .watch-group-owned .table-wrap { border-top: 3px solid var(--green); }
 .watch-table { min-width: 1260px; }
 .watch-table th:first-child, .watch-table th:nth-child(2),
-.watch-table td:first-child, .watch-table td:nth-child(2) { background: #f8fbfd; }
+.watch-table td:first-child, .watch-table td:nth-child(2) {
+  position: sticky;
+  z-index: 2;
+  width: 120px;
+  min-width: 120px;
+  background: #f8fbfd;
+  box-shadow: 1px 0 0 var(--line);
+}
+.watch-table th:first-child, .watch-table td:first-child { left: 0; }
+.watch-table th:nth-child(2), .watch-table td:nth-child(2) { left: 120px; }
+.watch-table th:first-child, .watch-table th:nth-child(2) { z-index: 4; }
 .watch-group-owned .watch-table th:first-child,
 .watch-group-owned .watch-table td:first-child { background: #eff8f4; }
 
