@@ -90,7 +90,7 @@ function formatTime(value) {
 
 function priceMap(data = snapshot) {
   const map = new Map();
-  candidateSource(data).forEach((row) => map.set(codeOf(row.code), n(row.close)));
+  candidateSource(data).forEach((row) => map.set(codeOf(row.code), n(row.live_price ?? row.close)));
   (data?.candidates || []).forEach((row) => {
     const value = n(row.live_price ?? row.close);
     if (Number.isFinite(value)) map.set(codeOf(row.code), value);
@@ -133,7 +133,7 @@ function renderCandidateRow(row, compact = false) {
   const state = rowState(row);
   const tierClass = `t${row.tier}`;
   const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
-  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(row.close)}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? "已观察" : "加入"}</button></td></tr>`;
+  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(row.live_price ?? row.close)}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? "已观察" : "加入"}</button></td></tr>`;
 }
 
 function bindWatchButtons(scope) {
@@ -156,8 +156,9 @@ function addWatch(code) {
   if (!row) return;
   const items = getWatch();
   if (!items.some((item) => item.code === code)) {
-    const initial = { at: snapshot?.generatedAt || snapshot?.latestDate || new Date().toISOString(), price: n(row.close) };
-    items.unshift({ code, name: row.name, sector: row.sector, addedAt: new Date().toISOString(), addedPrice: n(row.close), historicalTrend: n(row.ret20), records: [initial] });
+    const initialPrice = n(row.live_price ?? row.close);
+    const initial = { at: snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt || snapshot?.latestDate || new Date().toISOString(), price: initialPrice };
+    items.unshift({ code, name: row.name, sector: row.sector, addedAt: new Date().toISOString(), addedPrice: initialPrice, historicalTrend: n(row.ret20), records: [initial] });
     saveWatch(items);
   }
   renderAllLocal();
@@ -213,7 +214,7 @@ function renderHoldings() {
   $("holdingPnlValue").textContent = holdingMoney(portfolio.pnlValue);
   $("holdingPnlValue").className = Number.isFinite(n(portfolio.pnlValue)) && n(portfolio.pnlValue) >= 0 ? "positive-value" : "negative-value";
   $("holdingPnlPct").textContent = `参考比例 ${pct(portfolio.pnlPct)}`;
-  $("holdingSnapshotMeta").textContent = `持仓源更新 ${formatTime(holdings.sourceUpdatedAt)} / 研究快照 ${formatTime(snapshot?.generatedAt)}`;
+  $("holdingSnapshotMeta").textContent = `仓位源 ${formatTime(holdings.sourceUpdatedAt)} / 实时行情 ${formatTime(holdings.quoteUpdatedAt || snapshot?.intradayQuote?.capturedAt)} / 研究快照 ${formatTime(snapshot?.generatedAt)}`;
   $("holdingSourceNotice").textContent = text(holdings.notice, "等待公开持仓快照。");
 
   $("holdingRows").innerHTML = rows.map((row) => {
@@ -299,7 +300,9 @@ function renderSnapshot(data) {
   const market = data.market || {};
   const generated = data.generatedAt ? formatTime(data.generatedAt) : "--";
   $("sideSnapshot").textContent = data.generatedAt ? `快照 ${generated}` : "等待快照";
-  $("updatedAt").textContent = generated;
+  const intraday = data.intradayQuote || {};
+  const quoteAt = intraday.capturedAt ? formatTime(intraday.capturedAt) : "--";
+  $("updatedAt").textContent = intraday.capturedAt ? `${generated} / 实时价 ${quoteAt}` : generated;
   $("coreStatus").textContent = selected ? "双样本研究通过" : "等待双样本验证";
   $("coreTitle").textContent = selected === "V50_momentum_quality" ? "趋势质量融合模型" : "暂无可用融合核心";
   $("coreSummary").textContent = fusion.summary || "等待融合验证";
