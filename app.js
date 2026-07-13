@@ -52,12 +52,25 @@ function researchPeriod(row) {
   return row.tier === 1 ? "10-20交易日" : row.tier === 2 ? "5-10交易日" : "3-5交易日";
 }
 
+function currentPrice(row) {
+  const quote = snapshot?.intradayQuote?.quotes?.[codeOf(row?.code)];
+  return n(quote?.live_price ?? row?.live_price ?? row?.close);
+}
+
 function rowState(row) {
   const extension = safe(row.ma20_gap);
   const risk = safe(row.risk_control_score);
   const weak = risk < 65 || extension > .18 || safe(row.ret5) < -.08;
+  const live = currentPrice(row);
+  const entryLow = n(row.entry_low);
+  const entryHigh = n(row.entry_high);
+  const inEntryZone = Number.isFinite(live) && Number.isFinite(entryLow) && Number.isFinite(entryHigh)
+    && live >= entryLow && live <= entryHigh;
+  const ready = row.tier === 1 && risk >= 80 && extension <= .12 && snapshot?.marketOk === true;
   if (weak) return { tone: "red", label: "撤出观察" };
-  if (row.tier === 1 && risk >= 80 && extension <= .12) return { tone: "green", label: "继续观察" };
+  if (ready && inEntryZone) return { tone: "green", label: "推荐购买" };
+  if (ready && Number.isFinite(live) && live < entryLow) return { tone: "blue", label: "等回到买入线" };
+  if (ready && Number.isFinite(live) && live > entryHigh) return { tone: "blue", label: "等回踩确认" };
   return { tone: "blue", label: "等确认" };
 }
 
@@ -90,7 +103,7 @@ function formatTime(value) {
 
 function priceMap(data = snapshot) {
   const map = new Map();
-  candidateSource(data).forEach((row) => map.set(codeOf(row.code), n(row.live_price ?? row.close)));
+  candidateSource(data).forEach((row) => map.set(codeOf(row.code), currentPrice(row)));
   (data?.candidates || []).forEach((row) => {
     const value = n(row.live_price ?? row.close);
     if (Number.isFinite(value)) map.set(codeOf(row.code), value);
@@ -133,7 +146,7 @@ function renderCandidateRow(row, compact = false) {
   const state = rowState(row);
   const tierClass = `t${row.tier}`;
   const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
-  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(row.live_price ?? row.close)}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? "已观察" : "加入"}</button></td></tr>`;
+  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? "已观察" : "加入"}</button></td></tr>`;
 }
 
 function bindWatchButtons(scope) {
@@ -156,7 +169,7 @@ function addWatch(code) {
   if (!row) return;
   const items = getWatch();
   if (!items.some((item) => item.code === code)) {
-    const initialPrice = n(row.live_price ?? row.close);
+    const initialPrice = currentPrice(row);
     const initial = { at: snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt || snapshot?.latestDate || new Date().toISOString(), price: initialPrice };
     items.unshift({ code, name: row.name, sector: row.sector, addedAt: new Date().toISOString(), addedPrice: initialPrice, historicalTrend: n(row.ret20), records: [initial] });
     saveWatch(items);
