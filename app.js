@@ -534,6 +534,8 @@ function methodEvidence(method) {
   if (Number.isFinite(n(result.primary_active_total_delta))) items.push(`相对冻结基线主动 ${pct(result.primary_active_total_delta)}`);
   if (Number.isFinite(n(result.primary_active_fold_improvements))) items.push(`改善阶段 ${n(result.primary_active_fold_improvements)}/3`);
   if (typeof result.horizon_direction_consistent === "boolean") items.push(`周期方向 ${result.horizon_direction_consistent ? "一致" : "不一致"}`);
+  if (Number.isFinite(n(result.positive_horizon_count)) && Number.isFinite(n(result.horizon_count))) items.push(`有利周期 ${n(result.positive_horizon_count)}/${n(result.horizon_count)}`);
+  if (result.long_horizon_warning === true) items.push("60日不外推");
   if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
   if (result.decision === "retain_component") items.push("裁决 保留组件");
   if (result.decision === "remove_component") items.push("裁决 移除组件");

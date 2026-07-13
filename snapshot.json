@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "推荐状态修复 2026-07-14",
+  "phase": "Stage-2趋势组件审计 2026-07-14",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -12782,29 +12782,58 @@
       },
       {
         "id": "time_series_trend_regime",
-        "name": "趋势与市场环境",
+        "name": "Stage-2 趋势结构组件",
         "source": "AQR",
         "url": "https://www.aqr.com/Insights/Research/Journal-Article/A-Century-of-Evidence-on-Trend-Following-Investing",
-        "status": "研究验证",
+        "status": "组件保留，20日主用",
         "horizonDays": [
-          15,
-          45
+          20
         ],
-        "claim": "跨市场历史中，时间序列趋势具有长期证据；在个股模型中应主要用于趋势结构和风险暴露，而非保证单票上涨。",
+        "claim": "AQR 的跨市场时间序列趋势研究提供方向性依据；本地只把均线排列、相对强弱、阶段高位、平滑度和回撤控制组合成 A 股主板 20 日趋势结构代理。",
         "localProxy": [
-          "ma20_ma60_structure",
-          "stage2_trend",
-          "market_ok",
-          "sector_persistence"
+          "factor_stage2_trend",
+          "ma20_ma60_ma120_alignment",
+          "ret120_rank",
+          "near_high120",
+          "trend_smooth20",
+          "drawdown20_control"
         ],
         "failureModes": [
           "震荡反复止损",
           "趋势末端追高",
-          "指数与板块背离"
+          "指数与板块背离",
+          "持有到60日后优势反转"
         ],
-        "validationGate": "最差滚动 60 个交易日模型收益不低于 -18%，全样本最大回撤不超过 25%。",
-        "modelUse": "active_ablation",
-        "localResult": {}
+        "validationGate": "固定比较 0.20 与 0.00 权重；20 日主动收益须改善、至少改善两个固定阶段、回撤恶化不超过 2 个百分点，且 20/45/60 日中至少两个周期方向为正。",
+        "modelUse": "retained_component",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "component_retention_gate_passed": true,
+          "retained_weight": 0.2,
+          "recommended_research_horizon_days": 20,
+          "retained_total_return": 2.07759738497681,
+          "removed_total_return": 1.738416513691658,
+          "retained_max_drawdown": -0.18856959804109907,
+          "removed_max_drawdown": -0.20156651686283444,
+          "total_return": 2.07759738497681,
+          "active_vs_equal_weight_total_return": 1.992224248363132,
+          "max_drawdown": -0.18856959804109907,
+          "worst_rolling_60d_return": -0.13946424576219874,
+          "primary_active_total_delta": 0.32977192942604905,
+          "primary_active_fold_improvements": 3,
+          "evaluation_fold_active_improvements": 3,
+          "required_evaluation_fold_active_improvements": 2,
+          "active_delta_45d": 0.053427560268026086,
+          "active_delta_60d": -0.11873434095870894,
+          "positive_horizon_count": 2,
+          "horizon_count": 3,
+          "horizon_direction_consistent": false,
+          "long_horizon_warning": true,
+          "feature_cache_hit": true,
+          "audit_fingerprint": "472d49385d263fbde95c09a27acd3ce7b589d1afd987a0421db739130024e907",
+          "historical_conflict_resolved": true,
+          "decision": "retain_component"
+        }
       },
       {
         "id": "volatility_managed_risk_budget",
@@ -13596,7 +13625,7 @@
         "price": 81.83,
         "pnlValue": -574.0,
         "pnlPct": -0.033884297520661154,
-        "reviewPhase": "推荐状态修复 2026-07-14",
+        "reviewPhase": "Stage-2趋势组件审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13614,7 +13643,7 @@
         "price": 37.66,
         "pnlValue": -1724.0500000000006,
         "pnlPct": -0.31403174834473285,
-        "reviewPhase": "推荐状态修复 2026-07-14",
+        "reviewPhase": "Stage-2趋势组件审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13632,7 +13661,7 @@
         "price": 2.76,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "推荐状态修复 2026-07-14",
+        "reviewPhase": "Stage-2趋势组件审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
