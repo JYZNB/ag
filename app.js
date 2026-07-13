@@ -527,11 +527,20 @@ function methodEvidence(method) {
   if (Number.isFinite(n(result.anchored_max_drawdown)) && Number.isFinite(n(result.removed_max_drawdown))) {
     items.push(`回撤 ${pct(result.anchored_max_drawdown)} / ${pct(result.removed_max_drawdown)}`);
   }
+  if (Number.isFinite(n(result.retained_total_return)) && Number.isFinite(n(result.removed_total_return)) && !Number.isFinite(n(result.anchored_total_return))) {
+    items.push(`保留组件 ${pct(result.retained_total_return)} / 移除组件 ${pct(result.removed_total_return)}`);
+  }
+  if (Number.isFinite(n(result.retained_max_drawdown)) && Number.isFinite(n(result.removed_max_drawdown)) && !Number.isFinite(n(result.anchored_max_drawdown))) {
+    items.push(`回撤 ${pct(result.retained_max_drawdown)} / ${pct(result.removed_max_drawdown)}`);
+  }
   if (Number.isFinite(n(result.required_forward_signals))) items.push(`前验门槛 ${n(result.required_forward_signals)}个信号`);
   if (Number.isFinite(n(result.coverage))) items.push(`样本覆盖 ${pct(result.coverage)}`);
   if (Number.isFinite(n(result.primary_active_total_delta))) items.push(`相对冻结基线主动 ${pct(result.primary_active_total_delta)}`);
   if (Number.isFinite(n(result.primary_active_fold_improvements))) items.push(`改善阶段 ${n(result.primary_active_fold_improvements)}/3`);
   if (typeof result.horizon_direction_consistent === "boolean") items.push(`周期方向 ${result.horizon_direction_consistent ? "一致" : "不一致"}`);
+  if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
+  if (result.decision === "retain_component") items.push("裁决 保留组件");
+  if (result.decision === "remove_component") items.push("裁决 移除组件");
   if (result.decision === "rejected") items.push("裁决 拒绝融合");
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }

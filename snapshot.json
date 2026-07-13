@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "方法证据更新 2026-07-14",
+  "phase": "方法审计 2026-07-14",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -12736,29 +12736,49 @@
     "methodCards": [
       {
         "id": "cross_sectional_momentum",
-        "name": "横截面动量",
+        "name": "普通价格动量组件审计",
         "source": "AQR",
         "url": "https://www.aqr.com/insights/research/journal-article/fact-fiction-and-momentum-investing",
-        "status": "研究验证",
+        "status": "组件保留，审计通过",
         "horizonDays": [
-          15,
-          45
+          20,
+          45,
+          60
         ],
-        "claim": "相对强势资产在中期内往往延续强势，但动量会经历拥挤和快速反转。",
+        "claim": "相对强势资产在中期内往往延续强势；本地只审计融合模型中已经存在的普通价格动量组件，不把主板长多结果等同于原研究的全球多空组合。",
         "localProxy": [
           "ret60",
-          "ret120_ex20",
-          "relative_strength",
-          "near_high252"
+          "ma60_gap",
+          "close_pos20",
+          "trend_smooth20"
         ],
         "failureModes": [
           "高位拥挤反转",
           "单日脉冲伪强势",
           "弱市场中的高贝塔补跌"
         ],
-        "validationGate": "2025H1、2025H2、2026YTD 至少两个阶段相对同池等权为正，最差阶段模型收益不低于 -15%。",
-        "modelUse": "active_ablation",
-        "localResult": {}
+        "validationGate": "冻结权重 1.0 与完全移除权重 0.0 对照；20 日须通过统一稳健门槛、至少改善 2/3 个验证阶段、回撤不得恶化超过 2 个百分点，且 20/45/60 日至少两个周期方向为正。",
+        "modelUse": "retained_component",
+        "localResult": {
+          "total_return": 2.07759738497681,
+          "active_vs_equal_weight_total_return": 1.992224248363132,
+          "max_drawdown": -0.18856959804109907,
+          "worst_rolling_60d_return": -0.13946424576219874,
+          "recommended_research_horizon_days": 20,
+          "component_retention_gate_passed": true,
+          "evaluation_fold_active_improvements": 3,
+          "required_evaluation_fold_active_improvements": 2,
+          "retained_weight": 1.0,
+          "retained_total_return": 2.07759738497681,
+          "removed_total_return": 0.4379858645944459,
+          "retained_max_drawdown": -0.18856959804109907,
+          "removed_max_drawdown": -0.242274075449751,
+          "primary_active_total_delta": 1.7000824261750116,
+          "active_delta_45d": 0.46176111013306775,
+          "active_delta_60d": 0.20175463520900117,
+          "horizon_direction_consistent": true,
+          "decision": "retain_component"
+        }
       },
       {
         "id": "time_series_trend_regime",
@@ -13564,7 +13584,7 @@
         "price": 81.83,
         "pnlValue": -574.0,
         "pnlPct": -0.033884297520661154,
-        "reviewPhase": "方法证据更新 2026-07-14",
+        "reviewPhase": "方法审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13582,7 +13602,7 @@
         "price": 37.66,
         "pnlValue": -1724.0500000000006,
         "pnlPct": -0.31403174834473285,
-        "reviewPhase": "方法证据更新 2026-07-14",
+        "reviewPhase": "方法审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13600,7 +13620,7 @@
         "price": 2.76,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "方法证据更新 2026-07-14",
+        "reviewPhase": "方法审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
