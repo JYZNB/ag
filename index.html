@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-    <link rel="stylesheet" href="./styles.css?v=20260714-split-watch-ledgers" />
-    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers-v3" />
+    <link rel="stylesheet" href="./dashboard.css?v=20260714-watch-ledgers-v3" />
   </head>
   <body>
     <div class="app-shell">
@@ -15,9 +18,9 @@
         <nav class="nav" aria-label="研究台导航">
           <button type="button" data-view="holdings">我的持仓 <small>公开</small></button>
           <button type="button" data-view="overview" class="active">研究总览</button>
-          <span class="nav-group-label">我的观察栏</span>
-          <button type="button" data-view="watch" class="nav-subitem">未买观察 <small id="watchOnlyBadge">0</small></button>
-          <button type="button" data-view="ownedWatch" class="nav-subitem">已买观察 <small id="ownedWatchBadge">0</small></button>
+          <span class="nav-group-label">我的观察栏 · 双账本</span>
+          <button type="button" data-view="watch" class="nav-subitem">未买观察 <small>自动锁价 · <b id="watchOnlyBadge">0</b></small></button>
+          <button type="button" data-view="ownedWatch" class="nav-subitem">已买观察 <small>手填买价 · <b id="ownedWatchBadge">0</b></small></button>
           <button type="button" data-view="history">历史候选库</button>
         </nav>
         <section class="sidebar-note">
@@ -27,7 +30,7 @@
           <p><b class="dot red"></b>撤出观察：条件失效或偏离过大</p>
         </section>
         <section class="sidebar-note cadence">
-          <h2>两类观察记录</h2>
+          <h2>观察双账本</h2>
           <p>未买时锁定加入价；买入后填写成交价。现价只更新对比，不覆盖起始价格。</p>
         </section>
         <p class="side-foot">一级研究关注不是买入指令。模型不下单，也不承诺收益。</p>
@@ -100,6 +103,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-    <script src="./app.js?v=20260714-split-watch-ledgers"></script>
+    <script src="./app.js?v=20260714-watch-ledgers-v3"></script>
   </body>
 </html>
