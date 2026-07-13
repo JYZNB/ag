@@ -12679,13 +12679,13 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "intermediate-momentum-evidence",
+  "phase": "high-52w-component-audit-publish",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-14T02:15:31+08:00",
+    "generatedAt": "2026-07-14T02:33:09+08:00",
     "horizonDays": [
       15,
       45
@@ -13032,6 +13032,96 @@
             }
           ],
           "decision": "20 日代理改善全样本收益、最大回撤和最差 60 日窗口，但只在 2025H1 改善同池主动收益，2025H2 与 2026YTD 均变差，稳定性分数也低于当前冻结配置。30 日未通过统一稳健门槛，45 日收益与稳定性较弱。因此保留为中期动量研究证据，不替换唯一融合模型。"
+        }
+      },
+      {
+        "id": "high_52w_anchor_component_audit",
+        "name": "52周高点锚定组件审计",
+        "source": "Thomas J. George and Chuan-Yang Hwang / The Journal of Finance",
+        "url": "https://www.bauer.uh.edu/tgeorge/papers/gh4-paper.pdf",
+        "status": "组件保留，审计通过",
+        "horizonDays": [
+          15,
+          20,
+          30,
+          45
+        ],
+        "claim": "原研究按当前价格与过去 12 个月最高价之比排序，主要以月度形成、持有 6 个月的多空组合检验其动量解释力。本地只审计这一锚定信息在主板多头、15 至 45 个交易日组合中的边际贡献，不把本地因子解释为原论文复现。",
+        "localProxy": [
+          "near_high252",
+          "near_high120",
+          "ret120_and_ret60_rank",
+          "trend_smooth20",
+          "not_one_day_spike",
+          "ma20_extension_guard",
+          "sector_confirm",
+          "clean_unwind"
+        ],
+        "failureModes": [
+          "原研究是月度多空组合，本地是主板多头组合且持有期更短",
+          "接近高点可能只是高贝塔、板块拥挤或涨停后的过热结果",
+          "当前因子混入趋势平滑、板块确认与去追高保护，不是纯价格除以 52 周高点",
+          "当前历史约两年半且股票池可能存在幸存者偏差",
+          "旧 V43 独立实验显示因子诊断为正，但加入评分或排序没有打赢当时冠军"
+        ],
+        "validationGate": "15、20、30、45 日零权重对照在回测前固定。当前含锚定的 20 日配置只有在三个固定评估阶段中至少两个阶段改善去锚定对照的同池主动收益，且最大回撤不恶化超过 2 个百分点，才保留该组件的自动评分权；其余周期只做期限诊断。",
+        "modelUse": "component_pruning_ablation",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "component_retention_gate_passed": true,
+          "selected_variant": "gradual_information_20d",
+          "retained_weight": 0.15,
+          "recommended_research_horizon_days": 20,
+          "anchored_total_return": 2.0776,
+          "removed_total_return": 1.6746,
+          "anchored_active_vs_equal_weight_total_return": 1.9922,
+          "removed_active_vs_equal_weight_total_return": 1.6004,
+          "anchored_max_drawdown": -0.1886,
+          "removed_max_drawdown": -0.2016,
+          "anchored_worst_rolling_60d_return": -0.1395,
+          "removed_worst_rolling_60d_return": -0.1759,
+          "evaluation_fold_active_improvements": 3,
+          "required_evaluation_fold_active_improvements": 2,
+          "active_fold_deltas": {
+            "validation_2025_h1": 0.1243,
+            "validation_2025_h2": 0.03,
+            "holdout_2026_ytd": 0.1591
+          },
+          "horizon_comparison": [
+            {
+              "days": 15,
+              "anchored_total_return": 0.3873,
+              "removed_total_return": 0.1429,
+              "active_return_delta": 0.2567,
+              "anchored_gate_passed": false,
+              "removed_gate_passed": false
+            },
+            {
+              "days": 20,
+              "anchored_total_return": 2.0776,
+              "removed_total_return": 1.6746,
+              "active_return_delta": 0.3918,
+              "anchored_gate_passed": true,
+              "removed_gate_passed": true
+            },
+            {
+              "days": 30,
+              "anchored_total_return": 0.9532,
+              "removed_total_return": 0.5617,
+              "active_return_delta": 0.3361,
+              "anchored_gate_passed": true,
+              "removed_gate_passed": false
+            },
+            {
+              "days": 45,
+              "anchored_total_return": 0.5557,
+              "removed_total_return": 0.4492,
+              "active_return_delta": 0.0997,
+              "anchored_gate_passed": true,
+              "removed_gate_passed": true
+            }
+          ],
+          "decision": "旧 V43 显示该因子单独加入旧冠军时没有增益；本轮在当前冻结组合中只移除该组件，含锚定配置在三个固定评估阶段全部改善同池主动收益，并改善累计收益、最大回撤和最差 60 日窗口。保留 0.15 权重，不加码，20 日仍是当前研究持有上限。"
         }
       },
       {

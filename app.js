@@ -450,6 +450,18 @@ function methodEvidence(method) {
     const required = Number.isFinite(n(result.required_evaluation_fold_active_improvements)) ? n(result.required_evaluation_fold_active_improvements) : "--";
     items.push(`专属晋级 ${result.dedicated_promotion_gate_passed ? "通过" : "未通过"} (${improved}/${required}阶段)`);
   }
+  if (typeof result.component_retention_gate_passed === "boolean") {
+    const improved = Number.isFinite(n(result.evaluation_fold_active_improvements)) ? n(result.evaluation_fold_active_improvements) : "--";
+    const required = Number.isFinite(n(result.required_evaluation_fold_active_improvements)) ? n(result.required_evaluation_fold_active_improvements) : "--";
+    items.push(`组件保留 ${result.component_retention_gate_passed ? "通过" : "未通过"} (${improved}/${required}阶段)`);
+  }
+  if (Number.isFinite(n(result.retained_weight))) items.push(`保留权重 ${n(result.retained_weight).toFixed(2)}`);
+  if (Number.isFinite(n(result.anchored_total_return)) && Number.isFinite(n(result.removed_total_return))) {
+    items.push(`含锚定 ${pct(result.anchored_total_return)} / 去锚定 ${pct(result.removed_total_return)}`);
+  }
+  if (Number.isFinite(n(result.anchored_max_drawdown)) && Number.isFinite(n(result.removed_max_drawdown))) {
+    items.push(`回撤 ${pct(result.anchored_max_drawdown)} / ${pct(result.removed_max_drawdown)}`);
+  }
   if (Number.isFinite(n(result.required_forward_signals))) items.push(`前验门槛 ${n(result.required_forward_signals)}个信号`);
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }
