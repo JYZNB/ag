@@ -186,12 +186,16 @@ button, input, select { font: inherit; }
 .watch-mode.owned { background: var(--green-soft); color: var(--green); }
 
 .watch-group { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.watch-ledger-panel { padding-bottom: 24px; }
+.watch-ledger-intro { max-width: 980px; padding: 10px 12px; border-left: 3px solid var(--ink); background: #f5f8fa; color: var(--ink) !important; }
+.watch-group { scroll-margin-top: 18px; }
 .watch-group-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .watch-group-heading h3 { margin: 0; font-size: 16px; }
 .watch-group-heading p:not(.eyebrow) { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
-.watch-group-heading > strong { min-width: 52px; padding: 5px 8px; border-radius: 5px; text-align: center; font-size: 11px; }
-.watch-group-observe .watch-group-heading > strong { background: var(--blue-soft); color: var(--blue); }
-.watch-group-owned .watch-group-heading > strong { background: var(--green-soft); color: var(--green); }
+.watch-group-tools { display: flex; align-items: center; gap: 8px; }
+.watch-group-tools > strong { min-width: 52px; padding: 5px 8px; border-radius: 5px; text-align: center; font-size: 11px; }
+.watch-group-observe .watch-group-tools > strong { background: var(--blue-soft); color: var(--blue); }
+.watch-group-owned .watch-group-tools > strong { background: var(--green-soft); color: var(--green); }
 .watch-group-observe { padding-left: 10px; border-left: 3px solid var(--blue); }
 .watch-group-owned { padding-left: 10px; border-left: 3px solid var(--green); }
 .watch-group-observe .table-wrap { border-top: 3px solid var(--blue); }
@@ -221,6 +225,8 @@ button, input, select { font: inherit; }
 .method-status { display: inline-block; padding: 3px 7px; border: 1px solid #b8c8dc; background: #edf4fb; color: #274b6b; font-weight: 700; }
 .watch-group-owned .watch-table th:first-child,
 .watch-group-owned .watch-table td:first-child { background: #eff8f4; }
+.watch-group-observe .watch-table th:first-child,
+.watch-group-observe .watch-table td:first-child { background: #edf5fc; }
 
 .price-dialog { width: min(380px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); box-shadow: 0 18px 50px rgb(23 33 43 / 24%); }
 .price-dialog::backdrop { background: rgb(23 33 43 / 45%); }

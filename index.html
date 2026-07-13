@@ -7,8 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-    <link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers-v3" />
-    <link rel="stylesheet" href="./dashboard.css?v=20260714-watch-ledgers-v3" />
+    <link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers-v4" />
+    <link rel="stylesheet" href="./dashboard.css?v=20260714-watch-ledgers-v4" />
   </head>
   <body>
     <div class="app-shell">
@@ -57,22 +57,17 @@
         </section>
 
         <section id="watchView" class="view" hidden>
-          <section class="panel view-panel">
-            <div class="heading"><div><p class="eyebrow">WATCHING / NOT OWNED</p><h2>未买观察</h2></div><button type="button" id="clearWatchOnly" class="text-button">清空未买观察</button></div>
-            <p class="section-note">点击“未买：加入观察”时，系统先刷新快照，再把该时点最新可用行情锁定为观察价格。后续只更新现价，不覆盖观察价。</p>
-            <section class="watch-group watch-group-observe" data-testid="watch-not-owned">
-              <div class="watch-group-heading"><div><h3>未买台账</h3><p>观察价格和行情时间写入后固定；买入后可转到“已买观察”并填写真实成交价。</p></div><strong id="watchOnlyCount">0 只</strong></div>
+          <section class="panel view-panel watch-ledger-panel">
+            <div class="heading"><div><p class="eyebrow">TWO INDEPENDENT WATCH LEDGERS</p><h2>我的观察栏 · 两本独立台账</h2></div><span>观察价和买入价永不混用</span></div>
+            <p class="section-note watch-ledger-intro">未买时加入“未买观察”，系统先核实该时点最新可用行情并锁定观察价格；实际买入时加入“已买观察”，由你填写真实成交价。两张表的前两列始终是起始价格和现价。</p>
+
+            <section id="watchOnlyLedger" class="watch-group watch-group-observe" data-testid="watch-not-owned">
+              <div class="watch-group-heading"><div><p class="eyebrow">NOT OWNED</p><h3>未买观察</h3><p>观察价格和行情时间写入后固定；后续刷新只更新现价，不覆盖观察价。</p></div><div class="watch-group-tools"><strong id="watchOnlyCount">0 只</strong><button type="button" id="clearWatchOnly" class="text-button">清空未买观察</button></div></div>
               <div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-not-owned-table"><thead><tr><th>观察价格（加入时）</th><th>现价</th><th>股票 / 板块</th><th>加入观察时间</th><th>加入前20日</th><th>观察后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchOnlyRows"></tbody></table></div>
             </section>
-          </section>
-        </section>
 
-        <section id="ownedWatchView" class="view" hidden>
-          <section class="panel view-panel">
-            <div class="heading"><div><p class="eyebrow">PURCHASED / WATCHING</p><h2>已买观察</h2></div><button type="button" id="clearOwnedWatch" class="text-button">清空已买观察</button></div>
-            <p class="section-note">买入时点击“已买：填买入价”，填写你的真实成交价。买入价格和记录时间独立保存，后续只更新现价。</p>
-            <section class="watch-group watch-group-owned" data-testid="watch-owned">
-              <div class="watch-group-heading"><div><h3>已买台账</h3><p>第一列只认你填写的真实买入价，不从未买观察价或系统行情自动替代。</p></div><strong id="ownedWatchCount">0 只</strong></div>
+            <section id="ownedWatchLedger" class="watch-group watch-group-owned" data-testid="watch-owned">
+              <div class="watch-group-heading"><div><p class="eyebrow">PURCHASED</p><h3>已买观察</h3><p>第一列只认你填写的真实买入价，不用未买观察价或系统行情自动替代。</p></div><div class="watch-group-tools"><strong id="ownedWatchCount">0 只</strong><button type="button" id="clearOwnedWatch" class="text-button">清空已买观察</button></div></div>
               <div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-owned-table"><thead><tr><th>买入价格（成交）</th><th>现价</th><th>股票 / 板块</th><th>买入记录时间</th><th>买入前20日</th><th>买入后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="ownedWatchRows"></tbody></table></div>
             </section>
           </section>
@@ -103,6 +98,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-    <script src="./app.js?v=20260714-watch-ledgers-v3"></script>
+    <script src="./app.js?v=20260714-watch-ledgers-v4"></script>
   </body>
 </html>
