@@ -185,7 +185,9 @@ function renderWatchTable() {
 }
 
 function holdingMoney(value) {
-  return Number.isFinite(n(value)) ? `¥${n(value).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "--";
+  return value !== null && value !== undefined && value !== "" && Number.isFinite(n(value))
+    ? `¥${n(value).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    : "--";
 }
 
 function holdingResearch(code) {
@@ -210,9 +212,13 @@ function renderHoldings() {
   $("holdingPhase").textContent = "公开持仓复核";
   $("holdingCostValue").textContent = holdingMoney(portfolio.costValue);
   $("holdingMarketValue").textContent = holdingMoney(portfolio.marketValue);
-  $("holdingDate").textContent = `日线截止 ${text(snapshot?.latestDate)}`;
+  const dailyLine = snapshot?.dailyLineSource || {};
+  const dailyDate = String(dailyLine.targetDate || snapshot?.latestDate || "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
+  $("holdingDate").textContent = dailyLine.targetDate ? `通达信校准至 ${dailyDate}` : `日线截止 ${text(snapshot?.latestDate)}`;
   $("holdingPnlValue").textContent = holdingMoney(portfolio.pnlValue);
-  $("holdingPnlValue").className = Number.isFinite(n(portfolio.pnlValue)) && n(portfolio.pnlValue) >= 0 ? "positive-value" : "negative-value";
+  $("holdingPnlValue").className = portfolio.pnlValue !== null && portfolio.pnlValue !== undefined && Number.isFinite(n(portfolio.pnlValue))
+    ? (n(portfolio.pnlValue) >= 0 ? "positive-value" : "negative-value")
+    : "";
   $("holdingPnlPct").textContent = `参考比例 ${pct(portfolio.pnlPct)}`;
   $("holdingSnapshotMeta").textContent = `仓位源 ${formatTime(holdings.sourceUpdatedAt)} / 实时行情 ${formatTime(holdings.quoteUpdatedAt || snapshot?.intradayQuote?.capturedAt)} / 研究快照 ${formatTime(snapshot?.generatedAt)}`;
   $("holdingSourceNotice").textContent = text(holdings.notice, "等待公开持仓快照。");
@@ -226,7 +232,9 @@ function renderHoldings() {
     const target1 = research.target1;
     const note = research.reason || research.explain || (safe(row.available) <= 0 ? "当日买入或不可卖，下一交易日再复核。" : "等待模型覆盖后给出风险复核。");
     const period = research.tier ? researchPeriod(research) : "等待研究复核";
-    return `<tr><td class="stock-cell"><strong>${text(row.name, row.code)}</strong><small>${codeOf(row.code)}</small></td><td>${shares} / ${available}</td><td>${num(row.costPrice)}</td><td>${num(row.price)}</td><td><span class="${safe(row.pnlPct) >= 0 ? "ret-up" : "ret-down"}">${holdingMoney(row.pnlValue)}<small>${pct(row.pnlPct)}</small></span></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(riskLine)}</td><td>${num(target1)}</td><td>${period}</td><td>${text(row.quoteSource)}</td><td class="reason">${text(note)}</td></tr>`;
+    const pnlKnown = row.pnlPct !== null && row.pnlPct !== undefined && Number.isFinite(n(row.pnlPct));
+    const pnlClass = pnlKnown ? (n(row.pnlPct) >= 0 ? "ret-up" : "ret-down") : "";
+    return `<tr><td class="stock-cell"><strong>${text(row.name, row.code)}</strong><small>${codeOf(row.code)}</small></td><td>${shares} / ${available}</td><td>${num(row.costPrice)}</td><td>${num(row.price)}</td><td><span class="${pnlClass}">${holdingMoney(row.pnlValue)}<small>${pct(row.pnlPct)}</small></span></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(riskLine)}</td><td>${num(target1)}</td><td>${period}</td><td>${text(row.quoteSource)}</td><td class="reason">${text(note)}</td></tr>`;
   }).join("") || '<tr><td colspan="11" class="empty">当前公开持仓表没有可显示的数量大于 0 的标的。</td></tr>';
 }
 
