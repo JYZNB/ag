@@ -5,8 +5,8 @@ const WATCH_MIGRATION_MARKER = "taishan-fusion-watch-ledgers-v1-migrated";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v4", "taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
-  watch: { title: "我的观察栏", subtitle: "未买观察自动锁定加入价；已买观察手动填写真实成交价。" },
-  ownedWatch: { title: "我的观察栏 · 已买观察", subtitle: "按你填写的真实买入价格独立记账，不与未买观察混用。" },
+  watch: { title: "未买观察", subtitle: "加入时刷新行情并锁定观察价格，之后只更新现价。" },
+  ownedWatch: { title: "已买观察", subtitle: "填写真实成交价格，独立记录买入后的价格变化。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
@@ -630,15 +630,11 @@ function renderAllLocal() {
 
 function applyView(view) {
   const active = VIEWS[view] ? view : "overview";
-  const panel = active === "ownedWatch" ? "watch" : active;
-  document.querySelectorAll(".view").forEach((section) => { section.hidden = section.id !== `${panel}View`; });
+  document.querySelectorAll(".view").forEach((section) => { section.hidden = section.id !== `${active}View`; });
   document.querySelectorAll(".nav [data-view]").forEach((button) => button.classList.toggle("active", button.dataset.view === active));
   $("viewTitle").textContent = VIEWS[active].title;
   $("viewSubtitle").textContent = VIEWS[active].subtitle;
   if (active === "history") loadHistoryIndex();
-  if (active === "ownedWatch") {
-    requestAnimationFrame(() => $("ownedWatchLedger")?.scrollIntoView({ block: "start", behavior: "smooth" }));
-  }
 }
 
 function setView(view) {
