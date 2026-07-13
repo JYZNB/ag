@@ -641,6 +641,14 @@ function methodEvidence(method) {
   if (result.mapping_placebo_audit_complete === true) items.push("同分布映射安慰剂已完成");
   if (result.subfactor_diagnostic_complete === true) items.push("板块子因子诊断已完成");
   if (result.subfactor_portfolio_recheck_complete === true && result.production_challenger_selected === false) items.push("持续性/宽度组合复核未晋级");
+  const joint = result.joint_confirmation_recheck || {};
+  if (result.joint_confirmation_recheck_complete === true) items.push(`联合确认组合复核${joint.promotion_passed === true ? "晋级" : "未晋级"}`);
+  if (Number.isFinite(n(joint.active_delta_20d)) && Number.isFinite(n(joint.active_delta_45d)) && Number.isFinite(n(joint.active_delta_60d))) {
+    items.push(`联合主动差 20日 ${pct(joint.active_delta_20d)} / 45日 ${pct(joint.active_delta_45d)} / 60日 ${pct(joint.active_delta_60d)}`);
+  }
+  if (Number.isFinite(n(joint.primary_fold_wins))) items.push(`联合确认改善阶段 ${n(joint.primary_fold_wins)}/3`);
+  if (Number.isFinite(n(joint.max_drawdown_delta_20d)) && n(joint.max_drawdown_delta_20d) < 0) items.push(`20日回撤恶化 ${pct(Math.abs(n(joint.max_drawdown_delta_20d)))}`);
+  if (result.production_model_changed === false) items.push("生产权重未变");
   if (result.long_horizon_warning === true) items.push("60日不外推");
   if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
   if (result.decision === "retain_component") items.push("裁决 保留组件");
@@ -648,6 +656,7 @@ function methodEvidence(method) {
   if (result.decision === "rejected") items.push("裁决 拒绝融合");
   if (result.decision === "inconclusive_keep_frozen_pending_more_forward_evidence") items.push("裁决 证据冲突，冻结等待前验");
   if (result.decision === "freeze_current_mapping_after_subfactor_recheck") items.push("裁决 子项未晋级，维持综合映射");
+  if (result.decision === "freeze_current_mapping_after_joint_confirmation_recheck") items.push("裁决 联合确认未晋级，维持综合映射");
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }
 

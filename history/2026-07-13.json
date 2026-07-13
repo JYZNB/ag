@@ -13326,21 +13326,22 @@
       },
       {
         "id": "sector_strength",
-        "name": "板块强度映射、子因子与组合复核",
+        "name": "板块强度映射、子因子与联合确认复核",
         "source": "Tobias J. Moskowitz and Mark Grinblatt / The Journal of Finance",
         "url": "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00146",
-        "status": "子项诊断有信号但组合未晋级，维持综合映射",
+        "status": "单项与联合确认均未晋级，维持综合映射",
         "horizonDays": [
           20,
           45,
           60
         ],
-        "claim": "原研究记录了显著的行业动量，并指出行业动量能解释一部分个股动量。本地依次审计直接权重、同分布映射、四个板块子因子的IC与高低组差，再对通过诊断的子项做实际组合复核；不把板块平均收益预测冒充个股组合收益，也不把 A 股代理解释为原论文复现。",
+        "claim": "原研究记录了显著的行业动量，并指出行业动量能解释一部分个股动量。本地依次审计直接权重、同分布映射、四个板块子因子的IC与高低组差，再对通过诊断的子项和唯一预注册的联合确认公式做实际组合复核；不把板块平均收益预测冒充个股组合收益，也不把 A 股代理解释为原论文复现。",
         "localProxy": [
           "sector_rank60",
           "sector_rank_risk60",
           "sector_persistence",
           "sector_breadth",
+          "sqrt(clipped_sector_persistence_x_sector_breadth)",
           "sector_count_factor"
         ],
         "failureModes": [
@@ -13349,9 +13350,10 @@
           "直接板块分与板块硬过滤及其他组件中的板块确认存在重叠",
           "完全移除 1.15 权重后总分刻度坍塌，三个周期均无股票入选",
           "零交易全现金对照不能识别板块因子的纯边际收益",
-          "子因子能预测板块成员平均收益，不代表它能改善带个股过滤、板块限额和退出规则的实际组合"
+          "子因子能预测板块成员平均收益，不代表它能改善带个股过滤、板块限额和退出规则的实际组合",
+          "联合确认公式即使逻辑直观，也可能在主周期损失排序信息并扩大组合回撤"
         ],
-        "validationGate": "归零审计若退化为零入选，不得归因。同分布映射保持 1.15 权重和全部硬过滤。子因子阶段先固定20/45/60日、31个置换种子和三段验证做板块级IC与高低组差；只有诊断通过者才能进入组合复核。组合复核保持板块级原分值集合和所有其他参数，必须改善20日主动收益、至少两个时间折、至少两个周期，回撤恶化不超过2个百分点且主门槛通过，才允许成为生产挑战者。",
+        "validationGate": "归零审计若退化为零入选，不得归因。同分布映射保持 1.15 权重和全部硬过滤。子因子阶段先固定20/45/60日、31个置换种子和三段验证做板块级IC与高低组差；只有诊断通过者才能进入组合复核。联合确认只允许预注册的几何均值公式，不搜索权重、阈值、公式或周期。组合复核保持板块级原分值集合和所有其他参数，必须改善20日主动收益、至少两个时间折、至少两个周期，回撤恶化不超过2个百分点且主门槛通过，历史通过也只能进入前验影子。",
         "modelUse": "frozen_pending_forward_evidence",
         "localResult": {
           "sample_end": "2026-07-10",
@@ -13359,13 +13361,16 @@
           "weight_zero_audit_fingerprint": "f733724832b932a009f161b8bfdce5e3d43ffa031de5ab838ba0132c07a57a74",
           "subfactor_diagnostic_fingerprint": "bb2edcb7e08c131a407cd4ff83f7357ca9350c4f32082876a07997fea2fa9d64",
           "subfactor_portfolio_recheck_fingerprint": "fdfdea392fc996891611ff13c00bb2a973bd27a56692f4ec3537437a485a026f",
+          "joint_confirmation_recheck_fingerprint": "8b604a09f49e054975cd4ee3a86ad63d26e2707e08d5586209154ba4a075928d",
           "effective_frozen_weight": 1.15,
           "component_retention_gate_passed": false,
           "component_removal_gate_passed": false,
           "mapping_placebo_audit_complete": true,
           "subfactor_diagnostic_complete": true,
           "subfactor_portfolio_recheck_complete": true,
+          "joint_confirmation_recheck_complete": true,
           "production_challenger_selected": false,
+          "production_model_changed": false,
           "evaluation_fold_active_improvements": 2,
           "required_evaluation_fold_active_improvements": 2,
           "primary_observed_active": 1.992224248363132,
@@ -13451,6 +13456,20 @@
               "promotion_passed": false
             }
           },
+          "joint_confirmation_recheck": {
+            "formula": "sqrt(clip(sector_persistence,0,1)*clip(sector_breadth,0,1))",
+            "active_delta_20d": -0.9870081615034274,
+            "active_delta_45d": 0.053377715400651615,
+            "active_delta_60d": -0.09418542909838701,
+            "primary_fold_wins": 1,
+            "positive_horizons": 1,
+            "max_drawdown_delta_20d": -0.0362272062437804,
+            "observed_max_drawdown_20d": -0.18856959804109907,
+            "challenger_max_drawdown_20d": -0.22479680428487947,
+            "trade_count_20d": 70,
+            "robustness_gate_passed": false,
+            "promotion_passed": false
+          },
           "horizon_comparison": [
             {
               "days": 20,
@@ -13477,8 +13496,8 @@
               "placebo_max_drawdown": -0.10274524626867543
             }
           ],
-          "decision": "freeze_current_mapping_after_subfactor_recheck",
-          "decision_note": "归零审计和同分布映射审计均未证明当前板块映射有效。固定子因子诊断显示，持续性和上涨宽度对板块成员平均未来收益有正IC与正高低组差，因此进入组合复核；但在保持原板块级分值集合、1.15权重、硬过滤和其他参数后，持续性与宽度在20/45/60日的同池主动收益均低于原综合映射，20日都只赢1/3时间折且稳健门槛失败。故不采用单一子项、不搜索新权重，维持当前综合映射并等待前验样本。"
+          "decision": "freeze_current_mapping_after_joint_confirmation_recheck",
+          "decision_note": "归零审计、同分布映射和单一子项组合复核均未证明替代映射有效。唯一预注册的持续性与上涨宽度几何均值联合确认，在保持原板块级分值集合、1.15权重、硬过滤和其他参数后，20日同池主动收益比原综合映射低98.70个百分点，60日低9.42个百分点，只有45日高5.34个百分点；20日只赢1/3时间折，最大回撤恶化3.62个百分点且稳健门槛失败。故联合确认不晋级、不搜索其他公式或权重，生产模型不变。"
         }
       },
       {
