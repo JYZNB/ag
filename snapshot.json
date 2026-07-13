@@ -10523,7 +10523,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "午后开盘 13:00",
+  "phase": "紫光国微成本确认",
   "publicHoldings": {
     "rows": [
       {
@@ -10531,11 +10531,11 @@
         "name": "紫光国微",
         "shares": 200.0,
         "available": 0.0,
-        "costPrice": 84.7808,
+        "costPrice": 84.7,
         "price": 83.26,
-        "pnlValue": -304.15999999999985,
-        "pnlPct": -0.017938023703480025,
-        "reviewPhase": "午后开盘 13:00",
+        "pnlValue": -288.0,
+        "pnlPct": -0.017001180637544275,
+        "reviewPhase": "紫光国微成本确认",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -10553,7 +10553,7 @@
         "price": 37.63,
         "pnlValue": -1727.0499999999997,
         "pnlPct": -0.3145781914554512,
-        "reviewPhase": "午后开盘 13:00",
+        "reviewPhase": "紫光国微成本确认",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -10571,7 +10571,7 @@
         "price": 2.75,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "午后开盘 13:00",
+        "reviewPhase": "紫光国微成本确认",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -10589,7 +10589,7 @@
       "pnlPct": null,
       "costBasisComplete": false
     },
-    "sourceUpdatedAt": "2026-07-13T12:11:53+08:00",
+    "sourceUpdatedAt": "2026-07-13T13:51:52+08:00",
     "quoteUpdatedAt": "2026-07-13T12:20:44+08:00",
     "brokerHoldingsStatus": "verified",
     "notice": "价格优先取 Tushare RT 行情；仓位数量、可卖数量仍来自本地参考文件，必须以已登录券商实际持仓为准。 有持仓成本未核验，组合盈亏不汇总显示。 券商持仓已于 2026-07-13 12:02 在已登录交易终端中核验；仅记录数量、可卖数量和参考价格，不含账户或凭证。"

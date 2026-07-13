@@ -10523,7 +10523,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "午后开盘 13:00",
+  "phase": "紫光国微成本确认",
   "githubPagesStatic": true,
   "publicMirrorNotice": "GitHub Pages 公开研究镜像：研究快照会随本机构建更新；当前持仓由用户授权公开展示，不含姓名、账户或 Token。实时行情不在本镜像运行。"
 }
