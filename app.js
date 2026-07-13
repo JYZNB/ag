@@ -637,6 +637,7 @@ function methodEvidence(method) {
   if (typeof result.horizon_direction_consistent === "boolean") items.push(`周期方向 ${result.horizon_direction_consistent ? "一致" : "不一致"}`);
   if (Number.isFinite(n(result.positive_horizon_count)) && Number.isFinite(n(result.horizon_count))) items.push(`有利周期 ${n(result.positive_horizon_count)}/${n(result.horizon_count)}`);
   if (Number.isFinite(n(result.retained_positive_horizons)) && Number.isFinite(n(result.removed_positive_horizons))) items.push(`周期胜出 保留${n(result.retained_positive_horizons)} / 删除${n(result.removed_positive_horizons)}`);
+  if (result.counterfactual_degenerate === true) items.push("删除组0笔交易，非纯因子对照");
   if (result.long_horizon_warning === true) items.push("60日不外推");
   if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
   if (result.decision === "retain_component") items.push("裁决 保留组件");

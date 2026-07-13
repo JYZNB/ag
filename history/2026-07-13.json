@@ -13325,6 +13325,96 @@
         }
       },
       {
+        "id": "sector_strength",
+        "name": "板块强度直接权重审计",
+        "source": "Tobias J. Moskowitz and Mark Grinblatt / The Journal of Finance",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00146",
+        "status": "消融反事实退化，冻结原权重",
+        "horizonDays": [
+          20,
+          45,
+          60
+        ],
+        "claim": "原研究记录了显著的行业动量，并指出行业动量能解释一部分个股动量。本地只审计唯一融合模型中既有板块直接加分，不把 A 股板块代理解释为原论文复现。",
+        "localProxy": [
+          "sector_rank60",
+          "sector_rank_risk60",
+          "sector_persistence",
+          "sector_breadth",
+          "sector_count_factor"
+        ],
+        "failureModes": [
+          "板块热度可能在拥挤末端反转",
+          "板块分类与成分覆盖变化会造成排名漂移",
+          "直接板块分与板块硬过滤及其他组件中的板块确认存在重叠",
+          "完全移除 1.15 权重后总分刻度坍塌，三个周期均无股票入选",
+          "零交易全现金对照不能识别板块因子的纯边际收益"
+        ],
+        "validationGate": "固定比较直接权重 1.15 与 0.00，板块样本数、强度、持续性、宽度、风险调整强度和确认度等硬过滤保持不变；20 日为主裁决，45/60 日只作方向诊断。若删除组退化为零入选，则不得把保留组相对现金的优势解释为纯板块因子有效。",
+        "modelUse": "frozen_pending_forward_evidence",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "audit_fingerprint": "f733724832b932a009f161b8bfdce5e3d43ffa031de5ab838ba0132c07a57a74",
+          "effective_frozen_weight": 1.15,
+          "component_retention_gate_passed": false,
+          "component_removal_gate_passed": false,
+          "evaluation_fold_active_improvements": 3,
+          "required_evaluation_fold_active_improvements": 2,
+          "primary_active_total_delta_retained_minus_removed": 2.2761498188464238,
+          "primary_active_fold_improvements": 3,
+          "removed_primary_active_fold_improvements": 0,
+          "primary_max_drawdown_delta_retained_minus_removed": -0.18856959804109907,
+          "active_delta_45d": 0.7403246118907753,
+          "active_delta_60d": 0.41965848097901215,
+          "retained_positive_horizons": 3,
+          "removed_positive_horizons": 0,
+          "retained_trade_count_by_horizon": {
+            "20": 74,
+            "45": 35,
+            "60": 28
+          },
+          "removed_trade_count_by_horizon": {
+            "20": 0,
+            "45": 0,
+            "60": 0
+          },
+          "counterfactual_degenerate": true,
+          "hard_sector_filters_held_constant": true,
+          "score_scale_interaction_detected": true,
+          "horizon_comparison": [
+            {
+              "days": 20,
+              "retained_total_return": 2.07759738497681,
+              "removed_total_return": 0.0,
+              "active_return_delta": 2.2761498188464238,
+              "retained_max_drawdown": -0.18856959804109907,
+              "removed_max_drawdown": 0.0,
+              "removed_trade_count": 0
+            },
+            {
+              "days": 45,
+              "retained_total_return": 0.5556573538192187,
+              "removed_total_return": 0.0,
+              "active_return_delta": 0.7403246118907753,
+              "retained_max_drawdown": -0.1465324782643177,
+              "removed_max_drawdown": 0.0,
+              "removed_trade_count": 0
+            },
+            {
+              "days": 60,
+              "retained_total_return": 0.40274357959318974,
+              "removed_total_return": 0.0,
+              "active_return_delta": 0.41965848097901215,
+              "retained_max_drawdown": -0.1352016020782415,
+              "removed_max_drawdown": 0.0,
+              "removed_trade_count": 0
+            }
+          ],
+          "decision": "inconclusive_keep_frozen_pending_more_forward_evidence",
+          "decision_note": "保留组在三个周期和三个固定评估阶段均优于删除组，但删除 1.15 后所有周期都变成零入选、全现金；因此巨大差值同时包含总分刻度和候选门槛效应，不能归因于板块强度本身。回撤边界相对全现金也未通过。维持冻结 1.15，不加码、不宣称验证，下一步改做等入选率或等候选规模的板块排序对照。"
+        }
+      },
+      {
         "id": "quality_minus_junk",
         "name": "基本面质量",
         "source": "AQR",
