@@ -184,7 +184,7 @@ function renderCandidateRow(row, compact = false) {
   const tierClass = `t${row.tier}`;
   const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
   const watchButton = `<button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? (watched.mode === "owned" ? "已买入" : "已观察") : "加入观察"}</button>`;
-  const buyButton = `<button class="watch-buy" data-code="${code}" ${watched?.mode === "owned" ? "disabled" : ""}>${watched?.mode === "watch" ? "记录买入" : "已买入"}</button>`;
+  const buyButton = `<button class="watch-buy" data-code="${code}" ${watched?.mode === "owned" ? "disabled" : ""}>${watched?.mode === "owned" ? "已买入" : "记录买入"}</button>`;
   return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><div class="watch-actions">${watchButton}${buyButton}</div></td></tr>`;
 }
 
@@ -207,11 +207,15 @@ function renderOverviewTables() {
 }
 
 function addWatch(code, mode = "watch", manualPrice = NaN) {
-  const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code);
-  if (!row) return;
   const items = getWatch();
   const existingIndex = items.findIndex((item) => item.code === code);
-  const referencePrice = mode === "owned" ? n(manualPrice) : currentPrice(row);
+  const existing = existingIndex >= 0 ? normalizeWatch(items[existingIndex]) : null;
+  const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code) || existing;
+  if (!row) return;
+  const marketPrice = priceMap().get(code);
+  const referencePrice = mode === "owned"
+    ? n(manualPrice)
+    : (Number.isFinite(marketPrice) ? marketPrice : currentPrice(row));
   if (!Number.isFinite(referencePrice) || referencePrice <= 0) {
     alert("当前没有可用价格，暂时无法记录。请刷新快照后重试。");
     return;
@@ -221,7 +225,6 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
   const initial = { at: addedAt, price: referencePrice };
   if (existingIndex >= 0) {
     if (mode !== "owned") return;
-    const existing = normalizeWatch(items[existingIndex]);
     items[existingIndex] = {
       ...existing,
       mode: "owned",
@@ -257,10 +260,11 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
 let pendingPurchaseCode = null;
 
 function openPurchaseDialog(code) {
-  const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code);
+  const tracked = getWatch().find((item) => item.code === code);
+  const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code) || tracked;
   if (!row) return;
-  const existing = getWatch().find((item) => item.code === code);
-  const defaultPrice = n(existing?.referencePrice ?? currentPrice(row));
+  const live = priceMap().get(code);
+  const defaultPrice = Number.isFinite(live) ? live : currentPrice(row);
   const dialog = $("purchaseDialog");
   pendingPurchaseCode = code;
   $("purchaseStock").textContent = `${text(row.name)} (${code})`;
@@ -285,14 +289,29 @@ function renderWatchTable() {
   const current = new Map(rankedCandidates().map((row) => [codeOf(row.code), row]));
   const prices = priceMap();
   const rows = getWatch();
+  const watchRows = rows.filter((item) => item.mode !== "owned");
+  const ownedRows = rows.filter((item) => item.mode === "owned");
   $("watchBadge").textContent = String(rows.length);
-  $("watchRows").innerHTML = rows.map((item) => {
+  $("watchOnlyCount").textContent = `${watchRows.length} 只`;
+  $("ownedWatchCount").textContent = `${ownedRows.length} 只`;
+
+  const renderRows = (items, mode) => items.map((item) => {
     const latest = prices.get(item.code);
     const referencePrice = n(item.referencePrice ?? item.addedPrice);
     const currentReturn = Number.isFinite(latest) && referencePrice > 0 ? latest / referencePrice - 1 : NaN;
     const state = watchStatus(item, current.get(item.code));
-    return `<tr><td class="price-cell"><strong>${num(referencePrice)}</strong><small>${item.mode === "owned" ? "实际买入价" : "观察价"}</small></td><td class="price-cell"><strong>${num(latest)}</strong><small>最新可用价</small></td><td><span class="watch-mode ${item.mode}">${watchModeLabel(item)}</span></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><button class="remove-watch" data-code="${item.code}">取消</button></td></tr>`;
-  }).join("") || '<tr><td colspan="13" class="empty">还没有观察样本。可在研究总览中“加入观察”，或在买入后点击“已买入”记录真实成交价。</td></tr>';
+    const buyAction = mode === "watch"
+      ? `<button class="watch-buy watch-convert" data-code="${item.code}">记录买入</button>`
+      : "";
+    const removeLabel = mode === "owned" ? "结束跟踪" : "取消观察";
+    return `<tr><td class="price-cell"><strong>${num(referencePrice)}</strong><small>${mode === "owned" ? "实际买入价" : "加入观察价"}</small></td><td class="price-cell"><strong>${num(latest)}</strong><small>最新可用价</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
+  }).join("");
+
+  $("watchOnlyRows").innerHTML = renderRows(watchRows, "watch")
+    || '<tr><td colspan="12" class="empty">暂无未买观察。请在研究总览点击“加入观察”，系统会记录当时的观察价。</td></tr>';
+  $("ownedWatchRows").innerHTML = renderRows(ownedRows, "owned")
+    || '<tr><td colspan="12" class="empty">暂无已买跟踪。买入后点击“记录买入”，填入真实成交价。</td></tr>';
+  document.querySelectorAll(".watch-convert").forEach((button) => { button.onclick = () => openPurchaseDialog(button.dataset.code); });
   document.querySelectorAll(".remove-watch").forEach((button) => { button.onclick = () => removeWatch(button.dataset.code); });
 }
 

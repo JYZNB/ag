@@ -177,6 +177,21 @@ button, input, select { font: inherit; }
 .watch-mode.watch { background: var(--blue-soft); color: var(--blue); }
 .watch-mode.owned { background: var(--green-soft); color: var(--green); }
 
+.watch-group { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.watch-group-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.watch-group-heading h3 { margin: 0; font-size: 16px; }
+.watch-group-heading p:not(.eyebrow) { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+.watch-group-heading > strong { min-width: 52px; padding: 5px 8px; border-radius: 5px; text-align: center; font-size: 11px; }
+.watch-group-observe .watch-group-heading > strong { background: var(--blue-soft); color: var(--blue); }
+.watch-group-owned .watch-group-heading > strong { background: var(--green-soft); color: var(--green); }
+.watch-group-observe .table-wrap { border-top: 3px solid var(--blue); }
+.watch-group-owned .table-wrap { border-top: 3px solid var(--green); }
+.watch-table { min-width: 1260px; }
+.watch-table th:first-child, .watch-table th:nth-child(2),
+.watch-table td:first-child, .watch-table td:nth-child(2) { background: #f8fbfd; }
+.watch-group-owned .watch-table th:first-child,
+.watch-group-owned .watch-table td:first-child { background: #eff8f4; }
+
 .price-dialog { width: min(380px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); box-shadow: 0 18px 50px rgb(23 33 43 / 24%); }
 .price-dialog::backdrop { background: rgb(23 33 43 / 45%); }
 .price-dialog form { padding: 20px; }
