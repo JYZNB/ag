@@ -154,11 +154,7 @@ function currentPrice(row) {
 
 function rowState(row) {
   if (row.model_status === "REJECT") return { tone: "red", label: "撤出观察" };
-  if (row.model_status === "BUY") {
-    return snapshot?.unifiedSwingModel?.productionReady
-      ? { tone: "green", label: "推荐购买" }
-      : { tone: "blue", label: "影子观察" };
-  }
+  if (row.model_status === "BUY") return { tone: "green", label: "推荐购买" };
   if (row.model_status === "WATCH") return { tone: "blue", label: "影子观察" };
   const extension = safe(row.ma20_gap);
   const risk = safe(row.risk_control_score);
