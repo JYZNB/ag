@@ -232,6 +232,7 @@ button, input, select { font: inherit; }
 .price-dialog::backdrop { background: rgb(23 33 43 / 45%); }
 .price-dialog form { padding: 20px; }
 .price-dialog h2 { margin: 0; font-size: 20px; }
+.purchase-quote-hint { margin: 10px 0 0 !important; padding: 8px 10px; border-left: 3px solid var(--blue); background: var(--blue-soft); color: var(--ink) !important; }
 .price-dialog label { display: grid; gap: 7px; margin-top: 18px; font-size: 12px; font-weight: 700; }
 .price-dialog input { min-height: 38px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); }
 .form-error { min-height: 18px; margin: 7px 0 0 !important; color: var(--red) !important; }

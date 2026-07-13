@@ -152,6 +152,72 @@ function currentPrice(row) {
   return n(quote?.live_price ?? row?.live_price ?? row?.close);
 }
 
+function eastmoneySecid(code) {
+  const normalized = codeOf(code);
+  return `${normalized.startsWith("6") ? "1" : "0"}.${normalized}`;
+}
+
+async function fetchVerifiedQuotes(codes) {
+  const normalized = [...new Set((codes || []).map(codeOf).filter(Boolean))];
+  if (!normalized.length) return new Map();
+  const secids = normalized.map(eastmoneySecid).join(",");
+  const fields = "f12,f14,f2,f1";
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  try {
+    const response = await fetch(
+      `https://push2.eastmoney.com/api/qt/ulist.np/get?secids=${encodeURIComponent(secids)}&fields=${fields}&_=${Date.now()}`,
+      { cache: "no-store", signal: controller.signal, referrerPolicy: "no-referrer" },
+    );
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    const rows = Array.isArray(payload?.data?.diff) ? payload.data.diff : [];
+    const capturedAt = new Date().toISOString();
+    return new Map(rows.map((row) => {
+      const code = codeOf(row.f12);
+      const precision = Math.max(0, Math.min(4, Math.round(safe(row.f1))));
+      const price = n(row.f2) / (10 ** precision);
+      return [code, {
+        price,
+        capturedAt,
+        source: "东方财富公开行情",
+        verified: Number.isFinite(price) && price > 0,
+      }];
+    }).filter(([, quote]) => quote.verified));
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function installVerifiedQuotes(quotes) {
+  if (!snapshot || !(quotes instanceof Map) || !quotes.size) return;
+  const intraday = snapshot.intradayQuote || {};
+  const existing = intraday.quotes || {};
+  quotes.forEach((quote, code) => {
+    existing[code] = {
+      ...(existing[code] || {}),
+      live_price: quote.price,
+      capturedAt: quote.capturedAt,
+      source: quote.source,
+      verified: quote.verified,
+    };
+  });
+  snapshot.intradayQuote = { ...intraday, quotes: existing };
+}
+
+async function refreshTrackedQuotes() {
+  const codes = getWatch().map((item) => item.code);
+  if (!codes.length) return 0;
+  try {
+    const quotes = await fetchVerifiedQuotes(codes);
+    installVerifiedQuotes(quotes);
+    return quotes.size;
+  } catch (error) {
+    console.warn("Tracked quote refresh failed", error);
+    return 0;
+  }
+}
+
 function rowState(row) {
   if (row.model_status === "REJECT") return { tone: "red", label: "撤出观察" };
   if (row.model_status === "BUY") return { tone: "green", label: "推荐购买" };
@@ -202,13 +268,14 @@ function archiveDate(data) {
 
 function formatTime(value) {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "--" : date.toLocaleString("zh-CN");
+  return Number.isNaN(date.getTime()) ? "--" : date.toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false });
 }
 
 function compactTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "时间待核实";
   return date.toLocaleString("zh-CN", {
+    timeZone: "Asia/Shanghai",
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
@@ -219,6 +286,10 @@ function compactTime(value) {
 
 function priceMap(data = snapshot) {
   const map = new Map();
+  Object.entries(data?.intradayQuote?.quotes || {}).forEach(([code, quote]) => {
+    const price = n(quote?.live_price ?? quote?.price ?? quote?.close);
+    if (Number.isFinite(price) && price > 0) map.set(codeOf(code), price);
+  });
   candidateSource(data).forEach((row) => map.set(codeOf(row.code), currentPrice(row)));
   (data?.candidates || []).forEach((row) => {
     const value = n(row.live_price ?? row.close);
@@ -286,24 +357,23 @@ function renderOverviewTables() {
   bindWatchButtons("#candidateRows");
 }
 
-function addWatch(code, mode = "watch", manualPrice = NaN) {
+function addWatch(code, mode = "watch", manualPrice = NaN, quoteMeta = null) {
   const items = getWatch();
   const existingIndex = items.findIndex((item) => item.code === code);
   const existing = existingIndex >= 0 ? normalizeWatch(items[existingIndex]) : null;
   const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code) || existing;
   if (!row) return;
-  const marketPrice = priceMap().get(code);
   const referencePrice = mode === "owned"
     ? n(manualPrice)
-    : (Number.isFinite(marketPrice) ? marketPrice : currentPrice(row));
+    : n(quoteMeta?.price);
   if (!Number.isFinite(referencePrice) || referencePrice <= 0) {
     alert("当前没有可用价格，暂时无法记录。请刷新快照后重试。");
     return;
   }
 
   const addedAt = new Date().toISOString();
-  const quoteAt = snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt;
-  const referencePriceAt = mode === "owned" ? addedAt : (quoteAt || addedAt);
+  const referencePriceAt = mode === "owned" ? addedAt : (quoteMeta?.capturedAt || addedAt);
+  const priceSource = mode === "owned" ? "用户填写实际成交价" : (quoteMeta?.source || "实时行情待核实");
   const initial = { at: referencePriceAt, price: referencePrice };
   if (existingIndex >= 0) {
     if (mode !== "owned") return;
@@ -316,6 +386,8 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
       addedPrice: referencePrice,
       addedAt,
       referencePriceAt,
+      priceSource,
+      priceVerified: mode === "owned" || quoteMeta?.verified === true,
       observedAt: existing.observedAt || existing.addedAt,
       boughtAt: addedAt,
       historicalTrend: n(row.ret20),
@@ -329,6 +401,8 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
       mode,
       addedAt,
       referencePriceAt,
+      priceSource,
+      priceVerified: mode === "owned" || quoteMeta?.verified === true,
       observedAt: mode === "watch" ? addedAt : null,
       boughtAt: mode === "owned" ? addedAt : null,
       referencePrice,
@@ -342,33 +416,51 @@ function addWatch(code, mode = "watch", manualPrice = NaN) {
 }
 
 async function addObservation(code) {
-  const refreshed = await load();
-  if (!refreshed) {
-    alert("最新行情快照核对失败，本次没有写入观察价。请稍后重试。");
+  await load();
+  let quotes;
+  try {
+    quotes = await fetchVerifiedQuotes([code]);
+  } catch (error) {
+    console.warn("Observation quote verification failed", error);
+    alert("实时行情核价失败，本次没有写入观察价。请稍后重试，避免把旧价格记成加入价。");
     return;
   }
-  addWatch(code, "watch");
+  const quote = quotes.get(codeOf(code));
+  if (!quote?.verified) {
+    alert("当前没有取得可核实的实时价格，本次没有写入观察价。");
+    return;
+  }
+  installVerifiedQuotes(quotes);
+  addWatch(code, "watch", NaN, quote);
 }
 
 let pendingPurchaseCode = null;
 
-function openPurchaseDialog(code) {
+async function openPurchaseDialog(code) {
   const tracked = getWatch().find((item) => item.code === code);
   const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code) || tracked;
   if (!row) return;
+  try {
+    const quotes = await fetchVerifiedQuotes([code]);
+    installVerifiedQuotes(quotes);
+  } catch (error) {
+    console.warn("Purchase reference quote refresh failed", error);
+  }
   const live = priceMap().get(code);
-  const defaultPrice = Number.isFinite(live) ? live : currentPrice(row);
   const dialog = $("purchaseDialog");
   pendingPurchaseCode = code;
   $("purchaseStock").textContent = `${text(row.name)} (${code})`;
-  $("purchasePrice").value = Number.isFinite(defaultPrice) ? defaultPrice.toFixed(2) : "";
+  $("purchasePrice").value = "";
+  $("purchaseQuoteHint").textContent = Number.isFinite(live)
+    ? `当前参考价 ${num(live)}，请填写你的真实成交价。`
+    : "当前参考价不可用，请按成交回报填写真实成交价。";
   $("purchasePriceError").textContent = "";
   if (dialog?.showModal) {
     dialog.showModal();
     setTimeout(() => $("purchasePrice").focus(), 0);
     return;
   }
-  const entered = window.prompt(`输入 ${text(row.name)} 的实际买入价`, Number.isFinite(defaultPrice) ? defaultPrice.toFixed(2) : "");
+  const entered = window.prompt(`输入 ${text(row.name)} 的实际买入价`, "");
   if (entered !== null) addWatch(code, "owned", Number(entered));
 }
 
@@ -398,9 +490,11 @@ function renderWatchTable() {
       ? `<button class="watch-buy watch-convert" data-code="${item.code}">转为已买并填价</button>`
       : "";
     const removeLabel = mode === "owned" ? "结束已买观察" : "取消未买观察";
-    const referenceLabel = mode === "owned" ? "买入价格 · 用户填写" : "观察价格 · 点击时锁定";
-    const currentAt = snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt;
-    const currentLabel = currentAt ? `行情快照 ${compactTime(currentAt)}` : "最新可用行情";
+    const referenceLabel = text(item.priceSource, mode === "owned" ? "用户填写实际成交价" : "加入时实时核价");
+    const liveQuote = snapshot?.intradayQuote?.quotes?.[item.code];
+    const currentAt = liveQuote?.capturedAt || snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt;
+    const currentSource = liveQuote?.verified ? text(liveQuote.source, "公开实时行情") : "行情快照";
+    const currentLabel = currentAt ? `${currentSource} ${compactTime(currentAt)}` : "最新可用行情";
     return `<tr><td class="price-cell reference-price" data-price-role="reference"><strong>${num(referencePrice)}</strong><small>${referenceLabel}</small><small>${compactTime(item.referencePriceAt)}</small></td><td class="price-cell current-price" data-price-role="current"><strong>${num(latest)}</strong><small>${currentLabel}</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
   }).join("");
 
@@ -667,6 +761,8 @@ async function load() {
   }
   try {
     renderSnapshot(data);
+    await refreshTrackedQuotes();
+    renderAllLocal();
     await loadHistoryIndex();
   } catch (error) {
     console.error("Dashboard render failed", error);

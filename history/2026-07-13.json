@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "Stage-2趋势组件审计 2026-07-14",
+  "phase": "观察双账本实时报价修复 2026-07-14",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
