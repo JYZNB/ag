@@ -204,6 +204,16 @@ button, input, select { font: inherit; }
 .watch-table th:first-child, .watch-table td:first-child { left: 0; }
 .watch-table th:nth-child(2), .watch-table td:nth-child(2) { left: 120px; }
 .watch-table th:first-child, .watch-table th:nth-child(2) { z-index: 4; }
+
+.method-ledger .dense-table { min-width: 1080px; }
+.method-ledger th:nth-child(1) { width: 190px; }
+.method-ledger th:nth-child(2) { width: 230px; }
+.method-ledger th:nth-child(3) { width: 90px; }
+.method-ledger th:nth-child(4) { width: 170px; }
+.method-source strong, .method-source a { display: block; }
+.method-source a { color: var(--blue); font-size: 12px; margin-top: 4px; text-decoration: none; }
+.method-source a:hover { text-decoration: underline; }
+.method-status { display: inline-block; padding: 3px 7px; border: 1px solid #b8c8dc; background: #edf4fb; color: #274b6b; font-weight: 700; }
 .watch-group-owned .watch-table th:first-child,
 .watch-group-owned .watch-table td:first-child { background: #eff8f4; }
 

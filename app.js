@@ -435,6 +435,27 @@ function renderHistoryRows(data) {
   $("historyRows").innerHTML = rows.map(({ row, review, post }) => `<tr><td><span class="tier-label t${row.tier}">${tierText(row.tier)}</span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)}</small></td><td>${num(row.research_score)}</td><td>${Number.isFinite(post.value) ? rawPct(post.value) : "等待后验"}</td><td>${Number.isFinite(post.drawdown) ? rawPct(post.drawdown) : "--"}</td><td>${post.horizon}</td><td>${text(review?.review_status, "等待后验")}</td><td>${retCell(row.ret20)}</td><td class="reason">${text(review?.review_note, row.explain || row.quality_type)}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">该日期没有可显示的候选。</td></tr>';
 }
 
+function methodEvidence(method) {
+  const result = method?.localResult || {};
+  if (!Object.keys(result).length) return method?.modelUse === "active_governance" ? "已作为研究治理规则启用" : "等待满足数据或消融条件";
+  const items = [];
+  if (Number.isFinite(n(result.total_return))) items.push(`样本收益 ${pct(result.total_return)}`);
+  if (Number.isFinite(n(result.max_drawdown))) items.push(`最大回撤 ${pct(result.max_drawdown)}`);
+  if (Number.isFinite(n(result.worst_rolling_60d_return))) items.push(`最差60日 ${pct(result.worst_rolling_60d_return)}`);
+  if (Number.isFinite(n(result.average_market_exposure))) items.push(`平均暴露 ${pct(result.average_market_exposure)}`);
+  return items.join(" / ") || text(result.decision, "等待本地结论");
+}
+
+function renderMethodRows(unified) {
+  const methods = Array.isArray(unified?.methodCards) ? unified.methodCards : [];
+  $("methodRows").innerHTML = methods.map((method) => {
+    const horizon = Array.isArray(method.horizonDays) ? method.horizonDays.join("-") + " 日" : "--";
+    const proxy = (method.localProxy || []).join(" · ") || "--";
+    const failures = (method.failureModes || []).join("；") || "--";
+    return `<tr><td class="method-source"><strong>${text(method.name)}</strong><a href="${text(method.url, "#")}" target="_blank" rel="noreferrer">${text(method.source, "原始来源")}</a></td><td>${text(proxy)}</td><td>${horizon}</td><td><span class="method-status">${text(method.status, "待复核")}</span></td><td class="reason">${methodEvidence(method)}</td><td class="reason">${text(failures)}</td></tr>`;
+  }).join("") || '<tr><td colspan="6" class="empty">尚未登记可审计的方法证据。</td></tr>';
+}
+
 async function selectHistory(date) {
   const currentDate = archiveDate(snapshot);
   if (!date || date === currentDate) {
@@ -511,6 +532,7 @@ function renderSnapshot(data) {
     $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)}`;
   }
   $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
+  renderMethodRows(unified);
   renderAllLocal();
 }
 

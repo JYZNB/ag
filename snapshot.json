@@ -12679,13 +12679,13 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "观察栏双账本修复",
+  "phase": "统一模型方法证据更新 2026-07-14",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-14T00:10:44+08:00",
+    "generatedAt": "2026-07-14T01:05:55+08:00",
     "horizonDays": [
       15,
       45
@@ -12740,7 +12740,22 @@
         "horizonDays": [
           15,
           45
-        ]
+        ],
+        "claim": "相对强势资产在中期内往往延续强势，但动量会经历拥挤和快速反转。",
+        "localProxy": [
+          "ret60",
+          "ret120_ex20",
+          "relative_strength",
+          "near_high252"
+        ],
+        "failureModes": [
+          "高位拥挤反转",
+          "单日脉冲伪强势",
+          "弱市场中的高贝塔补跌"
+        ],
+        "validationGate": "2025H1、2025H2、2026YTD 至少两个阶段相对同池等权为正，最差阶段模型收益不低于 -15%。",
+        "modelUse": "active_ablation",
+        "localResult": {}
       },
       {
         "name": "趋势与市场环境",
@@ -12750,7 +12765,57 @@
         "horizonDays": [
           15,
           45
-        ]
+        ],
+        "claim": "跨市场历史中，时间序列趋势具有长期证据；在个股模型中应主要用于趋势结构和风险暴露，而非保证单票上涨。",
+        "localProxy": [
+          "ma20_ma60_structure",
+          "stage2_trend",
+          "market_ok",
+          "sector_persistence"
+        ],
+        "failureModes": [
+          "震荡反复止损",
+          "趋势末端追高",
+          "指数与板块背离"
+        ],
+        "validationGate": "最差滚动 60 个交易日模型收益不低于 -18%，全样本最大回撤不超过 25%。",
+        "modelUse": "active_ablation",
+        "localResult": {}
+      },
+      {
+        "name": "波动管理与逆波动风险预算",
+        "source": "NBER / Moreira & Muir",
+        "url": "https://www.nber.org/papers/w22208",
+        "status": "保留观察，未晋级统一配置",
+        "horizonDays": [
+          15,
+          45
+        ],
+        "claim": "原研究报告在其因子样本中，高波动时降低风险暴露改善了风险调整后表现；本地只把它当作组合层风险覆盖，不把它解释成个股涨跌预测。",
+        "localProxy": [
+          "idx_vol20",
+          "market_strength",
+          "inverse_volatility_weight",
+          "cash_exposure"
+        ],
+        "failureModes": [
+          "波动估计滞后",
+          "震荡市反复降仓",
+          "低波动假象",
+          "现金拖累上涨期收益"
+        ],
+        "validationGate": "候选排序固定为当前证据平衡组；只允许改变组合权重和市场暴露。若固定阶段门槛不通过，或最差滚动窗口与最大回撤没有改善且主动收益下降，则不得进入当前统一配置。",
+        "modelUse": "active_ablation",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "robustness_gate_passed": true,
+          "selected": false,
+          "total_return": 1.6167,
+          "max_drawdown": -0.2056,
+          "worst_rolling_60d_return": -0.1665,
+          "average_market_exposure": 0.916,
+          "decision": "相对当前证据平衡组改善最大回撤与最差滚动窗口，但总收益、全样本主动收益和稳定性评分较低，因此只保留为风险覆盖观察，不替换当前统一配置。"
+        }
       },
       {
         "name": "基本面质量",
@@ -12760,7 +12825,23 @@
         "horizonDays": [
           60,
           250
-        ]
+        ],
+        "claim": "盈利能力、成长性、稳健性和治理质量共同构成质量，不能用价格平滑度冒充财务质量。",
+        "localProxy": [
+          "roe",
+          "gross_margin",
+          "operating_cashflow",
+          "leverage",
+          "earnings_stability"
+        ],
+        "failureModes": [
+          "财务数据滞后",
+          "一次性损益",
+          "行业间不可直接横比"
+        ],
+        "validationGate": "先核实 Tushare 财务接口权限和公告时点，再用公告可得日构造防前视样本；未通过前不进入买入评分。",
+        "modelUse": "pending_data_permission",
+        "localResult": {}
       },
       {
         "name": "实验记录与成本约束",
@@ -12770,7 +12851,23 @@
         "horizonDays": [
           15,
           45
-        ]
+        ],
+        "claim": "参数、指标、产物和回测应被统一记录，信号分析与含成本组合回测需要同时保存。",
+        "localProxy": [
+          "method_card_fingerprint",
+          "fixed_time_folds",
+          "next_open_execution",
+          "transaction_costs"
+        ],
+        "failureModes": [
+          "重复计算",
+          "试验不可复现",
+          "只看全样本收益",
+          "忽略交易成本"
+        ],
+        "validationGate": "同一数据指纹只计算一次；每组方案必须输出固定阶段、滚动窗口、回撤和同池等权比较。",
+        "modelUse": "active_governance",
+        "localResult": {}
       }
     ],
     "candidates": [
@@ -13126,7 +13223,7 @@
         "price": 81.83,
         "pnlValue": -574.0,
         "pnlPct": -0.033884297520661154,
-        "reviewPhase": "观察栏双账本修复",
+        "reviewPhase": "统一模型方法证据更新 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13144,7 +13241,7 @@
         "price": 37.66,
         "pnlValue": -1724.0500000000006,
         "pnlPct": -0.31403174834473285,
-        "reviewPhase": "观察栏双账本修复",
+        "reviewPhase": "统一模型方法证据更新 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13162,7 +13259,7 @@
         "price": 2.76,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "观察栏双账本修复",
+        "reviewPhase": "统一模型方法证据更新 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
