@@ -1969,7 +1969,7 @@
   "refreshStatus": {
     "version": "daily_observation_refresh_v1",
     "generated_at": "2026-07-12T16:23:33+08:00",
-    "data_dir": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\data\\eastmoney_full_mainboard",
+    "data_dir": "data/eastmoney_full_mainboard",
     "end": "20260710",
     "source": "auto",
     "skip_data": true,
@@ -1993,10 +1993,10 @@
         "note": "backtest skipped for fast refresh"
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260712_162341_v48_refresh\\strength_observation_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260712_162341_v48_refresh\\strength_observer_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260712_162341_v48_refresh\\strength_observer_summary.json",
-        "learning_log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\MODEL_LEARNING_LOG_20260712_V48.md"
+        "pool": "runs/strength_observer_20260712_162341_v48_refresh/strength_observation_pool.csv",
+        "backtest": "runs/strength_observer_20260712_162341_v48_refresh/strength_observer_backtest.csv",
+        "summary": "runs/strength_observer_20260712_162341_v48_refresh/strength_observer_summary.json",
+        "learning_log": "MODEL_LEARNING_LOG_20260712_V48.md"
       }
     },
     "momentum_quality": {
@@ -2012,9 +2012,9 @@
         "by_horizon": []
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260712_162354_v50_refresh\\momentum_quality_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260712_162354_v50_refresh\\momentum_quality_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260712_162354_v50_refresh\\momentum_quality_summary.json"
+        "pool": "runs/momentum_quality_20260712_162354_v50_refresh/momentum_quality_pool.csv",
+        "backtest": "runs/momentum_quality_20260712_162354_v50_refresh/momentum_quality_backtest.csv",
+        "summary": "runs/momentum_quality_20260712_162354_v50_refresh/momentum_quality_summary.json"
       }
     },
     "data_freshness": {
@@ -2253,11 +2253,11 @@
       "note": "V51 只检查学习源健康和待吸收任务，不改变买入模型。"
     },
     "continuous_learning": {
-      "registry": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\configs\\continuous_learning_registry_v65.json",
-      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\MODEL_LEARNING_LOG_20260712_V65.md",
-      "queue": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\LEARNING_SOURCE_QUEUE.md",
-      "site_queue": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\online_site\\public\\learning_source_queue.md",
-      "snapshot": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\online_site\\public\\snapshot.json"
+      "registry": "configs/continuous_learning_registry_v65.json",
+      "log": "MODEL_LEARNING_LOG_20260712_V65.md",
+      "queue": "LEARNING_SOURCE_QUEUE.md",
+      "site_queue": "online_site/public/learning_source_queue.md",
+      "snapshot": "online_site/public/snapshot.json"
     },
     "source_learning": {
       "version": "V52",
@@ -2365,7 +2365,7 @@
     },
     "build": {
       "returncode": 0,
-      "stdout": "Built static dashboard into C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\online_site\\dist",
+      "stdout": "Built static dashboard into online_site/dist",
       "stderr": ""
     },
     "note": "Daily refresh: update daily cache, refresh V58 data freshness repair layer, rebuild V48 observer pool, rebuild V50 momentum quality pool, refresh V51 source health, refresh V52 cached source summaries/rule candidates, refresh V53 candidate-method mapping, refresh V54 candidate performance review, refresh V55 failure attribution, refresh V61 method validation and horizon selection, refresh V62 source-to-model learning ledger, refresh V63 live/historical readiness, audit V64 alternative-data access and promotion gates, refresh V56 risk-adjusted observation pool, refresh V57 best observation queue, and write dashboard snapshot. Research/risk only; no profit promise; no order execution."

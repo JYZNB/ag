@@ -1969,7 +1969,7 @@
   "refreshStatus": {
     "version": "daily_observation_refresh_v1_interim",
     "generated_at": "2026-07-13T18:34:17+08:00",
-    "data_dir": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\data\\eastmoney_full_mainboard",
+    "data_dir": "data/eastmoney_full_mainboard",
     "end": "20260713",
     "source": "auto",
     "skip_data": true,
@@ -2024,10 +2024,10 @@
         ]
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_183855_v48_refresh\\strength_observation_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_183855_v48_refresh\\strength_observer_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_183855_v48_refresh\\strength_observer_summary.json",
-        "learning_log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\MODEL_LEARNING_LOG_20260713_V48.md"
+        "pool": "runs/strength_observer_20260713_183855_v48_refresh/strength_observation_pool.csv",
+        "backtest": "runs/strength_observer_20260713_183855_v48_refresh/strength_observer_backtest.csv",
+        "summary": "runs/strength_observer_20260713_183855_v48_refresh/strength_observer_summary.json",
+        "learning_log": "MODEL_LEARNING_LOG_20260713_V48.md"
       }
     },
     "momentum_quality": {
@@ -2074,9 +2074,9 @@
         ]
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_184123_v50_refresh\\momentum_quality_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_184123_v50_refresh\\momentum_quality_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_184123_v50_refresh\\momentum_quality_summary.json"
+        "pool": "runs/momentum_quality_20260713_184123_v50_refresh/momentum_quality_pool.csv",
+        "backtest": "runs/momentum_quality_20260713_184123_v50_refresh/momentum_quality_backtest.csv",
+        "summary": "runs/momentum_quality_20260713_184123_v50_refresh/momentum_quality_summary.json"
       }
     },
     "data_freshness": {
@@ -2102,7 +2102,7 @@
     "tdxTailReconcile": {
       "version": "V74",
       "generatedAt": "2026-07-13T18:35:02+08:00",
-      "source": "E:\\tongxinda\\vipdoc",
+      "source": "[本机路径已移除]",
       "targetDate": "20260713",
       "scope": "通达信原始日线只用于尾部 OHLC 校准，保留前复权历史尺度。",
       "filesSeen": 2818,
@@ -11202,7 +11202,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "整体样本满足收益门槛，但按持有期去重后的时间折样本不足；先积累更多完整交易日，不把不足样本晋级为正式观察。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_183855_v48_refresh\\strength_observer_backtest.csv",
+      "evidence": "runs/strength_observer_20260713_183855_v48_refresh/strength_observer_backtest.csv",
       "horizons": [
         {
           "horizon": 10,
@@ -11284,7 +11284,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "整体样本满足收益门槛，但按持有期去重后的时间折样本不足；先积累更多完整交易日，不把不足样本晋级为正式观察。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_183855_v48_refresh\\strength_observer_backtest.csv",
+      "evidence": "runs/strength_observer_20260713_183855_v48_refresh/strength_observer_backtest.csv",
       "horizons": [
         {
           "horizon": 10,
@@ -11633,7 +11633,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "整体样本满足收益门槛，但时间顺序三折稳定性检查未通过；不把单一行情阶段的结果晋级为正式观察。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_184123_v50_refresh\\momentum_quality_backtest.csv",
+      "evidence": "runs/momentum_quality_20260713_184123_v50_refresh/momentum_quality_backtest.csv",
       "horizons": [
         {
           "horizon": 5,
@@ -11715,7 +11715,7 @@
       "recommendedHorizon": null,
       "horizonUnit": "交易日",
       "verdict": "当前没有同时通过样本、均值、中位数和胜率门槛的周期；仅记录表现相对最好的 5 日截面。",
-      "evidence": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_184123_v50_refresh\\momentum_quality_backtest.csv",
+      "evidence": "runs/momentum_quality_20260713_184123_v50_refresh/momentum_quality_backtest.csv",
       "horizons": [
         {
           "horizon": 5,
@@ -12671,7 +12671,7 @@
     "guardrail": "前验快照用于验证方法，不输出买入指令；只使用 signal_sources 做方法归因，condition/governance 来源不得承接个股收益。"
   },
   "dailyLineSource": {
-    "source": "E:\\tongxinda\\vipdoc",
+    "source": "[本机路径已移除]",
     "targetDate": "20260713",
     "filesSeen": 2818,
     "reconciledFiles": 2818,
@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "观察双账本实时报价修复 2026-07-14",
+  "phase": "量价确认组件审计 2026-07-14",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -12869,6 +12869,80 @@
           "worst_rolling_60d_return": -0.1665,
           "average_market_exposure": 0.916,
           "decision": "相对当前证据平衡组改善最大回撤与最差滚动窗口，但总收益、全样本主动收益和稳定性评分较低，因此只保留为风险覆盖观察，不替换当前统一配置。"
+        }
+      },
+      {
+        "id": "price_volume_confirmation",
+        "name": "量价确认直接权重审计",
+        "source": "Microsoft Qlib",
+        "url": "https://github.com/microsoft/qlib/blob/main/qlib/contrib/data/loader.py",
+        "status": "证据冲突，冻结原权重等待前验",
+        "horizonDays": [
+          20,
+          45,
+          60
+        ],
+        "claim": "Qlib Alpha158 将价格与成交量相关、价量变化相关、成交量均值和波动等列为可研究特征；本地只审计唯一融合模型中既有量价确认直接权重的边际作用，不把特征库当成有效性证明。",
+        "localProxy": [
+          "price_volume_corr20",
+          "up_down_amount_ratio20",
+          "measured_volume",
+          "not_blowoff_volume",
+          "clean_unwind",
+          "trend_alive"
+        ],
+        "failureModes": [
+          "放量可能来自派发而非承接",
+          "价格成交量相关在不同趋势阶段可能翻向",
+          "直接权重与行为质量中的间接量价输入存在重叠",
+          "板块确认和趋势存续使本地代理不是纯量价因子",
+          "当前历史较短且股票池可能存在幸存者偏差"
+        ],
+        "validationGate": "固定比较直接权重 0.15 与 0.00，禁止搜索替代权重。20 日为主裁决周期，须通过统一稳健门槛、至少改善两个固定评估阶段、回撤恶化不超过 2 个百分点，并在 20/45/60 日至少两个周期方向为正；45/60 日只作方向诊断。",
+        "modelUse": "frozen_pending_forward_evidence",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "audit_fingerprint": "284fce236600dab449646da45f7b3cc82d7c09b160321ae90ec85b1e58d94e02",
+          "effective_frozen_weight": 0.15,
+          "component_retention_gate_passed": false,
+          "component_removal_gate_passed": false,
+          "evaluation_fold_active_improvements": 2,
+          "required_evaluation_fold_active_improvements": 2,
+          "primary_active_total_delta_retained_minus_removed": -0.06252428636063811,
+          "primary_active_fold_improvements": 2,
+          "removed_primary_active_fold_improvements": 1,
+          "active_delta_45d": 0.2252432108870721,
+          "active_delta_60d": -0.260422444047981,
+          "retained_positive_horizons": 1,
+          "removed_positive_horizons": 2,
+          "horizon_comparison": [
+            {
+              "days": 20,
+              "retained_total_return": 2.07759738497681,
+              "removed_total_return": 2.1419055932624373,
+              "active_return_delta": -0.06252428636063811,
+              "retained_max_drawdown": -0.18856959804109907,
+              "removed_max_drawdown": -0.18252180590542233
+            },
+            {
+              "days": 45,
+              "retained_total_return": 0.5556573538192187,
+              "removed_total_return": 0.3150630884757766,
+              "active_return_delta": 0.2252432108870721,
+              "retained_max_drawdown": -0.1465324782643177,
+              "removed_max_drawdown": -0.26877391869899026
+            },
+            {
+              "days": 60,
+              "retained_total_return": 0.40274357959318974,
+              "removed_total_return": 0.8145093874419327,
+              "active_return_delta": -0.260422444047981,
+              "retained_max_drawdown": -0.1352016020782415,
+              "removed_max_drawdown": -0.09555866115072398
+            }
+          ],
+          "decision": "inconclusive_keep_frozen_pending_more_forward_evidence",
+          "decision_note": "20 日与 60 日删除直接量价权重更好，45 日保留权重更好；删除版在 20 日主周期只改善一个固定评估阶段，未达到至少两个阶段的删除门槛。保留版又只在三个周期中的一个周期占优。因此不追认保留有效，也不事后删除或搜索新权重，维持冻结 0.15 并等待独立前验样本。"
         }
       },
       {
@@ -13625,7 +13699,7 @@
         "price": 81.83,
         "pnlValue": -574.0,
         "pnlPct": -0.033884297520661154,
-        "reviewPhase": "观察双账本实时报价修复 2026-07-14",
+        "reviewPhase": "量价确认组件审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13643,7 +13717,7 @@
         "price": 37.66,
         "pnlValue": -1724.0500000000006,
         "pnlPct": -0.31403174834473285,
-        "reviewPhase": "观察双账本实时报价修复 2026-07-14",
+        "reviewPhase": "量价确认组件审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13661,7 +13735,7 @@
         "price": 2.76,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "观察双账本实时报价修复 2026-07-14",
+        "reviewPhase": "量价确认组件审计 2026-07-14",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",

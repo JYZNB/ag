@@ -610,7 +610,13 @@ function methodEvidence(method) {
     const required = Number.isFinite(n(result.required_evaluation_fold_active_improvements)) ? n(result.required_evaluation_fold_active_improvements) : "--";
     items.push(`组件保留 ${result.component_retention_gate_passed ? "通过" : "未通过"} (${improved}/${required}阶段)`);
   }
+  if (typeof result.component_removal_gate_passed === "boolean") {
+    const improved = Number.isFinite(n(result.removed_primary_active_fold_improvements)) ? n(result.removed_primary_active_fold_improvements) : "--";
+    const required = Number.isFinite(n(result.required_evaluation_fold_active_improvements)) ? n(result.required_evaluation_fold_active_improvements) : "--";
+    items.push(`组件删除 ${result.component_removal_gate_passed ? "通过" : "未通过"} (${improved}/${required}阶段)`);
+  }
   if (Number.isFinite(n(result.retained_weight))) items.push(`保留权重 ${n(result.retained_weight).toFixed(2)}`);
+  if (Number.isFinite(n(result.effective_frozen_weight))) items.push(`冻结权重 ${n(result.effective_frozen_weight).toFixed(2)}`);
   if (Number.isFinite(n(result.anchored_total_return)) && Number.isFinite(n(result.removed_total_return))) {
     items.push(`含锚定 ${pct(result.anchored_total_return)} / 去锚定 ${pct(result.removed_total_return)}`);
   }
@@ -626,14 +632,17 @@ function methodEvidence(method) {
   if (Number.isFinite(n(result.required_forward_signals))) items.push(`前验门槛 ${n(result.required_forward_signals)}个信号`);
   if (Number.isFinite(n(result.coverage))) items.push(`样本覆盖 ${pct(result.coverage)}`);
   if (Number.isFinite(n(result.primary_active_total_delta))) items.push(`相对冻结基线主动 ${pct(result.primary_active_total_delta)}`);
+  if (Number.isFinite(n(result.primary_active_total_delta_retained_minus_removed))) items.push(`20日保留减删除 ${pct(result.primary_active_total_delta_retained_minus_removed)}`);
   if (Number.isFinite(n(result.primary_active_fold_improvements))) items.push(`改善阶段 ${n(result.primary_active_fold_improvements)}/3`);
   if (typeof result.horizon_direction_consistent === "boolean") items.push(`周期方向 ${result.horizon_direction_consistent ? "一致" : "不一致"}`);
   if (Number.isFinite(n(result.positive_horizon_count)) && Number.isFinite(n(result.horizon_count))) items.push(`有利周期 ${n(result.positive_horizon_count)}/${n(result.horizon_count)}`);
+  if (Number.isFinite(n(result.retained_positive_horizons)) && Number.isFinite(n(result.removed_positive_horizons))) items.push(`周期胜出 保留${n(result.retained_positive_horizons)} / 删除${n(result.removed_positive_horizons)}`);
   if (result.long_horizon_warning === true) items.push("60日不外推");
   if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
   if (result.decision === "retain_component") items.push("裁决 保留组件");
   if (result.decision === "remove_component") items.push("裁决 移除组件");
   if (result.decision === "rejected") items.push("裁决 拒绝融合");
+  if (result.decision === "inconclusive_keep_frozen_pending_more_forward_evidence") items.push("裁决 证据冲突，冻结等待前验");
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }
 
