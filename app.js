@@ -59,10 +59,12 @@ function watchModeLabel(item) {
 }
 
 function candidateSource(data = snapshot) {
-  return data?.momentumQuality?.candidates || [];
+  const unified = data?.unifiedSwingModel?.candidates;
+  return Array.isArray(unified) ? unified : (data?.momentumQuality?.candidates || []);
 }
 
 function researchScore(row) {
+  if (Number.isFinite(n(row.research_score))) return n(row.research_score);
   const base = safe(row.quality_score) * .36 + safe(row.risk_control_score) * .22 + safe(row.trend_template_score) * .14 + safe(row.stage_score) * .10 + safe(row.sector_rotation_score) * .12 + safe(row.relay_score) * .06;
   const extendedPenalty = Math.max(0, safe(row.ma20_gap) - .12) * 85;
   const drawdownPenalty = Math.max(0, Math.abs(safe(row.drawdown20)) - .10) * 28;
@@ -76,7 +78,7 @@ function rankedCandidates(data = snapshot) {
   return rows.map((row, index) => ({
     ...row,
     rank: index + 1,
-    tier: index < 4 && n(row.research_score) >= 83 ? 1 : index < 12 && n(row.research_score) >= 75 ? 2 : 3,
+    tier: Number.isFinite(n(row.research_tier)) ? n(row.research_tier) : (index < 4 && n(row.research_score) >= 83 ? 1 : index < 12 && n(row.research_score) >= 75 ? 2 : 3),
   }));
 }
 
@@ -85,6 +87,7 @@ function tierText(value) {
 }
 
 function researchPeriod(row) {
+  if (row.research_horizon) return text(row.research_horizon);
   return row.tier === 1 ? "10-20交易日" : row.tier === 2 ? "5-10交易日" : "3-5交易日";
 }
 
@@ -94,6 +97,13 @@ function currentPrice(row) {
 }
 
 function rowState(row) {
+  if (row.model_status === "REJECT") return { tone: "red", label: "撤出观察" };
+  if (row.model_status === "BUY") {
+    return snapshot?.unifiedSwingModel?.productionReady
+      ? { tone: "green", label: "推荐购买" }
+      : { tone: "blue", label: "影子观察" };
+  }
+  if (row.model_status === "WATCH") return { tone: "blue", label: "影子观察" };
   const extension = safe(row.ma20_gap);
   const risk = safe(row.risk_control_score);
   const weak = risk < 65 || extension > .18 || safe(row.ret5) < -.08;
@@ -111,6 +121,7 @@ function rowState(row) {
 }
 
 function reason(row) {
+  if (row.model_reason) return text(row.model_reason);
   const extension = safe(row.ma20_gap);
   const extensionText = extension > .12 ? `距20日线 ${pct(extension)}，不追高` : `距20日线 ${pct(extension)}`;
   return `趋势 ${num(row.trend_template_score)} / 板块 ${num(row.sector_rotation_score)} / 风控 ${num(row.risk_control_score)}；${extensionText}`;
@@ -126,6 +137,11 @@ function metric(check, id) {
   const raw = check?.tdxRaw || {};
   $(id).textContent = pct(qfq.avgReturn);
   $(`${id}sub`).textContent = `前复权胜率 ${pct(qfq.winRate)} / 通达信胜率 ${pct(raw.winRate)}`;
+}
+
+function foldMetric(fold, id) {
+  $(id).textContent = pct(fold?.modelReturn);
+  $(`${id}sub`).textContent = `相对同池等权 ${pct(fold?.activeReturn)} / 最大回撤 ${pct(fold?.maxDrawdown)}`;
 }
 
 function archiveDate(data) {
@@ -434,28 +450,46 @@ async function loadHistoryIndex() {
 
 function renderSnapshot(data) {
   snapshot = data;
+  const unified = data.unifiedSwingModel || {};
   const fusion = data.fusionModelV73 || {};
   const selected = fusion.selectedResearchCore;
   const market = data.market || {};
-  const generated = data.generatedAt ? formatTime(data.generatedAt) : "--";
-  $("sideSnapshot").textContent = data.generatedAt ? `快照 ${generated}` : "等待快照";
+  const researchGeneratedAt = unified.generatedAt || data.generatedAt;
+  const generated = researchGeneratedAt ? formatTime(researchGeneratedAt) : "--";
+  $("sideSnapshot").textContent = researchGeneratedAt ? `快照 ${generated}` : "等待快照";
   const intraday = data.intradayQuote || {};
   const quoteAt = intraday.capturedAt ? formatTime(intraday.capturedAt) : "--";
   $("updatedAt").textContent = intraday.capturedAt ? `${generated} / 实时价 ${quoteAt}` : generated;
-  $("coreStatus").textContent = selected ? "双样本研究通过" : "等待双样本验证";
-  $("coreTitle").textContent = selected === "V50_momentum_quality" ? "趋势质量融合模型" : "暂无可用融合核心";
-  $("coreSummary").textContent = fusion.summary || "等待融合验证";
-  $("formalStatus").textContent = fusion.formalPromotion ? "已晋级" : "研究观察";
-  $("dataEnd").textContent = text(data.dataReadiness?.history?.latestDate || data.latestDate);
-  const coreRow = (fusion.rows || []).find((row) => row.layer === selected);
-  const checks = coreRow?.checks || [];
-  metric(checks.find((check) => check.horizon === 3), "m3");
-  metric(checks.find((check) => check.horizon === 5), "m5");
-  metric(checks.find((check) => check.horizon === 7), "m7");
+  if (unified.modelName) {
+    $("coreStatus").textContent = unified.robustnessGatePassed ? "分段研究门槛通过" : "风险门槛未通过";
+    $("coreTitle").textContent = unified.modelName;
+    $("coreSummary").textContent = unified.summary || "等待统一模型验证";
+    $("formalStatus").textContent = unified.productionReady ? "已晋级" : "影子验证";
+    $("dataEnd").textContent = text(unified.latestDate || data.latestDate);
+    foldMetric(unified.performance?.validation_2025_h1, "m3");
+    foldMetric(unified.performance?.validation_2025_h2, "m5");
+    foldMetric(unified.performance?.holdout_2026_ytd, "m7");
+  } else {
+    $("coreStatus").textContent = selected ? "双样本研究通过" : "等待双样本验证";
+    $("coreTitle").textContent = selected ? "趋势质量融合模型" : "暂无可用融合核心";
+    $("coreSummary").textContent = fusion.summary || "等待融合验证";
+    $("formalStatus").textContent = fusion.formalPromotion ? "已晋级" : "研究观察";
+    $("dataEnd").textContent = text(data.dataReadiness?.history?.latestDate || data.latestDate);
+    const coreRow = (fusion.rows || []).find((row) => row.layer === selected);
+    const checks = coreRow?.checks || [];
+    metric(checks.find((check) => check.horizon === 3), "m3");
+    metric(checks.find((check) => check.horizon === 5), "m5");
+    metric(checks.find((check) => check.horizon === 7), "m7");
+  }
   const broad = n(market.up_ratio);
   const median = n(market.median_pct);
-  $("marketStatus").textContent = broad >= .60 && median >= 0 ? "环境偏强" : broad >= .45 ? "环境中性" : "环境偏弱";
-  $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)}`;
+  if (unified.modelName && unified.marketOk === false) {
+    $("marketStatus").textContent = "环境过滤未通过";
+    $("marketSub").textContent = `统一模型完整日截面 ${text(unified.latestDate)}`;
+  } else {
+    $("marketStatus").textContent = broad >= .60 && median >= 0 ? "环境偏强" : broad >= .45 ? "环境中性" : "环境偏弱";
+    $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)}`;
+  }
   $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
   renderAllLocal();
 }
