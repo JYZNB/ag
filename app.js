@@ -3,7 +3,7 @@ const WATCH_STORAGE = "taishan-fusion-watch-v4";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
-  watch: { title: "我的观察栏", subtitle: "从加入时刻开始记录可用快照与后续表现。" },
+  watch: { title: "我的观察栏", subtitle: "未买观察与已买跟踪分开记账，起始价和现价并列核对。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
@@ -340,7 +340,7 @@ function renderWatchTable() {
     const removeLabel = mode === "owned" ? "结束跟踪" : "取消观察";
     const referenceLabel = mode === "owned" ? "成交价 · 用户填写" : "观察价 · 点击时锁定";
     const currentLabel = snapshot?.generatedAt ? `行情快照 ${compactTime(snapshot.generatedAt)}` : "最新可用行情";
-    return `<tr><td class="price-cell reference-price"><strong>${num(referencePrice)}</strong><small>${referenceLabel}</small><small>${compactTime(item.referencePriceAt)}</small></td><td class="price-cell current-price"><strong>${num(latest)}</strong><small>${currentLabel}</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
+    return `<tr><td class="price-cell reference-price" data-price-role="reference"><strong>${num(referencePrice)}</strong><small>${referenceLabel}</small><small>${compactTime(item.referencePriceAt)}</small></td><td class="price-cell current-price" data-price-role="current"><strong>${num(latest)}</strong><small>${currentLabel}</small></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><div class="watch-actions">${buyAction}<button class="remove-watch" data-code="${item.code}">${removeLabel}</button></div></td></tr>`;
   }).join("");
 
   $("watchOnlyRows").innerHTML = renderRows(watchRows, "watch")
