@@ -158,7 +158,8 @@ button, input, select { font: inherit; }
 .ret-down { color: #168466; font-weight: 700; }
 .ret-neutral { color: var(--muted); }
 
-.watch-add, .remove-watch, .remove-holding {
+.watch-actions { display: flex; gap: 5px; }
+.watch-add, .watch-buy, .remove-watch, .remove-holding {
   padding: 5px 7px;
   border: 1px solid var(--blue);
   border-radius: 5px;
@@ -168,8 +169,25 @@ button, input, select { font: inherit; }
   font-weight: 700;
   cursor: pointer;
 }
-.watch-add[disabled] { border-color: #cbd5df; color: #8291a1; cursor: default; }
+.watch-buy { border-color: var(--green); color: var(--green); }
+.watch-add[disabled], .watch-buy[disabled] { border-color: #cbd5df; color: #8291a1; cursor: default; }
 .remove-watch, .remove-holding { border-color: #d6a2ae; color: var(--red); }
+.price-cell strong { font-variant-numeric: tabular-nums; }
+.watch-mode { display: inline-flex; padding: 4px 7px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.watch-mode.watch { background: var(--blue-soft); color: var(--blue); }
+.watch-mode.owned { background: var(--green-soft); color: var(--green); }
+
+.price-dialog { width: min(380px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); box-shadow: 0 18px 50px rgb(23 33 43 / 24%); }
+.price-dialog::backdrop { background: rgb(23 33 43 / 45%); }
+.price-dialog form { padding: 20px; }
+.price-dialog h2 { margin: 0; font-size: 20px; }
+.price-dialog label { display: grid; gap: 7px; margin-top: 18px; font-size: 12px; font-weight: 700; }
+.price-dialog input { min-height: 38px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); }
+.form-error { min-height: 18px; margin: 7px 0 0 !important; color: var(--red) !important; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.dialog-actions button { padding: 8px 11px; border-radius: 5px; font-weight: 700; cursor: pointer; }
+.dialog-cancel { border: 1px solid var(--line); background: #fff; color: var(--muted); }
+.dialog-confirm { border: 1px solid var(--green); background: var(--green); color: #fff; }
 
 .history-controls { display: flex; flex-wrap: wrap; gap: 10px; }
 .history-controls label { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }

@@ -1,5 +1,6 @@
 const $ = (id) => document.getElementById(id);
-const WATCH_STORAGE = "taishan-fusion-watch-v2";
+const WATCH_STORAGE = "taishan-fusion-watch-v3";
+const LEGACY_WATCH_STORAGE = "taishan-fusion-watch-v2";
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
   watch: { title: "我的观察栏", subtitle: "从加入时刻开始记录可用快照与后续表现。" },
@@ -19,8 +20,43 @@ const rawPct = (value) => Number.isFinite(n(value)) ? `${n(value) >= 0 ? "+" : "
 const num = (value) => Number.isFinite(n(value)) ? n(value).toFixed(2) : "--";
 const text = (value, fallback = "--") => value === undefined || value === null || value === "" ? fallback : String(value);
 const codeOf = (value) => String(value || "").padStart(6, "0");
-const getWatch = () => { try { return JSON.parse(localStorage.getItem(WATCH_STORAGE) || "[]"); } catch { return []; } };
-const saveWatch = (rows) => localStorage.setItem(WATCH_STORAGE, JSON.stringify(rows));
+function normalizeWatch(item = {}) {
+  const mode = item.mode === "owned" ? "owned" : "watch";
+  const referencePrice = n(item.referencePrice ?? item.addedPrice);
+  return {
+    ...item,
+    code: codeOf(item.code),
+    mode,
+    referencePrice,
+    // Keep the old name as an alias so old local records remain compatible.
+    addedPrice: referencePrice,
+    addedAt: item.addedAt || new Date().toISOString(),
+    records: Array.isArray(item.records) ? item.records : [],
+  };
+}
+
+function getWatch() {
+  try {
+    const stored = localStorage.getItem(WATCH_STORAGE) || localStorage.getItem(LEGACY_WATCH_STORAGE) || "[]";
+    const rows = JSON.parse(stored);
+    return Array.isArray(rows) ? rows.map(normalizeWatch) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveWatch(rows) {
+  localStorage.setItem(WATCH_STORAGE, JSON.stringify(rows.map(normalizeWatch)));
+}
+
+function clearWatch() {
+  localStorage.removeItem(WATCH_STORAGE);
+  localStorage.removeItem(LEGACY_WATCH_STORAGE);
+}
+
+function watchModeLabel(item) {
+  return item.mode === "owned" ? "已买入跟踪" : "未买观察";
+}
 
 function candidateSource(data = snapshot) {
   return data?.momentumQuality?.candidates || [];
@@ -124,15 +160,16 @@ function recordWatchSnapshots(data = snapshot) {
     changed = true;
     return { ...item, records: [...records, { at: key, price }] };
   });
-  if (changed) saveWatch(next);
+  if (changed || !localStorage.getItem(WATCH_STORAGE)) saveWatch(next);
 }
 
 function returnAt(item, days) {
   const target = new Date(item.addedAt);
   target.setDate(target.getDate() + days);
   const record = (item.records || []).find((point) => new Date(point.at).getTime() >= target.getTime());
-  if (!record || !Number.isFinite(n(item.addedPrice)) || n(item.addedPrice) <= 0) return NaN;
-  return n(record.price) / n(item.addedPrice) - 1;
+  const referencePrice = n(item.referencePrice ?? item.addedPrice);
+  if (!record || !Number.isFinite(referencePrice) || referencePrice <= 0) return NaN;
+  return n(record.price) / referencePrice - 1;
 }
 
 function watchStatus(item, row) {
@@ -142,16 +179,21 @@ function watchStatus(item, row) {
 
 function renderCandidateRow(row, compact = false) {
   const code = codeOf(row.code);
-  const watched = getWatch().some((item) => item.code === code);
+  const watched = getWatch().find((item) => item.code === code);
   const state = rowState(row);
   const tierClass = `t${row.tier}`;
   const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
-  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? "已观察" : "加入"}</button></td></tr>`;
+  const watchButton = `<button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? (watched.mode === "owned" ? "已买入" : "已观察") : "加入观察"}</button>`;
+  const buyButton = `<button class="watch-buy" data-code="${code}" ${watched?.mode === "owned" ? "disabled" : ""}>${watched?.mode === "watch" ? "记录买入" : "已买入"}</button>`;
+  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><div class="watch-actions">${watchButton}${buyButton}</div></td></tr>`;
 }
 
 function bindWatchButtons(scope) {
   document.querySelectorAll(`${scope} .watch-add:not([disabled])`).forEach((button) => {
-    button.onclick = () => addWatch(button.dataset.code);
+    button.onclick = () => addWatch(button.dataset.code, "watch");
+  });
+  document.querySelectorAll(`${scope} .watch-buy:not([disabled])`).forEach((button) => {
+    button.onclick = () => openPurchaseDialog(button.dataset.code);
   });
 }
 
@@ -164,17 +206,73 @@ function renderOverviewTables() {
   bindWatchButtons("#candidateRows");
 }
 
-function addWatch(code) {
+function addWatch(code, mode = "watch", manualPrice = NaN) {
   const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code);
   if (!row) return;
   const items = getWatch();
-  if (!items.some((item) => item.code === code)) {
-    const initialPrice = currentPrice(row);
-    const initial = { at: snapshot?.intradayQuote?.capturedAt || snapshot?.generatedAt || snapshot?.latestDate || new Date().toISOString(), price: initialPrice };
-    items.unshift({ code, name: row.name, sector: row.sector, addedAt: new Date().toISOString(), addedPrice: initialPrice, historicalTrend: n(row.ret20), records: [initial] });
-    saveWatch(items);
+  const existingIndex = items.findIndex((item) => item.code === code);
+  const referencePrice = mode === "owned" ? n(manualPrice) : currentPrice(row);
+  if (!Number.isFinite(referencePrice) || referencePrice <= 0) {
+    alert("当前没有可用价格，暂时无法记录。请刷新快照后重试。");
+    return;
   }
+
+  const addedAt = new Date().toISOString();
+  const initial = { at: addedAt, price: referencePrice };
+  if (existingIndex >= 0) {
+    if (mode !== "owned") return;
+    const existing = normalizeWatch(items[existingIndex]);
+    items[existingIndex] = {
+      ...existing,
+      mode: "owned",
+      name: row.name,
+      sector: row.sector,
+      referencePrice,
+      addedPrice: referencePrice,
+      addedAt,
+      observedAt: existing.observedAt || existing.addedAt,
+      boughtAt: addedAt,
+      historicalTrend: n(row.ret20),
+      records: [initial],
+    };
+  } else {
+    items.unshift({
+      code,
+      name: row.name,
+      sector: row.sector,
+      mode,
+      addedAt,
+      observedAt: mode === "watch" ? addedAt : null,
+      boughtAt: mode === "owned" ? addedAt : null,
+      referencePrice,
+      addedPrice: referencePrice,
+      historicalTrend: n(row.ret20),
+      records: [initial],
+    });
+  }
+  saveWatch(items);
   renderAllLocal();
+}
+
+let pendingPurchaseCode = null;
+
+function openPurchaseDialog(code) {
+  const row = rankedCandidates().find((candidate) => codeOf(candidate.code) === code);
+  if (!row) return;
+  const existing = getWatch().find((item) => item.code === code);
+  const defaultPrice = n(existing?.referencePrice ?? currentPrice(row));
+  const dialog = $("purchaseDialog");
+  pendingPurchaseCode = code;
+  $("purchaseStock").textContent = `${text(row.name)} (${code})`;
+  $("purchasePrice").value = Number.isFinite(defaultPrice) ? defaultPrice.toFixed(2) : "";
+  $("purchasePriceError").textContent = "";
+  if (dialog?.showModal) {
+    dialog.showModal();
+    setTimeout(() => $("purchasePrice").focus(), 0);
+    return;
+  }
+  const entered = window.prompt(`输入 ${text(row.name)} 的实际买入价`, Number.isFinite(defaultPrice) ? defaultPrice.toFixed(2) : "");
+  if (entered !== null) addWatch(code, "owned", Number(entered));
 }
 
 function removeWatch(code) {
@@ -190,10 +288,11 @@ function renderWatchTable() {
   $("watchBadge").textContent = String(rows.length);
   $("watchRows").innerHTML = rows.map((item) => {
     const latest = prices.get(item.code);
-    const currentReturn = Number.isFinite(latest) && n(item.addedPrice) > 0 ? latest / n(item.addedPrice) - 1 : NaN;
+    const referencePrice = n(item.referencePrice ?? item.addedPrice);
+    const currentReturn = Number.isFinite(latest) && referencePrice > 0 ? latest / referencePrice - 1 : NaN;
     const state = watchStatus(item, current.get(item.code));
-    return `<tr><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${num(item.addedPrice)}</td><td>${retCell(item.historicalTrend)}</td><td>${num(latest)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><button class="remove-watch" data-code="${item.code}">取消观察</button></td></tr>`;
-  }).join("") || '<tr><td colspan="12" class="empty">还没有观察样本。请在研究总览中点击“加入”。</td></tr>';
+    return `<tr><td class="price-cell"><strong>${num(referencePrice)}</strong><small>${item.mode === "owned" ? "实际买入价" : "观察价"}</small></td><td class="price-cell"><strong>${num(latest)}</strong><small>最新可用价</small></td><td><span class="watch-mode ${item.mode}">${watchModeLabel(item)}</span></td><td class="stock-cell"><strong>${text(item.name)}</strong><small>${item.code} / ${text(item.sector)}</small></td><td>${formatTime(item.addedAt)}</td><td>${retCell(item.historicalTrend)}</td><td>${retCell(currentReturn)}</td><td>${retCell(returnAt(item, 3))}</td><td>${retCell(returnAt(item, 5))}</td><td>${retCell(returnAt(item, 20))}</td><td>${retCell(returnAt(item, 60))}</td><td><span class="state ${state.tone}">${state.label}</span></td><td><button class="remove-watch" data-code="${item.code}">取消</button></td></tr>`;
+  }).join("") || '<tr><td colspan="13" class="empty">还没有观察样本。可在研究总览中“加入观察”，或在买入后点击“已买入”记录真实成交价。</td></tr>';
   document.querySelectorAll(".remove-watch").forEach((button) => { button.onclick = () => removeWatch(button.dataset.code); });
 }
 
@@ -386,7 +485,19 @@ async function load() {
 }
 
 $("refreshNow").onclick = load;
-$("clearWatch").onclick = () => { if (confirm("清空本机浏览器中的观察栏？")) { saveWatch([]); renderAllLocal(); } };
+$("clearWatch").onclick = () => { if (confirm("清空本机浏览器中的观察栏？")) { clearWatch(); renderAllLocal(); } };
+$("purchaseCancel").onclick = () => $("purchaseDialog").close();
+$("purchaseForm").onsubmit = (event) => {
+  event.preventDefault();
+  const price = n($("purchasePrice").value);
+  if (!pendingPurchaseCode || !Number.isFinite(price) || price <= 0) {
+    $("purchasePriceError").textContent = "请输入大于 0 的实际买入价。";
+    return;
+  }
+  addWatch(pendingPurchaseCode, "owned", price);
+  $("purchaseDialog").close();
+  pendingPurchaseCode = null;
+};
 $("historySelect").onchange = (event) => selectHistory(event.target.value);
 $("historySort").onchange = (event) => { historySort = event.target.value; if (historyData) renderHistoryRows(historyData); };
 document.querySelectorAll("[data-history-sort]").forEach((button) => { button.onclick = () => { historySort = button.dataset.historySort; $("historySort").value = historySort; if (historyData) renderHistoryRows(historyData); }; });
