@@ -440,9 +440,12 @@ function methodEvidence(method) {
   if (!Object.keys(result).length) return method?.modelUse === "active_governance" ? "已作为研究治理规则启用" : "等待满足数据或消融条件";
   const items = [];
   if (Number.isFinite(n(result.total_return))) items.push(`样本收益 ${pct(result.total_return)}`);
+  if (Number.isFinite(n(result.active_vs_equal_weight_total_return))) items.push(`同池主动 ${pct(result.active_vs_equal_weight_total_return)}`);
   if (Number.isFinite(n(result.max_drawdown))) items.push(`最大回撤 ${pct(result.max_drawdown)}`);
   if (Number.isFinite(n(result.worst_rolling_60d_return))) items.push(`最差60日 ${pct(result.worst_rolling_60d_return)}`);
   if (Number.isFinite(n(result.average_market_exposure))) items.push(`平均暴露 ${pct(result.average_market_exposure)}`);
+  if (Number.isFinite(n(result.recommended_research_horizon_days))) items.push(`研究周期 ${n(result.recommended_research_horizon_days)}日`);
+  if (Number.isFinite(n(result.required_forward_signals))) items.push(`前验门槛 ${n(result.required_forward_signals)}个信号`);
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }
 
