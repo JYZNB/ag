@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "量价确认组件审计 2026-07-14",
+  "phase": "research",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -12943,6 +12943,83 @@
           ],
           "decision": "inconclusive_keep_frozen_pending_more_forward_evidence",
           "decision_note": "20 日与 60 日删除直接量价权重更好，45 日保留权重更好；删除版在 20 日主周期只改善一个固定评估阶段，未达到至少两个阶段的删除门槛。保留版又只在三个周期中的一个周期占优。因此不追认保留有效，也不事后删除或搜索新权重，维持冻结 0.15 并等待独立前验样本。"
+        }
+      },
+      {
+        "id": "behavior_quality_proxy",
+        "name": "行为质量代理直接权重审计",
+        "source": "AQR Capital Management",
+        "url": "https://www.aqr.com/-/media/AQR/Documents/Insights/Working-Papers/Quality-Minus-Junk.pdf",
+        "status": "保留 0.15；20/45 日支持，60 日不外推",
+        "horizonDays": [
+          20,
+          45,
+          60
+        ],
+        "claim": "QMJ 以盈利、成长、安全和分配衡量基本面质量；本地没有完整点时财务数据，因此只把价格行为健康度作为代理，并独立审计统一模型中既有 0.15 直接权重。",
+        "localProxy": [
+          "vol20_and_drawdown20",
+          "clean_unwind_and_not_blowoff_volume",
+          "trend_smooth20_and_close_pos20",
+          "price_volume_confirmation_rank",
+          "ret20_and_ret60_rank",
+          "sector_confirm_and_not_extended"
+        ],
+        "failureModes": [
+          "它不是基本面 QMJ，质量命名可能造成误解",
+          "与趋势、回撤、量价和板块组件存在重复输入",
+          "强趋势阶段可能把动量误当成质量",
+          "60 日结果不支持长期外推",
+          "当前历史较短且股票池可能存在幸存者偏差"
+        ],
+        "validationGate": "固定比较直接权重 0.15 与 0.00，禁止搜索替代权重。20 日为主裁决周期，须通过统一稳健门槛、至少改善两个固定评估阶段、回撤恶化不超过 2 个百分点，并在 20/45/60 日至少两个周期方向为正；45/60 日只作方向诊断。",
+        "modelUse": "retained_component",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "audit_fingerprint": "d7c5e00985a42050ae869ea0029c284039b73208576810400491d0c68f8ec430",
+          "effective_frozen_weight": 0.15,
+          "retained_weight": 0.15,
+          "component_retention_gate_passed": true,
+          "component_removal_gate_passed": false,
+          "evaluation_fold_active_improvements": 3,
+          "required_evaluation_fold_active_improvements": 2,
+          "primary_active_total_delta_retained_minus_removed": 0.03178145916700048,
+          "primary_active_fold_improvements": 3,
+          "removed_primary_active_fold_improvements": 0,
+          "primary_max_drawdown_delta_retained_minus_removed": -0.006047792135676633,
+          "active_delta_45d": 0.12867875464144718,
+          "active_delta_60d": -0.11873434095870894,
+          "retained_positive_horizons": 2,
+          "removed_positive_horizons": 1,
+          "long_horizon_warning": true,
+          "horizon_comparison": [
+            {
+              "days": 20,
+              "retained_total_return": 2.07759738497681,
+              "removed_total_return": 2.044909147898117,
+              "active_return_delta": 0.03178145916700048,
+              "retained_max_drawdown": -0.18856959804109907,
+              "removed_max_drawdown": -0.18252180590542244
+            },
+            {
+              "days": 45,
+              "retained_total_return": 0.5556573538192187,
+              "removed_total_return": 0.4182087252175344,
+              "active_return_delta": 0.12867875464144718,
+              "retained_max_drawdown": -0.1465324782643177,
+              "removed_max_drawdown": -0.21142094421516378
+            },
+            {
+              "days": 60,
+              "retained_total_return": 0.40274357959318974,
+              "removed_total_return": 0.5493923496674504,
+              "active_return_delta": -0.11873434095870894,
+              "retained_max_drawdown": -0.1352016020782415,
+              "removed_max_drawdown": -0.10615759304938643
+            }
+          ],
+          "decision": "retain_component",
+          "decision_note": "当前冻结模型中，保留 0.15 在 20 日主周期提高同池主动收益 3.18 个百分点，三个固定评估阶段全部改善，最大回撤只比删除版多 0.60 个百分点，仍在预注册的 2 个百分点边界内；45 日继续占优，60 日反向。因此保留既有权重但不加码，并禁止把结果外推为长期基本面质量有效。"
         }
       },
       {
