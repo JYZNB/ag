@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-13T09:33:11+08:00",
+  "generatedAt": "2026-07-13T09:35:51+08:00",
   "latestDate": "2026-07-09",
   "modelName": "swing_quality_v31_clean_sizing_tilt_035_target_108",
   "formalVersion": "正式模型 V31",
-  "learningVersion": "V57 最佳观察队列",
-  "learningVerdict": "V57 已把候选变成持续观察队列：先看数据新鲜度，再看风险调整分，再看周期位置。",
+  "learningVersion": "V50 强势质量分层",
+  "learningVerdict": "V50 已把强势样本拆成质量分层；正式买入仍需要市场闸门、风控线和后续前验。",
   "marketOk": false,
   "note": "只做研究和风控提示，不承诺盈利，不执行下单。当前盘中层强调不追高和先降风险。",
   "market": {
@@ -381,21 +381,6 @@
   ],
   "learning": [
     {
-      "version": "V52 源摘要和规则候选",
-      "summary": "已把 17 个外部学习源转成摘要、规则候选和验证门槛，其中 16 个自动可读。",
-      "verdict": "进入学习治理层，不直接生成买点；后续只允许通过回测/前验后晋级。"
-    },
-    {
-      "version": "V53 候选-方法论映射",
-      "summary": "已把 24 个强势候选映射到外部方法论；分类为 涨停延续19只, 持续趋势1只, 回踩修复3只, 强势观察1只。这些是可解释观察池，不是买入指令。",
-      "verdict": "已进入表盘解释层；仍只做观察和验证，不输出买入指令。"
-    },
-    {
-      "version": "V54 候选后验复盘",
-      "summary": "已复盘 24/24 个 V53 候选，信号日 20260709；3日可评估正收益 0 个，失效 5 个。这是后验评价层，不是买入指令。",
-      "verdict": "已进入表盘复盘层；用于评价逻辑，不输出买入指令。"
-    },
-    {
       "version": "V55 失败归因层",
       "summary": "已对 24 个 V54 后验样本做失败归因；高风险 6 个。主因集中在 模式拥挤、回撤破坏、有效样本。这些结论只用于压低同类候选权重，不是买卖指令。",
       "verdict": "已进入表盘风控复盘层；用于压低高风险模式，不输出买入指令。"
@@ -409,6 +394,21 @@
       "version": "V57 最佳观察队列",
       "summary": "已把 V56 风险调整池升级为持续观察队列：核心观察 13 个，次级观察 6 个，仅记录 2 个，排除 9 个。数据新鲜度 中；这是研究观察队列，不是买入指令。",
       "verdict": "已进入表盘展示层；用于减少人工追问，仍需盘中数据确认。"
+    },
+    {
+      "version": "V58 数据新鲜度修复",
+      "summary": "目标日 2026-07-10 覆盖 93/2818 (3.3%)； eligible 截面 2026-07-09。本轮修复额度 0 只，成功 0 只，错误 0 只；下一批建议修复队列 30 只。",
+      "verdict": "进入刷新前置层；先修数据，再谈候选。"
+    },
+    {
+      "version": "V48 中周期强势观察",
+      "summary": "把涨停延续和持续上涨合并到同一观察池，并加入120日趋势证据、板块扩散、离均线距离、涨停拥挤、20日回撤等降级因子。",
+      "verdict": "已接入表盘观察层；正式买入模型仍以V31为冠军，不承诺盈利，不自动下单。"
+    },
+    {
+      "version": "V50 强势质量分层",
+      "summary": "把涨停延续、持续上涨中继、强势回踩修复拆成可评分样本，并显示观察线、风险线和失效线。",
+      "verdict": "已接入观察层；未晋级正式买入模型。"
     }
   ],
   "intraday1300": {
@@ -1016,30 +1016,6 @@
   ],
   "modelRulePatches": [
     {
-      "rule_id": "data_freshness_v58",
-      "scope": "data_quality",
-      "change": "新增数据新鲜度诊断与高优先级修复队列，优先修复候选、强势股和高成交主板票的日线缓存。",
-      "promotion": "进入每日刷新前置层；覆盖率不足时，后续观察队列必须标记等新数据确认。"
-    },
-    {
-      "rule_id": "momentum_quality_layer_v50",
-      "scope": "candidate_pool",
-      "change": "每日涨停延续和持续上涨中继不再只做泛展示，而是计算趋势模板、阶段位置、涨停接力、板块轮动、风控质量五项分数。",
-      "promotion": "进入观察层；需继续前验和回撤审计后才可能晋级正式模型。"
-    },
-    {
-      "rule_id": "source_health_monitor_v51",
-      "scope": "learning_pipeline",
-      "change": "外部学习源不再只是静态列表；每日记录可访问状态、响应摘要和待吸收任务。",
-      "promotion": "进入学习治理层；不改变买入信号。"
-    },
-    {
-      "rule_id": "source_learning_review_v52",
-      "scope": "learning_pipeline",
-      "change": "外部来源必须形成可读摘要、吸收原则、规则候选、验证门槛和不直接买入理由；没有摘要的来源不能晋级。",
-      "promotion": "立即生效为学习治理规则；正式选股权重不变。"
-    },
-    {
       "rule_id": "candidate_method_map_v53",
       "scope": "candidate_explainability",
       "change": "每天的涨停延续、持续趋势和回踩修复候选必须映射到外部方法论来源、规则候选和验证门槛，避免只看排行或涨幅。",
@@ -1074,11 +1050,23 @@
       "scope": "dashboard_queue",
       "change": "在风险调整池之上新增最佳观察队列，把候选分成核心观察、次级观察、仅记录、排除，并显示数据新鲜度。",
       "promotion": "进入线上表盘展示层；只做持续跟踪，不输出买入指令。"
+    },
+    {
+      "rule_id": "data_freshness_v58",
+      "scope": "data_quality",
+      "change": "新增数据新鲜度诊断与高优先级修复队列，优先修复候选、强势股和高成交主板票的日线缓存。",
+      "promotion": "进入每日刷新前置层；覆盖率不足时，后续观察队列必须标记等新数据确认。"
+    },
+    {
+      "rule_id": "momentum_quality_layer_v50",
+      "scope": "candidate_pool",
+      "change": "每日涨停延续和持续上涨中继不再只做泛展示，而是计算趋势模板、阶段位置、涨停接力、板块轮动、风控质量五项分数。",
+      "promotion": "进入观察层；需继续前验和回撤审计后才可能晋级正式模型。"
     }
   ],
   "strengthObserver": {
     "version": "V48",
-    "generatedAt": "2026-07-13T09:30:47+08:00",
+    "generatedAt": "2026-07-13T09:36:29+08:00",
     "latestDate": "2026-07-09",
     "latestCoverage": 1949,
     "dataMaxDate": "2026-07-10",
@@ -1967,8 +1955,8 @@
     "note": "V48是中周期强势观察层：先看10/20/60/120日趋势证据，再看板块扩散，再用防追高和回撤风险降级；不等于下单指令。"
   },
   "refreshStatus": {
-    "version": "daily_observation_refresh_v1_interim",
-    "generated_at": "2026-07-13T09:25:58+08:00",
+    "version": "daily_observation_refresh_v1_fast_premarket",
+    "generated_at": "2026-07-13T09:35:51+08:00",
     "data_dir": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\data\\eastmoney_full_mainboard",
     "end": "20260710",
     "source": "auto",
@@ -1979,7 +1967,7 @@
     "index": [],
     "observer": {
       "version": "V48",
-      "generated_at": "2026-07-13T09:30:47+08:00",
+      "generated_at": "2026-07-13T09:36:29+08:00",
       "latest_date": "2026-07-09",
       "data_max_date": "2026-07-10",
       "data_max_coverage": 93,
@@ -1989,94 +1977,32 @@
       "limit_continuation_count": 25,
       "sustained_momentum_count": 5,
       "backtest": {
-        "rows": 115,
-        "by_horizon": [
-          {
-            "horizon": 10,
-            "rows": 49,
-            "avg_return": 0.03421111183327968,
-            "median_return": 0.017274887180844613,
-            "win_rate": 0.6530612244897959,
-            "avg_intraperiod_drawdown": -0.08133634498193047,
-            "worst_return": -0.12333307437208664,
-            "best_return": 0.22348855208036641
-          },
-          {
-            "horizon": 20,
-            "rows": 37,
-            "avg_return": 0.08758249322556715,
-            "median_return": 0.08079184610046908,
-            "win_rate": 0.8378378378378378,
-            "avg_intraperiod_drawdown": -0.1079578657148923,
-            "worst_return": -0.12138861976616479,
-            "best_return": 0.29363816076636035
-          },
-          {
-            "horizon": 30,
-            "rows": 29,
-            "avg_return": 0.15163625961649246,
-            "median_return": 0.13312681055330702,
-            "win_rate": 0.8275862068965517,
-            "avg_intraperiod_drawdown": -0.13364272066593932,
-            "worst_return": -0.06477928179166359,
-            "best_return": 0.4217756181719188
-          }
-        ]
+        "rows": 0,
+        "note": "backtest skipped for fast refresh"
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_092609_v48_refresh\\strength_observation_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_092609_v48_refresh\\strength_observer_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_092609_v48_refresh\\strength_observer_summary.json",
+        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_093602_v48_refresh\\strength_observation_pool.csv",
+        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_093602_v48_refresh\\strength_observer_backtest.csv",
+        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\strength_observer_20260713_093602_v48_refresh\\strength_observer_summary.json",
         "learning_log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\MODEL_LEARNING_LOG_20260713_V48.md"
       }
     },
     "momentum_quality": {
       "version": "V50",
-      "generated_at": "2026-07-13T09:32:29+08:00",
+      "generated_at": "2026-07-13T09:37:00+08:00",
       "latest_date": "2026-07-09",
       "pool_count": 32,
       "limit_relay_count": 24,
       "sustained_trend_count": 6,
       "pullback_repair_count": 1,
       "backtest": {
-        "rows": 1392,
-        "by_horizon": [
-          {
-            "horizon": 5,
-            "rows": 464,
-            "avg_return": 0.02376735300450808,
-            "median_return": 0.006657832695604184,
-            "win_rate": 0.5280172413793104,
-            "avg_intraperiod_drawdown": -0.07261942607495457,
-            "worst_return": -0.2520439024390244,
-            "best_return": 0.5466
-          },
-          {
-            "horizon": 10,
-            "rows": 464,
-            "avg_return": 0.057785855827654706,
-            "median_return": 0.012087660327288832,
-            "win_rate": 0.521551724137931,
-            "avg_intraperiod_drawdown": -0.09600480828610923,
-            "worst_return": -0.3213876288659794,
-            "best_return": 1.1605568205484207
-          },
-          {
-            "horizon": 20,
-            "rows": 464,
-            "avg_return": 0.0727635238860467,
-            "median_return": -0.02115969276178706,
-            "win_rate": 0.47198275862068967,
-            "avg_intraperiod_drawdown": -0.12068950989092446,
-            "worst_return": -0.35190752688172044,
-            "best_return": 1.4643413969335606
-          }
-        ]
+        "rows": 0,
+        "by_horizon": []
       },
       "files": {
-        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_093047_v50_refresh\\momentum_quality_pool.csv",
-        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_093047_v50_refresh\\momentum_quality_backtest.csv",
-        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_093047_v50_refresh\\momentum_quality_summary.json"
+        "pool": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_093629_v50_refresh\\momentum_quality_pool.csv",
+        "backtest": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_093629_v50_refresh\\momentum_quality_backtest.csv",
+        "summary": "C:\\Users\\Administrator\\Documents\\Codex\\2026-06-28\\files-mentioned-by-the-user-74ced789dac3c04d3a46161cd6aaaa7f\\outputs\\a_share_model_framework\\runs\\momentum_quality_20260713_093629_v50_refresh\\momentum_quality_summary.json"
       }
     },
     "data_freshness": {
@@ -2099,7 +2025,14 @@
       "repairFetched": 0,
       "repairErrors": 0
     },
-    "note": "Interim refreshStatus so downstream V56/V57 read the current V48/V50 output paths."
+    "continuous_learning": {
+      "status": "skipped_fast_premarket",
+      "reason": "盘前快速模式只复用收盘后学习结果。"
+    },
+    "build": {
+      "status": "snapshot_written_before_static_build"
+    },
+    "note": "Fast premarket refresh: only V48/V50, freshness, candidate snapshot and static build. Full learning, method validation and alternative-data jobs run after close."
   },
   "dataMaxDate": "2026-07-10",
   "latestCoverage": 1949,
@@ -2108,7 +2041,7 @@
   "learningSourceUpdatedAt": "2026-07-13T09:25:58+08:00",
   "momentumQuality": {
     "version": "V50",
-    "generatedAt": "2026-07-13T09:32:29+08:00",
+    "generatedAt": "2026-07-13T09:37:00+08:00",
     "latestDate": "2026-07-09",
     "poolCount": 32,
     "limitRelayCount": 24,
@@ -8675,7 +8608,7 @@
     }
   ],
   "dataFreshnessVersion": "V58 数据新鲜度修复",
-  "dataFreshnessUpdatedAt": "2026-07-13T09:25:58+08:00",
+  "dataFreshnessUpdatedAt": "2026-07-13T09:35:51+08:00",
   "dataFreshnessSummary": "目标日 2026-07-10 覆盖 93/2818 (3.3%)； eligible 截面 2026-07-09。本轮修复额度 0 只，成功 0 只，错误 0 只；下一批建议修复队列 30 只。",
   "dataFreshnessCoverageRows": [
     {
