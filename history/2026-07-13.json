@@ -13326,16 +13326,16 @@
       },
       {
         "id": "sector_strength",
-        "name": "板块强度直接权重审计",
+        "name": "板块强度映射与权重审计",
         "source": "Tobias J. Moskowitz and Mark Grinblatt / The Journal of Finance",
         "url": "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00146",
-        "status": "消融反事实退化，冻结原权重",
+        "status": "真实映射未稳定胜出，冻结待重构",
         "horizonDays": [
           20,
           45,
           60
         ],
-        "claim": "原研究记录了显著的行业动量，并指出行业动量能解释一部分个股动量。本地只审计唯一融合模型中既有板块直接加分，不把 A 股板块代理解释为原论文复现。",
+        "claim": "原研究记录了显著的行业动量，并指出行业动量能解释一部分个股动量。本地先审计直接权重，再用逐日同分布置换检验真实板块分是否放到了正确股票上，不把 A 股代理解释为原论文复现。",
         "localProxy": [
           "sector_rank60",
           "sector_rank_risk60",
@@ -13350,68 +13350,81 @@
           "完全移除 1.15 权重后总分刻度坍塌，三个周期均无股票入选",
           "零交易全现金对照不能识别板块因子的纯边际收益"
         ],
-        "validationGate": "固定比较直接权重 1.15 与 0.00，板块样本数、强度、持续性、宽度、风险调整强度和确认度等硬过滤保持不变；20 日为主裁决，45/60 日只作方向诊断。若删除组退化为零入选，则不得把保留组相对现金的优势解释为纯板块因子有效。",
+        "validationGate": "归零审计若退化为零入选，不得归因。映射审计固定保留 1.15 权重、每日板块分多重集和全部硬过滤；20 日用预先指定的 11/29/47 三个置换种子取中位数，45/60 日固定用种子 29 诊断。真实映射须改善主周期主动收益、至少两个时间折、回撤恶化不超过 2 个百分点，并在至少两个周期胜出。",
         "modelUse": "frozen_pending_forward_evidence",
         "localResult": {
           "sample_end": "2026-07-10",
-          "audit_fingerprint": "f733724832b932a009f161b8bfdce5e3d43ffa031de5ab838ba0132c07a57a74",
+          "audit_fingerprint": "4d86b932ae1fc38455208efddb0d7fb8b44a6cfd60ab8a891e9a60f1ae153060",
+          "weight_zero_audit_fingerprint": "f733724832b932a009f161b8bfdce5e3d43ffa031de5ab838ba0132c07a57a74",
           "effective_frozen_weight": 1.15,
           "component_retention_gate_passed": false,
           "component_removal_gate_passed": false,
-          "evaluation_fold_active_improvements": 3,
+          "mapping_placebo_audit_complete": true,
+          "evaluation_fold_active_improvements": 2,
           "required_evaluation_fold_active_improvements": 2,
-          "primary_active_total_delta_retained_minus_removed": 2.2761498188464238,
-          "primary_active_fold_improvements": 3,
-          "removed_primary_active_fold_improvements": 0,
-          "primary_max_drawdown_delta_retained_minus_removed": -0.18856959804109907,
-          "active_delta_45d": 0.7403246118907753,
-          "active_delta_60d": 0.41965848097901215,
-          "retained_positive_horizons": 3,
-          "removed_positive_horizons": 0,
-          "retained_trade_count_by_horizon": {
+          "primary_observed_active": 1.992224248363132,
+          "primary_placebo_active_values": [
+            2.027840020596102,
+            1.265052465528099,
+            2.3642183897410622
+          ],
+          "primary_median_placebo_active": 2.027840020596102,
+          "primary_active_delta_observed_minus_median_placebo": -0.03561577223296997,
+          "primary_active_fold_improvements": 2,
+          "placebo_primary_active_fold_improvements": 1,
+          "primary_max_drawdown_delta_observed_minus_median_placebo": -0.01566518427840724,
+          "active_delta_45d": 0.026723161436366105,
+          "active_delta_60d": -0.11702626060603882,
+          "observed_positive_horizons": 1,
+          "placebo_positive_horizons": 2,
+          "placebo_seeds_20d": [
+            11,
+            29,
+            47
+          ],
+          "diagnostic_placebo_seed": 29,
+          "observed_trade_count_by_horizon": {
             "20": 74,
             "45": 35,
             "60": 28
           },
-          "removed_trade_count_by_horizon": {
-            "20": 0,
-            "45": 0,
-            "60": 0
+          "placebo_trade_count_by_horizon": {
+            "20_median": 75,
+            "45": 36,
+            "60": 28
           },
           "counterfactual_degenerate": true,
           "hard_sector_filters_held_constant": true,
           "score_scale_interaction_detected": true,
+          "daily_sector_score_multiset_preserved": true,
           "horizon_comparison": [
             {
               "days": 20,
-              "retained_total_return": 2.07759738497681,
-              "removed_total_return": 0.0,
-              "active_return_delta": 2.2761498188464238,
-              "retained_max_drawdown": -0.18856959804109907,
-              "removed_max_drawdown": 0.0,
-              "removed_trade_count": 0
+              "observed_total_return": 2.07759738497681,
+              "median_placebo_total_return": 2.114229334453217,
+              "active_return_delta": -0.03561577223296997,
+              "observed_max_drawdown": -0.18856959804109907,
+              "median_placebo_max_drawdown": -0.17290441376269183
             },
             {
               "days": 45,
-              "retained_total_return": 0.5556573538192187,
-              "removed_total_return": 0.0,
-              "active_return_delta": 0.7403246118907753,
-              "retained_max_drawdown": -0.1465324782643177,
-              "removed_max_drawdown": 0.0,
-              "removed_trade_count": 0
+              "observed_total_return": 0.5556573538192187,
+              "placebo_total_return": 0.527112922366143,
+              "active_return_delta": 0.026723161436366105,
+              "observed_max_drawdown": -0.1465324782643177,
+              "placebo_max_drawdown": -0.12909430260303245
             },
             {
               "days": 60,
-              "retained_total_return": 0.40274357959318974,
-              "removed_total_return": 0.0,
-              "active_return_delta": 0.41965848097901215,
-              "retained_max_drawdown": -0.1352016020782415,
-              "removed_max_drawdown": 0.0,
-              "removed_trade_count": 0
+              "observed_total_return": 0.40274357959318974,
+              "placebo_total_return": 0.5472826998316527,
+              "active_return_delta": -0.11702626060603882,
+              "observed_max_drawdown": -0.1352016020782415,
+              "placebo_max_drawdown": -0.10274524626867543
             }
           ],
           "decision": "inconclusive_keep_frozen_pending_more_forward_evidence",
-          "decision_note": "保留组在三个周期和三个固定评估阶段均优于删除组，但删除 1.15 后所有周期都变成零入选、全现金；因此巨大差值同时包含总分刻度和候选门槛效应，不能归因于板块强度本身。回撤边界相对全现金也未通过。维持冻结 1.15，不加码、不宣称验证，下一步改做等入选率或等候选规模的板块排序对照。"
+          "decision_note": "归零审计因三个周期均零入选而不可识别。新的同分布置换审计中，真实映射 20 日主动收益比三个固定置换的中位数低 3.56 个百分点，60 日低 11.70 个百分点，仅 45 日高 2.67 个百分点；但 20 日三个固定评估阶段仍有两个阶段胜出，回撤差也在 2 个百分点边界内。因此保留与反向重构门槛都未全过，冻结 1.15、不加码、不宣称板块映射有效，下一步拆解板块收益、风险调整、持续性和宽度子项。"
         }
       },
       {
