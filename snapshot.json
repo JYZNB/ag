@@ -12679,13 +12679,13 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "residual-momentum-evidence",
+  "phase": "intermediate-momentum-evidence",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-14T01:52:48+08:00",
+    "generatedAt": "2026-07-14T02:15:31+08:00",
     "horizonDays": [
       15,
       45
@@ -12965,6 +12965,73 @@
             }
           ],
           "decision": "20 日代理改善全样本收益、最大回撤和最差 60 日窗口，但只在 2026YTD 改善同池主动收益，2025H1 与 2025H2 均变差，稳定性分数也低于当前冻结配置。保留为风险调整研究证据，不替换唯一融合模型。"
+        }
+      },
+      {
+        "id": "intermediate_horizon_momentum_proxy",
+        "name": "中期动量与近期噪声剥离",
+        "source": "Robert Novy-Marx / Journal of Financial Economics",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0304405X11001152",
+        "status": "保留观察，未晋级统一配置",
+        "horizonDays": [
+          20,
+          30,
+          45
+        ],
+        "claim": "原研究发现，形成前 12 至 7 个月的中期表现比近期表现更能解释其样本中的动量收益，并按月形成、固定持有一个月。本地只检验跳过最近 20 个交易日后的较早强势，不把短窗口代理解释成原论文复现。",
+        "localProxy": [
+          "ret60_ex20",
+          "ret120_ex20",
+          "recent_20d_overheat_guard",
+          "ma20_and_ma60_trend_guard",
+          "trend_smooth20",
+          "one_day_spike_and_unwind_guard"
+        ],
+        "failureModes": [
+          "本地 120 至 20 日窗口明显短于论文的 12 至 7 个月，不能等同于论文复现",
+          "当前约两年半历史且股票池可能存在幸存者偏差",
+          "较早强势可能已失效，近期基本面或板块状态可能发生反转",
+          "与普通动量、年内高位和渐进信息因子存在重叠",
+          "A 股涨跌停和主题轮动可能放大短窗口代理噪声"
+        ],
+        "validationGate": "20、30、45 日持有上限在回测前固定；只有 20 日主变体可参与影子选择。主变体必须通过统一稳健门槛，在至少两个评估阶段改善当前冻结配置的同池主动收益，且最大回撤不得恶化超过 2 个百分点；30 日和 45 日只用于期限诊断。",
+        "modelUse": "active_ablation",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "robustness_gate_passed": true,
+          "dedicated_promotion_gate_passed": false,
+          "selected": false,
+          "recommended_research_horizon_days": 20,
+          "total_return": 2.1553,
+          "max_drawdown": -0.1831,
+          "worst_rolling_60d_return": -0.1207,
+          "active_vs_equal_weight_total_return": 2.0677,
+          "evaluation_fold_active_improvements": 1,
+          "required_evaluation_fold_active_improvements": 2,
+          "horizon_comparison": [
+            {
+              "days": 20,
+              "gate_passed": true,
+              "total_return": 2.1553,
+              "max_drawdown": -0.1831,
+              "stability_score": 1.3993
+            },
+            {
+              "days": 30,
+              "gate_passed": false,
+              "total_return": 1.5361,
+              "max_drawdown": -0.1909,
+              "stability_score": 0.6463
+            },
+            {
+              "days": 45,
+              "gate_passed": true,
+              "total_return": 0.5976,
+              "max_drawdown": -0.1465,
+              "stability_score": 0.1698
+            }
+          ],
+          "decision": "20 日代理改善全样本收益、最大回撤和最差 60 日窗口，但只在 2025H1 改善同池主动收益，2025H2 与 2026YTD 均变差，稳定性分数也低于当前冻结配置。30 日未通过统一稳健门槛，45 日收益与稳定性较弱。因此保留为中期动量研究证据，不替换唯一融合模型。"
         }
       },
       {
@@ -13391,7 +13458,7 @@
         "price": 81.83,
         "pnlValue": -574.0,
         "pnlPct": -0.033884297520661154,
-        "reviewPhase": "residual-momentum-evidence",
+        "reviewPhase": "intermediate-momentum-evidence",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13409,7 +13476,7 @@
         "price": 37.66,
         "pnlValue": -1724.0500000000006,
         "pnlPct": -0.31403174834473285,
-        "reviewPhase": "residual-momentum-evidence",
+        "reviewPhase": "intermediate-momentum-evidence",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13427,7 +13494,7 @@
         "price": 2.76,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "residual-momentum-evidence",
+        "reviewPhase": "intermediate-momentum-evidence",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
