@@ -738,6 +738,7 @@ function renderSnapshot(data) {
   const generated = researchGeneratedAt ? formatTime(researchGeneratedAt) : "--";
   const intraday = data.intradayQuote || {};
   const quoteAt = intraday.capturedAt ? formatTime(intraday.capturedAt) : "--";
+  const publicBuiltAt = data.publicSnapshotBuiltAt ? formatTime(data.publicSnapshotBuiltAt) : "--";
   const sideDot = $("sideSnapshotDot");
   sideDot.classList.remove("is-delayed", "is-stale");
   if (intraday.capturedAt) {
@@ -745,13 +746,15 @@ function renderSnapshot(data) {
     if (Number.isFinite(ageMinutes) && ageMinutes > 5) sideDot.classList.add("is-stale");
     else if (Number.isFinite(ageMinutes) && ageMinutes > 2) sideDot.classList.add("is-delayed");
     $("sideSnapshot").textContent = `盘中行情 ${quoteAt}`;
-    $("sideSnapshotDetail").textContent = researchGeneratedAt ? `日线模型 ${generated}` : "日线模型等待更新";
+    $("sideSnapshotDetail").textContent = `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
   } else {
     sideDot.classList.add("is-stale");
     $("sideSnapshot").textContent = "行情等待更新";
-    $("sideSnapshotDetail").textContent = researchGeneratedAt ? `日线模型 ${generated}` : "日线模型等待更新";
+    $("sideSnapshotDetail").textContent = `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
   }
-  $("updatedAt").textContent = intraday.capturedAt ? `盘中行情 ${quoteAt} / 日线模型 ${generated}` : `日线模型 ${generated}`;
+  $("updatedAt").textContent = intraday.capturedAt
+    ? `盘中行情 ${quoteAt} / 页面发布 ${publicBuiltAt} / 日线模型 ${generated}`
+    : `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
   if (unified.modelName) {
     $("coreStatus").textContent = unified.robustnessGatePassed ? "分段研究门槛通过" : "风险门槛未通过";
     $("coreTitle").textContent = unified.modelName;
