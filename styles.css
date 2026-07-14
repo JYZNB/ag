@@ -190,6 +190,7 @@ button, input, select { font: inherit; }
 .watch-group { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
 .watch-ledger-panel { padding-bottom: 24px; }
 #watchView [data-watch-panel][hidden] { display: none !important; }
+.method-ledger[hidden], .overview-secondary[hidden] { display: none !important; }
 .watch-ledger-intro { max-width: 980px; padding: 10px 12px; border-left: 3px solid var(--ink); background: #f5f8fa; color: var(--ink) !important; }
 .watch-group { scroll-margin-top: 18px; }
 .watch-group-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }

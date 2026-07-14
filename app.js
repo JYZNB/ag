@@ -365,7 +365,10 @@ function bindWatchButtons(scope) {
 
 function renderOverviewTables() {
   const rows = rankedCandidates();
-  $("candidateCount").textContent = `${rows.length} 只研究观察`;
+  const actionableRows = rows.filter((row) => row.tier <= 2);
+  $("candidateCount").textContent = actionableRows.length
+    ? `${actionableRows.length} 只一级/二级研究关注`
+    : "今日无一级/二级候选，不输出可买结论";
   $("tierOneRows").innerHTML = rows.filter((row) => row.tier === 1).map((row) => renderCandidateRow(row, true)).join("") || '<tr><td colspan="14" class="empty">当前没有达到一级研究关注门槛的样本。</td></tr>';
   $("candidateRows").innerHTML = rows.map((row) => renderCandidateRow(row, false)).join("") || '<tr><td colspan="15" class="empty">当前没有符合过滤条件的研究观察样本。</td></tr>';
   bindWatchButtons("#tierOneRows");
