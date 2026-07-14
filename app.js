@@ -736,10 +736,22 @@ function renderSnapshot(data) {
   const market = data.market || {};
   const researchGeneratedAt = unified.generatedAt || data.generatedAt;
   const generated = researchGeneratedAt ? formatTime(researchGeneratedAt) : "--";
-  $("sideSnapshot").textContent = researchGeneratedAt ? `快照 ${generated}` : "等待快照";
   const intraday = data.intradayQuote || {};
   const quoteAt = intraday.capturedAt ? formatTime(intraday.capturedAt) : "--";
-  $("updatedAt").textContent = intraday.capturedAt ? `${generated} / 实时价 ${quoteAt}` : generated;
+  const sideDot = $("sideSnapshotDot");
+  sideDot.classList.remove("is-delayed", "is-stale");
+  if (intraday.capturedAt) {
+    const ageMinutes = (Date.now() - Date.parse(intraday.capturedAt)) / 60000;
+    if (Number.isFinite(ageMinutes) && ageMinutes > 5) sideDot.classList.add("is-stale");
+    else if (Number.isFinite(ageMinutes) && ageMinutes > 2) sideDot.classList.add("is-delayed");
+    $("sideSnapshot").textContent = `盘中行情 ${quoteAt}`;
+    $("sideSnapshotDetail").textContent = researchGeneratedAt ? `日线模型 ${generated}` : "日线模型等待更新";
+  } else {
+    sideDot.classList.add("is-stale");
+    $("sideSnapshot").textContent = "行情等待更新";
+    $("sideSnapshotDetail").textContent = researchGeneratedAt ? `日线模型 ${generated}` : "日线模型等待更新";
+  }
+  $("updatedAt").textContent = intraday.capturedAt ? `盘中行情 ${quoteAt} / 日线模型 ${generated}` : `日线模型 ${generated}`;
   if (unified.modelName) {
     $("coreStatus").textContent = unified.robustnessGatePassed ? "分段研究门槛通过" : "风险门槛未通过";
     $("coreTitle").textContent = unified.modelName;
@@ -816,6 +828,7 @@ async function load() {
     $("coreTitle").textContent = "快照读取失败";
     $("coreSummary").textContent = error.message || "无法读取 snapshot.json。";
     $("sideSnapshot").textContent = "快照请求失败";
+    $("sideSnapshotDetail").textContent = "请稍后重试";
     return false;
   }
   try {
@@ -828,6 +841,7 @@ async function load() {
     $("coreTitle").textContent = "快照已读取，但页面渲染异常";
     $("coreSummary").textContent = error.message || "请刷新页面；已记录到浏览器控制台。";
     $("sideSnapshot").textContent = "快照已读取，渲染异常";
+    $("sideSnapshotDetail").textContent = "请点击刷新快照";
     return false;
   }
   return true;
@@ -858,4 +872,7 @@ window.addEventListener("hashchange", () => applyView(location.hash.replace("#",
 if (!location.hash) location.hash = "overview";
 applyView(location.hash.replace("#", ""));
 load();
-setInterval(load, 60000);
+setInterval(load, 30000);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) load();
+});

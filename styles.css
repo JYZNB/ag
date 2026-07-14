@@ -63,9 +63,13 @@ button, input, select { font: inherit; }
 }
 
 .side-status i { width: 8px; height: 8px; border-radius: 50%; background: #74c7a9; }
+.side-status i.is-delayed { background: #e5b55e; }
+.side-status i.is-stale { background: #dd7b78; }
 .side-status b, .side-status small { display: block; }
 .side-status b { font-size: 12px; }
 .side-status small { margin-top: 3px; color: #b7c9ce; font-size: 11px; }
+.side-status #sideSnapshotDetail { color: #d6e4e8; }
+.side-status .side-refresh-note { color: #9bb1b8; }
 
 .nav { display: grid; gap: 5px; }
 .nav button {

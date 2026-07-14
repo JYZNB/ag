@@ -7,14 +7,14 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-<link rel="stylesheet" href="./styles.css?v=20260714-overview-v21" />
+<link rel="stylesheet" href="./styles.css?v=20260714-live-v22" />
 <link rel="stylesheet" href="./dashboard.css?v=20260714-overview-v21" />
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar">
         <div class="brand"><span>TAISHAN</span><strong>A 股研究台</strong><small>一个融合模型 · 研究与观察</small></div>
-        <div class="side-status"><i></i><div><b id="sideSnapshot">等待快照</b><small>浏览器每 60 秒检查新快照</small></div></div>
+        <div class="side-status"><i id="sideSnapshotDot"></i><div><b id="sideSnapshot">行情等待更新</b><small id="sideSnapshotDetail">日线模型等待更新</small><small class="side-refresh-note">浏览器每 30 秒检查新快照</small></div></div>
         <nav class="nav" aria-label="研究台导航">
           <button type="button" data-view="holdings">我的持仓 <small>公开</small></button>
           <button type="button" data-view="overview" class="active">研究总览</button>
@@ -103,6 +103,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-<script src="./app.js?v=20260714-overview-v21"></script>
+<script src="./app.js?v=20260714-live-v22"></script>
   </body>
 </html>
