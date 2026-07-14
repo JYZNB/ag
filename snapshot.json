@@ -13521,7 +13521,7 @@
     }
   },
   "phase": "午间 11:30",
-  "publicSnapshotBuiltAt": "2026-07-14T11:52:54+08:00",
+  "publicSnapshotBuiltAt": "2026-07-14T12:11:14+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -14902,6 +14902,341 @@
       "基本面质量方法尚未接入公告时点可得数据，因此不参与本轮评分。",
       "研究结果只用于观察和风控，不承诺盈利，也不执行下单。"
     ]
+  },
+  "limitUpSectorResearch": {
+    "module": "涨停行业联动研究",
+    "asOf": "2026-07-10",
+    "researchOnly": true,
+    "causalClaim": "本模块只报告可回放日线中的统计关联，不把政策、新闻或另类数据事后归因为涨停原因。",
+    "eventDefinition": {
+      "stock": "主板、非当前 ST 名称、当日涨幅至少 9.5% 且收盘接近日内最高价。",
+      "sectorCluster": "同一行业至少 5 只股票、当日至少 2 只上述股票，且行业日线覆盖率至少 75%。"
+    },
+    "coverage": {
+      "mappedMainboardCodes": 2734,
+      "observedCodes": 2734,
+      "missingMappedFiles": 0,
+      "analysisStart": "2022-01-04",
+      "analysisEnd": "2026-07-10",
+      "tradingDays": 1093,
+      "medianDailyCoverage": 2673,
+      "minimumDailyCoverage": 2550
+    },
+    "industryMapping": {
+      "path": "data/tdx_raw_mainboard/tdx_current_industry_map.csv",
+      "mappingSource": "tongdaxin_local_taxonomy",
+      "universeCodes": 2811,
+      "mappedCodes": 2734,
+      "coverageRatio": 0.972608,
+      "numericSectorsRejected": 0,
+      "caveat": "Current industry mapping is a grouping proxy, not a point-in-time historical taxonomy."
+    },
+    "sample": {
+      "limitLikeStockDays": 49302,
+      "sectorClusterEvents": 6926,
+      "clusterTradingDays": 1057,
+      "overallAvgFwd1d": 0.428822,
+      "overallAvgFwd3d": 0.377611,
+      "overallAvgFwd5d": 0.418804,
+      "overallPositiveRate3d": 0.528176
+    },
+    "latestSectorRows": [
+      {
+        "date": "2026-07-10",
+        "sector": "航天装备",
+        "event_type": "板块联动",
+        "limit_like_count": 5,
+        "limit_like_share": 0.833333,
+        "strong_share": 1.0,
+        "prior_sector_ret5": -0.837683,
+        "amount_ratio20": 1.529374,
+        "cycle_bucket": "间隔后首发",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "间隔后首次联动，观察后续扩散"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "金属制品",
+        "event_type": "板块联动",
+        "limit_like_count": 3,
+        "limit_like_share": 0.1875,
+        "strong_share": 0.375,
+        "prior_sector_ret5": -4.248651,
+        "amount_ratio20": 1.027664,
+        "cycle_bucket": "间隔后首发",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "间隔后首次联动，观察后续扩散"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "住宅开发",
+        "event_type": "板块联动",
+        "limit_like_count": 3,
+        "limit_like_share": 0.081081,
+        "strong_share": 0.459459,
+        "prior_sector_ret5": -1.240678,
+        "amount_ratio20": 1.338285,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "电工仪器",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.4,
+        "strong_share": 0.4,
+        "prior_sector_ret5": -3.686177,
+        "amount_ratio20": 0.869778,
+        "cycle_bucket": "间隔后首发",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "间隔后首次联动，观察后续扩散"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "其他专业工程",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.25,
+        "strong_share": 0.25,
+        "prior_sector_ret5": -6.285167,
+        "amount_ratio20": 0.967722,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "装修装饰",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.166667,
+        "strong_share": 0.416667,
+        "prior_sector_ret5": -7.677482,
+        "amount_ratio20": 0.682935,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "航运",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.125,
+        "strong_share": 0.1875,
+        "prior_sector_ret5": -2.46868,
+        "amount_ratio20": 0.617832,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "军工电子",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.105263,
+        "strong_share": 0.473684,
+        "prior_sector_ret5": -4.412943,
+        "amount_ratio20": 1.442691,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "其他汽车零部件",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.074074,
+        "strong_share": 0.148148,
+        "prior_sector_ret5": -1.298951,
+        "amount_ratio20": 1.089172,
+        "cycle_bucket": "第二日延续",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "第二日延续，重点看分歧与量能"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "线缆部件及其他",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.068966,
+        "strong_share": 0.172414,
+        "prior_sector_ret5": -7.635671,
+        "amount_ratio20": 0.915107,
+        "cycle_bucket": "间隔后首发",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "间隔后首次联动，观察后续扩散"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "能源及重型设备",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.066667,
+        "strong_share": 0.166667,
+        "prior_sector_ret5": -4.324362,
+        "amount_ratio20": 1.037031,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      },
+      {
+        "date": "2026-07-10",
+        "sector": "化学制剂",
+        "event_type": "板块联动",
+        "limit_like_count": 2,
+        "limit_like_share": 0.043478,
+        "strong_share": 0.434783,
+        "prior_sector_ret5": -2.70422,
+        "amount_ratio20": 1.412184,
+        "cycle_bucket": "首发点火",
+        "market_bucket": "风险偏好偏弱",
+        "research_note": "行业联动，等待后续确认"
+      }
+    ],
+    "patternRows": [
+      {
+        "label": "低位首发且相对滞后",
+        "sample_size": 576,
+        "avg_fwd_1d": 0.795819,
+        "avg_fwd_3d": 1.101397,
+        "avg_fwd_5d": 1.855921,
+        "positive_rate_3d": 0.539931,
+        "fold_count": 5,
+        "aligned_folds": 4,
+        "assessment": "跨年正关联"
+      },
+      {
+        "label": "低位首次联动",
+        "sample_size": 2974,
+        "avg_fwd_1d": 0.531936,
+        "avg_fwd_3d": 0.803831,
+        "avg_fwd_5d": 0.99425,
+        "positive_rate_3d": 0.571621,
+        "fold_count": 5,
+        "aligned_folds": 5,
+        "assessment": "跨年正关联"
+      },
+      {
+        "label": "广泛扩散且成交额扩张",
+        "sample_size": 359,
+        "avg_fwd_1d": 1.143166,
+        "avg_fwd_3d": 0.319069,
+        "avg_fwd_5d": 0.35314,
+        "positive_rate_3d": 0.532033,
+        "fold_count": 5,
+        "aligned_folds": 4,
+        "assessment": "跨年正关联"
+      },
+      {
+        "label": "多日延续",
+        "sample_size": 660,
+        "avg_fwd_1d": 0.124911,
+        "avg_fwd_3d": 0.184933,
+        "avg_fwd_5d": 0.061245,
+        "positive_rate_3d": 0.522727,
+        "fold_count": 5,
+        "aligned_folds": 3,
+        "assessment": "跨年混合"
+      },
+      {
+        "label": "短期已扩张",
+        "sample_size": 204,
+        "avg_fwd_1d": -0.24281,
+        "avg_fwd_3d": -2.848551,
+        "avg_fwd_5d": -2.472809,
+        "positive_rate_3d": 0.289216,
+        "fold_count": 5,
+        "aligned_folds": 4,
+        "assessment": "跨年负关联"
+      }
+    ],
+    "positiveAssociations": [
+      {
+        "factor": "相对强弱",
+        "bucket": "相对滞后",
+        "sample_size": 625,
+        "avg_fwd_3d": 1.111556,
+        "positive_rate_3d": 0.5392,
+        "assessment": "跨年正关联"
+      },
+      {
+        "factor": "启动前位置",
+        "bucket": "低位/未充分启动",
+        "sample_size": 4018,
+        "avg_fwd_3d": 0.706478,
+        "positive_rate_3d": 0.565207,
+        "assessment": "跨年正关联"
+      },
+      {
+        "factor": "市场环境",
+        "bucket": "风险偏好偏弱",
+        "sample_size": 2809,
+        "avg_fwd_3d": 0.668693,
+        "positive_rate_3d": 0.553934,
+        "assessment": "跨年正关联"
+      },
+      {
+        "factor": "周期位置",
+        "bucket": "间隔后首发",
+        "sample_size": 2097,
+        "avg_fwd_3d": 0.660233,
+        "positive_rate_3d": 0.54268,
+        "assessment": "跨年正关联"
+      },
+      {
+        "factor": "成交额状态",
+        "bucket": "成交额平稳",
+        "sample_size": 1934,
+        "avg_fwd_3d": 0.603305,
+        "positive_rate_3d": 0.548604,
+        "assessment": "跨年正关联"
+      }
+    ],
+    "riskAssociations": [
+      {
+        "factor": "启动前位置",
+        "bucket": "短期已扩张",
+        "sample_size": 204,
+        "avg_fwd_3d": -2.848551,
+        "positive_rate_3d": 0.289216,
+        "assessment": "跨年负关联"
+      }
+    ],
+    "sourceCoverage": [
+      {
+        "evidence": "板块扩散、周期、位置与成交额",
+        "status": "已回放",
+        "coverage": "2022-01 至本机最新日线",
+        "use": "用于描述关联和跨年稳定性"
+      },
+      {
+        "evidence": "政策与官方新闻",
+        "status": "未做因果检验",
+        "coverage": "缺逐日发布时间戳、主题到行业映射与冻结档案",
+        "use": "不能解释为涨停原因；待接入后再检验",
+        "sourceStatus": "available_event_only"
+      },
+      {
+        "evidence": "盘中交易行为",
+        "status": "仅实时可见",
+        "coverage": "Tushare 实时快照未具备历史回放",
+        "use": "可做当天确认，不能写入历史规律结论",
+        "sourceStatus": "available_live_only"
+      },
+      {
+        "evidence": "搜索、社媒、招聘、卫星等另类因子",
+        "status": "未做因果检验",
+        "coverage": "当前无授权的逐日历史与公司/行业映射",
+        "use": "默认权重为零，不能作为推荐理由"
+      }
+    ],
+    "nextDataRequirement": "接入带发布时间戳、不可回写的政策/新闻档案及主题-行业映射后，才能分别检验政策、新闻和另类因子的增量解释力。",
+    "researchState": "日线关联研究已更新，不构成买入或卖出指令。"
   },
   "publicHoldings": {
     "rows": [

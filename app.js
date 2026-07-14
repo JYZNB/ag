@@ -8,6 +8,7 @@ const VIEWS = {
   watch: { title: "我的观察栏", subtitle: "未买锁定观察价，已买填写真实成交价；两套账本独立记录。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
+  limitup: { title: "涨停行业规律", subtitle: "只展示可回放的行业联动关联与证据边界，不输出交易指令。" },
 };
 const WATCH_ROUTES = {
   "watch-only": {
@@ -373,6 +374,47 @@ function renderOverviewTables() {
   $("candidateRows").innerHTML = rows.map((row) => renderCandidateRow(row, false)).join("") || '<tr><td colspan="15" class="empty">当前没有符合过滤条件的研究观察样本。</td></tr>';
   bindWatchButtons("#tierOneRows");
   bindWatchButtons("#candidateRows");
+}
+
+function researchTone(assessment) {
+  if (assessment === "跨年正关联") return "green";
+  if (assessment === "跨年负关联") return "red";
+  return "blue";
+}
+
+function researchState(assessment) {
+  return `<span class="state ${researchTone(assessment)}">${text(assessment, "待复核")}</span>`;
+}
+
+function renderLimitupResearch(research) {
+  const value = research || {};
+  const sample = value.sample || {};
+  const mapping = value.industryMapping || {};
+  $("limitupAsOf").textContent = value.asOf ? `完整日线截止 ${value.asOf}` : "等待收盘后研究";
+  $("limitupState").textContent = value.researchState || "等待行业联动研究快照。";
+  $("limitupCausalClaim").textContent = value.causalClaim || "当前没有可回放的政策、新闻或另类数据归因。";
+  $("limitupEvents").textContent = Number.isFinite(n(sample.sectorClusterEvents)) ? `${n(sample.sectorClusterEvents).toLocaleString()} 次` : "--";
+  $("limitupDays").textContent = Number.isFinite(n(sample.clusterTradingDays)) ? `覆盖 ${n(sample.clusterTradingDays).toLocaleString()} 个交易日` : "--";
+  $("limitupAvg3d").textContent = rawPct(sample.overallAvgFwd3d);
+  $("limitupPositive3d").textContent = pct(sample.overallPositiveRate3d);
+  $("limitupCoverage").textContent = pct(mapping.coverageRatio);
+  $("limitupCoverageNote").textContent = mapping.mappedCodes ? `${text(mapping.mappingSource)} / ${n(mapping.mappedCodes).toLocaleString()} 只主板映射` : "行业映射等待核验";
+
+  const patterns = Array.isArray(value.patternRows) ? value.patternRows : [];
+  $("limitupPatternRows").innerHTML = patterns.map((row) => `<tr><td><strong>${text(row.label)}</strong></td><td>${text(row.sample_size)}</td><td>${rawPct(row.avg_fwd_1d)}</td><td>${rawPct(row.avg_fwd_3d)}</td><td>${rawPct(row.avg_fwd_5d)}</td><td>${pct(row.positive_rate_3d)}</td><td>${text(row.aligned_folds)}/${text(row.fold_count)}</td><td>${researchState(row.assessment)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">等待收盘后行业联动复盘。</td></tr>';
+
+  const renderAssociationRows = (target, rows) => {
+    $(target).innerHTML = (Array.isArray(rows) ? rows : []).map((row) => `<tr><td>${text(row.factor)}</td><td>${text(row.bucket)}</td><td>${text(row.sample_size)}</td><td>${rawPct(row.avg_fwd_3d)}</td><td>${researchState(row.assessment)}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">暂无达到展示条件的关联。</td></tr>';
+  };
+  renderAssociationRows("limitupPositiveRows", value.positiveAssociations);
+  renderAssociationRows("limitupRiskRows", value.riskAssociations);
+
+  const latestRows = Array.isArray(value.latestSectorRows) ? value.latestSectorRows : [];
+  $("limitupLatestRows").innerHTML = latestRows.map((row) => `<tr><td><strong>${text(row.sector)}</strong></td><td>${text(row.event_type)}</td><td>${text(row.limit_like_count)}</td><td>${pct(row.limit_like_share)}</td><td>${rawPct(row.prior_sector_ret5)}</td><td>${Number.isFinite(n(row.amount_ratio20)) ? `${n(row.amount_ratio20).toFixed(2)}x` : "--"}</td><td>${text(row.cycle_bucket)}</td><td>${text(row.market_bucket)}</td><td class="reason">${text(row.research_note)}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">最新完整日线中没有行业联动样本。</td></tr>';
+
+  const evidenceRows = Array.isArray(value.sourceCoverage) ? value.sourceCoverage : [];
+  $("limitupEvidenceRows").innerHTML = evidenceRows.map((row) => `<tr><td><strong>${text(row.evidence)}</strong></td><td>${text(row.status)}</td><td class="reason">${text(row.coverage)}</td><td class="reason">${text(row.use)}</td></tr>`).join("") || '<tr><td colspan="4" class="empty">证据边界等待登记。</td></tr>';
+  $("limitupNextRequirement").textContent = value.nextDataRequirement || "政策、新闻和另类因子需先具备逐日时间戳与历史档案，才会进入增量检验。";
 }
 
 function addWatch(code, mode = "watch", manualPrice = NaN, quoteMeta = null) {
@@ -787,6 +829,7 @@ function renderSnapshot(data) {
   }
   $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
   renderMethodRows(unified);
+  renderLimitupResearch(data.limitUpSectorResearch);
   renderAllLocal();
 }
 

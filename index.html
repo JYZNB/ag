@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-<link rel="stylesheet" href="./styles.css?v=20260714-live-v22" />
+<link rel="stylesheet" href="./styles.css?v=20260714-limitup-v24" />
 <link rel="stylesheet" href="./dashboard.css?v=20260714-overview-v21" />
   </head>
   <body>
@@ -18,6 +18,7 @@
         <nav class="nav" aria-label="研究台导航">
           <button type="button" data-view="holdings">我的持仓 <small>公开</small></button>
           <button type="button" data-view="overview" class="active">研究总览</button>
+          <button type="button" data-view="limitup">涨停行业规律 <small>研究</small></button>
           <span class="nav-group-label">我的观察栏</span>
           <button type="button" class="nav-subitem watch-only-link" data-view="watch" data-watch-route="watch-only">未买观察 <small><b id="watchOnlyBadge">0</b> 只</small></button>
           <button type="button" class="nav-subitem watch-owned-link" data-view="watch" data-watch-route="watch-owned">已买观察 <small><b id="ownedWatchBadge">0</b> 只</small></button>
@@ -54,6 +55,24 @@
           <section class="panel dense-panel method-ledger" hidden><div class="heading"><div><p class="eyebrow">METHOD EVIDENCE LEDGER</p><h2>方法证据账本</h2></div><span>方法不是独立模型，只是融合模型的可审计输入</span></div><p class="section-note">每条方法先登记原始出处、适用周期与失败条件，再用固定样本消融决定保留、否决或仅观察。网站始终只展示一个融合模型。</p><div class="table-wrap"><table class="dense-table"><thead><tr><th>方法 / 原始来源</th><th>本地代理</th><th>适用周期</th><th>当前结论</th><th>本地证据</th><th>主要失败条件</th></tr></thead><tbody id="methodRows"></tbody></table></div></section>
 
           <section class="grid two overview-secondary" hidden><article class="panel"><div class="heading"><div><p class="eyebrow">核心规则</p><h2>模型只保留四件事</h2></div></div><div class="rule-grid"><div><b>1</b><strong>市场环境</strong><p>市场、板块和成交条件未通过时自动降级。</p></div><div><b>2</b><strong>趋势质量</strong><p>趋势、阶段、轮动和风险共同评分。</p></div><div><b>3</b><strong>双样本</strong><p>前复权与通达信历史数据均需支持。</p></div><div><b>4</b><strong>前验验证</strong><p>历史表现不能替代未来实际验证。</p></div></div></article><article class="panel"><div class="heading"><div><p class="eyebrow">数据边界</p><h2>更新与隐私</h2></div></div><p id="dataNote">--</p><p class="fine">公开版只展示去敏研究快照。持仓、成本、账户与 Token 永不上传 GitHub；真实盘中逐笔数据需要安全后台代理。</p></article></section>
+        </section>
+
+        <section id="limitupView" class="view" hidden>
+          <section class="panel view-panel research-intro">
+            <div class="heading"><div><p class="eyebrow">LIMIT-UP SECTOR PATTERN RESEARCH</p><h2>涨停行业联动规律</h2></div><span id="limitupAsOf">--</span></div>
+            <p id="limitupState" class="section-note">--</p>
+            <div class="research-callout"><strong>使用边界</strong><span id="limitupCausalClaim">--</span></div>
+          </section>
+
+          <section class="metric-grid research-metrics"><article><span>行业联动样本</span><strong id="limitupEvents">--</strong><small id="limitupDays">--</small></article><article><span>平均后 3 日</span><strong id="limitupAvg3d">--</strong><small>等权行业日线，不含成本和滑点</small></article><article><span>后 3 日正收益率</span><strong id="limitupPositive3d">--</strong><small>不是未来胜率承诺</small></article><article><span>行业映射覆盖</span><strong id="limitupCoverage">--</strong><small id="limitupCoverageNote">--</small></article></section>
+
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">PREDECLARED LIFECYCLE COHORTS</p><h2>固定阶段组合复盘</h2></div><span>未按本次收益调参</span></div><p class="section-note">仅比较预先声明的阶段组合。绿色是跨年正关联，红色是跨年负关联，均不构成交易指令。</p><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>阶段组合</th><th>样本</th><th>后 1 日</th><th>后 3 日</th><th>后 5 日</th><th>3 日正收益率</th><th>年度一致</th><th>研究判断</th></tr></thead><tbody id="limitupPatternRows"></tbody></table></div></section>
+
+          <section class="grid two"><section class="panel"><div class="heading"><div><p class="eyebrow">OBSERVED ASSOCIATIONS</p><h2>重复出现的正向关联</h2></div></div><div class="table-wrap"><table class="dense-table sector-table compact-table"><thead><tr><th>维度</th><th>状态</th><th>样本</th><th>后 3 日</th><th>判断</th></tr></thead><tbody id="limitupPositiveRows"></tbody></table></div></section><section class="panel"><div class="heading"><div><p class="eyebrow">RISK FIRST</p><h2>明确的拥挤风险</h2></div></div><div class="table-wrap"><table class="dense-table sector-table compact-table"><thead><tr><th>维度</th><th>状态</th><th>样本</th><th>后 3 日</th><th>判断</th></tr></thead><tbody id="limitupRiskRows"></tbody></table></div></section></section>
+
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">LATEST DAILY INDUSTRY STATUS</p><h2>最新日线行业状态</h2></div><span>仅最后一个完整日线日期</span></div><p class="section-note">这里显示行业联动状态，不是当日可买名单。盘中确认要使用独立、带时间戳的实时数据。</p><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>行业</th><th>状态</th><th>强势股数</th><th>强势占比</th><th>启动前 5 日</th><th>成交额 / 20 日</th><th>周期</th><th>市场环境</th><th>研究说明</th></tr></thead><tbody id="limitupLatestRows"></tbody></table></div></section>
+
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">EVIDENCE BOUNDARY</p><h2>政策、新闻与另类信息的证据边界</h2></div><span>不拿不可回放数据做归因</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>信息</th><th>当前状态</th><th>可用历史</th><th>本模型用途</th></tr></thead><tbody id="limitupEvidenceRows"></tbody></table></div><p id="limitupNextRequirement" class="section-note"></p></section>
         </section>
 
         <section id="watchView" class="view" hidden>
@@ -103,6 +122,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-<script src="./app.js?v=20260714-live-v23"></script>
+<script src="./app.js?v=20260714-limitup-v24"></script>
   </body>
 </html>
