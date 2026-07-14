@@ -7,8 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-<link rel="stylesheet" href="./styles.css?v=20260714-sector-joint-v17" />
-<link rel="stylesheet" href="./dashboard.css?v=20260714-sector-joint-v17" />
+<link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers-v18" />
+<link rel="stylesheet" href="./dashboard.css?v=20260714-watch-ledgers-v18" />
   </head>
   <body>
     <div class="app-shell">
@@ -18,7 +18,9 @@
         <nav class="nav" aria-label="研究台导航">
           <button type="button" data-view="holdings">我的持仓 <small>公开</small></button>
           <button type="button" data-view="overview" class="active">研究总览</button>
-          <button type="button" data-view="watch">我的观察栏 <small>未买 <b id="watchOnlyBadge">0</b> · 已买 <b id="ownedWatchBadge">0</b></small></button>
+          <span class="nav-group-label">我的观察栏</span>
+          <button type="button" class="nav-subitem watch-only-link" data-view="watch" data-watch-route="watch-only">未买观察 <small><b id="watchOnlyBadge">0</b> 只</small></button>
+          <button type="button" class="nav-subitem watch-owned-link" data-view="watch" data-watch-route="watch-owned">已买观察 <small><b id="ownedWatchBadge">0</b> 只</small></button>
           <button type="button" data-view="history">历史候选库</button>
         </nav>
         <section class="sidebar-note">
@@ -101,6 +103,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-<script src="./app.js?v=20260714-sector-joint-v17"></script>
+<script src="./app.js?v=20260714-watch-ledgers-v18"></script>
   </body>
 </html>

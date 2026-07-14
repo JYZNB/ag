@@ -9,6 +9,10 @@ const VIEWS = {
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
+const WATCH_ROUTES = {
+  "watch-only": { view: "watch", target: "watchOnlyLedger" },
+  "watch-owned": { view: "watch", target: "ownedWatchLedger" },
+};
 
 let snapshot = null;
 let historyIndex = [];
@@ -757,17 +761,25 @@ function renderAllLocal() {
   if (historyData) renderHistoryRows(historyData);
 }
 
-function applyView(view) {
-  const active = VIEWS[view] ? view : "overview";
+function applyView(route) {
+  const watchRoute = WATCH_ROUTES[route] || (route === "watch" ? WATCH_ROUTES["watch-only"] : null);
+  const active = watchRoute?.view || (VIEWS[route] ? route : "overview");
+  const activeRoute = watchRoute ? (WATCH_ROUTES[route] ? route : "watch-only") : active;
   document.querySelectorAll(".view").forEach((section) => { section.hidden = section.id !== `${active}View`; });
-  document.querySelectorAll(".nav [data-view]").forEach((button) => button.classList.toggle("active", button.dataset.view === active));
+  document.querySelectorAll(".nav [data-view]").forEach((button) => {
+    const buttonRoute = button.dataset.watchRoute || button.dataset.view;
+    button.classList.toggle("active", buttonRoute === activeRoute);
+  });
   $("viewTitle").textContent = VIEWS[active].title;
   $("viewSubtitle").textContent = VIEWS[active].subtitle;
   if (active === "history") loadHistoryIndex();
+  if (watchRoute?.target) {
+    requestAnimationFrame(() => $(watchRoute.target)?.scrollIntoView({ block: "start" }));
+  }
 }
 
-function setView(view) {
-  location.hash = view;
+function setView(view, watchRoute = "") {
+  location.hash = watchRoute || view;
 }
 
 async function load() {
@@ -815,7 +827,9 @@ $("purchaseForm").onsubmit = (event) => {
 $("historySelect").onchange = (event) => selectHistory(event.target.value);
 $("historySort").onchange = (event) => { historySort = event.target.value; if (historyData) renderHistoryRows(historyData); };
 document.querySelectorAll("[data-history-sort]").forEach((button) => { button.onclick = () => { historySort = button.dataset.historySort; $("historySort").value = historySort; if (historyData) renderHistoryRows(historyData); }; });
-document.querySelectorAll(".nav [data-view]").forEach((button) => { button.onclick = () => setView(button.dataset.view); });
+document.querySelectorAll(".nav [data-view]").forEach((button) => {
+  button.onclick = () => setView(button.dataset.view, button.dataset.watchRoute);
+});
 window.addEventListener("hashchange", () => applyView(location.hash.replace("#", "")));
 if (!location.hash) location.hash = "overview";
 applyView(location.hash.replace("#", ""));

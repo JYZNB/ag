@@ -86,8 +86,10 @@ button, input, select { font: inherit; }
 .nav small { color: #9fc7c1; font-size: 11px; }
 .nav-group-label { display: block; margin: 10px 10px 4px; color: #8eb8b6; font-size: 10px; font-weight: 800; text-transform: uppercase; }
 .nav button.nav-subitem { min-height: 34px; padding-left: 20px; border-left: 3px solid #385b65; }
-.nav button.nav-subitem[data-view="watch"] { color: #c8dcf3; }
-.nav button.nav-subitem[data-view="ownedWatch"] { color: #c9e8db; }
+.nav button.watch-only-link { color: #c8dcf3; }
+.nav button.watch-owned-link { color: #c9e8db; }
+.nav button.watch-only-link.active { border-color: #5d92bf; background: #203f56; }
+.nav button.watch-owned-link.active { border-color: #4f9a7c; background: #1f4a3e; }
 .nav button.nav-subitem.active { border-left-color: #fff; }
 
 .sidebar-note { margin-top: 22px; padding: 14px 10px; border-top: 1px solid #39525d; }
