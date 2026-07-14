@@ -7,8 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-<link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers-v18" />
-<link rel="stylesheet" href="./dashboard.css?v=20260714-watch-ledgers-v18" />
+<link rel="stylesheet" href="./styles.css?v=20260714-watch-ledgers-v20" />
+<link rel="stylesheet" href="./dashboard.css?v=20260714-watch-ledgers-v20" />
   </head>
   <body>
     <div class="app-shell">
@@ -62,14 +62,14 @@
             <p class="section-note watch-ledger-intro">观察栏分为两套互不混用的账本：未买时锁定加入观察那一刻的核实价格；已经买入时填写真实成交价。两张表的前两列固定是起始价格和现价，后续刷新只更新现价。</p>
           </section>
 
-          <section class="panel view-panel watch-ledger-panel">
+          <section id="watchOnlyPanel" class="panel view-panel watch-ledger-panel" data-watch-panel="watch-only">
             <section id="watchOnlyLedger" class="watch-group watch-group-observe" data-testid="watch-not-owned">
               <div class="watch-group-heading"><div><p class="eyebrow">NOT OWNED</p><h3>未买观察</h3><p>点击加入时先核实公开行情；观察价和核价时间写入后固定，不会被后续现价覆盖。</p></div><div class="watch-group-tools"><strong id="watchOnlyCount">0 只</strong><button type="button" id="clearWatchOnly" class="text-button">清空未买观察</button></div></div>
               <div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-not-owned-table"><thead><tr><th>观察价（加入时核实）</th><th>现价</th><th>股票 / 板块</th><th>加入观察时间</th><th>加入前20日</th><th>观察后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchOnlyRows"></tbody></table></div>
             </section>
           </section>
 
-          <section class="panel view-panel watch-ledger-panel">
+          <section id="ownedWatchPanel" class="panel view-panel watch-ledger-panel" data-watch-panel="watch-owned" hidden>
             <section id="ownedWatchLedger" class="watch-group watch-group-owned" data-testid="watch-owned">
               <div class="watch-group-heading"><div><p class="eyebrow">PURCHASED</p><h3>已买观察</h3><p>加入时填写真实成交价；第一列不使用未买观察价，也不自动拿行情价冒充买入价。</p></div><div class="watch-group-tools"><strong id="ownedWatchCount">0 只</strong><button type="button" id="clearOwnedWatch" class="text-button">清空已买观察</button></div></div>
               <div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-owned-table"><thead><tr><th>买入价（实际成交）</th><th>现价</th><th>股票 / 板块</th><th>买入记录时间</th><th>买入前20日</th><th>买入后</th><th>第3日</th><th>第5日</th><th>第20日</th><th>第60日</th><th>状态</th><th>操作</th></tr></thead><tbody id="ownedWatchRows"></tbody></table></div>
@@ -103,6 +103,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-<script src="./app.js?v=20260714-watch-ledgers-v18"></script>
+<script src="./app.js?v=20260714-watch-ledgers-v20"></script>
   </body>
 </html>

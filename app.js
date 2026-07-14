@@ -10,8 +10,20 @@ const VIEWS = {
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
 };
 const WATCH_ROUTES = {
-  "watch-only": { view: "watch", target: "watchOnlyLedger" },
-  "watch-owned": { view: "watch", target: "ownedWatchLedger" },
+  "watch-only": {
+    view: "watch",
+    panel: "watchOnlyPanel",
+    target: "watchOnlyLedger",
+    title: "未买观察",
+    subtitle: "加入时核实并锁定观察价；现价只用于后续对比，不覆盖观察价。",
+  },
+  "watch-owned": {
+    view: "watch",
+    panel: "ownedWatchPanel",
+    target: "ownedWatchLedger",
+    title: "已买观察",
+    subtitle: "记录你填写的真实买入价；现价只用于计算买入后的表现。",
+  },
 };
 
 let snapshot = null;
@@ -772,12 +784,15 @@ function applyView(route) {
   const active = watchRoute?.view || (VIEWS[route] ? route : "overview");
   const activeRoute = watchRoute ? (WATCH_ROUTES[route] ? route : "watch-only") : active;
   document.querySelectorAll(".view").forEach((section) => { section.hidden = section.id !== `${active}View`; });
+  document.querySelectorAll("#watchView [data-watch-panel]").forEach((panel) => {
+    panel.hidden = !watchRoute || panel.id !== watchRoute.panel;
+  });
   document.querySelectorAll(".nav [data-view]").forEach((button) => {
     const buttonRoute = button.dataset.watchRoute || button.dataset.view;
     button.classList.toggle("active", buttonRoute === activeRoute);
   });
-  $("viewTitle").textContent = VIEWS[active].title;
-  $("viewSubtitle").textContent = VIEWS[active].subtitle;
+  $("viewTitle").textContent = watchRoute?.title || VIEWS[active].title;
+  $("viewSubtitle").textContent = watchRoute?.subtitle || VIEWS[active].subtitle;
   if (active === "history") loadHistoryIndex();
   if (watchRoute?.target) {
     requestAnimationFrame(() => $(watchRoute.target)?.scrollIntoView({ block: "start" }));
