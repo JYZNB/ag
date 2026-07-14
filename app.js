@@ -652,6 +652,11 @@ function methodEvidence(method) {
   }
   if (Number.isFinite(n(joint.primary_fold_wins))) items.push(`联合确认改善阶段 ${n(joint.primary_fold_wins)}/3`);
   if (Number.isFinite(n(joint.max_drawdown_delta_20d)) && n(joint.max_drawdown_delta_20d) < 0) items.push(`20日回撤恶化 ${pct(Math.abs(n(joint.max_drawdown_delta_20d)))}`);
+  if (Number.isFinite(n(result.fixed_penalty))) items.push(`固定退潮惩罚 ${n(result.fixed_penalty).toFixed(1)}分`);
+  if (Number.isFinite(n(result.primary_active_delta_20d))) items.push(`20日主动差 ${pct(result.primary_active_delta_20d)}`);
+  if (Number.isFinite(n(result.primary_fold_wins)) && Number.isFinite(n(result.required_primary_fold_wins))) items.push(`固定阶段 ${n(result.primary_fold_wins)}/3，门槛 ${n(result.required_primary_fold_wins)}/3`);
+  if (Number.isFinite(n(result.primary_stop_rate_delta))) items.push(`20日止损率差 ${pct(result.primary_stop_rate_delta)}`);
+  if (result.promotion_passed === false && result.decision === "rejected_keep_current_guard") items.push("裁决 固定惩罚未晋级");
   if (result.production_model_changed === false) items.push("生产权重未变");
   if (result.long_horizon_warning === true) items.push("60日不外推");
   if (Number.isFinite(n(result.active_delta_45d)) && Number.isFinite(n(result.active_delta_60d))) items.push(`主动差 45日 ${pct(result.active_delta_45d)} / 60日 ${pct(result.active_delta_60d)}`);
@@ -661,6 +666,7 @@ function methodEvidence(method) {
   if (result.decision === "inconclusive_keep_frozen_pending_more_forward_evidence") items.push("裁决 证据冲突，冻结等待前验");
   if (result.decision === "freeze_current_mapping_after_subfactor_recheck") items.push("裁决 子项未晋级，维持综合映射");
   if (result.decision === "freeze_current_mapping_after_joint_confirmation_recheck") items.push("裁决 联合确认未晋级，维持综合映射");
+  if (result.decision === "rejected_keep_current_guard") items.push("维持当前退潮防线");
   return items.join(" / ") || text(result.decision, "等待本地结论");
 }
 

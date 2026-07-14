@@ -12679,7 +12679,7 @@
     "appendedRows": 0,
     "guardrail": "只校准重叠尾部价格结构，不把原始日线直接当作长周期回测价格。"
   },
-  "phase": "research",
+  "phase": "方法审计更新 08:30",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -13501,6 +13501,84 @@
         }
       },
       {
+        "id": "crowded_unwind_risk_guard",
+        "name": "拥挤退潮风险防线审计",
+        "source": "NBER / Review of Financial Studies",
+        "url": "https://www.nber.org/papers/w20439",
+        "status": "固定惩罚未晋级，维持当前防线",
+        "horizonDays": [
+          20,
+          45,
+          60
+        ],
+        "claim": "海外研究提示动量崩溃和流动性撤出具有状态依赖性；本地只审计统一模型已有的高贝塔、板块退潮、结构恶化、量能衰减和过热代理，不把它解释为真实机构拥挤持仓，也不直接外推海外结论。",
+        "localProxy": [
+          "beta60_risk",
+          "sector_hot_fade",
+          "trend_drawdown_ma20_structure_risk",
+          "volume_ratio_5_20_dry_up",
+          "sector_overheat20"
+        ],
+        "failureModes": [
+          "风险代理不是真实机构持仓拥挤度",
+          "连续扣分可能错过高波动但仍有基本面支撑的龙头",
+          "45日结果显示惩罚可能过早削弱有效趋势",
+          "当前历史较短且股票池可能存在幸存者偏差",
+          "海外动量崩溃和流动性研究不能直接证明A股有效"
+        ],
+        "validationGate": "只允许固定4分连续惩罚，不搜索阈值、罚分、否决模式、公式或其他周期。20日须改善主动收益、至少赢2/3固定时间折、回撤恶化不超过2个百分点、止损率不得提高；20/45/60日至少两个周期有利且主稳健门槛通过。历史通过也只能进入前验影子。",
+        "modelUse": "rejected_after_fixed_recheck",
+        "localResult": {
+          "sample_end": "2026-07-10",
+          "audit_fingerprint": "8ee44389b44ee72085ba858b8f6c588effb2b30324499f19a92fe57da3e72bc7",
+          "fixed_penalty": 4.0,
+          "promotion_passed": false,
+          "production_model_changed": false,
+          "primary_active_delta_20d": 0.02200608275192817,
+          "primary_fold_wins": 1,
+          "required_primary_fold_wins": 2,
+          "positive_horizons": 2,
+          "primary_max_drawdown_delta": 0.008416211309575483,
+          "primary_stop_rate_delta": -0.02184376156978901,
+          "active_delta_45d": -0.15131418612025782,
+          "active_delta_60d": 0.05368789088329451,
+          "horizon_comparison": [
+            {
+              "days": 20,
+              "baseline_total_return": 2.07759738497681,
+              "penalty_total_return": 2.10023133788591,
+              "active_return_delta": 0.02200608275192817,
+              "baseline_max_drawdown": -0.18856959804109907,
+              "penalty_max_drawdown": -0.1801533867315236,
+              "baseline_stop_rate": 0.40540540540540543,
+              "penalty_stop_rate": 0.3835616438356164
+            },
+            {
+              "days": 45,
+              "baseline_total_return": 0.5556573538192187,
+              "penalty_total_return": 0.39403061576007925,
+              "active_return_delta": -0.15131418612025782,
+              "baseline_max_drawdown": -0.1465324782643177,
+              "penalty_max_drawdown": -0.19886793710363326,
+              "baseline_stop_rate": 0.4857142857142857,
+              "penalty_stop_rate": 0.5
+            },
+            {
+              "days": 60,
+              "baseline_total_return": 0.40274357959318974,
+              "penalty_total_return": 0.4690534870921015,
+              "active_return_delta": 0.05368789088329451,
+              "baseline_max_drawdown": -0.1352016020782415,
+              "penalty_max_drawdown": -0.13121212383784908,
+              "baseline_stop_rate": 0.5714285714285714,
+              "penalty_stop_rate": 0.5714285714285714
+            }
+          ],
+          "decision": "rejected_keep_current_guard",
+          "decision_note": "20日主动收益、回撤和止损率局部改善，60日也有利；但45日主动收益下降15.13个百分点且回撤恶化5.23个百分点。20日三个固定时间折只赢1个，未达到至少2个的预注册门槛，因此拒绝启用固定惩罚，不搜索其他罚分或阈值，生产模型保持不变。"
+        }
+      },
+      {
         "id": "quality_minus_junk",
         "name": "基本面质量",
         "source": "AQR",
@@ -13952,7 +14030,7 @@
         "price": 81.83,
         "pnlValue": -574.0,
         "pnlPct": -0.033884297520661154,
-        "reviewPhase": "research",
+        "reviewPhase": "方法审计更新 08:30",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13970,7 +14048,7 @@
         "price": 37.66,
         "pnlValue": -1724.0500000000006,
         "pnlPct": -0.31403174834473285,
-        "reviewPhase": "research",
+        "reviewPhase": "方法审计更新 08:30",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -13988,7 +14066,7 @@
         "price": 2.76,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "research",
+        "reviewPhase": "方法审计更新 08:30",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
