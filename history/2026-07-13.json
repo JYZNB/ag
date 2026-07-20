@@ -12869,8 +12869,8 @@
   },
   "intradayQuote": {
     "version": "intraday_quote_v1",
-    "capturedAt": "2026-07-17T11:31:35+08:00",
-    "phase": "午间 11:30",
+    "capturedAt": "2026-07-17T13:02:27+08:00",
+    "phase": "午后开盘 13:00",
     "source": "tushare_rt",
     "candidateCodeCount": 30,
     "requestedCodeCount": 32,
@@ -12879,14 +12879,14 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "午间 11:30",
-  "publicSnapshotBuiltAt": "2026-07-17T11:31:36+08:00",
+  "phase": "盘前预处理 08:20",
+  "publicSnapshotBuiltAt": "2026-07-20T08:28:29+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-17T08:28:33+08:00",
+    "generatedAt": "2026-07-20T08:28:28+08:00",
     "horizonDays": [
       15,
       45
@@ -12894,12 +12894,12 @@
     "selectedVariant": "gradual_information_20d",
     "selectedMethod": "渐进信息动量 20 日",
     "recommendedHoldingDays": 20,
-    "stabilityScore": 1.5142684599079301,
+    "stabilityScore": 1.5142746542929075,
     "robustnessGatePassed": true,
     "marketOk": false,
     "summary": "当前冻结影子配置：渐进信息动量 20 日，研究持有上限 20 日。固定阶段与滚动风险门槛已通过，但仍需至少 20 个独立前向信号后才复核生产晋级。",
     "coverageAudit": {
-      "latest_raw_date": "2026-07-16",
+      "latest_raw_date": "2026-07-17",
       "latest_raw_coverage": 120,
       "latest_eligible_date": "2026-07-10",
       "latest_eligible_coverage": 2818,
@@ -12929,8 +12929,8 @@
         "label": "holdout_2026_ytd",
         "rows": 81,
         "modelReturn": 0.8162253818164571,
-        "equalWeightReturn": -0.04929410410387047,
-        "activeReturn": 0.910396674362153,
+        "equalWeightReturn": -0.04930197779680723,
+        "activeReturn": 0.9104124962913567,
         "maxDrawdown": -0.08695584630564279
       }
     },
@@ -14013,7 +14013,7 @@
         "name": "雅克科技",
         "sector": "半导体",
         "close": 207.17,
-        "research_score": 77.40301947953722,
+        "research_score": 77.4028917293598,
         "research_tier": 3,
         "model_status": "REJECT",
         "intraday_action": "",
@@ -14025,7 +14025,7 @@
         "ret20": 0.536755433573177,
         "ret60": 1.4301466275659824,
         "ma20_gap": 0.14102073490695255,
-        "trend_template_score": 77.40301947953722,
+        "trend_template_score": 77.4028917293598,
         "sector_rotation_score": 95.01424501424502,
         "risk_control_score": 0.0,
         "research_horizon": "15-45 个交易日"
@@ -14035,7 +14035,7 @@
         "name": "先导基电",
         "sector": "半导体",
         "close": 42.7,
-        "research_score": 77.3563985988644,
+        "research_score": 77.35627084868698,
         "research_tier": 3,
         "model_status": "REJECT",
         "intraday_action": "",
@@ -14047,7 +14047,7 @@
         "ret20": 0.47699757869249404,
         "ret60": 0.9569202566452797,
         "ma20_gap": 0.10159434259198519,
-        "trend_template_score": 77.3563985988644,
+        "trend_template_score": 77.35627084868698,
         "sector_rotation_score": 95.01424501424502,
         "risk_control_score": 0.0,
         "research_horizon": "15-45 个交易日"
