@@ -12869,8 +12869,8 @@
   },
   "intradayQuote": {
     "version": "intraday_quote_v1",
-    "capturedAt": "2026-07-20T11:32:05+08:00",
-    "phase": "午间 11:30",
+    "capturedAt": "2026-07-20T13:03:06+08:00",
+    "phase": "午后开盘 13:00",
     "source": "tushare_rt",
     "candidateCodeCount": 30,
     "requestedCodeCount": 32,
@@ -12879,8 +12879,8 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "午间 11:30",
-  "publicSnapshotBuiltAt": "2026-07-20T11:32:06+08:00",
+  "phase": "午后开盘 13:00",
+  "publicSnapshotBuiltAt": "2026-07-20T13:03:07+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
