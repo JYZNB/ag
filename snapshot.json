@@ -13520,8 +13520,8 @@
       }
     }
   },
-  "phase": "收盘后 18:30",
-  "publicSnapshotBuiltAt": "2026-07-20T18:50:18+08:00",
+  "phase": "盘前预处理 08:20",
+  "publicSnapshotBuiltAt": "2026-07-21T08:21:53+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
@@ -15249,7 +15249,7 @@
         "price": 61.92,
         "pnlValue": -4556.0,
         "pnlPct": -0.2689492325855962,
-        "reviewPhase": "收盘后 18:30",
+        "reviewPhase": "盘前预处理 08:20",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -15267,7 +15267,7 @@
         "price": 33.77,
         "pnlValue": -2113.0499999999997,
         "pnlPct": -0.3848872050345625,
-        "reviewPhase": "收盘后 18:30",
+        "reviewPhase": "盘前预处理 08:20",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -15285,7 +15285,7 @@
         "price": 3.01,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "收盘后 18:30",
+        "reviewPhase": "盘前预处理 08:20",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
