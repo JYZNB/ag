@@ -13520,14 +13520,14 @@
       }
     }
   },
-  "phase": "午后开盘 13:00",
-  "publicSnapshotBuiltAt": "2026-07-22T13:02:46+08:00",
+  "phase": "盘前预处理 08:20",
+  "publicSnapshotBuiltAt": "2026-07-23T08:28:24+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-21T18:54:37+08:00",
+    "generatedAt": "2026-07-23T08:28:23+08:00",
     "horizonDays": [
       15,
       45
@@ -13535,12 +13535,12 @@
     "selectedVariant": "gradual_information_20d",
     "selectedMethod": "渐进信息动量 20 日",
     "recommendedHoldingDays": 20,
-    "stabilityScore": 1.5144305270635054,
+    "stabilityScore": 1.5144171315864166,
     "robustnessGatePassed": true,
     "marketOk": false,
     "summary": "当前冻结影子配置：渐进信息动量 20 日，研究持有上限 20 日。固定阶段与滚动风险门槛已通过，但仍需至少 20 个独立前向信号后才复核生产晋级。",
     "coverageAudit": {
-      "latest_raw_date": "2026-07-21",
+      "latest_raw_date": "2026-07-22",
       "latest_raw_coverage": 120,
       "latest_eligible_date": "2026-07-10",
       "latest_eligible_coverage": 2818,
@@ -13570,8 +13570,8 @@
         "label": "holdout_2026_ytd",
         "rows": 81,
         "modelReturn": 0.8162253818164571,
-        "equalWeightReturn": -0.04950006500907522,
-        "activeReturn": 0.9108106323371796,
+        "equalWeightReturn": -0.04948304492705047,
+        "activeReturn": 0.9107764171098525,
         "maxDrawdown": -0.08695584630564279
       }
     },
