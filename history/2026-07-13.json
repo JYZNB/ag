@@ -13520,8 +13520,8 @@
       }
     }
   },
-  "phase": "盘前预处理 08:20",
-  "publicSnapshotBuiltAt": "2026-07-23T08:28:24+08:00",
+  "phase": "盘前最终发布 08:55",
+  "publicSnapshotBuiltAt": "2026-07-23T08:56:23+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
