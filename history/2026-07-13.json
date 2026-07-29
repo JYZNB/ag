@@ -12879,14 +12879,14 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "午后开盘 13:00",
-  "publicSnapshotBuiltAt": "2026-07-28T13:02:01+08:00",
+  "phase": "盘前预处理 08:20",
+  "publicSnapshotBuiltAt": "2026-07-29T08:27:34+08:00",
   "unifiedSwingModel": {
     "modelName": "泰山融合模型",
     "researchState": "影子验证",
     "productionReady": false,
     "latestDate": "2026-07-10",
-    "generatedAt": "2026-07-28T08:28:30+08:00",
+    "generatedAt": "2026-07-29T08:27:33+08:00",
     "horizonDays": [
       15,
       45
@@ -12894,12 +12894,12 @@
     "selectedVariant": "gradual_information_20d",
     "selectedMethod": "渐进信息动量 20 日",
     "recommendedHoldingDays": 20,
-    "stabilityScore": 1.5145536117046554,
+    "stabilityScore": 1.5145473848903135,
     "robustnessGatePassed": true,
     "marketOk": false,
     "summary": "当前冻结影子配置：渐进信息动量 20 日，研究持有上限 20 日。固定阶段与滚动风险门槛已通过，但仍需至少 20 个独立前向信号后才复核生产晋级。",
     "coverageAudit": {
-      "latest_raw_date": "2026-07-27",
+      "latest_raw_date": "2026-07-28",
       "latest_raw_coverage": 120,
       "latest_eligible_date": "2026-07-10",
       "latest_eligible_coverage": 2818,
@@ -12929,8 +12929,8 @@
         "label": "holdout_2026_ytd",
         "rows": 81,
         "modelReturn": 0.8162253818164571,
-        "equalWeightReturn": -0.04965642588730612,
-        "activeReturn": 0.9111250197195366,
+        "equalWeightReturn": -0.04964851687375549,
+        "activeReturn": 0.9111091149580393,
         "maxDrawdown": -0.08695584630564279
       }
     },
