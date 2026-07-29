@@ -1,0 +1,1078 @@
+{
+  "version": "daily-sector-strength-v1",
+  "capturedAt": "2026-07-30T00:56:46+08:00",
+  "asOf": "2026-07-29",
+  "quoteTradeTime": "2026-07-29 17:00:27",
+  "quoteSource": "Tushare RT",
+  "quoteCount": 3054,
+  "state": "已生成当日强势板块档案",
+  "market": {
+    "mainboardQuoteCount": 3054,
+    "upRatio": 0.8258,
+    "medianPct": 1.6972,
+    "strongCount": 549,
+    "limitLikeCount": 74
+  },
+  "sectors": [
+    {
+      "sector": "底盘与发动机系统",
+      "stockCount": 53,
+      "upCount": 47,
+      "upRatio": 0.8868,
+      "strongCount": 15,
+      "limitLikeCount": 1,
+      "medianPct": 2.2808,
+      "averagePct": 1.96,
+      "amount": 14167670186.37,
+      "leaders": [
+        {
+          "code": "603178",
+          "name": "圣龙股份",
+          "price": 16.63,
+          "pct": 9.9868,
+          "tradeTime": "2026-07-29 16:29:39"
+        },
+        {
+          "code": "603037",
+          "name": "凯众股份",
+          "price": 9.81,
+          "pct": 5.8252,
+          "tradeTime": "2026-07-29 16:29:54"
+        },
+        {
+          "code": "002284",
+          "name": "亚太股份",
+          "price": 9.51,
+          "pct": 5.3156,
+          "tradeTime": "2026-07-29 17:00:15"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 1
+    },
+    {
+      "sector": "住宅开发",
+      "stockCount": 37,
+      "upCount": 32,
+      "upRatio": 0.8649,
+      "strongCount": 13,
+      "limitLikeCount": 2,
+      "medianPct": 2.0356,
+      "averagePct": 2.1834,
+      "amount": 10012169048.2,
+      "leaders": [
+        {
+          "code": "000668",
+          "name": "荣丰控股",
+          "price": 20.3,
+          "pct": 10.0271,
+          "tradeTime": "2026-07-29 17:00:03"
+        },
+        {
+          "code": "000736",
+          "name": "中交发展",
+          "price": 4.4,
+          "pct": 10.0,
+          "tradeTime": "2026-07-29 16:59:42"
+        },
+        {
+          "code": "600638",
+          "name": "新黄浦  ",
+          "price": 4.88,
+          "pct": 6.7834,
+          "tradeTime": "2026-07-29 16:29:36"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 2
+    },
+    {
+      "sector": "乳制品",
+      "stockCount": 12,
+      "upCount": 12,
+      "upRatio": 1.0,
+      "strongCount": 10,
+      "limitLikeCount": 5,
+      "medianPct": 5.1729,
+      "averagePct": 6.481,
+      "amount": 4659983587.65,
+      "leaders": [
+        {
+          "code": "605388",
+          "name": "均瑶健康",
+          "price": 5.56,
+          "pct": 10.099,
+          "tradeTime": "2026-07-29 16:29:35"
+        },
+        {
+          "code": "600429",
+          "name": "三元股份",
+          "price": 4.69,
+          "pct": 10.0939,
+          "tradeTime": "2026-07-29 16:29:49"
+        },
+        {
+          "code": "605337",
+          "name": "李子园  ",
+          "price": 9.75,
+          "pct": 10.0451,
+          "tradeTime": "2026-07-29 16:29:36"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 3
+    },
+    {
+      "sector": "线缆部件及其他",
+      "stockCount": 29,
+      "upCount": 26,
+      "upRatio": 0.8966,
+      "strongCount": 10,
+      "limitLikeCount": 2,
+      "medianPct": 2.2183,
+      "averagePct": 2.4282,
+      "amount": 12737239083.89,
+      "leaders": [
+        {
+          "code": "002882",
+          "name": "金龙羽",
+          "price": 19.65,
+          "pct": 10.0224,
+          "tradeTime": "2026-07-29 16:59:45"
+        },
+        {
+          "code": "002498",
+          "name": "汉缆股份",
+          "price": 7.19,
+          "pct": 9.9388,
+          "tradeTime": "2026-07-29 17:00:06"
+        },
+        {
+          "code": "002606",
+          "name": "大连电瓷",
+          "price": 14.66,
+          "pct": 6.155,
+          "tradeTime": "2026-07-29 16:59:42"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 4
+    },
+    {
+      "sector": "消费电子组件",
+      "stockCount": 36,
+      "upCount": 23,
+      "upRatio": 0.6389,
+      "strongCount": 10,
+      "limitLikeCount": 1,
+      "medianPct": 1.1274,
+      "averagePct": 0.6741,
+      "amount": 41594225890.18,
+      "leaders": [
+        {
+          "code": "002045",
+          "name": "国光电器",
+          "price": 8.48,
+          "pct": 9.987,
+          "tradeTime": "2026-07-29 17:00:06"
+        },
+        {
+          "code": "002681",
+          "name": "奋达科技",
+          "price": 4.38,
+          "pct": 5.036,
+          "tradeTime": "2026-07-29 16:59:54"
+        },
+        {
+          "code": "002855",
+          "name": "捷荣技术",
+          "price": 9.54,
+          "pct": 3.9216,
+          "tradeTime": "2026-07-29 16:59:39"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 5
+    },
+    {
+      "sector": "游戏",
+      "stockCount": 10,
+      "upCount": 10,
+      "upRatio": 1.0,
+      "strongCount": 8,
+      "limitLikeCount": 3,
+      "medianPct": 4.7745,
+      "averagePct": 5.8831,
+      "amount": 11358607985.56,
+      "leaders": [
+        {
+          "code": "603258",
+          "name": "电魂网络",
+          "price": 12.62,
+          "pct": 10.0262,
+          "tradeTime": "2026-07-29 16:29:45"
+        },
+        {
+          "code": "002517",
+          "name": "恺英网络",
+          "price": 16.69,
+          "pct": 10.0198,
+          "tradeTime": "2026-07-29 17:00:21"
+        },
+        {
+          "code": "002558",
+          "name": "巨人网络",
+          "price": 26.98,
+          "pct": 9.9878,
+          "tradeTime": "2026-07-29 17:00:15"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 6
+    },
+    {
+      "sector": "民爆制品",
+      "stockCount": 11,
+      "upCount": 11,
+      "upRatio": 1.0,
+      "strongCount": 8,
+      "limitLikeCount": 2,
+      "medianPct": 3.4233,
+      "averagePct": 4.4776,
+      "amount": 1388267431.39,
+      "leaders": [
+        {
+          "code": "002827",
+          "name": "高争民爆",
+          "price": 28.59,
+          "pct": 10.0038,
+          "tradeTime": "2026-07-29 16:59:48"
+        },
+        {
+          "code": "002037",
+          "name": "保利联合",
+          "price": 6.72,
+          "pct": 9.9836,
+          "tradeTime": "2026-07-29 16:59:33"
+        },
+        {
+          "code": "002683",
+          "name": "广东宏大",
+          "price": 27.84,
+          "pct": 4.7798,
+          "tradeTime": "2026-07-29 17:00:21"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 7
+    },
+    {
+      "sector": "证券",
+      "stockCount": 49,
+      "upCount": 48,
+      "upRatio": 0.9796,
+      "strongCount": 8,
+      "limitLikeCount": 1,
+      "medianPct": 1.989,
+      "averagePct": 2.3009,
+      "amount": 27176624523.65,
+      "leaders": [
+        {
+          "code": "002945",
+          "name": "华林证券",
+          "price": 14.37,
+          "pct": 10.0306,
+          "tradeTime": "2026-07-29 16:59:42"
+        },
+        {
+          "code": "601696",
+          "name": "中银证券",
+          "price": 11.7,
+          "pct": 4.7449,
+          "tradeTime": "2026-07-29 16:29:52"
+        },
+        {
+          "code": "600909",
+          "name": "华安证券",
+          "price": 7.72,
+          "pct": 4.0431,
+          "tradeTime": "2026-07-29 16:29:34"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 8
+    },
+    {
+      "sector": "炼焦煤",
+      "stockCount": 10,
+      "upCount": 10,
+      "upRatio": 1.0,
+      "strongCount": 7,
+      "limitLikeCount": 0,
+      "medianPct": 3.5883,
+      "averagePct": 3.9151,
+      "amount": 3022814954.23,
+      "leaders": [
+        {
+          "code": "601666",
+          "name": "平煤股份",
+          "price": 8.14,
+          "pct": 6.1278,
+          "tradeTime": "2026-07-29 16:29:33"
+        },
+        {
+          "code": "600985",
+          "name": "淮北矿业",
+          "price": 15.34,
+          "pct": 5.5747,
+          "tradeTime": "2026-07-29 16:30:00"
+        },
+        {
+          "code": "600123",
+          "name": "兰花科创",
+          "price": 6.86,
+          "pct": 5.3763,
+          "tradeTime": "2026-07-29 16:29:56"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 9
+    },
+    {
+      "sector": "百货",
+      "stockCount": 18,
+      "upCount": 17,
+      "upRatio": 0.9444,
+      "strongCount": 7,
+      "limitLikeCount": 2,
+      "medianPct": 2.8286,
+      "averagePct": 3.4546,
+      "amount": 3067916479.15,
+      "leaders": [
+        {
+          "code": "600693",
+          "name": "东百集团",
+          "price": 9.47,
+          "pct": 9.9884,
+          "tradeTime": "2026-07-29 16:29:57"
+        },
+        {
+          "code": "601086",
+          "name": "国芳集团",
+          "price": 7.73,
+          "pct": 9.9573,
+          "tradeTime": "2026-07-29 16:29:58"
+        },
+        {
+          "code": "002277",
+          "name": "友阿股份",
+          "price": 5.74,
+          "pct": 7.8947,
+          "tradeTime": "2026-07-29 17:00:09"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 10
+    },
+    {
+      "sector": "工程机械整机",
+      "stockCount": 13,
+      "upCount": 12,
+      "upRatio": 0.9231,
+      "strongCount": 7,
+      "limitLikeCount": 0,
+      "medianPct": 3.2938,
+      "averagePct": 3.0661,
+      "amount": 6837541901.42,
+      "leaders": [
+        {
+          "code": "000680",
+          "name": "山推股份",
+          "price": 11.29,
+          "pct": 5.219,
+          "tradeTime": "2026-07-29 17:00:12"
+        },
+        {
+          "code": "605305",
+          "name": "中际联合",
+          "price": 39.9,
+          "pct": 5.0,
+          "tradeTime": "2026-07-29 16:29:50"
+        },
+        {
+          "code": "600761",
+          "name": "安徽合力",
+          "price": 18.2,
+          "pct": 4.8991,
+          "tradeTime": "2026-07-29 16:29:51"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 11
+    },
+    {
+      "sector": "铝",
+      "stockCount": 25,
+      "upCount": 23,
+      "upRatio": 0.92,
+      "strongCount": 7,
+      "limitLikeCount": 0,
+      "medianPct": 2.2745,
+      "averagePct": 2.3283,
+      "amount": 14704447889.89,
+      "leaders": [
+        {
+          "code": "002379",
+          "name": "宏桥控股",
+          "price": 20.52,
+          "pct": 6.1013,
+          "tradeTime": "2026-07-29 16:59:39"
+        },
+        {
+          "code": "601677",
+          "name": "明泰铝业",
+          "price": 16.46,
+          "pct": 4.5743,
+          "tradeTime": "2026-07-29 16:29:50"
+        },
+        {
+          "code": "000612",
+          "name": "焦作万方",
+          "price": 11.01,
+          "pct": 4.5584,
+          "tradeTime": "2026-07-29 16:59:48"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 12
+    },
+    {
+      "sector": "汽车电子电气系统",
+      "stockCount": 20,
+      "upCount": 18,
+      "upRatio": 0.9,
+      "strongCount": 7,
+      "limitLikeCount": 0,
+      "medianPct": 2.1548,
+      "averagePct": 2.3225,
+      "amount": 3443820426.78,
+      "leaders": [
+        {
+          "code": "002813",
+          "name": "路畅科技",
+          "price": 20.33,
+          "pct": 5.1189,
+          "tradeTime": "2026-07-29 17:00:12"
+        },
+        {
+          "code": "002906",
+          "name": "华阳集团",
+          "price": 24.98,
+          "pct": 4.2571,
+          "tradeTime": "2026-07-29 16:59:48"
+        },
+        {
+          "code": "603960",
+          "name": "克来机电",
+          "price": 15.39,
+          "pct": 3.9865,
+          "tradeTime": "2026-07-29 16:29:36"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 13
+    },
+    {
+      "sector": "火力发电",
+      "stockCount": 29,
+      "upCount": 24,
+      "upRatio": 0.8276,
+      "strongCount": 7,
+      "limitLikeCount": 1,
+      "medianPct": 2.17,
+      "averagePct": 1.8768,
+      "amount": 22992055293.22,
+      "leaders": [
+        {
+          "code": "600578",
+          "name": "京能电力",
+          "price": 5.95,
+          "pct": 9.9815,
+          "tradeTime": "2026-07-29 16:29:38"
+        },
+        {
+          "code": "000690",
+          "name": "宝新能源",
+          "price": 5.09,
+          "pct": 4.9485,
+          "tradeTime": "2026-07-29 16:59:45"
+        },
+        {
+          "code": "000899",
+          "name": "赣能股份",
+          "price": 10.95,
+          "pct": 4.3851,
+          "tradeTime": "2026-07-29 16:59:57"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 14
+    },
+    {
+      "sector": "家具",
+      "stockCount": 18,
+      "upCount": 13,
+      "upRatio": 0.7222,
+      "strongCount": 7,
+      "limitLikeCount": 2,
+      "medianPct": 1.7992,
+      "averagePct": 1.9353,
+      "amount": 2228522475.87,
+      "leaders": [
+        {
+          "code": "603833",
+          "name": "欧派家居",
+          "price": 35.33,
+          "pct": 9.9938,
+          "tradeTime": "2026-07-29 16:29:45"
+        },
+        {
+          "code": "603221",
+          "name": "爱丽家居",
+          "price": 18.63,
+          "pct": 9.9764,
+          "tradeTime": "2026-07-29 16:29:49"
+        },
+        {
+          "code": "002572",
+          "name": "索菲亚",
+          "price": 8.62,
+          "pct": 6.0271,
+          "tradeTime": "2026-07-29 16:59:54"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 15
+    },
+    {
+      "sector": "输变电设备",
+      "stockCount": 19,
+      "upCount": 18,
+      "upRatio": 0.9474,
+      "strongCount": 6,
+      "limitLikeCount": 2,
+      "medianPct": 2.6113,
+      "averagePct": 3.2954,
+      "amount": 15154303673.21,
+      "leaders": [
+        {
+          "code": "002298",
+          "name": "中电鑫龙",
+          "price": 8.77,
+          "pct": 10.0376,
+          "tradeTime": "2026-07-29 17:00:27"
+        },
+        {
+          "code": "002112",
+          "name": "三变科技",
+          "price": 16.19,
+          "pct": 9.9864,
+          "tradeTime": "2026-07-29 16:59:57"
+        },
+        {
+          "code": "600550",
+          "name": "保变电气",
+          "price": 11.85,
+          "pct": 6.1828,
+          "tradeTime": "2026-07-29 16:29:45"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "rank": 16
+    },
+    {
+      "sector": "调味品",
+      "stockCount": 13,
+      "upCount": 12,
+      "upRatio": 0.9231,
+      "strongCount": 6,
+      "limitLikeCount": 1,
+      "medianPct": 2.5169,
+      "averagePct": 3.2582,
+      "amount": 4816092289.92,
+      "leaders": [
+        {
+          "code": "603696",
+          "name": "安记食品",
+          "price": 12.03,
+          "pct": 9.9634,
+          "tradeTime": "2026-07-29 16:29:54"
+        },
+        {
+          "code": "603317",
+          "name": "天味食品",
+          "price": 14.66,
+          "pct": 6.2319,
+          "tradeTime": "2026-07-29 16:29:42"
+        },
+        {
+          "code": "603027",
+          "name": "千禾味业",
+          "price": 7.79,
+          "pct": 5.6988,
+          "tradeTime": "2026-07-29 16:29:37"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 17
+    },
+    {
+      "sector": "车身附件及饰件",
+      "stockCount": 33,
+      "upCount": 24,
+      "upRatio": 0.7273,
+      "strongCount": 6,
+      "limitLikeCount": 1,
+      "medianPct": 1.9417,
+      "averagePct": 1.6683,
+      "amount": 7855374983.77,
+      "leaders": [
+        {
+          "code": "605068",
+          "name": "明新旭腾",
+          "price": 18.72,
+          "pct": 9.9882,
+          "tradeTime": "2026-07-29 16:29:37"
+        },
+        {
+          "code": "600660",
+          "name": "福耀玻璃",
+          "price": 59.1,
+          "pct": 4.9361,
+          "tradeTime": "2026-07-29 16:29:43"
+        },
+        {
+          "code": "603997",
+          "name": "继峰股份",
+          "price": 12.12,
+          "pct": 4.4828,
+          "tradeTime": "2026-07-29 16:29:33"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 18
+    },
+    {
+      "sector": "纺织化学品",
+      "stockCount": 8,
+      "upCount": 8,
+      "upRatio": 1.0,
+      "strongCount": 5,
+      "limitLikeCount": 1,
+      "medianPct": 4.1289,
+      "averagePct": 4.4994,
+      "amount": 3758502942.21,
+      "leaders": [
+        {
+          "code": "002440",
+          "name": "闰土股份",
+          "price": 13.64,
+          "pct": 10.0,
+          "tradeTime": "2026-07-29 17:00:03"
+        },
+        {
+          "code": "600352",
+          "name": "浙江龙盛",
+          "price": 13.55,
+          "pct": 6.025,
+          "tradeTime": "2026-07-29 16:29:54"
+        },
+        {
+          "code": "002054",
+          "name": "德美化工",
+          "price": 6.9,
+          "pct": 5.0228,
+          "tradeTime": "2026-07-29 17:00:18"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 19
+    },
+    {
+      "sector": "涤纶",
+      "stockCount": 10,
+      "upCount": 10,
+      "upRatio": 1.0,
+      "strongCount": 5,
+      "limitLikeCount": 0,
+      "medianPct": 2.9082,
+      "averagePct": 2.8586,
+      "amount": 3518058897.05,
+      "leaders": [
+        {
+          "code": "601233",
+          "name": "桐昆股份",
+          "price": 22.29,
+          "pct": 5.1415,
+          "tradeTime": "2026-07-29 16:29:51"
+        },
+        {
+          "code": "002427",
+          "name": "尤夫股份",
+          "price": 4.21,
+          "pct": 3.9506,
+          "tradeTime": "2026-07-29 16:59:54"
+        },
+        {
+          "code": "603225",
+          "name": "新凤鸣  ",
+          "price": 19.62,
+          "pct": 3.7546,
+          "tradeTime": "2026-07-29 16:29:49"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 20
+    },
+    {
+      "sector": "水泥制造",
+      "stockCount": 13,
+      "upCount": 13,
+      "upRatio": 1.0,
+      "strongCount": 5,
+      "limitLikeCount": 0,
+      "medianPct": 2.1158,
+      "averagePct": 2.8882,
+      "amount": 3022914992.67,
+      "leaders": [
+        {
+          "code": "600326",
+          "name": "西藏天路",
+          "price": 6.81,
+          "pct": 6.7398,
+          "tradeTime": "2026-07-29 16:29:34"
+        },
+        {
+          "code": "600801",
+          "name": "华新建材",
+          "price": 22.6,
+          "pct": 6.1033,
+          "tradeTime": "2026-07-29 16:29:50"
+        },
+        {
+          "code": "002233",
+          "name": "塔牌集团",
+          "price": 7.61,
+          "pct": 4.9655,
+          "tradeTime": "2026-07-29 16:59:54"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 21
+    },
+    {
+      "sector": "影视制作",
+      "stockCount": 6,
+      "upCount": 6,
+      "upRatio": 1.0,
+      "strongCount": 4,
+      "limitLikeCount": 1,
+      "medianPct": 4.3399,
+      "averagePct": 5.035,
+      "amount": 1471461078.89,
+      "leaders": [
+        {
+          "code": "000892",
+          "name": "欢瑞世纪",
+          "price": 3.51,
+          "pct": 10.0313,
+          "tradeTime": "2026-07-29 17:00:24"
+        },
+        {
+          "code": "000802",
+          "name": "北京文化",
+          "price": 4.07,
+          "pct": 7.672,
+          "tradeTime": "2026-07-29 17:00:06"
+        },
+        {
+          "code": "603721",
+          "name": "中广天择",
+          "price": 16.07,
+          "pct": 5.239,
+          "tradeTime": "2026-07-29 16:29:56"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 22
+    },
+    {
+      "sector": "期货",
+      "stockCount": 4,
+      "upCount": 4,
+      "upRatio": 1.0,
+      "strongCount": 4,
+      "limitLikeCount": 0,
+      "medianPct": 4.1745,
+      "averagePct": 4.0124,
+      "amount": 603397811.7,
+      "leaders": [
+        {
+          "code": "002961",
+          "name": "瑞达期货",
+          "price": 19.32,
+          "pct": 4.5455,
+          "tradeTime": "2026-07-29 16:59:54"
+        },
+        {
+          "code": "600927",
+          "name": "永安期货",
+          "price": 13.0,
+          "pct": 4.2502,
+          "tradeTime": "2026-07-29 16:29:46"
+        },
+        {
+          "code": "603093",
+          "name": "南华期货",
+          "price": 17.27,
+          "pct": 4.0989,
+          "tradeTime": "2026-07-29 16:29:38"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 23
+    },
+    {
+      "sector": "零食",
+      "stockCount": 8,
+      "upCount": 8,
+      "upRatio": 1.0,
+      "strongCount": 4,
+      "limitLikeCount": 1,
+      "medianPct": 3.7364,
+      "averagePct": 4.5531,
+      "amount": 1884752107.15,
+      "leaders": [
+        {
+          "code": "603719",
+          "name": "良品铺子",
+          "price": 9.45,
+          "pct": 10.0116,
+          "tradeTime": "2026-07-29 16:29:40"
+        },
+        {
+          "code": "002582",
+          "name": "好想你",
+          "price": 10.33,
+          "pct": 7.7164,
+          "tradeTime": "2026-07-29 16:59:30"
+        },
+        {
+          "code": "002557",
+          "name": "洽洽食品",
+          "price": 20.71,
+          "pct": 4.7547,
+          "tradeTime": "2026-07-29 17:00:21"
+        }
+      ],
+      "tier": 1,
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "rank": 24
+    }
+  ],
+  "watchCandidates": [
+    {
+      "code": "603037",
+      "name": "凯众股份",
+      "price": 9.81,
+      "pct": 5.8252,
+      "tradeTime": "2026-07-29 16:29:54",
+      "sector": "底盘与发动机系统",
+      "tier": 1,
+      "sectorRank": 1,
+      "leaderRank": 2,
+      "researchReason": "底盘与发动机系统：上涨广度 89%；强势股 15 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "002284",
+      "name": "亚太股份",
+      "price": 9.51,
+      "pct": 5.3156,
+      "tradeTime": "2026-07-29 17:00:15",
+      "sector": "底盘与发动机系统",
+      "tier": 1,
+      "sectorRank": 1,
+      "leaderRank": 3,
+      "researchReason": "底盘与发动机系统：上涨广度 89%；强势股 15 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "600638",
+      "name": "新黄浦  ",
+      "price": 4.88,
+      "pct": 6.7834,
+      "tradeTime": "2026-07-29 16:29:36",
+      "sector": "住宅开发",
+      "tier": 1,
+      "sectorRank": 2,
+      "leaderRank": 3,
+      "researchReason": "住宅开发：上涨广度 86%；强势股 13 只。",
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "002606",
+      "name": "大连电瓷",
+      "price": 14.66,
+      "pct": 6.155,
+      "tradeTime": "2026-07-29 16:59:42",
+      "sector": "线缆部件及其他",
+      "tier": 1,
+      "sectorRank": 4,
+      "leaderRank": 3,
+      "researchReason": "线缆部件及其他：上涨广度 90%；强势股 10 只。",
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "002681",
+      "name": "奋达科技",
+      "price": 4.38,
+      "pct": 5.036,
+      "tradeTime": "2026-07-29 16:59:54",
+      "sector": "消费电子组件",
+      "tier": 1,
+      "sectorRank": 5,
+      "leaderRank": 2,
+      "researchReason": "消费电子组件：上涨广度 64%；强势股 10 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "002855",
+      "name": "捷荣技术",
+      "price": 9.54,
+      "pct": 3.9216,
+      "tradeTime": "2026-07-29 16:59:39",
+      "sector": "消费电子组件",
+      "tier": 1,
+      "sectorRank": 5,
+      "leaderRank": 3,
+      "researchReason": "消费电子组件：上涨广度 64%；强势股 10 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "002683",
+      "name": "广东宏大",
+      "price": 27.84,
+      "pct": 4.7798,
+      "tradeTime": "2026-07-29 17:00:21",
+      "sector": "民爆制品",
+      "tier": 1,
+      "sectorRank": 7,
+      "leaderRank": 3,
+      "researchReason": "民爆制品：上涨广度 100%；强势股 8 只。",
+      "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "601696",
+      "name": "中银证券",
+      "price": 11.7,
+      "pct": 4.7449,
+      "tradeTime": "2026-07-29 16:29:52",
+      "sector": "证券",
+      "tier": 1,
+      "sectorRank": 8,
+      "leaderRank": 2,
+      "researchReason": "证券：上涨广度 98%；强势股 8 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "600909",
+      "name": "华安证券",
+      "price": 7.72,
+      "pct": 4.0431,
+      "tradeTime": "2026-07-29 16:29:34",
+      "sector": "证券",
+      "tier": 1,
+      "sectorRank": 8,
+      "leaderRank": 3,
+      "researchReason": "证券：上涨广度 98%；强势股 8 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "601666",
+      "name": "平煤股份",
+      "price": 8.14,
+      "pct": 6.1278,
+      "tradeTime": "2026-07-29 16:29:33",
+      "sector": "炼焦煤",
+      "tier": 1,
+      "sectorRank": 9,
+      "leaderRank": 1,
+      "researchReason": "炼焦煤：上涨广度 100%；强势股 7 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "600985",
+      "name": "淮北矿业",
+      "price": 15.34,
+      "pct": 5.5747,
+      "tradeTime": "2026-07-29 16:30:00",
+      "sector": "炼焦煤",
+      "tier": 1,
+      "sectorRank": 9,
+      "leaderRank": 2,
+      "researchReason": "炼焦煤：上涨广度 100%；强势股 7 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    },
+    {
+      "code": "600123",
+      "name": "兰花科创",
+      "price": 6.86,
+      "pct": 5.3763,
+      "tradeTime": "2026-07-29 16:29:56",
+      "sector": "炼焦煤",
+      "tier": 1,
+      "sectorRank": 9,
+      "leaderRank": 3,
+      "researchReason": "炼焦煤：上涨广度 100%；强势股 7 只。",
+      "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+      "evidenceMode": "盘中强势板块筛选"
+    }
+  ],
+  "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
+  "phase": "2026-07-30 磐石模型板块融合重建"
+}

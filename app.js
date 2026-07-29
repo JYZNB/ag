@@ -5,6 +5,7 @@ const WATCH_MIGRATION_MARKER = "taishan-fusion-watch-ledgers-v1-migrated";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v4", "taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
   overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
+  sectors: { title: "每日强势板块", subtitle: "每日归档板块广度、领涨股与下一交易日的研究观察重点。" },
   watch: { title: "我的观察栏", subtitle: "未买锁定观察价，已买填写真实成交价；两套账本独立记录。" },
   history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
@@ -31,6 +32,8 @@ let snapshot = null;
 let historyIndex = [];
 let historyData = null;
 let historySort = "post";
+let sectorHistoryIndex = [];
+let sectorHistoryData = null;
 
 const n = (value) => Number.isFinite(Number(value)) ? Number(value) : NaN;
 const safe = (value) => Number.isFinite(n(value)) ? n(value) : 0;
@@ -146,7 +149,15 @@ function researchScore(row) {
 function rankedCandidates(data = snapshot) {
   const rows = candidateSource(data)
     .map((row) => ({ ...row, research_score: researchScore(row) }))
-    .sort((left, right) => n(right.research_score) - n(left.research_score));
+    .sort((left, right) => {
+      const tierGap = safe(left.research_tier) - safe(right.research_tier);
+      if (tierGap) return tierGap;
+      const sectorGap = safe(left.sector_rank) - safe(right.sector_rank);
+      if (sectorGap) return sectorGap;
+      const leaderGap = safe(left.leader_rank) - safe(right.leader_rank);
+      if (leaderGap) return leaderGap;
+      return n(right.research_score) - n(left.research_score);
+    });
   return rows.map((row, index) => ({
     ...row,
     rank: index + 1,
@@ -164,8 +175,16 @@ function researchPeriod(row) {
 }
 
 function currentPrice(row) {
+  // Candidate rows produced from Tushare RT already contain an authorized
+  // timestamped quote. Prefer it to a generic browser-side cache.
+  if (String(row?.quote_source || "").toLowerCase().includes("tushare")) {
+    const tusharePrice = n(row?.live_price);
+    if (Number.isFinite(tusharePrice)) return tusharePrice;
+  }
   const quote = snapshot?.intradayQuote?.quotes?.[codeOf(row?.code)];
-  return n(quote?.live_price ?? row?.live_price ?? row?.close);
+  // A daily close is a model input, not a live quote. Do not disguise it as a
+  // real-time price when the quoted snapshot is unavailable.
+  return n(quote?.live_price ?? row?.live_price);
 }
 
 function eastmoneySecid(code) {
@@ -205,12 +224,16 @@ async function fetchVerifiedQuotes(codes) {
   }
 }
 
-function installVerifiedQuotes(quotes) {
+  function installVerifiedQuotes(quotes) {
   if (!snapshot || !(quotes instanceof Map) || !quotes.size) return;
   const intraday = snapshot.intradayQuote || {};
-  const existing = intraday.quotes || {};
-  quotes.forEach((quote, code) => {
-    existing[code] = {
+    const existing = intraday.quotes || {};
+    quotes.forEach((quote, code) => {
+      // Tushare RT is the server-side primary quote.  The browser-side public
+      // quote check may only fill a missing value; it must not overwrite an
+      // already timestamped authorized quote with a different feed.
+      if (Number.isFinite(n(existing[code]?.live_price)) && existing[code]?.quote_source === "tushare_rt") return;
+      existing[code] = {
       ...(existing[code] || {}),
       live_price: quote.price,
       capturedAt: quote.capturedAt,
@@ -234,10 +257,29 @@ async function refreshTrackedQuotes() {
   }
 }
 
+async function refreshVisibleQuotes() {
+  const holdings = (snapshot?.publicHoldings?.rows || []).map((row) => row.code);
+  const candidates = rankedCandidates().map((row) => row.code);
+  const codes = [...new Set([...holdings, ...candidates])];
+  if (!codes.length) return 0;
+  try {
+    const quotes = await fetchVerifiedQuotes(codes);
+    installVerifiedQuotes(quotes);
+    return quotes.size;
+  } catch (error) {
+    console.warn("Visible quote cross-check failed", error);
+    return 0;
+  }
+}
+
 function rowState(row) {
   if (row.model_status === "REJECT") return { tone: "red", label: "撤出观察" };
   if (row.model_status === "BUY") return { tone: "green", label: "推荐购买" };
-  if (row.model_status === "WATCH") return { tone: "blue", label: "影子观察" };
+  if (row.model_status === "WATCH") {
+    return row.tier === 1
+      ? { tone: "green", label: "一级优先研究" }
+      : { tone: "blue", label: "二级确认跟踪" };
+  }
   const extension = safe(row.ma20_gap);
   const risk = safe(row.risk_control_score);
   const weak = risk < 65 || extension > .18 || safe(row.ret5) < -.08;
@@ -287,6 +329,94 @@ function formatTime(value) {
   return Number.isNaN(date.getTime()) ? "--" : date.toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false });
 }
 
+function installBrandAndNavigation() {
+  document.title = "磐石 A 股研究台";
+  const brandName = document.querySelector(".brand span");
+  const brandTitle = document.querySelector(".brand strong");
+  const eyebrow = document.querySelector(".topbar .eyebrow");
+  if (brandName) brandName.textContent = "PANSHI";
+  if (brandTitle) brandTitle.textContent = "磐石 A 股研究台";
+  if (eyebrow) eyebrow.textContent = "PANSHI / FUSION RESEARCH MODEL";
+  if (!document.querySelector('[data-view="sectors"]')) {
+    const overview = document.querySelector('[data-view="overview"]');
+    if (overview) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.dataset.view = "sectors";
+      button.textContent = "每日强势板块";
+      overview.insertAdjacentElement("afterend", button);
+      button.onclick = () => setView("sectors");
+    }
+  }
+  document.querySelector('option[value="score"]')?.remove();
+  document.querySelector('[data-history-sort="score"]')?.closest("th")?.remove();
+}
+
+function sectorTierText(value) {
+  return Number(value) === 1 ? "强势" : Number(value) === 2 ? "跟踪" : "相对强者";
+}
+
+function sectorLeaders(leaders) {
+  if (!Array.isArray(leaders) || !leaders.length) return "--";
+  return leaders.map((row) => `${text(row.name)} ${num(row.price)} (${rawPct(row.pct)})`).join(" / ");
+}
+
+function renderDailySectorResearch(research) {
+  const data = research || {};
+  const market = data.market || {};
+  const validation = data.historicalValidation || {};
+  const combined = Array.isArray(validation.combined) ? validation.combined : [];
+  const threeDay = combined.find((row) => Number(row.horizonDays) === 3) || {};
+  $("sectorAsOf").textContent = data.asOf ? `行情日期 ${data.asOf}` : "等待行情";
+  $("sectorState").textContent = text(data.state, "等待当日板块快照。");
+  $("sectorNotice").textContent = text(data.notice, "强势板块属于研究观察，不构成收益承诺或交易指令。");
+  $("sectorQuoteCount").textContent = Number.isFinite(n(data.quoteCount)) ? n(data.quoteCount).toLocaleString("zh-CN") : "--";
+  $("sectorQuoteSource").textContent = `${text(data.quoteSource, "--")} / ${compactTime(data.quoteTradeTime || data.capturedAt)}`;
+  $("sectorUpRatio").textContent = pct(market.upRatio);
+  $("sectorMedianPct").textContent = `中位涨幅 ${rawPct(market.medianPct)}`;
+  $("sectorStrongCount").textContent = Number.isFinite(n(market.strongCount)) ? n(market.strongCount).toLocaleString("zh-CN") : "--";
+  $("sectorLimitLikeCount").textContent = Number.isFinite(n(market.limitLikeCount)) ? `近涨停 ${n(market.limitLikeCount).toLocaleString("zh-CN")}` : "--";
+  $("sectorBacktest3d").textContent = rawPct(threeDay.activeReturn);
+  $("sectorBacktestSub").textContent = Number.isFinite(n(threeDay.sampleDays))
+    ? `样本 ${n(threeDay.sampleDays).toLocaleString("zh-CN")} 日 / 正收益率 ${pct(threeDay.winRate)}`
+    : "等待历史验证";
+  const rows = Array.isArray(data.sectors) ? data.sectors : [];
+  $("sectorRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${sectorTierText(row.tier)}<small>第 ${text(row.rank)} 名</small></span></td><td><strong>${text(row.sector)}</strong><small>${text(row.stockCount)} 只成分股</small></td><td>${pct(row.upRatio)}</td><td>${text(row.strongCount)} / ${text(row.limitLikeCount)} 近涨停</td><td>${rawPct(row.medianPct)}</td><td class="reason">${sectorLeaders(row.leaders)}</td><td class="reason">${text(row.nextSessionObservation)}</td></tr>`).join("") || '<tr><td colspan="7" class="empty">没有可校验实时行情，因此不生成板块排序。</td></tr>';
+}
+
+async function selectSectorHistory(date) {
+  if (!date) return;
+  try {
+    const response = await fetch(`./sector-history/${date}.json?t=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error("sector archive unavailable");
+    sectorHistoryData = await response.json();
+  } catch {
+    sectorHistoryData = snapshot?.dailySectorResearch || null;
+  }
+  const data = sectorHistoryData || {};
+  const top = Array.isArray(data.sectors) ? data.sectors.slice(0, 3).map((row) => row.sector).join(" / ") : "--";
+  $("sectorHistoryMeta").textContent = `${text(data.asOf, date)}：行情样本 ${text(data.quoteCount, "--")}；前 3 板块 ${top}。`;
+}
+
+async function loadSectorHistoryIndex() {
+  try {
+    const response = await fetch(`./sector-history/index.json?t=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error("sector history unavailable");
+    sectorHistoryIndex = await response.json();
+  } catch {
+    sectorHistoryIndex = [];
+  }
+  const currentDate = text(snapshot?.dailySectorResearch?.asOf, "");
+  if (currentDate && !sectorHistoryIndex.some((row) => row.date === currentDate)) {
+    sectorHistoryIndex.unshift({ date: currentDate, quoteCount: snapshot?.dailySectorResearch?.quoteCount });
+  }
+  const select = $("sectorHistorySelect");
+  const selected = select.value || currentDate || sectorHistoryIndex[0]?.date;
+  select.innerHTML = sectorHistoryIndex.map((row) => `<option value="${text(row.date)}">${text(row.date)} / ${text(row.quoteCount, 0)} 条行情</option>`).join("") || '<option value="">暂无归档</option>';
+  if (selected && sectorHistoryIndex.some((row) => row.date === selected)) select.value = selected;
+  await selectSectorHistory(select.value);
+}
+
 function compactTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "时间待核实";
@@ -306,10 +436,13 @@ function priceMap(data = snapshot) {
     const price = n(quote?.live_price ?? quote?.price ?? quote?.close);
     if (Number.isFinite(price) && price > 0) map.set(codeOf(code), price);
   });
-  candidateSource(data).forEach((row) => map.set(codeOf(row.code), currentPrice(row)));
+  candidateSource(data).forEach((row) => {
+    const value = currentPrice(row);
+    if (Number.isFinite(value) && value > 0) map.set(codeOf(row.code), value);
+  });
   (data?.candidates || []).forEach((row) => {
-    const value = n(row.live_price ?? row.close);
-    if (Number.isFinite(value)) map.set(codeOf(row.code), value);
+    const value = n(row.live_price);
+    if (Number.isFinite(value) && value > 0) map.set(codeOf(row.code), value);
   });
   return map;
 }
@@ -352,7 +485,7 @@ function renderCandidateRow(row, compact = false) {
   const reasonCell = compact ? "" : `<td class="reason">${reason(row)}</td>`;
   const watchButton = `<button class="watch-add" data-code="${code}" ${watched ? "disabled" : ""}>${watched ? (watched.mode === "owned" ? "已买观察" : "未买已观察") : "未买：加入观察"}</button>`;
   const buyButton = `<button class="watch-buy" data-code="${code}" ${watched?.mode === "owned" ? "disabled" : ""}>${watched?.mode === "owned" ? "已填买入价" : "已买：填买入价"}</button>`;
-  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排名 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td><td>${num(row.research_score)}</td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><div class="watch-actions">${watchButton}${buyButton}</div></td></tr>`;
+  return `<tr><td><span class="tier-label ${tierClass}">${tierText(row.tier)}<small>排序 ${row.rank}</small></span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${code} / ${text(row.sector)}</small></td><td><span class="state ${state.tone}">${state.label}</span></td>${reasonCell}<td>${retCell(row.ret5)}</td><td>${retCell(row.ret10)}</td><td>${retCell(row.ret20)}</td><td>${retCell(row.ret60)}</td><td>${num(currentPrice(row))}</td><td>${num(row.entry_low)} - ${num(row.entry_high)}</td><td>${num(row.risk_line)}</td><td>${num(row.target1)}</td><td>${researchPeriod(row)}</td><td><div class="watch-actions">${watchButton}${buyButton}</div></td></tr>`;
 }
 
 function bindWatchButtons(scope) {
@@ -647,7 +780,7 @@ function renderHistoryRows(data) {
     if (!Number.isFinite(b)) return -1;
     return historySort === "drawdown" ? a - b : b - a;
   });
-  $("historyRows").innerHTML = rows.map(({ row, review, post }) => `<tr><td><span class="tier-label t${row.tier}">${tierText(row.tier)}</span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)}</small></td><td>${num(row.research_score)}</td><td>${Number.isFinite(post.value) ? rawPct(post.value) : "等待后验"}</td><td>${Number.isFinite(post.drawdown) ? rawPct(post.drawdown) : "--"}</td><td>${post.horizon}</td><td>${text(review?.review_status, "等待后验")}</td><td>${retCell(row.ret20)}</td><td class="reason">${text(review?.review_note, row.explain || row.quality_type)}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">该日期没有可显示的候选。</td></tr>';
+  $("historyRows").innerHTML = rows.map(({ row, review, post }) => `<tr><td><span class="tier-label t${row.tier}">${tierText(row.tier)}</span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)}</small></td><td>${Number.isFinite(post.value) ? rawPct(post.value) : "等待后验"}</td><td>${Number.isFinite(post.drawdown) ? rawPct(post.drawdown) : "--"}</td><td>${post.horizon}</td><td>${text(review?.review_status, "等待后验")}</td><td>${retCell(row.ret20)}</td><td class="reason">${text(review?.review_note, row.explain || row.quality_type)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">该日期没有可显示的候选。</td></tr>';
 }
 
 function methodEvidence(method) {
@@ -829,6 +962,7 @@ function renderSnapshot(data) {
   }
   $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
   renderMethodRows(unified);
+  renderDailySectorResearch(data.dailySectorResearch);
   renderLimitupResearch(data.limitUpSectorResearch);
   renderAllLocal();
 }
@@ -855,6 +989,7 @@ function applyView(route) {
   $("viewTitle").textContent = watchRoute?.title || VIEWS[active].title;
   $("viewSubtitle").textContent = watchRoute?.subtitle || VIEWS[active].subtitle;
   if (active === "history") loadHistoryIndex();
+  if (active === "sectors") loadSectorHistoryIndex();
   if (watchRoute?.target) {
     requestAnimationFrame(() => $(watchRoute.target)?.scrollIntoView({ block: "start" }));
   }
@@ -879,9 +1014,11 @@ async function load() {
   }
   try {
     renderSnapshot(data);
+    await refreshVisibleQuotes();
     await refreshTrackedQuotes();
     renderAllLocal();
     await loadHistoryIndex();
+    await loadSectorHistoryIndex();
   } catch (error) {
     console.error("Dashboard render failed", error);
     $("coreTitle").textContent = "快照已读取，但页面渲染异常";
@@ -910,7 +1047,9 @@ $("purchaseForm").onsubmit = (event) => {
 };
 $("historySelect").onchange = (event) => selectHistory(event.target.value);
 $("historySort").onchange = (event) => { historySort = event.target.value; if (historyData) renderHistoryRows(historyData); };
+$("sectorHistorySelect").onchange = (event) => selectSectorHistory(event.target.value);
 document.querySelectorAll("[data-history-sort]").forEach((button) => { button.onclick = () => { historySort = button.dataset.historySort; $("historySort").value = historySort; if (historyData) renderHistoryRows(historyData); }; });
+installBrandAndNavigation();
 document.querySelectorAll(".nav [data-view]").forEach((button) => {
   button.onclick = () => setView(button.dataset.view, button.dataset.watchRoute);
 });
