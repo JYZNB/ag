@@ -7,8 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>磐石 A 股研究台</title>
-<link rel="stylesheet" href="./styles.css?v=20260730-panshi-v25" />
-<link rel="stylesheet" href="./dashboard.css?v=20260730-panshi-v25" />
+<link rel="stylesheet" href="./styles.css?v=20260730-panshi-v26" />
+<link rel="stylesheet" href="./dashboard.css?v=20260730-panshi-v26" />
   </head>
   <body>
     <div class="app-shell">
@@ -50,7 +50,7 @@
 
           <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">一级研究关注</p><h2>当前优先观察</h2></div><span>每日板块研究排序前 3 只</span></div><p class="section-note">一级只代表当日研究优先级。实时价必须带来源与时间戳；观察区、风险线和第一目标只是研究锚点，不是自动交易指令。</p><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>近5日</th><th>近10日</th><th>近20日</th><th>近60日</th><th>实时价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>研究周期</th><th>观察</th></tr></thead><tbody id="tierOneRows"></tbody></table></div></section>
 
-          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">研究观察池</p><h2>一级与二级分级</h2></div><span id="candidateCount">--</span></div><div class="tier-legend"><span><i class="dot green"></i>一级：当日优先研究</span><span><i class="dot blue"></i>二级：继续确认</span><span><i class="dot red"></i>三级：只在历史留档</span></div><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>板块依据与复核条件</th><th>近5日</th><th>近10日</th><th>近20日</th><th>近60日</th><th>实时价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div></section>
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">研究观察池</p><h2>一级与二级分级</h2></div><div class="heading-metrics"><span id="candidateCount">--</span><small id="candidateReturnStamp">历史趋势数据待更新</small></div></div><div class="tier-legend"><span><i class="dot green"></i>一级：当日优先研究</span><span><i class="dot blue"></i>二级：继续确认</span><span><i class="dot red"></i>三级：只在历史留档</span></div><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>板块依据与复核条件</th><th>近5日日线收益</th><th>近10日日线收益</th><th>近20日日线收益</th><th>近60日日线收益</th><th>实时价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div></section>
 
           <section class="panel dense-panel method-ledger" hidden><div class="heading"><div><p class="eyebrow">METHOD EVIDENCE LEDGER</p><h2>方法证据账本</h2></div><span>方法不是独立模型，只是融合模型的可审计输入</span></div><p class="section-note">每条方法先登记原始出处、适用周期与失败条件，再用固定样本消融决定保留、否决或仅观察。网站始终只展示一个融合模型。</p><div class="table-wrap"><table class="dense-table"><thead><tr><th>方法 / 原始来源</th><th>本地代理</th><th>适用周期</th><th>当前结论</th><th>本地证据</th><th>主要失败条件</th></tr></thead><tbody id="methodRows"></tbody></table></div></section>
 
@@ -103,7 +103,7 @@
             <div class="research-callout"><strong>研究边界</strong><span id="sectorNotice">--</span></div>
           </section>
           <section class="metric-grid research-metrics"><article><span>主板行情样本</span><strong id="sectorQuoteCount">--</strong><small id="sectorQuoteSource">--</small></article><article><span>上涨广度</span><strong id="sectorUpRatio">--</strong><small id="sectorMedianPct">--</small></article><article><span>强势股数</span><strong id="sectorStrongCount">--</strong><small id="sectorLimitLikeCount">--</small></article><article><span>历史 3 日验证</span><strong id="sectorBacktest3d">--</strong><small id="sectorBacktestSub">--</small></article></section>
-          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">TODAY'S SECTOR LADDER</p><h2>当日板块梯队</h2></div><span>按广度、强势股、涨幅中位数和成交额排序</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>梯队</th><th>板块</th><th>上涨广度</th><th>强势股</th><th>涨幅中位数</th><th>领涨股</th><th>下一交易日观察</th></tr></thead><tbody id="sectorRows"></tbody></table></div></section>
+          <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">TODAY'S SECTOR LADDER</p><h2>当日板块梯队</h2></div><span>按广度、强势股、涨幅中位数和成交额排序</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>梯队</th><th>板块</th><th>上涨广度</th><th>强势股</th><th>涨幅中位数</th><th>领涨股</th><th>相关股票</th><th>下一交易日观察</th></tr></thead><tbody id="sectorRows"></tbody></table></div></section>
           <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">DAILY ARCHIVE</p><h2>历史板块档案</h2></div><label>日期 <select id="sectorHistorySelect"></select></label></div><p id="sectorHistoryMeta" class="section-note">--</p></section>
         </section>
 
@@ -133,6 +133,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-<script src="./app.js?v=20260730-panshi-v25"></script>
+<script src="./app.js?v=20260730-panshi-v26"></script>
   </body>
 </html>

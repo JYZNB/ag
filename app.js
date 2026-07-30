@@ -361,6 +361,15 @@ function sectorLeaders(leaders) {
   return leaders.map((row) => `${text(row.name)} ${num(row.price)} (${rawPct(row.pct)})`).join(" / ");
 }
 
+function sectorMembers(row) {
+  const members = Array.isArray(row?.members) && row.members.length ? row.members : (row?.leaders || []);
+  if (!members.length) return "--";
+  const visible = Number(row?.visibleMemberCount) || members.length;
+  const total = Number(row?.stockCount) || members.length;
+  const content = members.map((item) => `<tr><td>${text(item.code)}</td><td>${text(item.name)}</td><td>${num(item.price)}</td><td>${rawPct(item.pct)}</td><td>${num(item.amount)}</td></tr>`).join("");
+  return `<details class="sector-members"><summary>展开前 ${visible} / ${total} 只</summary><table><thead><tr><th>代码</th><th>名称</th><th>现价</th><th>涨跌幅</th><th>成交额</th></tr></thead><tbody>${content}</tbody></table><small>按当前涨跌幅和成交额排序，仅展示前 ${visible} 只。</small></details>`;
+}
+
 function renderDailySectorResearch(research) {
   const data = research || {};
   const market = data.market || {};
@@ -381,7 +390,7 @@ function renderDailySectorResearch(research) {
     ? `样本 ${n(threeDay.sampleDays).toLocaleString("zh-CN")} 日 / 正收益率 ${pct(threeDay.winRate)}`
     : "等待历史验证";
   const rows = Array.isArray(data.sectors) ? data.sectors : [];
-  $("sectorRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${sectorTierText(row.tier)}<small>第 ${text(row.rank)} 名</small></span></td><td><strong>${text(row.sector)}</strong><small>${text(row.stockCount)} 只成分股</small></td><td>${pct(row.upRatio)}</td><td>${text(row.strongCount)} / ${text(row.limitLikeCount)} 近涨停</td><td>${rawPct(row.medianPct)}</td><td class="reason">${sectorLeaders(row.leaders)}</td><td class="reason">${text(row.nextSessionObservation)}</td></tr>`).join("") || '<tr><td colspan="7" class="empty">没有可校验实时行情，因此不生成板块排序。</td></tr>';
+  $("sectorRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${sectorTierText(row.tier)}<small>第 ${text(row.rank)} 名</small></span></td><td><strong>${text(row.sector)}</strong><small>${text(row.stockCount)} 只成分股</small></td><td>${pct(row.upRatio)}</td><td>${text(row.strongCount)} / ${text(row.limitLikeCount)} 近涨停</td><td>${rawPct(row.medianPct)}</td><td class="reason">${sectorLeaders(row.leaders)}</td><td class="sector-components">${sectorMembers(row)}</td><td class="reason">${text(row.nextSessionObservation)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">没有可校验实时行情，因此不生成板块排序。</td></tr>';
 }
 
 async function selectSectorHistory(date) {
@@ -503,6 +512,10 @@ function renderOverviewTables() {
   $("candidateCount").textContent = actionableRows.length
     ? `${actionableRows.length} 只一级/二级研究关注`
     : "今日无一级/二级候选，不输出可买结论";
+  const historyDates = rows.map((row) => text(row.historyAsOf, "")).filter(Boolean).sort();
+  $("candidateReturnStamp").textContent = historyDates.length
+    ? `近5/10/20/60日均按日线计算，截至 ${historyDates[historyDates.length - 1]}`
+    : "历史趋势数据待更新";
   $("tierOneRows").innerHTML = rows.filter((row) => row.tier === 1).map((row) => renderCandidateRow(row, true)).join("") || '<tr><td colspan="14" class="empty">当前没有达到一级研究关注门槛的样本。</td></tr>';
   $("candidateRows").innerHTML = rows.map((row) => renderCandidateRow(row, false)).join("") || '<tr><td colspan="15" class="empty">当前没有符合过滤条件的研究观察样本。</td></tr>';
   bindWatchButtons("#tierOneRows");

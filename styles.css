@@ -143,6 +143,8 @@ button, input, select { font: inherit; }
 .view-panel { margin-top: 18px; }
 .heading h2 { margin: 0; font-size: 18px; }
 .heading > span { color: var(--muted); font-size: 12px; }
+.heading-metrics { display: grid; justify-items: end; gap: 3px; color: var(--muted); font-size: 12px; }
+.heading-metrics small { color: var(--muted); font-size: 10px; }
 .section-note { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .tier-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; color: var(--muted); font-size: 12px; }
 
@@ -277,6 +279,13 @@ button, input, select { font: inherit; }
 .research-metrics { margin-top: 12px; }
 .sector-table { min-width: 920px; }
 .compact-table { min-width: 620px; }
+.sector-components { min-width: 168px; white-space: normal !important; }
+.sector-members summary { color: var(--blue); cursor: pointer; font-weight: 800; white-space: nowrap; }
+.sector-members[open] summary { margin-bottom: 7px; }
+.sector-members table { min-width: 340px; border-collapse: collapse; background: #fbfdff; font-size: 10px; }
+.sector-members th, .sector-members td { padding: 4px 5px; border: 1px solid #dfe8ef; text-align: left; white-space: nowrap; }
+.sector-members th { position: static; background: #eef5fa; color: #445465; }
+.sector-members small { display: block; max-width: 340px; white-space: normal; }
 
 @media (max-width: 1100px) {
   .app-shell { grid-template-columns: 1fr; }
