@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-07-30",
+    "capturedAt": "2026-07-30T09:27:22+08:00",
+    "quoteTradeTime": "2026-07-30 09:27:28",
+    "quoteCount": 3055,
+    "sectorCount": 24
+  },
+  {
     "date": "2026-07-29",
     "capturedAt": "2026-07-30T09:05:46+08:00",
     "quoteTradeTime": "2026-07-29 17:00:27",
