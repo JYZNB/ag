@@ -12879,14 +12879,14 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "盘前预处理 08:20",
-  "publicSnapshotBuiltAt": "2026-07-30T08:22:06+08:00",
+  "phase": "盘前最终发布 08:55",
+  "publicSnapshotBuiltAt": "2026-07-30T08:56:20+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
     "productionReady": false,
     "latestDate": "2026-07-29",
-    "generatedAt": "2026-07-30T08:22:05+08:00",
+    "generatedAt": "2026-07-30T08:56:19+08:00",
     "horizonDays": [
       15,
       45
@@ -14061,7 +14061,7 @@
   "dailySectorResearch": {
     "version": "daily-sector-strength-v1",
     "asOf": "2026-07-29",
-    "capturedAt": "2026-07-30T08:22:05+08:00",
+    "capturedAt": "2026-07-30T08:56:19+08:00",
     "quoteTradeTime": "2026-07-29 17:00:27",
     "quoteSource": "Tushare RT",
     "quoteCount": 3054,
@@ -15134,7 +15134,7 @@
       }
     ],
     "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-    "phase": "盘前预处理 08:20",
+    "phase": "盘前最终发布 08:55",
     "archive": {
       "archived": true,
       "date": "2026-07-29",
