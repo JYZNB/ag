@@ -279,6 +279,10 @@ button, input, select { font: inherit; }
 .research-metrics { margin-top: 12px; }
 .sector-table { min-width: 920px; }
 .compact-table { min-width: 620px; }
+.sector-forecast { border-top: 3px solid var(--green); }
+.forecast-stocks { min-width: 176px; white-space: normal !important; }
+.forecast-stocks strong { margin-bottom: 5px; color: var(--ink); }
+.forecast-stocks small { display: block; }
 .sector-components { min-width: 168px; white-space: normal !important; }
 .sector-members summary { color: var(--blue); cursor: pointer; font-weight: 800; white-space: nowrap; }
 .sector-members[open] summary { margin-bottom: 7px; }

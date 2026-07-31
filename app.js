@@ -370,6 +370,23 @@ function sectorMembers(row) {
   return `<details class="sector-members"><summary>展开前 ${visible} / ${total} 只</summary><table><thead><tr><th>代码</th><th>名称</th><th>现价</th><th>涨跌幅</th><th>成交额</th></tr></thead><tbody>${content}</tbody></table><small>按当前涨跌幅和成交额排序，仅展示前 ${visible} 只。</small></details>`;
 }
 
+function forecastTierText(value) {
+  return Number(value) === 1 ? "一级优先复核" : "二级继续观察";
+}
+
+function forecastStocks(stocks) {
+  if (!Array.isArray(stocks) || !stocks.length) return "--";
+  return stocks.map((stock) => `<strong>${text(stock.name)} <small>${text(stock.code)} / ${num(stock.price)} / ${rawPct(stock.pct)}</small></strong>`).join("");
+}
+
+function renderNextSessionForecast(data) {
+  const forecast = data?.nextSessionForecast || {};
+  const rows = Array.isArray(forecast.sectors) ? forecast.sectors : [];
+  $("sectorForecastAsOf").textContent = data?.asOf ? `基于 ${data.asOf} 收盘结构` : "等待收盘结构";
+  $("sectorForecastNotice").textContent = text(forecast.notice, "等待可校验的收盘结构，暂不生成下一交易日板块预判。");
+  $("sectorForecastRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${forecastTierText(row.tier)}<small>排序 ${text(row.rank)}</small></span></td><td><strong>${text(row.sector)}</strong><small>当日板块第 ${text(row.sectorRank)} 名</small></td><td class="reason">${text(row.basis)}</td><td class="forecast-stocks">${forecastStocks(row.stocks)}</td><td class="reason">${text(row.confirmation)}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">当前没有达到下一交易日优先复核条件的板块。</td></tr>';
+}
+
 function renderDailySectorResearch(research) {
   const data = research || {};
   const market = data.market || {};
@@ -389,6 +406,7 @@ function renderDailySectorResearch(research) {
   $("sectorBacktestSub").textContent = Number.isFinite(n(threeDay.sampleDays))
     ? `样本 ${n(threeDay.sampleDays).toLocaleString("zh-CN")} 日 / 正收益率 ${pct(threeDay.winRate)}`
     : "等待历史验证";
+  renderNextSessionForecast(data);
   const rows = Array.isArray(data.sectors) ? data.sectors : [];
   $("sectorRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${sectorTierText(row.tier)}<small>第 ${text(row.rank)} 名</small></span></td><td><strong>${text(row.sector)}</strong><small>${text(row.stockCount)} 只成分股</small></td><td>${pct(row.upRatio)}</td><td>${text(row.strongCount)} / ${text(row.limitLikeCount)} 近涨停</td><td>${rawPct(row.medianPct)}</td><td class="reason">${sectorLeaders(row.leaders)}</td><td class="sector-components">${sectorMembers(row)}</td><td class="reason">${text(row.nextSessionObservation)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">没有可校验实时行情，因此不生成板块排序。</td></tr>';
 }

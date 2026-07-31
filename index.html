@@ -7,8 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>磐石 A 股研究台</title>
-<link rel="stylesheet" href="./styles.css?v=20260730-panshi-v26" />
-<link rel="stylesheet" href="./dashboard.css?v=20260730-panshi-v26" />
+<link rel="stylesheet" href="./styles.css?v=20260801-panshi-v27" />
+<link rel="stylesheet" href="./dashboard.css?v=20260801-panshi-v27" />
   </head>
   <body>
     <div class="app-shell">
@@ -103,6 +103,7 @@
             <div class="research-callout"><strong>研究边界</strong><span id="sectorNotice">--</span></div>
           </section>
           <section class="metric-grid research-metrics"><article><span>主板行情样本</span><strong id="sectorQuoteCount">--</strong><small id="sectorQuoteSource">--</small></article><article><span>上涨广度</span><strong id="sectorUpRatio">--</strong><small id="sectorMedianPct">--</small></article><article><span>强势股数</span><strong id="sectorStrongCount">--</strong><small id="sectorLimitLikeCount">--</small></article><article><span>历史 3 日验证</span><strong id="sectorBacktest3d">--</strong><small id="sectorBacktestSub">--</small></article></section>
+          <section class="panel dense-panel sector-forecast"><div class="heading"><div><p class="eyebrow">NEXT SESSION RESEARCH FORECAST</p><h2>下一交易日板块预判</h2></div><span id="sectorForecastAsOf">--</span></div><p id="sectorForecastNotice" class="section-note">--</p><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>预判级别</th><th>板块</th><th>结构依据</th><th>板块内优先复核股票</th><th>下一交易日复核条件</th></tr></thead><tbody id="sectorForecastRows"></tbody></table></div></section>
           <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">TODAY'S SECTOR LADDER</p><h2>当日板块梯队</h2></div><span>按广度、强势股、涨幅中位数和成交额排序</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>梯队</th><th>板块</th><th>上涨广度</th><th>强势股</th><th>涨幅中位数</th><th>领涨股</th><th>相关股票</th><th>下一交易日观察</th></tr></thead><tbody id="sectorRows"></tbody></table></div></section>
           <section class="panel dense-panel"><div class="heading"><div><p class="eyebrow">DAILY ARCHIVE</p><h2>历史板块档案</h2></div><label>日期 <select id="sectorHistorySelect"></select></label></div><p id="sectorHistoryMeta" class="section-note">--</p></section>
         </section>
@@ -133,6 +134,6 @@
         <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
       </form>
     </dialog>
-<script src="./app.js?v=20260730-panshi-v26"></script>
+<script src="./app.js?v=20260801-panshi-v27"></script>
   </body>
 </html>
