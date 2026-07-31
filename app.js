@@ -376,15 +376,25 @@ function forecastTierText(value) {
 
 function forecastStocks(stocks) {
   if (!Array.isArray(stocks) || !stocks.length) return "--";
-  return stocks.map((stock) => `<strong>${text(stock.name)} <small>${text(stock.code)} / ${num(stock.price)} / ${rawPct(stock.pct)}</small></strong>`).join("");
+  return stocks.map((stock) => `<strong>${text(stock.name)} <small>${text(stock.code)} / ${num(stock.price)} / ${rawPct(stock.pct)}${stock.role ? ` / ${text(stock.role)}` : ""}</small></strong>`).join("");
+}
+
+function forecastRowsHtml(rows) {
+  return rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${forecastTierText(row.tier)}<small>排序 ${text(row.rank)}</small></span></td><td><strong>${text(row.sector)}</strong><small>当日板块第 ${text(row.sectorRank)} 名</small></td><td class="reason">${text(row.basis)}</td><td class="forecast-stocks">${forecastStocks(row.stocks)}</td><td class="reason">${text(row.confirmation)}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">当前没有达到下一交易日优先复核条件的板块。</td></tr>';
 }
 
 function renderNextSessionForecast(data) {
   const forecast = data?.nextSessionForecast || {};
   const rows = Array.isArray(forecast.sectors) ? forecast.sectors : [];
-  $("sectorForecastAsOf").textContent = data?.asOf ? `基于 ${data.asOf} 收盘结构` : "等待收盘结构";
-  $("sectorForecastNotice").textContent = text(forecast.notice, "等待可校验的收盘结构，暂不生成下一交易日板块预判。");
-  $("sectorForecastRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${forecastTierText(row.tier)}<small>排序 ${text(row.rank)}</small></span></td><td><strong>${text(row.sector)}</strong><small>当日板块第 ${text(row.sectorRank)} 名</small></td><td class="reason">${text(row.basis)}</td><td class="forecast-stocks">${forecastStocks(row.stocks)}</td><td class="reason">${text(row.confirmation)}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">当前没有达到下一交易日优先复核条件的板块。</td></tr>';
+  const asOf = data?.asOf ? `基于 ${data.asOf} 收盘结构` : "等待收盘结构";
+  const notice = text(forecast.notice, "等待可校验的收盘结构，暂不生成下一交易日板块预判。");
+  const table = forecastRowsHtml(rows);
+  $("sectorForecastAsOf").textContent = asOf;
+  $("sectorForecastNotice").textContent = notice;
+  $("sectorForecastRows").innerHTML = table;
+  $("overviewSectorForecastAsOf").textContent = asOf;
+  $("overviewSectorForecastNotice").textContent = notice;
+  $("overviewSectorForecastRows").innerHTML = table;
 }
 
 function renderDailySectorResearch(research) {
@@ -939,9 +949,14 @@ function renderSnapshot(data) {
   const unified = data.unifiedSwingModel || {};
   const fusion = data.fusionModelV73 || {};
   const selected = fusion.selectedResearchCore;
-  const market = data.market || {};
+  const sectorResearch = data.dailySectorResearch || {};
+  const market = sectorResearch.market || data.market || {};
   const researchGeneratedAt = unified.generatedAt || data.generatedAt;
   const generated = researchGeneratedAt ? formatTime(researchGeneratedAt) : "--";
+  const historicalAsOf = unified.historicalModelAsOf || data.historicalModelAsOf || data.latestDate;
+  const sectorAsOf = sectorResearch.asOf || "--";
+  const sectorCapturedAt = sectorResearch.quoteTradeTime || sectorResearch.capturedAt;
+  const sectorGenerated = sectorCapturedAt ? formatTime(sectorCapturedAt) : "--";
   const intraday = data.intradayQuote || {};
   const quoteAt = intraday.capturedAt ? formatTime(intraday.capturedAt) : "--";
   const publicBuiltAt = data.publicSnapshotBuiltAt ? formatTime(data.publicSnapshotBuiltAt) : "--";
@@ -952,21 +967,26 @@ function renderSnapshot(data) {
     if (Number.isFinite(ageMinutes) && ageMinutes > 5) sideDot.classList.add("is-stale");
     else if (Number.isFinite(ageMinutes) && ageMinutes > 2) sideDot.classList.add("is-delayed");
     $("sideSnapshot").textContent = `盘中行情 ${quoteAt}`;
-    $("sideSnapshotDetail").textContent = `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
+    $("sideSnapshotDetail").textContent = `板块快照 ${sectorGenerated} / 日线回测 ${historicalAsOf || "--"}`;
   } else {
-    sideDot.classList.add("is-stale");
-    $("sideSnapshot").textContent = "行情等待更新";
-    $("sideSnapshotDetail").textContent = `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
+    if (sectorResearch.asOf) {
+      $("sideSnapshot").textContent = `板块快照 ${sectorAsOf}`;
+      $("sideSnapshotDetail").textContent = `行情时间 ${sectorGenerated} / 日线回测 ${historicalAsOf || "--"}`;
+    } else {
+      sideDot.classList.add("is-stale");
+      $("sideSnapshot").textContent = "行情等待更新";
+      $("sideSnapshotDetail").textContent = `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
+    }
   }
   $("updatedAt").textContent = intraday.capturedAt
-    ? `盘中行情 ${quoteAt} / 页面发布 ${publicBuiltAt} / 日线模型 ${generated}`
-    : `页面发布 ${publicBuiltAt} / 日线模型 ${generated}`;
+    ? `盘中行情 ${quoteAt} / 板块快照 ${sectorGenerated} / 日线回测 ${historicalAsOf || "--"}`
+    : `板块快照 ${sectorGenerated} / 日线回测 ${historicalAsOf || "--"} / 页面发布 ${publicBuiltAt}`;
   if (unified.modelName) {
     $("coreStatus").textContent = unified.robustnessGatePassed ? "分段研究门槛通过" : "风险门槛未通过";
     $("coreTitle").textContent = unified.modelName;
     $("coreSummary").textContent = unified.summary || "等待统一模型验证";
     $("formalStatus").textContent = unified.productionReady ? "已晋级" : "影子验证";
-    $("dataEnd").textContent = text(unified.latestDate || data.latestDate);
+    $("dataEnd").textContent = `板块 ${text(unified.latestDate || sectorAsOf)} / 回测 ${text(historicalAsOf)}`;
     foldMetric(unified.performance?.validation_2025_h1, "m3");
     foldMetric(unified.performance?.validation_2025_h2, "m5");
     foldMetric(unified.performance?.holdout_2026_ytd, "m7");
@@ -982,14 +1002,14 @@ function renderSnapshot(data) {
     metric(checks.find((check) => check.horizon === 5), "m5");
     metric(checks.find((check) => check.horizon === 7), "m7");
   }
-  const broad = n(market.up_ratio);
-  const median = n(market.median_pct);
+  const broad = n(market.upRatio ?? market.up_ratio);
+  const median = n(market.medianPct ?? market.median_pct);
   if (unified.modelName && unified.marketOk === false) {
     $("marketStatus").textContent = "环境过滤未通过";
     $("marketSub").textContent = `统一模型完整日截面 ${text(unified.latestDate)}`;
   } else {
     $("marketStatus").textContent = broad >= .60 && median >= 0 ? "环境偏强" : broad >= .45 ? "环境中性" : "环境偏弱";
-    $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)}`;
+    $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)} / ${sectorAsOf}`;
   }
   $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
   renderMethodRows(unified);

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-13T18:42:44+08:00",
-  "latestDate": "2026-07-10",
+  "generatedAt": "2026-08-01T00:07:08+08:00",
+  "latestDate": "2026-07-31",
   "modelName": "swing_quality_v31_clean_sizing_tilt_035_target_108",
   "formalVersion": "正式模型 V31",
   "learningVersion": "V57 最佳观察队列",
@@ -13520,8 +13520,8 @@
       }
     }
   },
-  "phase": "close-sector-forecast-publish",
-  "publicSnapshotBuiltAt": "2026-08-01T00:07:19+08:00",
+  "phase": "non-trading-day-sector-refresh",
+  "publicSnapshotBuiltAt": "2026-08-01T00:27:07+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
@@ -14742,7 +14742,9 @@
       "止损与止盈在同一根日 K 内冲突时按先止损处理，但仍不能还原真实盘口成交。",
       "基本面质量方法尚未接入公告时点可得数据，因此不参与本轮评分。",
       "研究结果只用于观察和风控，不承诺盈利，也不执行下单。"
-    ]
+    ],
+    "historicalModelAsOf": "2026-07-10",
+    "marketSnapshotAsOf": "2026-07-31"
   },
   "dailySectorResearch": {
     "version": "daily-sector-strength-v1",
@@ -19328,6 +19330,7 @@
       ]
     }
   },
+  "historicalModelAsOf": "2026-07-10",
   "limitUpSectorResearch": {
     "module": "涨停行业联动研究",
     "asOf": "2026-07-10",
@@ -19674,7 +19677,7 @@
         "price": 66.45,
         "pnlValue": -3650.0,
         "pnlPct": -0.2154663518299882,
-        "reviewPhase": "close-sector-forecast-publish",
+        "reviewPhase": "non-trading-day-sector-refresh",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -19692,7 +19695,7 @@
         "price": 36.31,
         "pnlValue": -1859.0500000000002,
         "pnlPct": -0.33862168832706446,
-        "reviewPhase": "close-sector-forecast-publish",
+        "reviewPhase": "non-trading-day-sector-refresh",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -19710,7 +19713,7 @@
         "price": 3.1,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "close-sector-forecast-publish",
+        "reviewPhase": "non-trading-day-sector-refresh",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",

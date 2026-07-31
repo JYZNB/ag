@@ -278,6 +278,11 @@ button, input, select { font: inherit; }
 .research-callout strong { color: var(--amber); }
 .research-metrics { margin-top: 12px; }
 .sector-table { min-width: 920px; }
+.forecast-spotlight { border-top: 3px solid var(--blue); background: linear-gradient(180deg, #f6fbff 0%, #fff 100%); }
+.forecast-spotlight .heading > span { color: var(--blue); font-weight: 800; }
+.forecast-table { min-width: 1000px; }
+.forecast-stocks strong { min-width: 132px; margin-bottom: 6px; color: var(--ink); }
+.forecast-stocks strong:last-child { margin-bottom: 0; }
 .compact-table { min-width: 620px; }
 .sector-forecast { border-top: 3px solid var(--green); }
 .forecast-stocks { min-width: 176px; white-space: normal !important; }
