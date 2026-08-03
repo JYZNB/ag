@@ -13520,8 +13520,8 @@
       }
     }
   },
-  "phase": "non-trading-day-sector-refresh",
-  "publicSnapshotBuiltAt": "2026-08-01T00:27:07+08:00",
+  "phase": "盘前最终发布 08:55",
+  "publicSnapshotBuiltAt": "2026-08-03T08:58:01+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
@@ -14753,7 +14753,7 @@
     "quoteTradeTime": "2026-07-31 17:01:03",
     "quoteSource": "Tushare RT",
     "quoteCount": 3055,
-    "state": "已生成当日强势板块档案",
+    "state": "非交易时段或实时行情暂不可用；保留最近可核验快照 2026-07-31。",
     "market": {
       "mainboardQuoteCount": 3055,
       "upRatio": 0.7833,
@@ -19208,7 +19208,7 @@
       ]
     },
     "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-    "phase": "close-sector-forecast-publish",
+    "phase": "盘前最终发布 08:55",
     "archive": {
       "archived": true,
       "date": "2026-07-31",
