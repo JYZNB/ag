@@ -12869,8 +12869,8 @@
   },
   "intradayQuote": {
     "version": "intraday_quote_v1",
-    "capturedAt": "2026-08-03T11:32:53+08:00",
-    "phase": "午间 11:30",
+    "capturedAt": "2026-08-03T13:02:51+08:00",
+    "phase": "午后开盘 13:00",
     "source": "tushare_rt",
     "candidateCodeCount": 30,
     "requestedCodeCount": 32,
@@ -12879,8 +12879,8 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "午间 11:30",
-  "publicSnapshotBuiltAt": "2026-08-03T11:32:54+08:00",
+  "phase": "午后开盘 13:00",
+  "publicSnapshotBuiltAt": "2026-08-03T13:02:52+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
@@ -18567,7 +18567,7 @@
       ]
     },
     "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-    "phase": "午间 11:30",
+    "phase": "午后开盘 13:00",
     "archive": {
       "archived": true,
       "date": "2026-07-31",
