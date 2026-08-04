@@ -419,6 +419,34 @@ function renderDailySectorResearch(research) {
   renderNextSessionForecast(data);
   const rows = Array.isArray(data.sectors) ? data.sectors : [];
   $("sectorRows").innerHTML = rows.map((row) => `<tr><td><span class="tier-label t${Number(row.tier) || 3}">${sectorTierText(row.tier)}<small>第 ${text(row.rank)} 名</small></span></td><td><strong>${text(row.sector)}</strong><small>${text(row.stockCount)} 只成分股</small></td><td>${pct(row.upRatio)}</td><td>${text(row.strongCount)} / ${text(row.limitLikeCount)} 近涨停</td><td>${rawPct(row.medianPct)}</td><td class="reason">${sectorLeaders(row.leaders)}</td><td class="sector-components">${sectorMembers(row)}</td><td class="reason">${text(row.nextSessionObservation)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">没有可校验实时行情，因此不生成板块排序。</td></tr>';
+  renderSectorForecastPerformance(data);
+}
+
+function forecastPerformanceRows(data) {
+  const performance = data?.forecastPerformance || data?.dailySectorResearch?.forecastPerformance || {};
+  return Array.isArray(performance.rows) ? performance.rows : [];
+}
+
+function forecastReturn(review, horizon) {
+  const value = n(review?.returns?.[String(horizon)]);
+  return Number.isFinite(value) ? value : NaN;
+}
+
+function forecastDrawdown(review) {
+  const horizons = Array.isArray(review?.availableHorizonDays) ? review.availableHorizonDays.map(Number).filter(Number.isFinite) : [];
+  const latest = horizons.sort((a, b) => b - a)[0];
+  return latest === undefined ? NaN : n(review?.drawdowns?.[String(latest)]);
+}
+
+function renderSectorForecastPerformance(data) {
+  const performance = data?.forecastPerformance || {};
+  const rows = forecastPerformanceRows(data);
+  $("sectorPerformanceAsOf").textContent = performance.asOf ? `复盘至 ${performance.asOf}` : "等待后续收盘档案";
+  $("sectorPerformanceNote").textContent = text(performance.measurement, "收盘后锁定候选与参考价；后续只在第 1、3、5、10 个完整收盘档案补收益。");
+  $("sectorPerformanceRows").innerHTML = rows.map((row) => {
+    const maxDrawdown = forecastDrawdown(row);
+    return `<tr><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)} / ${text(row.role)}</small></td><td>${num(row.referencePrice)}</td><td>${retCell(forecastReturn(row, 1))}</td><td>${retCell(forecastReturn(row, 3))}</td><td>${retCell(forecastReturn(row, 5))}</td><td>${retCell(forecastReturn(row, 10))}</td><td>${retCell(maxDrawdown)}</td><td class="reason"><strong>${text(row.reviewStatus)}</strong><small>${text(row.reviewNote)}</small></td></tr>`;
+  }).join("") || '<tr><td colspan="8" class="empty">该日尚未形成收盘后板块候选队列，或后续收盘档案尚未到达。</td></tr>';
 }
 
 async function selectSectorHistory(date) {
@@ -797,22 +825,33 @@ function renderHoldings() {
 }
 
 function performanceMetric(performance) {
-  const horizons = Array.isArray(performance?.available_horizons) ? performance.available_horizons.map(Number).filter(Number.isFinite).sort((a, b) => b - a) : [];
+  const isCohortRecord = Array.isArray(performance?.availableHorizonDays);
+  const horizons = (isCohortRecord ? performance.availableHorizonDays : performance?.available_horizons || [])
+    .map(Number).filter(Number.isFinite).sort((a, b) => b - a);
   const horizon = horizons[0];
-  const value = horizon === undefined ? NaN : n(performance?.returns?.[String(horizon)]);
-  const drawdown = horizon === undefined ? NaN : n(performance?.drawdowns?.[String(horizon)]);
+  const multiplier = isCohortRecord ? 1 : 0.01;
+  const value = horizon === undefined ? NaN : n(performance?.returns?.[String(horizon)]) * multiplier;
+  const drawdown = horizon === undefined ? NaN : n(performance?.drawdowns?.[String(horizon)]) * multiplier;
   return { horizon: horizon === undefined ? "等待后验" : `${horizon}日`, value, drawdown };
 }
 
 function renderHistoryRows(data) {
-  const performance = new Map((data?.candidatePerformanceRows || []).map((row) => [codeOf(row.code), row]));
-  const rows = rankedCandidates(data).map((row) => {
-    const review = performance.get(codeOf(row.code));
-    return { row, review, post: performanceMetric(review) };
-  });
+  const cohortRows = forecastPerformanceRows(data);
+  const legacyPerformance = new Map((data?.candidatePerformanceRows || []).map((row) => [codeOf(row.code), row]));
+  const candidateMap = new Map(rankedCandidates(data).map((row) => [codeOf(row.code), row]));
+  const rows = cohortRows.length
+    ? cohortRows.map((review, index) => {
+      const row = candidateMap.get(codeOf(review.code)) || {
+        code: review.code, name: review.name, sector: review.sector, tier: review.tier, research_score: 100 - index,
+      };
+      return { row, review, post: performanceMetric(review), cohort: true };
+    })
+    : rankedCandidates(data).map((row) => {
+      const review = legacyPerformance.get(codeOf(row.code));
+      return { row, review, post: performanceMetric(review), cohort: false };
+    });
   const valueFor = (item) => {
     if (historySort === "score") return n(item.row.research_score);
-    if (historySort === "ret20") return n(item.row.ret20);
     if (historySort === "drawdown") return n(item.post.drawdown);
     return n(item.post.value);
   };
@@ -823,7 +862,13 @@ function renderHistoryRows(data) {
     if (!Number.isFinite(b)) return -1;
     return historySort === "drawdown" ? a - b : b - a;
   });
-  $("historyRows").innerHTML = rows.map(({ row, review, post }) => `<tr><td><span class="tier-label t${row.tier}">${tierText(row.tier)}</span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)}</small></td><td>${Number.isFinite(post.value) ? rawPct(post.value) : "等待后验"}</td><td>${Number.isFinite(post.drawdown) ? rawPct(post.drawdown) : "--"}</td><td>${post.horizon}</td><td>${text(review?.review_status, "等待后验")}</td><td>${retCell(row.ret20)}</td><td class="reason">${text(review?.review_note, row.explain || row.quality_type)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">该日期没有可显示的候选。</td></tr>';
+  $("historyRows").innerHTML = rows.map(({ row, review, post, cohort }) => {
+    const status = cohort ? text(review?.reviewStatus, "等待后验") : text(review?.review_status, "等待后验");
+    const note = cohort ? text(review?.reviewNote) : text(review?.review_note, row.explain || row.quality_type);
+    const reference = cohort ? num(review?.referencePrice) : "--";
+    const cell = (horizon) => cohort ? retCell(forecastReturn(review, horizon)) : "--";
+    return `<tr><td><span class="tier-label t${row.tier}">${tierText(row.tier)}</span></td><td class="stock-cell"><strong>${text(row.name)}</strong><small>${codeOf(row.code)} / ${text(row.sector)}</small></td><td>${reference}</td><td>${cell(1)}</td><td>${cell(3)}</td><td>${cell(5)}</td><td>${cell(10)}${Number.isFinite(post.value) ? `<small>最新 ${pct(post.value)}</small>` : ""}</td><td>${retCell(post.drawdown)}</td><td>${status}<small>${post.horizon}</small></td><td class="reason">${note}</td></tr>`;
+  }).join("") || '<tr><td colspan="10" class="empty">该日期没有可显示的候选。</td></tr>';
 }
 
 function methodEvidence(method) {

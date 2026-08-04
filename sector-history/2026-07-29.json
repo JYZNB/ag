@@ -3970,5 +3970,18 @@
     }
   ],
   "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-  "phase": "trend-return-and-sector-expand-cache-v26"
+  "phase": "trend-return-and-sector-expand-cache-v26",
+  "forecastPerformance": {
+    "version": "sector-forecast-performance-v1",
+    "signalDate": "2026-07-29",
+    "asOf": "2026-08-04",
+    "measurement": "收盘档案端点收益；缺少目标日价格时不补算",
+    "horizons": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "rows": []
+  }
 }

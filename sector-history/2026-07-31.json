@@ -4460,5 +4460,559 @@
     ]
   },
   "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-  "phase": "close-sector-forecast-publish"
+  "phase": "close-sector-forecast-publish",
+  "forecastPerformance": {
+    "version": "sector-forecast-performance-v1",
+    "signalDate": "2026-07-31",
+    "asOf": "2026-08-04",
+    "measurement": "收盘档案端点收益；缺少目标日价格时不补算",
+    "horizons": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "rows": [
+      {
+        "code": "002777",
+        "name": "久远银海",
+        "sector": "行业应用软件",
+        "tier": 1,
+        "sectorRank": 1,
+        "role": "板块内跟踪",
+        "referencePrice": 13.26,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.016591
+        },
+        "drawdowns": {
+          "1": 0.016591
+        },
+        "maxUp": {
+          "1": 0.016591
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：1.66%。"
+      },
+      {
+        "code": "600756",
+        "name": "浪潮软件",
+        "sector": "行业应用软件",
+        "tier": 1,
+        "sectorRank": 1,
+        "role": "板块内跟踪",
+        "referencePrice": 16.33,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": -0.009186
+        },
+        "drawdowns": {
+          "1": -0.009186
+        },
+        "maxUp": {
+          "1": -0.009186
+        },
+        "reviewStatus": "已验证负收益",
+        "reviewNote": "已记录后 1 个收盘档案：-0.92%。"
+      },
+      {
+        "code": "002771",
+        "name": "真视通",
+        "sector": "行业应用软件",
+        "tier": 1,
+        "sectorRank": 1,
+        "role": "板块内跟踪",
+        "referencePrice": 11.9,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.083193
+        },
+        "drawdowns": {
+          "1": 0.083193
+        },
+        "maxUp": {
+          "1": 0.083193
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：8.32%。"
+      },
+      {
+        "code": "605088",
+        "name": "冠盛股份",
+        "sector": "底盘与发动机系统",
+        "tier": 1,
+        "sectorRank": 2,
+        "role": "板块内跟踪",
+        "referencePrice": 20.22,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.04451
+        },
+        "drawdowns": {
+          "1": 0.04451
+        },
+        "maxUp": {
+          "1": 0.04451
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：4.45%。"
+      },
+      {
+        "code": "603809",
+        "name": "豪能股份",
+        "sector": "底盘与发动机系统",
+        "tier": 1,
+        "sectorRank": 2,
+        "role": "板块内跟踪",
+        "referencePrice": 9.47,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.008448
+        },
+        "drawdowns": {
+          "1": 0.008448
+        },
+        "maxUp": {
+          "1": 0.008448
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：0.84%。"
+      },
+      {
+        "code": "000678",
+        "name": "襄阳轴承",
+        "sector": "底盘与发动机系统",
+        "tier": 1,
+        "sectorRank": 2,
+        "role": "板块内跟踪",
+        "referencePrice": 8.45,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.052071
+        },
+        "drawdowns": {
+          "1": 0.052071
+        },
+        "maxUp": {
+          "1": 0.052071
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：5.21%。"
+      },
+      {
+        "code": "605151",
+        "name": "西上海  ",
+        "sector": "车身附件及饰件",
+        "tier": 1,
+        "sectorRank": 3,
+        "role": "板块内跟踪",
+        "referencePrice": 16.95,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.034808
+        },
+        "drawdowns": {
+          "1": 0.034808
+        },
+        "maxUp": {
+          "1": 0.034808
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：3.48%。"
+      },
+      {
+        "code": "605228",
+        "name": "神通科技",
+        "sector": "车身附件及饰件",
+        "tier": 1,
+        "sectorRank": 3,
+        "role": "板块内跟踪",
+        "referencePrice": 10.35,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.017391
+        },
+        "drawdowns": {
+          "1": 0.017391
+        },
+        "maxUp": {
+          "1": 0.017391
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：1.74%。"
+      },
+      {
+        "code": "601799",
+        "name": "星宇股份",
+        "sector": "车身附件及饰件",
+        "tier": 1,
+        "sectorRank": 3,
+        "role": "板块内跟踪",
+        "referencePrice": 99.2,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": -0.042137
+        },
+        "drawdowns": {
+          "1": -0.042137
+        },
+        "maxUp": {
+          "1": -0.042137
+        },
+        "reviewStatus": "已验证负收益",
+        "reviewNote": "已记录后 1 个收盘档案：-4.21%。"
+      },
+      {
+        "code": "002636",
+        "name": "金安国纪",
+        "sector": "PCB",
+        "tier": 1,
+        "sectorRank": 5,
+        "role": "板块内跟踪",
+        "referencePrice": 50.83,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.004722
+        },
+        "drawdowns": {
+          "1": 0.004722
+        },
+        "maxUp": {
+          "1": 0.004722
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：0.47%。"
+      },
+      {
+        "code": "603386",
+        "name": "骏亚科技",
+        "sector": "PCB",
+        "tier": 1,
+        "sectorRank": 5,
+        "role": "板块内跟踪",
+        "referencePrice": 11.25,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.061333
+        },
+        "drawdowns": {
+          "1": 0.061333
+        },
+        "maxUp": {
+          "1": 0.061333
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：6.13%。"
+      },
+      {
+        "code": "002913",
+        "name": "奥士康",
+        "sector": "PCB",
+        "tier": 1,
+        "sectorRank": 5,
+        "role": "板块内跟踪",
+        "referencePrice": 39.44,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.135903
+        },
+        "drawdowns": {
+          "1": 0.135903
+        },
+        "maxUp": {
+          "1": 0.135903
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：13.59%。"
+      },
+      {
+        "code": "000977",
+        "name": "浪潮信息",
+        "sector": "其他IT设备",
+        "tier": 1,
+        "sectorRank": 7,
+        "role": "板块内跟踪",
+        "referencePrice": 71.81,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.032447
+        },
+        "drawdowns": {
+          "1": 0.032447
+        },
+        "maxUp": {
+          "1": 0.032447
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：3.24%。"
+      },
+      {
+        "code": "000938",
+        "name": "紫光股份",
+        "sector": "其他IT设备",
+        "tier": 1,
+        "sectorRank": 7,
+        "role": "板块内跟踪",
+        "referencePrice": 34.89,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": -0.016337
+        },
+        "drawdowns": {
+          "1": -0.016337
+        },
+        "maxUp": {
+          "1": -0.016337
+        },
+        "reviewStatus": "已验证负收益",
+        "reviewNote": "已记录后 1 个收盘档案：-1.63%。"
+      },
+      {
+        "code": "002912",
+        "name": "中新赛克",
+        "sector": "其他IT设备",
+        "tier": 1,
+        "sectorRank": 7,
+        "role": "板块内跟踪",
+        "referencePrice": 19.0,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.106842
+        },
+        "drawdowns": {
+          "1": 0.106842
+        },
+        "maxUp": {
+          "1": 0.106842
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：10.68%。"
+      },
+      {
+        "code": "002861",
+        "name": "瀛通通讯",
+        "sector": "消费电子组件",
+        "tier": 1,
+        "sectorRank": 8,
+        "role": "板块内跟踪",
+        "referencePrice": 14.57,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.076184
+        },
+        "drawdowns": {
+          "1": 0.076184
+        },
+        "maxUp": {
+          "1": 0.076184
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：7.62%。"
+      },
+      {
+        "code": "002881",
+        "name": "美格智能",
+        "sector": "消费电子组件",
+        "tier": 1,
+        "sectorRank": 8,
+        "role": "板块内跟踪",
+        "referencePrice": 35.1,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.049003
+        },
+        "drawdowns": {
+          "1": 0.049003
+        },
+        "maxUp": {
+          "1": 0.049003
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：4.90%。"
+      },
+      {
+        "code": "002993",
+        "name": "奥海科技",
+        "sector": "消费电子组件",
+        "tier": 1,
+        "sectorRank": 8,
+        "role": "板块内跟踪",
+        "referencePrice": 34.36,
+        "signalDate": "2026-07-31",
+        "availableHorizonDays": [
+          1
+        ],
+        "pendingHorizonDays": [
+          3,
+          5,
+          10
+        ],
+        "missingHorizonDays": [],
+        "returns": {
+          "1": 0.030268
+        },
+        "drawdowns": {
+          "1": 0.030268
+        },
+        "maxUp": {
+          "1": 0.030268
+        },
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 1 个收盘档案：3.03%。"
+      }
+    ]
+  }
 }
