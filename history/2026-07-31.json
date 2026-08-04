@@ -12869,8 +12869,8 @@
   },
   "intradayQuote": {
     "version": "intraday_quote_v1",
-    "capturedAt": "2026-08-03T13:02:51+08:00",
-    "phase": "午后开盘 13:00",
+    "capturedAt": "2026-08-04T09:27:30+08:00",
+    "phase": "集合竞价 09:25",
     "source": "tushare_rt",
     "candidateCodeCount": 30,
     "requestedCodeCount": 32,
@@ -12879,8 +12879,8 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "午后开盘 13:00",
-  "publicSnapshotBuiltAt": "2026-08-03T13:02:52+08:00",
+  "phase": "集合竞价 09:25",
+  "publicSnapshotBuiltAt": "2026-08-04T09:27:32+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
@@ -12894,12 +12894,12 @@
     "selectedVariant": "gradual_information_20d",
     "selectedMethod": "渐进信息动量 20 日",
     "recommendedHoldingDays": 20,
-    "stabilityScore": 1.5146770418448263,
+    "stabilityScore": 1.5146770419823077,
     "robustnessGatePassed": true,
     "marketOk": true,
     "summary": "当日使用 Tushare RT 的板块广度、领涨股和成交额生成分级研究池。一级、二级仅代表当日研究优先级；下一交易日仍须复核强度，不构成收益承诺或下单指令。",
     "coverageAudit": {
-      "latest_raw_date": "2026-07-31",
+      "latest_raw_date": "2026-08-03",
       "latest_raw_coverage": 120,
       "latest_eligible_date": "2026-07-10",
       "latest_eligible_coverage": 2818,
@@ -12929,8 +12929,8 @@
         "label": "holdout_2026_ytd",
         "rows": 81,
         "modelReturn": 0.8162253818164571,
-        "equalWeightReturn": -0.04981317401885932,
-        "activeReturn": 0.911440289588382,
+        "equalWeightReturn": -0.049813174193423015,
+        "activeReturn": 0.9114402899395426,
         "maxDrawdown": -0.08695584630564279
       }
     },
@@ -18567,7 +18567,7 @@
       ]
     },
     "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-    "phase": "午后开盘 13:00",
+    "phase": "集合竞价 09:25",
     "archive": {
       "archived": true,
       "date": "2026-07-31",
@@ -18575,7 +18575,7 @@
     },
     "module": "每日强势板块研究",
     "historicalValidation": {
-      "generatedAt": "2026-07-31T18:41:48+08:00",
+      "generatedAt": "2026-08-03T18:47:02+08:00",
       "selectionRule": {
         "tier1": "当日行业排序第 1，行业内涨幅前 3，且个股近 5 日未过度扩张。",
         "tier2": "当日行业排序第 2-3，行业内涨幅前 3，且个股近 5 日未过度扩张。",
