@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T22:17:51+08:00",
+  "generatedAt": "2026-08-04T22:29:48+08:00",
   "latestDate": "2026-08-04",
   "modelName": "swing_quality_v31_clean_sizing_tilt_035_target_108",
   "formalVersion": "正式模型 V31",
@@ -12879,14 +12879,14 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "2026-08-04 收盘候选后验归档",
-  "publicSnapshotBuiltAt": "2026-08-04T22:20:17+08:00",
+  "phase": "2026-08-04 收盘预测时间标注",
+  "publicSnapshotBuiltAt": "2026-08-04T22:30:00+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
     "productionReady": false,
     "latestDate": "2026-08-04",
-    "generatedAt": "2026-08-04T22:17:51+08:00",
+    "generatedAt": "2026-08-04T22:29:48+08:00",
     "horizonDays": [
       15,
       45
@@ -14108,7 +14108,7 @@
   "dailySectorResearch": {
     "version": "daily-sector-strength-v1",
     "asOf": "2026-08-04",
-    "capturedAt": "2026-08-04T22:17:51+08:00",
+    "capturedAt": "2026-08-04T22:29:48+08:00",
     "quoteTradeTime": "2026-08-04T16:24:00+08:00",
     "quoteSource": "新浪财经公开行情（非L2）",
     "quoteCount": 2746,
@@ -18110,7 +18110,11 @@
           ],
           "rank": 6
         }
-      ]
+      ],
+      "signalDate": "2026-08-04",
+      "generatedAt": "2026-08-04T22:29:48+08:00",
+      "quoteTradeTime": "2026-08-04T16:24:00+08:00",
+      "forecastFor": "下一交易日"
     },
     "forecastPerformance": {
       "version": "sector-forecast-performance-v1",
@@ -18541,7 +18545,7 @@
       ]
     },
     "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-    "phase": "2026-08-04 收盘归档后验补充",
+    "phase": "2026-08-04 收盘归档时间标注",
     "archive": {
       "archived": true,
       "date": "2026-08-04",

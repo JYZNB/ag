@@ -386,7 +386,13 @@ function forecastRowsHtml(rows) {
 function renderNextSessionForecast(data) {
   const forecast = data?.nextSessionForecast || {};
   const rows = Array.isArray(forecast.sectors) ? forecast.sectors : [];
-  const asOf = data?.asOf ? `基于 ${data.asOf} 收盘结构` : "等待收盘结构";
+  const signalDate = forecast.signalDate || data?.asOf;
+  const generatedAt = forecast.generatedAt || data?.capturedAt;
+  const quoteTradeTime = forecast.quoteTradeTime || data?.quoteTradeTime;
+  const target = forecast.forecastFor || (data?.isFinalClose ? "下一交易日" : "盘中不锁定下一交易日");
+  const asOf = signalDate
+    ? `预测对象：${target} ｜ 收盘归档 ${formatTime(generatedAt)} ｜ 行情截点 ${compactTime(quoteTradeTime)}`
+    : "等待收盘结构";
   const notice = text(forecast.notice, "等待可校验的收盘结构，暂不生成下一交易日板块预判。");
   const table = forecastRowsHtml(rows);
   $("sectorForecastAsOf").textContent = asOf;
