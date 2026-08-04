@@ -432,6 +432,7 @@ async function selectSectorHistory(date) {
   }
   const data = sectorHistoryData || {};
   const top = Array.isArray(data.sectors) ? data.sectors.slice(0, 3).map((row) => row.sector).join(" / ") : "--";
+  renderDailySectorResearch(data);
   $("sectorHistoryMeta").textContent = `${text(data.asOf, date)}：行情样本 ${text(data.quoteCount, "--")}；前 3 板块 ${top}。`;
 }
 
@@ -451,6 +452,7 @@ async function loadSectorHistoryIndex() {
   const selected = select.value || currentDate || sectorHistoryIndex[0]?.date;
   select.innerHTML = sectorHistoryIndex.map((row) => `<option value="${text(row.date)}">${text(row.date)} / ${text(row.quoteCount, 0)} 条行情</option>`).join("") || '<option value="">暂无归档</option>';
   if (selected && sectorHistoryIndex.some((row) => row.date === selected)) select.value = selected;
+  $("sectorArchiveCount").textContent = `已归档 ${sectorHistoryIndex.length} 个交易日`;
   await selectSectorHistory(select.value);
 }
 

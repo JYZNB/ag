@@ -315,3 +315,5 @@ button, input, select { font: inherit; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .hero dl { grid-template-columns: 1fr 1fr; }
 }
+.history-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.archive-count { color: var(--muted); font-size: 12px; }
