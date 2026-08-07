@@ -4464,7 +4464,7 @@
   "forecastPerformance": {
     "version": "sector-forecast-performance-v1",
     "signalDate": "2026-07-31",
-    "asOf": "2026-08-05",
+    "asOf": "2026-08-06",
     "measurement": "收盘档案端点收益；缺少目标日价格时不补算",
     "horizons": [
       1,
@@ -4483,25 +4483,28 @@
         "referencePrice": 13.26,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.016591
+          "1": 0.016591,
+          "3": 0.013575
         },
         "drawdowns": {
-          "1": 0.016591
+          "1": 0.016591,
+          "3": 0.010558
         },
         "maxUp": {
-          "1": 0.016591
+          "1": 0.016591,
+          "3": 0.016591
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：1.66%。"
+        "reviewNote": "已记录后 3 个收盘档案：1.36%。"
       },
       {
         "code": "600756",
@@ -4513,25 +4516,28 @@
         "referencePrice": 16.33,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": -0.009186
+          "1": -0.009186,
+          "3": -0.029394
         },
         "drawdowns": {
-          "1": -0.009186
+          "1": -0.009186,
+          "3": -0.029394
         },
         "maxUp": {
-          "1": -0.009186
+          "1": -0.009186,
+          "3": 0.020821
         },
         "reviewStatus": "已验证负收益",
-        "reviewNote": "已记录后 1 个收盘档案：-0.92%。"
+        "reviewNote": "已记录后 3 个收盘档案：-2.94%。"
       },
       {
         "code": "002771",
@@ -4543,25 +4549,28 @@
         "referencePrice": 11.9,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.083193
+          "1": 0.083193,
+          "3": 0.087395
         },
         "drawdowns": {
-          "1": 0.083193
+          "1": 0.083193,
+          "3": 0.083193
         },
         "maxUp": {
-          "1": 0.083193
+          "1": 0.083193,
+          "3": 0.093277
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：8.32%。"
+        "reviewNote": "已记录后 3 个收盘档案：8.74%。"
       },
       {
         "code": "605088",
@@ -4573,25 +4582,28 @@
         "referencePrice": 20.22,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.04451
+          "1": 0.04451,
+          "3": 0.051434
         },
         "drawdowns": {
-          "1": 0.04451
+          "1": 0.04451,
+          "3": 0.04451
         },
         "maxUp": {
-          "1": 0.04451
+          "1": 0.04451,
+          "3": 0.068249
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：4.45%。"
+        "reviewNote": "已记录后 3 个收盘档案：5.14%。"
       },
       {
         "code": "603809",
@@ -4603,25 +4615,28 @@
         "referencePrice": 9.47,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.008448
+          "1": 0.008448,
+          "3": -0.006336
         },
         "drawdowns": {
-          "1": 0.008448
+          "1": 0.008448,
+          "3": -0.006336
         },
         "maxUp": {
-          "1": 0.008448
+          "1": 0.008448,
+          "3": 0.008448
         },
-        "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：0.84%。"
+        "reviewStatus": "已验证负收益",
+        "reviewNote": "已记录后 3 个收盘档案：-0.63%。"
       },
       {
         "code": "000678",
@@ -4633,25 +4648,28 @@
         "referencePrice": 8.45,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.052071
+          "1": 0.052071,
+          "3": 0.057988
         },
         "drawdowns": {
-          "1": 0.052071
+          "1": 0.052071,
+          "3": 0.052071
         },
         "maxUp": {
-          "1": 0.052071
+          "1": 0.052071,
+          "3": 0.067456
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：5.21%。"
+        "reviewNote": "已记录后 3 个收盘档案：5.80%。"
       },
       {
         "code": "605151",
@@ -4663,25 +4681,28 @@
         "referencePrice": 16.95,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.034808
+          "1": 0.034808,
+          "3": 0.061357
         },
         "drawdowns": {
-          "1": 0.034808
+          "1": 0.034808,
+          "3": 0.034808
         },
         "maxUp": {
-          "1": 0.034808
+          "1": 0.034808,
+          "3": 0.061357
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：3.48%。"
+        "reviewNote": "已记录后 3 个收盘档案：6.14%。"
       },
       {
         "code": "605228",
@@ -4693,25 +4714,28 @@
         "referencePrice": 10.35,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.017391
+          "1": 0.017391,
+          "3": 0.071498
         },
         "drawdowns": {
-          "1": 0.017391
+          "1": 0.017391,
+          "3": 0.017391
         },
         "maxUp": {
-          "1": 0.017391
+          "1": 0.017391,
+          "3": 0.072464
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：1.74%。"
+        "reviewNote": "已记录后 3 个收盘档案：7.15%。"
       },
       {
         "code": "601799",
@@ -4723,25 +4747,28 @@
         "referencePrice": 99.2,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": -0.042137
+          "1": -0.042137,
+          "3": -0.050706
         },
         "drawdowns": {
-          "1": -0.042137
+          "1": -0.042137,
+          "3": -0.050706
         },
         "maxUp": {
-          "1": -0.042137
+          "1": -0.042137,
+          "3": -0.038508
         },
         "reviewStatus": "已验证负收益",
-        "reviewNote": "已记录后 1 个收盘档案：-4.21%。"
+        "reviewNote": "已记录后 3 个收盘档案：-5.07%。"
       },
       {
         "code": "002636",
@@ -4753,25 +4780,28 @@
         "referencePrice": 50.83,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.004722
+          "1": 0.004722,
+          "3": 0.180209
         },
         "drawdowns": {
-          "1": 0.004722
+          "1": 0.004722,
+          "3": 0.004722
         },
         "maxUp": {
-          "1": 0.004722
+          "1": 0.004722,
+          "3": 0.180209
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：0.47%。"
+        "reviewNote": "已记录后 3 个收盘档案：18.02%。"
       },
       {
         "code": "603386",
@@ -4783,25 +4813,28 @@
         "referencePrice": 11.25,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.061333
+          "1": 0.061333,
+          "3": 0.135111
         },
         "drawdowns": {
-          "1": 0.061333
+          "1": 0.061333,
+          "3": 0.061333
         },
         "maxUp": {
-          "1": 0.061333
+          "1": 0.061333,
+          "3": 0.135111
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：6.13%。"
+        "reviewNote": "已记录后 3 个收盘档案：13.51%。"
       },
       {
         "code": "002913",
@@ -4813,25 +4846,28 @@
         "referencePrice": 39.44,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.135903
+          "1": 0.135903,
+          "3": 0.277383
         },
         "drawdowns": {
-          "1": 0.135903
+          "1": 0.135903,
+          "3": 0.135903
         },
         "maxUp": {
-          "1": 0.135903
+          "1": 0.135903,
+          "3": 0.277383
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：13.59%。"
+        "reviewNote": "已记录后 3 个收盘档案：27.74%。"
       },
       {
         "code": "000977",
@@ -4843,25 +4879,28 @@
         "referencePrice": 71.81,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.032447
+          "1": 0.032447,
+          "3": 0.06935
         },
         "drawdowns": {
-          "1": 0.032447
+          "1": 0.032447,
+          "3": 0.032447
         },
         "maxUp": {
-          "1": 0.032447
+          "1": 0.032447,
+          "3": 0.075059
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：3.24%。"
+        "reviewNote": "已记录后 3 个收盘档案：6.93%。"
       },
       {
         "code": "000938",
@@ -4873,25 +4912,28 @@
         "referencePrice": 34.89,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": -0.016337
+          "1": -0.016337,
+          "3": 0.087418
         },
         "drawdowns": {
-          "1": -0.016337
+          "1": -0.016337,
+          "3": -0.016337
         },
         "maxUp": {
-          "1": -0.016337
+          "1": -0.016337,
+          "3": 0.087418
         },
-        "reviewStatus": "已验证负收益",
-        "reviewNote": "已记录后 1 个收盘档案：-1.63%。"
+        "reviewStatus": "已验证正收益",
+        "reviewNote": "已记录后 3 个收盘档案：8.74%。"
       },
       {
         "code": "002912",
@@ -4903,25 +4945,28 @@
         "referencePrice": 19.0,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.106842
+          "1": 0.106842,
+          "3": 0.101579
         },
         "drawdowns": {
-          "1": 0.106842
+          "1": 0.106842,
+          "3": 0.101579
         },
         "maxUp": {
-          "1": 0.106842
+          "1": 0.106842,
+          "3": 0.168421
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：10.68%。"
+        "reviewNote": "已记录后 3 个收盘档案：10.16%。"
       },
       {
         "code": "002861",
@@ -4933,25 +4978,28 @@
         "referencePrice": 14.57,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.076184
+          "1": 0.076184,
+          "3": 0.13315
         },
         "drawdowns": {
-          "1": 0.076184
+          "1": 0.076184,
+          "3": 0.076184
         },
         "maxUp": {
-          "1": 0.076184
+          "1": 0.076184,
+          "3": 0.13315
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：7.62%。"
+        "reviewNote": "已记录后 3 个收盘档案：13.31%。"
       },
       {
         "code": "002881",
@@ -4963,25 +5011,28 @@
         "referencePrice": 35.1,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.049003
+          "1": 0.049003,
+          "3": 0.086325
         },
         "drawdowns": {
-          "1": 0.049003
+          "1": 0.049003,
+          "3": 0.049003
         },
         "maxUp": {
-          "1": 0.049003
+          "1": 0.049003,
+          "3": 0.086325
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：4.90%。"
+        "reviewNote": "已记录后 3 个收盘档案：8.63%。"
       },
       {
         "code": "002993",
@@ -4993,25 +5044,28 @@
         "referencePrice": 34.36,
         "signalDate": "2026-07-31",
         "availableHorizonDays": [
-          1
+          1,
+          3
         ],
         "pendingHorizonDays": [
-          3,
           5,
           10
         ],
         "missingHorizonDays": [],
         "returns": {
-          "1": 0.030268
+          "1": 0.030268,
+          "3": 0.091967
         },
         "drawdowns": {
-          "1": 0.030268
+          "1": 0.030268,
+          "3": 0.030268
         },
         "maxUp": {
-          "1": 0.030268
+          "1": 0.030268,
+          "3": 0.091967
         },
         "reviewStatus": "已验证正收益",
-        "reviewNote": "已记录后 1 个收盘档案：3.03%。"
+        "reviewNote": "已记录后 3 个收盘档案：9.20%。"
       }
     ]
   }
