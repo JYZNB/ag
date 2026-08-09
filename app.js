@@ -4,8 +4,9 @@ const OWNED_WATCH_STORAGE = "taishan-fusion-owned-watch-v1";
 const WATCH_MIGRATION_MARKER = "taishan-fusion-watch-ledgers-v1-migrated";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v4", "taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
-  overview: { title: "研究总览", subtitle: "一个融合模型，统一整理市场、板块、趋势质量与风险复核。" },
-  sectors: { title: "板块雷达", subtitle: "每日归档板块广度、领涨样本与下一交易日的研究核实重点。" },
+  overview: { title: "研究所日报", subtitle: "先判市场许可，再看板块延续，最后核实个股。" },
+  sectors: { title: "板块雷达", subtitle: "只看板块结构、催化证据与板块内样本，不重复研究所结论。" },
+  candidates: { title: "候选清单", subtitle: "股票只在这里做价格、风险线和观察区复核。" },
   watch: { title: "我的观察栏", subtitle: "未买锁定观察价，已买记录真实成交价；两本账本独立追踪。" },
   history: { title: "历史候选", subtitle: "按研究日期回看候选与已形成的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
@@ -395,12 +396,13 @@ function renderNextSessionForecast(data) {
     : "等待收盘结构";
   const notice = text(forecast.notice, "等待可校验的收盘结构，暂不生成下一交易日板块预判。");
   const table = forecastRowsHtml(rows);
+  const headline = rows.length
+    ? `${target}：${rows.slice(0, 3).map((row) => text(row.sector)).join(" / ")} 优先核实`
+    : `${target}：暂无板块进入优先核实`;
   $("sectorForecastAsOf").textContent = asOf;
   $("sectorForecastNotice").textContent = notice;
   $("sectorForecastRows").innerHTML = table;
-  $("overviewSectorForecastAsOf").textContent = asOf;
-  $("overviewSectorForecastNotice").textContent = notice;
-  $("overviewSectorForecastRows").innerHTML = table;
+  $("sectorForecastHeadline").textContent = headline;
 }
 
 function renderDailySectorResearch(research) {
@@ -613,18 +615,11 @@ function renderLimitupResearch(research) {
   const patterns = Array.isArray(value.patternRows) ? value.patternRows : [];
   $("limitupPatternRows").innerHTML = patterns.map((row) => `<tr><td><strong>${text(row.label)}</strong></td><td>${text(row.sample_size)}</td><td>${rawPct(row.avg_fwd_1d)}</td><td>${rawPct(row.avg_fwd_3d)}</td><td>${rawPct(row.avg_fwd_5d)}</td><td>${pct(row.positive_rate_3d)}</td><td>${text(row.aligned_folds)}/${text(row.fold_count)}</td><td>${researchState(row.assessment)}</td></tr>`).join("") || '<tr><td colspan="8" class="empty">等待收盘后行业联动复盘。</td></tr>';
 
-  const renderAssociationRows = (target, rows) => {
-    $(target).innerHTML = (Array.isArray(rows) ? rows : []).map((row) => `<tr><td>${text(row.factor)}</td><td>${text(row.bucket)}</td><td>${text(row.sample_size)}</td><td>${rawPct(row.avg_fwd_3d)}</td><td>${researchState(row.assessment)}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">暂无达到展示条件的关联。</td></tr>';
-  };
-  renderAssociationRows("limitupPositiveRows", value.positiveAssociations);
-  renderAssociationRows("limitupRiskRows", value.riskAssociations);
-
   const latestRows = Array.isArray(value.latestSectorRows) ? value.latestSectorRows : [];
   $("limitupLatestRows").innerHTML = latestRows.map((row) => `<tr><td><strong>${text(row.sector)}</strong></td><td>${text(row.event_type)}</td><td>${text(row.limit_like_count)}</td><td>${pct(row.limit_like_share)}</td><td>${rawPct(row.prior_sector_ret5)}</td><td>${Number.isFinite(n(row.amount_ratio20)) ? `${n(row.amount_ratio20).toFixed(2)}x` : "--"}</td><td>${text(row.cycle_bucket)}</td><td>${text(row.market_bucket)}</td><td class="reason">${text(row.research_note)}</td></tr>`).join("") || '<tr><td colspan="9" class="empty">最新完整日线中没有行业联动样本。</td></tr>';
 
   const evidenceRows = Array.isArray(value.sourceCoverage) ? value.sourceCoverage : [];
-  $("limitupEvidenceRows").innerHTML = evidenceRows.map((row) => `<tr><td><strong>${text(row.evidence)}</strong></td><td>${text(row.status)}</td><td class="reason">${text(row.coverage)}</td><td class="reason">${text(row.use)}</td></tr>`).join("") || '<tr><td colspan="4" class="empty">证据边界等待登记。</td></tr>';
-  $("limitupNextRequirement").textContent = value.nextDataRequirement || "政策、新闻和另类因子需先具备逐日时间戳与历史档案，才会进入增量检验。";
+  $("limitupCoverageRows").innerHTML = evidenceRows.map((row) => `<div><strong>${text(row.evidence)}</strong><small>${text(row.status)} · ${text(row.coverage)}</small><p>${text(row.use)}</p></div>`).join("") || `<div><strong>下一步数据要求</strong><small>研究边界</small><p>${text(value.nextDataRequirement, "政策、新闻和另类因子需先具备逐日时间戳与历史档案，才会进入增量检验。")}</p></div>`;
 }
 
 function addWatch(code, mode = "watch", manualPrice = NaN, quoteMeta = null) {
@@ -997,15 +992,52 @@ async function loadHistoryIndex() {
   await selectHistory(select.value);
 }
 
+function regimeTone(value) {
+  if (/偏弱|风险|不通过/.test(text(value, ""))) return "red";
+  if (/可研究|偏强|通过/.test(text(value, ""))) return "green";
+  return "blue";
+}
+
+function renderResearchInstitute(brief, sectorResearch, unified, data) {
+  const value = brief || {};
+  const market = value.marketSnapshot || sectorResearch?.market || {};
+  const regime = value.marketRegime || {};
+  const snapshotTime = market.quoteTradeTime || sectorResearch?.quoteTradeTime || sectorResearch?.capturedAt;
+  $("researchHeadline").textContent = text(value.headline, "等待研究所日报");
+  $("researchSummary").textContent = text(value.summary, "研究所日报尚未生成。不会用旧结论替代新一日的研究边界。");
+  $("researchAsOf").textContent = text(value.asOf, sectorResearch?.asOf || "--");
+  $("researchBriefStamp").textContent = value.generatedAt ? `生成 ${compactTime(value.generatedAt)}` : "等待生成";
+  const marketState = text(regime.status, "等待市场复核");
+  const status = $("researchMarketStatus");
+  status.textContent = marketState;
+  status.className = `state ${regimeTone(marketState)}`;
+  const breadth = n(market.upRatio);
+  const median = n(market.medianPct);
+  $("researchBreadth").textContent = pct(breadth);
+  $("researchBreadthSub").textContent = `行情样本 ${Number.isFinite(n(market.quoteCount)) ? n(market.quoteCount).toLocaleString("zh-CN") : "--"} 只`;
+  $("researchMedian").textContent = rawPct(median);
+  $("researchMedianSub").textContent = text(market.quoteSource, "等待可核验行情来源");
+  $("researchStrong").textContent = `${Number.isFinite(n(market.strongCount)) ? n(market.strongCount).toLocaleString("zh-CN") : "--"} / ${Number.isFinite(n(market.limitLikeCount)) ? n(market.limitLikeCount).toLocaleString("zh-CN") : "--"}`;
+  $("researchStrongSub").textContent = "强势股 / 近涨停样本";
+  $("researchTaskRows").innerHTML = (Array.isArray(value.tasks) ? value.tasks : []).map((task) => `<article class="task-item"><span class="task-order">${text(task.order)}</span><h3>${text(task.title)}</h3><span class="state ${regimeTone(task.state)}">${text(task.state)}</span><p>${text(task.detail)}</p></article>`).join("") || '<p class="empty">等待研究所任务。</p>';
+  const rows = Array.isArray(value.sourceLedger) ? value.sourceLedger : [];
+  $("researchSourceRows").innerHTML = rows.map((row) => `<tr><td><strong>${text(row.name)}</strong></td><td>${text(row.category)}</td><td><span class="state ${/已接入|研究台账/.test(text(row.status, "")) ? "green" : /未授权|待接入/.test(text(row.status, "")) ? "red" : "blue"}">${text(row.status)}</span></td><td>${text(row.weight)}</td><td class="reason">${text(row.note)}</td></tr>`).join("") || '<tr><td colspan="5" class="empty">来源台账尚未生成。</td></tr>';
+  const news = value.newsPolicy || {};
+  const alternative = value.alternativePolicy || {};
+  $("researchSourceNotice").textContent = `新闻：${text(news.status, "待核验")}（${text(news.weight, "0%")})；另类信息：${text(alternative.status, "待核验")}（${text(alternative.weight, "0%")})。未取得可复盘数据时不进入排序。`;
+  $("researchBoundaryRows").innerHTML = (Array.isArray(value.boundaries) ? value.boundaries : []).map((item) => `<li>${text(item)}</li>`).join("") || '<li>研究边界等待生成。</li>';
+  $("holdingPreview").textContent = `${text((data.publicHoldings || {}).notice, "持仓页独立记录成本、参考价和复核状态。")} 当前只读研究快照，不会代替下单。`;
+  const broad = n(market.upRatio);
+  $("marketStatus").textContent = marketState;
+  $("marketSub").textContent = snapshotTime ? `行情截点 ${compactTime(snapshotTime)} / 上涨广度 ${pct(broad)}` : "等待可核验行情截点";
+  $("formalStatus").textContent = unified?.productionReady ? "验证层已更新" : "研究快照";
+}
+
 function renderSnapshot(data) {
   snapshot = data;
   const unified = data.unifiedSwingModel || {};
-  const fusion = data.fusionModelV73 || {};
-  const selected = fusion.selectedResearchCore;
   const sectorResearch = data.dailySectorResearch || {};
-  const market = sectorResearch.market || data.market || {};
-  const researchGeneratedAt = unified.generatedAt || data.generatedAt;
-  const generated = researchGeneratedAt ? formatTime(researchGeneratedAt) : "--";
+  const institute = data.dailyResearchBrief || {};
   const historicalAsOf = unified.historicalModelAsOf || data.historicalModelAsOf || data.latestDate;
   const sectorAsOf = sectorResearch.asOf || "--";
   const sectorCapturedAt = sectorResearch.quoteTradeTime || sectorResearch.capturedAt;
@@ -1035,37 +1067,21 @@ function renderSnapshot(data) {
     ? `盘中行情 ${quoteAt} / 板块快照 ${sectorGenerated} / 日线回测 ${historicalAsOf || "--"}`
     : `板块快照 ${sectorGenerated} / 日线回测 ${historicalAsOf || "--"} / 页面发布 ${publicBuiltAt}`;
   if (unified.modelName) {
-    $("coreStatus").textContent = unified.robustnessGatePassed ? "分段研究门槛通过" : "风险门槛未通过";
-    $("coreTitle").textContent = unified.modelName;
-    $("coreSummary").textContent = unified.summary || "等待统一模型验证";
-    $("formalStatus").textContent = unified.productionReady ? "已晋级" : "影子验证";
     $("dataEnd").textContent = `板块 ${text(unified.latestDate || sectorAsOf)} / 回测 ${text(historicalAsOf)}`;
     foldMetric(unified.performance?.validation_2025_h1, "m3");
     foldMetric(unified.performance?.validation_2025_h2, "m5");
     foldMetric(unified.performance?.holdout_2026_ytd, "m7");
   } else {
-    $("coreStatus").textContent = selected ? "双样本研究通过" : "等待双样本验证";
-    $("coreTitle").textContent = selected ? "趋势质量融合模型" : "暂无可用融合核心";
-    $("coreSummary").textContent = fusion.summary || "等待融合验证";
-    $("formalStatus").textContent = fusion.formalPromotion ? "已晋级" : "研究观察";
     $("dataEnd").textContent = text(data.dataReadiness?.history?.latestDate || data.latestDate);
-    const coreRow = (fusion.rows || []).find((row) => row.layer === selected);
-    const checks = coreRow?.checks || [];
-    metric(checks.find((check) => check.horizon === 3), "m3");
-    metric(checks.find((check) => check.horizon === 5), "m5");
-    metric(checks.find((check) => check.horizon === 7), "m7");
+    $("m3").textContent = "--";
+    $("m5").textContent = "--";
+    $("m7").textContent = "--";
+    $("m3sub").textContent = "等待历史验证";
+    $("m5sub").textContent = "等待历史验证";
+    $("m7sub").textContent = "等待历史验证";
   }
-  const broad = n(market.upRatio ?? market.up_ratio);
-  const median = n(market.medianPct ?? market.median_pct);
-  if (unified.modelName && unified.marketOk === false) {
-    $("marketStatus").textContent = "环境过滤未通过";
-    $("marketSub").textContent = `统一模型完整日截面 ${text(unified.latestDate)}`;
-  } else {
-    $("marketStatus").textContent = broad >= .60 && median >= 0 ? "环境偏强" : broad >= .45 ? "环境中性" : "环境偏弱";
-    $("marketSub").textContent = `上涨比 ${pct(broad)} / 中位涨幅 ${rawPct(median)} / ${sectorAsOf}`;
-  }
-  $("dataNote").textContent = data.publicMirrorNotice || "本页面仅展示经发布的研究快照。";
   renderMethodRows(unified);
+  renderResearchInstitute(institute, sectorResearch, unified, data);
   renderDailySectorResearch(data.dailySectorResearch);
   renderLimitupResearch(data.limitUpSectorResearch);
   renderAllLocal();
@@ -1110,8 +1126,8 @@ async function load() {
     if (!response.ok) throw new Error(`快照请求失败（HTTP ${response.status}）`);
     data = await response.json();
   } catch (error) {
-    $("coreTitle").textContent = "快照读取失败";
-    $("coreSummary").textContent = error.message || "无法读取 snapshot.json。";
+    $("researchHeadline").textContent = "快照读取失败";
+    $("researchSummary").textContent = error.message || "无法读取 snapshot.json。";
     $("sideSnapshot").textContent = "快照请求失败";
     $("sideSnapshotDetail").textContent = "请稍后重试";
     return false;
@@ -1129,8 +1145,8 @@ async function load() {
     if (route === "sectors") await loadSectorHistoryIndex();
   } catch (error) {
     console.error("Dashboard render failed", error);
-    $("coreTitle").textContent = "快照已读取，但页面渲染异常";
-    $("coreSummary").textContent = error.message || "请刷新页面；已记录到浏览器控制台。";
+    $("researchHeadline").textContent = "快照已读取，但页面渲染异常";
+    $("researchSummary").textContent = error.message || "请刷新页面；已记录到浏览器控制台。";
     $("sideSnapshot").textContent = "快照已读取，渲染异常";
     $("sideSnapshotDetail").textContent = "请点击刷新快照";
     return false;
@@ -1142,6 +1158,7 @@ $("refreshNow").onclick = load;
 $("clearWatchOnly").onclick = () => { if (confirm("清空本机浏览器中的未买观察？")) { clearWatchOnly(); renderAllLocal(); } };
 $("clearOwnedWatch").onclick = () => { if (confirm("清空本机浏览器中的已买观察？")) { clearOwnedWatch(); renderAllLocal(); } };
 $("purchaseCancel").onclick = () => $("purchaseDialog").close();
+$("purchaseCancelSecondary").onclick = () => $("purchaseDialog").close();
 $("purchaseForm").onsubmit = (event) => {
   event.preventDefault();
   const price = n($("purchasePrice").value);
@@ -1160,6 +1177,9 @@ document.querySelectorAll("[data-history-sort]").forEach((button) => { button.on
 installBrandAndNavigation();
 document.querySelectorAll(".nav [data-view]").forEach((button) => {
   button.onclick = () => setView(button.dataset.view, button.dataset.watchRoute);
+});
+document.querySelectorAll("[data-view-link]").forEach((button) => {
+  button.onclick = () => setView(button.dataset.viewLink);
 });
 window.addEventListener("hashchange", () => applyView(location.hash.replace("#", "")));
 if (!location.hash) location.hash = "overview";

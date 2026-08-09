@@ -3,222 +3,207 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111827" />
+    <meta name="theme-color" content="#102334" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>泰山 A 股研究台</title>
-    <link rel="stylesheet" href="./styles.css?v=20260810-taishan-v1" />
-    <link rel="stylesheet" href="./dashboard.css?v=20260810-taishan-v1" />
+    <link rel="stylesheet" href="./styles.css?v=20260810-researchdesk-v2" />
+    <link rel="stylesheet" href="./dashboard.css?v=20260810-researchdesk-v2" />
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar" aria-label="研究台导航">
         <div class="brand">
-          <span>TAISHAN / RESEARCH DESK</span>
+          <span class="brand-kicker">TAISHAN / RESEARCH DESK</span>
           <strong>泰山 A 股研究台</strong>
-          <small>一个融合研究模型 · 一套可复盘的观察流程</small>
+          <small>一个融合模型，三条独立研究线</small>
         </div>
 
         <section class="side-status" aria-live="polite">
           <i id="sideSnapshotDot"></i>
           <div>
-            <b id="sideSnapshot">快照等待更新</b>
-            <small id="sideSnapshotDetail">行情、板块与日线会分别标明截点</small>
-            <small class="side-refresh-note">页面每 30 秒检查已发布快照</small>
+            <b id="sideSnapshot">等待快照</b>
+            <small id="sideSnapshotDetail">行情、板块与日线分别记录时间。</small>
+            <small class="side-refresh-note">浏览器每 30 秒检查已发布快照</small>
           </div>
         </section>
 
         <nav class="nav">
-          <p class="nav-label">工作台</p>
-          <button type="button" data-view="overview" class="active"><span>研究总览</span><small>今日</small></button>
-          <button type="button" data-view="sectors"><span>板块雷达</span><small>归档</small></button>
+          <p class="nav-label">每日工作流</p>
+          <button type="button" data-view="overview" class="active"><span>研究所日报</span><small>01</small></button>
+          <button type="button" data-view="sectors"><span>板块雷达</span><small>02</small></button>
+          <button type="button" data-view="candidates"><span>候选清单</span><small>03</small></button>
           <button type="button" data-view="holdings"><span>我的持仓</span><small>复核</small></button>
 
           <p class="nav-label">我的观察</p>
           <button type="button" class="nav-subitem watch-only-link" data-view="watch" data-watch-route="watch-only"><span>未买观察</span><small><b id="watchOnlyBadge">0</b> 只</small></button>
           <button type="button" class="nav-subitem watch-owned-link" data-view="watch" data-watch-route="watch-owned"><span>已买跟踪</span><small><b id="ownedWatchBadge">0</b> 只</small></button>
-
-          <p class="nav-label">复盘资料</p>
-          <button type="button" data-view="history"><span>历史候选</span><small>后验</small></button>
+          <button type="button" data-view="history"><span>历史候选</span><small>归档</small></button>
           <button type="button" data-view="limitup"><span>行业规律</span><small>研究</small></button>
         </nav>
 
         <section class="sidebar-note">
-          <h2>状态说明</h2>
-          <p><i class="legend-dot research"></i>一级研究：优先核实，不替代独立判断。</p>
-          <p><i class="legend-dot monitor"></i>二级观察：条件未齐，继续追踪。</p>
-          <p><i class="legend-dot risk"></i>风险复核：条件失效或偏离过大。</p>
+          <h2>阅读方式</h2>
+          <p><i class="legend-dot research"></i>绿色：研究优先，仍需核实。</p>
+          <p><i class="legend-dot monitor"></i>蓝色：条件不足，继续观察。</p>
+          <p><i class="legend-dot risk"></i>红色：风险复核或退出研究。</p>
         </section>
-        <p class="side-foot">研究台不下单，也不承诺收益。每一项行情与结论均应结合可见时间戳使用。</p>
+        <p class="side-foot">研究台不下单，不承诺收益。每条结论都必须与可见时间戳一起使用。</p>
       </aside>
 
       <main class="main">
         <header class="topbar">
           <div>
-            <p class="eyebrow">TAISHAN / UNIFIED RESEARCH MODEL</p>
-            <h1 id="viewTitle">研究总览</h1>
-            <p id="viewSubtitle" class="subtitle">用一个融合模型整理市场、板块、趋势质量与风险复核。</p>
+            <p class="eyebrow" id="topEyebrow">TAISHAN / DAILY RESEARCH</p>
+            <h1 id="viewTitle">研究所日报</h1>
+            <p id="viewSubtitle" class="subtitle">先判市场许可，再看板块延续，最后核实个股。</p>
           </div>
           <div class="topbar-actions">
-            <span class="desk-live"><i></i>已发布快照</span>
+            <span class="desk-live"><i></i>发布快照</span>
             <button id="refreshNow" class="refresh-button" type="button" title="重新读取已发布快照">刷新</button>
           </div>
         </header>
 
         <section id="overviewView" class="view">
-          <section class="desk-summary">
-            <div class="model-summary">
-              <div class="summary-kicker"><span id="coreStatus" class="state blue">正在读取</span><span id="formalStatus">--</span></div>
-              <h2 id="coreTitle">融合研究模型</h2>
-              <p id="coreSummary">--</p>
+          <section class="institute-hero">
+            <div>
+              <p class="eyebrow">RESEARCH INSTITUTE / DAILY BRIEF</p>
+              <div class="hero-title-row"><h2 id="researchHeadline">等待研究所日报</h2><span id="researchMarketStatus" class="state blue">读取中</span></div>
+              <p id="researchSummary" class="hero-summary">研究所日报与板块雷达会分开记录，避免同一结论重复出现。</p>
             </div>
-            <dl class="snapshot-ledger">
-              <div><dt>快照信息</dt><dd id="updatedAt">--</dd></div>
-              <div><dt>日线截止</dt><dd id="dataEnd">--</dd></div>
-              <div><dt>数据说明</dt><dd id="dataNote">--</dd></div>
+            <dl class="brief-time-grid">
+              <div><dt>研究日期</dt><dd id="researchAsOf">--</dd></div>
+              <div><dt>数据快照</dt><dd id="updatedAt">--</dd></div>
+              <div><dt>日线截至</dt><dd id="dataEnd">--</dd></div>
             </dl>
           </section>
 
-          <section class="metric-grid">
-            <article><span>验证阶段 A</span><strong id="m3">--</strong><small id="m3sub">--</small></article>
-            <article><span>验证阶段 B</span><strong id="m5">--</strong><small id="m5sub">--</small></article>
-            <article><span>当前留出阶段</span><strong id="m7">--</strong><small id="m7sub">--</small></article>
-            <article class="market-card"><span>市场环境</span><strong id="marketStatus">--</strong><small id="marketSub">--</small></article>
+          <section class="metric-grid research-metrics">
+            <article><span>市场上涨广度</span><strong id="researchBreadth">--</strong><small id="researchBreadthSub">--</small></article>
+            <article><span>市场中位涨幅</span><strong id="researchMedian">--</strong><small id="researchMedianSub">--</small></article>
+            <article><span>强势股 / 近涨停</span><strong id="researchStrong">--</strong><small id="researchStrongSub">--</small></article>
+            <article class="market-card"><span>市场许可</span><strong id="marketStatus">--</strong><small id="marketSub">--</small></article>
           </section>
 
-          <section class="panel feature-panel">
-            <div class="panel-head">
-              <div><p class="eyebrow">NEXT SESSION / SECTOR MAP</p><h2>下一交易日板块研究地图</h2></div>
-              <span id="overviewSectorForecastAsOf" class="panel-stamp">--</span>
-            </div>
-            <p id="overviewSectorForecastNotice" class="section-note">--</p>
-            <div class="table-wrap"><table class="dense-table forecast-table"><thead><tr><th>优先级</th><th>板块</th><th>结构依据</th><th>板块内复核样本</th><th>下一交易日核实条件</th></tr></thead><tbody id="overviewSectorForecastRows"></tbody></table></div>
+          <section class="panel task-panel">
+            <div class="panel-head"><div><p class="eyebrow">OPERATING SEQUENCE</p><h2>下一交易日研究顺序</h2></div><span id="researchBriefStamp" class="panel-stamp">--</span></div>
+            <div id="researchTaskRows" class="task-list"></div>
           </section>
 
-          <section class="panel">
-            <div class="panel-head"><div><p class="eyebrow">PRIORITY REVIEW</p><h2>一级研究关注</h2></div><span>仅展示当前优先核实的样本</span></div>
-            <p class="section-note">一级代表研究优先级，不是自动交易指令。实时价格、观察区与风险线均需带时间戳复核。</p>
-            <div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>近 5 日</th><th>近 10 日</th><th>近 20 日</th><th>近 60 日</th><th>实时价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="tierOneRows"></tbody></table></div>
-          </section>
+          <div class="overview-grid">
+            <section class="panel source-panel">
+              <div class="panel-head"><div><p class="eyebrow">EVIDENCE LEDGER</p><h2>新闻与另类信息台账</h2></div><span>缺授权即零权重</span></div>
+              <p id="researchSourceNotice" class="section-note">--</p>
+              <div class="table-wrap"><table class="dense-table source-table"><thead><tr><th>来源</th><th>用途</th><th>状态</th><th>当前权重</th><th>研究边界</th></tr></thead><tbody id="researchSourceRows"></tbody></table></div>
+            </section>
+            <section class="panel boundary-panel">
+              <div class="panel-head"><div><p class="eyebrow">MODEL BOUNDARIES</p><h2>结论边界</h2></div><span id="formalStatus">--</span></div>
+              <ul id="researchBoundaryRows" class="boundary-list"></ul>
+              <div class="model-audit"><span>历史验证 A</span><b id="m3">--</b><small id="m3sub">--</small></div>
+              <div class="model-audit"><span>历史验证 B</span><b id="m5">--</b><small id="m5sub">--</small></div>
+              <div class="model-audit"><span>留出阶段</span><b id="m7">--</b><small id="m7sub">--</small></div>
+            </section>
+          </div>
 
-          <section class="panel">
-            <div class="panel-head"><div><p class="eyebrow">RESEARCH QUEUE</p><h2>分级研究观察池</h2></div><div class="panel-meta"><b id="candidateCount">--</b><small id="candidateReturnStamp">--</small></div></div>
-            <div class="tier-legend"><span><i class="legend-dot research"></i>一级：优先研究</span><span><i class="legend-dot monitor"></i>二级：继续观察</span><span><i class="legend-dot risk"></i>三级：历史留档</span></div>
-            <div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>板块依据与复核条件</th><th>近 5 日</th><th>近 10 日</th><th>近 20 日</th><th>近 60 日</th><th>实时价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div>
+          <section class="panel holdings-preview">
+            <div class="panel-head"><div><p class="eyebrow">PORTFOLIO REVIEW</p><h2>持仓复核入口</h2></div><button type="button" class="text-button" data-view-link="holdings">查看持仓</button></div>
+            <p id="holdingPreview">持仓页独立记录成本、可卖数量、参考价和下一节点复核，不与候选清单混在一起。</p>
           </section>
 
           <section class="panel method-ledger" hidden>
-            <div class="panel-head"><div><p class="eyebrow">AUDIT LEDGER</p><h2>方法证据账本</h2></div><span>仅作为融合模型的可审计输入</span></div>
-            <div class="table-wrap"><table class="dense-table"><thead><tr><th>方法 / 来源</th><th>本地代理</th><th>适用周期</th><th>当前结论</th><th>本地证据</th><th>主要失败条件</th></tr></thead><tbody id="methodRows"></tbody></table></div>
+            <div class="table-wrap"><table><tbody id="methodRows"></tbody></table></div>
           </section>
           <section class="overview-secondary" hidden></section>
         </section>
 
         <section id="sectorsView" class="view" hidden>
-          <section class="view-intro">
-            <p class="eyebrow">DAILY SECTOR RADAR</p><h2>每日强势板块</h2>
-            <p id="sectorState">--</p><div class="research-callout"><strong>研究边界</strong><span id="sectorNotice">--</span></div>
+          <section class="view-intro split-intro">
+            <div><p class="eyebrow">SECTOR RADAR / NEXT SESSION</p><h2>板块雷达</h2><p id="sectorState">等待当日板块快照。</p></div>
+            <div class="research-callout"><strong>本页做什么</strong><span id="sectorNotice">只展示板块强度、催化证据和板块内样本；不把研究所的市场结论再重复一遍。</span></div>
             <span id="sectorAsOf" class="intro-stamp">--</span>
           </section>
-          <section class="metric-grid research-metrics">
-            <article><span>主板行情样本</span><strong id="sectorQuoteCount">--</strong><small id="sectorQuoteSource">--</small></article>
-            <article><span>上涨广度</span><strong id="sectorUpRatio">--</strong><small id="sectorMedianPct">--</small></article>
-            <article><span>强势股票</span><strong id="sectorStrongCount">--</strong><small id="sectorLimitLikeCount">--</small></article>
-            <article><span>历史 3 日验证</span><strong id="sectorBacktest3d">--</strong><small id="sectorBacktestSub">--</small></article>
+
+          <section class="radar-banner">
+            <div><span>下一交易日板块优先核实</span><strong id="sectorForecastHeadline">--</strong><small id="sectorForecastNotice">--</small></div>
+            <span id="sectorForecastAsOf" class="panel-stamp">--</span>
           </section>
+
           <section class="panel feature-panel">
-            <div class="panel-head"><div><p class="eyebrow">FORWARD VIEW</p><h2>下一交易日板块预判</h2></div><span id="sectorForecastAsOf" class="panel-stamp">--</span></div>
-            <p id="sectorForecastNotice" class="section-note">--</p>
+            <div class="panel-head"><div><p class="eyebrow">FORWARD SECTOR MAP</p><h2>下一交易日板块研究地图</h2></div><span>先看广度，再看个股</span></div>
             <div class="table-wrap"><table class="dense-table forecast-table"><thead><tr><th>优先级</th><th>板块</th><th>结构依据</th><th>板块内复核样本</th><th>下一交易日核实条件</th></tr></thead><tbody id="sectorForecastRows"></tbody></table></div>
           </section>
-          <section class="panel">
-            <div class="panel-head"><div><p class="eyebrow">SECTOR LADDER</p><h2>当日板块梯队</h2></div><span>按广度、强势股、涨幅中位数与成交额排序</span></div>
-            <div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>梯队</th><th>板块</th><th>上涨广度</th><th>强势股</th><th>涨幅中位数</th><th>领涨股</th><th>相关股票</th><th>下一交易日观察</th></tr></thead><tbody id="sectorRows"></tbody></table></div>
+
+          <section class="radar-kpi-row">
+            <div><span>主板样本</span><b id="sectorQuoteCount">--</b><small id="sectorQuoteSource">--</small></div>
+            <div><span>上涨广度</span><b id="sectorUpRatio">--</b><small id="sectorMedianPct">--</small></div>
+            <div><span>强势结构</span><b id="sectorStrongCount">--</b><small id="sectorLimitLikeCount">--</small></div>
+            <div><span>后验观察</span><b id="sectorBacktest3d">--</b><small id="sectorBacktestSub">--</small></div>
           </section>
-          <section class="panel archive-panel">
-            <div class="panel-head"><div><p class="eyebrow">DAILY ARCHIVE</p><h2>历史板块档案</h2></div><div class="history-controls"><b id="sectorArchiveCount">--</b><label>日期 <select id="sectorHistorySelect"></select></label></div></div>
-            <p id="sectorHistoryMeta" class="section-note">选择一个日期查看当日完整板块快照。</p>
+
+          <section class="panel">
+            <div class="panel-head"><div><p class="eyebrow">SECTOR LADDER</p><h2>当日板块梯队</h2></div><span>展开后查看板块内样本</span></div>
+            <div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>梯队</th><th>板块</th><th>上涨广度</th><th>强势 / 近涨停</th><th>中位涨幅</th><th>领涨股</th><th>相关股票</th><th>下一交易日观察</th></tr></thead><tbody id="sectorRows"></tbody></table></div>
+          </section>
+
+          <div class="overview-grid">
+            <section class="panel archive-panel">
+              <div class="panel-head"><div><p class="eyebrow">DAILY ARCHIVE</p><h2>历史板块档案</h2></div><div class="history-controls"><b id="sectorArchiveCount">--</b><label>日期 <select id="sectorHistorySelect"></select></label></div></div>
+              <p id="sectorHistoryMeta" class="section-note">选择日期查看当日完整板块快照。</p>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><div><p class="eyebrow">FORECAST FOLLOW-UP</p><h2>板块候选后续复盘</h2></div><span id="sectorPerformanceAsOf">--</span></div>
+              <p id="sectorPerformanceNote" class="section-note">收盘后锁定样本和参考价；以后只在完整收盘档案出现时补充收益。</p>
+              <div class="table-wrap"><table class="dense-table compact-table"><thead><tr><th>股票 / 板块</th><th>参考价</th><th>后 1 日</th><th>后 3 日</th><th>后 5 日</th><th>后 10 日</th><th>最大回撤</th><th>复盘状态</th></tr></thead><tbody id="sectorPerformanceRows"></tbody></table></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="candidatesView" class="view" hidden>
+          <section class="view-intro split-intro">
+            <div><p class="eyebrow">STOCK RESEARCH / CONFIRMATION QUEUE</p><h2>候选清单</h2><p>股票只在这里出现一次：先由研究所给出市场边界，再由雷达给出板块上下文，最后在这里做价格与风险线复核。</p></div>
+            <div class="research-callout"><strong>读法</strong><span>一级代表研究优先级，不是自动交易指令。实时价格、观察区与风险线均需带时间戳复核。二级代表继续观察；只有“推荐购买”且价格、时间戳、观察区同时有效，才是可以进一步讨论的研究状态。</span></div>
+          </section>
+          <section class="panel feature-panel">
+            <div class="panel-head"><div><p class="eyebrow">FIRST PRIORITY</p><h2>一级研究关注</h2></div><span id="candidateCount">--</span></div>
+            <p id="candidateReturnStamp" class="section-note">--</p>
+            <div class="table-wrap"><table class="dense-table candidate-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>近 5 日</th><th>近 10 日</th><th>近 20 日</th><th>近 60 日</th><th>现价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="tierOneRows"></tbody></table></div>
           </section>
           <section class="panel">
-            <div class="panel-head"><div><p class="eyebrow">FORECAST FOLLOW-UP</p><h2>板块候选后续复盘</h2></div><span id="sectorPerformanceAsOf">--</span></div>
-            <p id="sectorPerformanceNote" class="section-note">收盘后锁定参考价；后续仅按完整收盘档案补齐后验收益。</p>
-            <div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>股票 / 板块</th><th>锁定参考价</th><th>后 1 日</th><th>后 3 日</th><th>后 5 日</th><th>后 10 日</th><th>最大回撤</th><th>复盘状态</th></tr></thead><tbody id="sectorPerformanceRows"></tbody></table></div>
+            <div class="panel-head"><div><p class="eyebrow">FULL QUEUE</p><h2>分级研究清单</h2></div><span>风险线失效即撤出观察</span></div>
+            <div class="tier-legend"><span><i class="legend-dot research"></i>一级：优先研究</span><span><i class="legend-dot monitor"></i>二级：等待确认</span><span><i class="legend-dot risk"></i>三级：仅归档</span></div>
+            <div class="table-wrap"><table class="dense-table candidate-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>状态</th><th>板块依据与核实条件</th><th>近 5 日</th><th>近 10 日</th><th>近 20 日</th><th>近 60 日</th><th>现价</th><th>观察区</th><th>风险线</th><th>第一目标</th><th>周期</th><th>观察</th></tr></thead><tbody id="candidateRows"></tbody></table></div>
           </section>
         </section>
 
         <section id="watchView" class="view" hidden>
-          <section class="view-intro compact-intro">
-            <p class="eyebrow">MY WATCH LEDGER</p><h2>我的观察栏</h2>
-            <p>未买观察与已买跟踪是两本独立账本。前两列永远是记录时价格与现价，后续刷新不会改写起始价格。</p>
-          </section>
-          <section id="watchOnlyPanel" class="panel" data-watch-panel="watch-only">
-            <div id="watchOnlyLedger" class="watch-group watch-group-observe" data-testid="watch-not-owned">
-              <div class="watch-group-heading"><div><p class="eyebrow">NOT OWNED</p><h3>未买观察</h3><p>加入时锁定已核实的观察价，用于持续观察后续表现。</p></div><div class="watch-group-tools"><strong id="watchOnlyCount">0 只</strong><button type="button" id="clearWatchOnly" class="text-button">清空</button></div></div>
-              <div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-not-owned-table"><thead><tr><th>观察价（加入时核实）</th><th>现价</th><th>股票 / 板块</th><th>加入时间</th><th>加入前 20 日</th><th>观察后</th><th>第 3 日</th><th>第 5 日</th><th>第 20 日</th><th>第 60 日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchOnlyRows"></tbody></table></div>
-            </div>
-          </section>
-          <section id="ownedWatchPanel" class="panel" data-watch-panel="watch-owned" hidden>
-            <div id="ownedWatchLedger" class="watch-group watch-group-owned" data-testid="watch-owned">
-              <div class="watch-group-heading"><div><p class="eyebrow">PURCHASED</p><h3>已买跟踪</h3><p>仅按你填写的实际成交价记录，不以行情价替代买入价。</p></div><div class="watch-group-tools"><strong id="ownedWatchCount">0 只</strong><button type="button" id="clearOwnedWatch" class="text-button">清空</button></div></div>
-              <div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-owned-table"><thead><tr><th>买入价（实际成交）</th><th>现价</th><th>股票 / 板块</th><th>记录时间</th><th>买入前 20 日</th><th>买入后</th><th>第 3 日</th><th>第 5 日</th><th>第 20 日</th><th>第 60 日</th><th>状态</th><th>操作</th></tr></thead><tbody id="ownedWatchRows"></tbody></table></div>
-            </div>
-          </section>
+          <section class="view-intro compact-intro"><p class="eyebrow">MY WATCH LEDGER</p><h2>我的观察</h2><p>未买观察和已买跟踪是两本独立台账；前两列永远是记录价格和现价，后续更新不会改写起始价格。</p></section>
+          <section id="watchOnlyPanel" class="panel" data-watch-panel="watch-only"><div id="watchOnlyLedger" class="watch-group watch-group-observe" data-testid="watch-not-owned"><div class="watch-group-heading"><div><p class="eyebrow">NOT OWNED</p><h3>未买观察</h3><p>加入时锁定核实价格，用于观察后续表现。</p></div><div class="watch-group-tools"><strong id="watchOnlyCount">0 只</strong><button type="button" id="clearWatchOnly" class="text-button">清空</button></div></div><div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-not-owned-table"><thead><tr><th>观察价（加入时核实）</th><th>现价</th><th>股票 / 板块</th><th>加入时间</th><th>加入前 20 日</th><th>观察后</th><th>第 3 日</th><th>第 5 日</th><th>第 20 日</th><th>第 60 日</th><th>状态</th><th>操作</th></tr></thead><tbody id="watchOnlyRows"></tbody></table></div></div></section>
+          <section id="ownedWatchPanel" class="panel" data-watch-panel="watch-owned" hidden><div id="ownedWatchLedger" class="watch-group watch-group-owned" data-testid="watch-owned"><div class="watch-group-heading"><div><p class="eyebrow">PURCHASED</p><h3>已买跟踪</h3><p>只按你填写的实际成交价记录，不用行情价格替代成本。</p></div><div class="watch-group-tools"><strong id="ownedWatchCount">0 只</strong><button type="button" id="clearOwnedWatch" class="text-button">清空</button></div></div><div class="table-wrap"><table class="dense-table watch-table" data-testid="watch-owned-table"><thead><tr><th>买入价（实际成交）</th><th>现价</th><th>股票 / 板块</th><th>记录时间</th><th>买入前 20 日</th><th>买入后</th><th>第 3 日</th><th>第 5 日</th><th>第 20 日</th><th>第 60 日</th><th>状态</th><th>操作</th></tr></thead><tbody id="ownedWatchRows"></tbody></table></div></div></section>
         </section>
 
         <section id="historyView" class="view" hidden>
-          <section class="view-intro compact-intro">
-            <div class="panel-head"><div><p class="eyebrow">HISTORICAL RESEARCH ARCHIVE</p><h2>历史候选库</h2></div><div class="history-controls"><label>研究日期 <select id="historySelect"></select></label><label>排序 <select id="historySort"><option value="post">后验收益</option><option value="drawdown">后验回撤</option></select></label></div></div>
-            <p>每次收盘后锁定候选与参考价，再按第 1、3、5、10 个完整收盘档案追踪。缺少行情会明确标注，不用后来的价格替代历史记录。</p>
-          </section>
+          <section class="view-intro compact-intro"><div class="panel-head"><div><p class="eyebrow">HISTORICAL RESEARCH ARCHIVE</p><h2>历史候选库</h2></div><div class="history-controls"><label>研究日期 <select id="historySelect"></select></label><label>排序 <select id="historySort"><option value="post">后验收益</option><option value="drawdown">后验回撤</option></select></label></div></div><p>每次收盘后锁定候选和参考价，再按第 1、3、5、10 个完整收盘档案追踪；缺失行情会明确标注。</p></section>
           <section class="panel"><div class="table-wrap"><table class="dense-table"><thead><tr><th>级别</th><th>股票 / 板块</th><th>锁定参考价</th><th>后 1 日</th><th>后 3 日</th><th>后 5 日</th><th><button data-history-sort="post" type="button">后 10 日 / 最新</button></th><th><button data-history-sort="drawdown" type="button">最大回撤</button></th><th>审阅状态</th><th>研究说明</th></tr></thead><tbody id="historyRows"></tbody></table></div></section>
         </section>
 
         <section id="holdingsView" class="view" hidden>
-          <section class="view-intro compact-intro">
-            <div class="panel-head"><div><p class="eyebrow">HOLDINGS REVIEW</p><h2>我的持仓</h2></div><span class="public-tag">公开研究快照</span></div>
-            <p>只展示本地持仓研究表中的证券与数量、成本、参考价和复核状态；不包含姓名、账户或登录信息。</p>
-            <div class="public-toolbar"><b id="holdingSnapshotMeta">--</b><small id="holdingSourceNotice">--</small></div>
-          </section>
-          <section class="metric-grid public-metrics">
-            <article><span>持仓数量</span><strong id="holdingCount">--</strong><small id="holdingPhase">--</small></article>
-            <article><span>持仓成本</span><strong id="holdingCostValue">--</strong><small>本地持仓表汇总</small></article>
-            <article><span>参考市值</span><strong id="holdingMarketValue">--</strong><small id="holdingDate">--</small></article>
-            <article><span>参考浮盈亏</span><strong id="holdingPnlValue">--</strong><small id="holdingPnlPct">--</small></article>
-          </section>
+          <section class="view-intro compact-intro"><div class="panel-head"><div><p class="eyebrow">HOLDINGS REVIEW</p><h2>我的持仓</h2></div><span class="public-tag">公开研究快照</span></div><p>只显示本地持仓研究表中的证券、数量、成本、参考价和复核状态；不含姓名、账户或登录信息。</p><div class="public-toolbar"><b id="holdingSnapshotMeta">--</b><small id="holdingSourceNotice">--</small></div></section>
+          <section class="metric-grid public-metrics"><article><span>持仓数量</span><strong id="holdingCount">--</strong><small id="holdingPhase">--</small></article><article><span>持仓成本</span><strong id="holdingCostValue">--</strong><small>本地持仓表汇总</small></article><article><span>参考市值</span><strong id="holdingMarketValue">--</strong><small id="holdingDate">--</small></article><article><span>参考浮盈亏</span><strong id="holdingPnlValue">--</strong><small id="holdingPnlPct">--</small></article></section>
           <section class="panel"><div class="table-wrap"><table class="dense-table public-holdings-table"><thead><tr><th>股票</th><th>持仓 / 可卖</th><th>成本价</th><th>参考价</th><th>参考盈亏</th><th>复核状态</th><th>风险线</th><th>第一目标</th><th>研究周期</th><th>价格来源</th><th>本节点说明</th></tr></thead><tbody id="holdingRows"></tbody></table></div></section>
         </section>
 
         <section id="limitupView" class="view" hidden>
-          <section class="view-intro">
-            <div class="panel-head"><div><p class="eyebrow">LIMIT-UP INDUSTRY RESEARCH</p><h2>涨停行业联动规律</h2></div><span id="limitupAsOf" class="intro-stamp">--</span></div>
-            <p id="limitupState">--</p><div class="research-callout"><strong>使用边界</strong><span id="limitupCausalClaim">--</span></div>
-          </section>
-          <section class="metric-grid research-metrics">
-            <article><span>行业联动样本</span><strong id="limitupEvents">--</strong><small id="limitupDays">--</small></article>
-            <article><span>平均后 3 日</span><strong id="limitupAvg3d">--</strong><small>等权行业日线，不含成本与滑点</small></article>
-            <article><span>后 3 日正收益率</span><strong id="limitupPositive3d">--</strong><small>不是未来胜率承诺</small></article>
-            <article><span>行业映射覆盖</span><strong id="limitupCoverage">--</strong><small id="limitupCoverageNote">--</small></article>
-          </section>
+          <section class="view-intro"><div class="panel-head"><div><p class="eyebrow">LIMIT-UP INDUSTRY RESEARCH</p><h2>行业规律</h2></div><span id="limitupAsOf" class="intro-stamp">--</span></div><p id="limitupState">--</p><div class="research-callout"><strong>使用边界</strong><span id="limitupCausalClaim">--</span></div></section>
+          <section class="metric-grid research-metrics"><article><span>行业联动样本</span><strong id="limitupEvents">--</strong><small id="limitupDays">--</small></article><article><span>平均后 3 日</span><strong id="limitupAvg3d">--</strong><small>等权行业日线</small></article><article><span>后 3 日正收益率</span><strong id="limitupPositive3d">--</strong><small>不是未来胜率承诺</small></article><article><span>行业映射覆盖</span><strong id="limitupCoverage">--</strong><small id="limitupCoverageNote">--</small></article></section>
           <section class="panel"><div class="panel-head"><div><p class="eyebrow">PREDECLARED COHORTS</p><h2>固定阶段组合复盘</h2></div><span>未按本次结果调参</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>阶段组合</th><th>样本</th><th>后 1 日</th><th>后 3 日</th><th>后 5 日</th><th>3 日正收益率</th><th>年度一致</th><th>研究判断</th></tr></thead><tbody id="limitupPatternRows"></tbody></table></div></section>
-          <section class="split-grid"><section class="panel"><div class="panel-head"><div><p class="eyebrow">OBSERVED</p><h2>重复正向关联</h2></div></div><div class="table-wrap"><table class="dense-table compact-table"><thead><tr><th>维度</th><th>状态</th><th>样本</th><th>后 3 日</th><th>判断</th></tr></thead><tbody id="limitupPositiveRows"></tbody></table></div></section><section class="panel"><div class="panel-head"><div><p class="eyebrow">RISK FIRST</p><h2>拥挤风险</h2></div></div><div class="table-wrap"><table class="dense-table compact-table"><thead><tr><th>维度</th><th>状态</th><th>样本</th><th>后 3 日</th><th>判断</th></tr></thead><tbody id="limitupRiskRows"></tbody></table></div></section></section>
-          <section class="panel"><div class="panel-head"><div><p class="eyebrow">LATEST INDUSTRY STATUS</p><h2>最新日线行业状态</h2></div><span>仅最后一个完整日线日期</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>行业</th><th>状态</th><th>强势股数</th><th>强势占比</th><th>启动前 5 日</th><th>成交额 / 20 日</th><th>周期</th><th>市场环境</th><th>研究说明</th></tr></thead><tbody id="limitupLatestRows"></tbody></table></div></section>
-          <section class="panel"><div class="panel-head"><div><p class="eyebrow">EVIDENCE BOUNDARY</p><h2>信息证据边界</h2></div><span>不拿不可回放数据做归因</span></div><div class="table-wrap"><table class="dense-table sector-table"><thead><tr><th>信息</th><th>当前状态</th><th>可用历史</th><th>模型用途</th></tr></thead><tbody id="limitupEvidenceRows"></tbody></table></div><p id="limitupNextRequirement" class="section-note"></p></section>
+          <div class="overview-grid"><section class="panel"><div class="panel-head"><div><p class="eyebrow">LATEST EVENTS</p><h2>最新行业联动样本</h2></div></div><div class="table-wrap"><table class="dense-table compact-table"><thead><tr><th>行业</th><th>事件</th><th>涨停样本</th><th>封板占比</th><th>前 5 日</th><th>量能</th><th>周期</th><th>说明</th></tr></thead><tbody id="limitupLatestRows"></tbody></table></div></section><section class="panel"><div class="panel-head"><div><p class="eyebrow">RESEARCH COVERAGE</p><h2>映射覆盖与失败条件</h2></div></div><div id="limitupCoverageRows" class="coverage-list"></div></section></div>
         </section>
       </main>
     </div>
 
-    <dialog id="purchaseDialog" class="price-dialog" aria-labelledby="purchaseTitle">
-      <form id="purchaseForm" novalidate>
-        <p class="eyebrow">RECORD PURCHASE</p>
-        <h2 id="purchaseTitle">记录实际买入</h2>
-        <p id="purchaseStock" class="section-note">--</p>
-        <p id="purchaseQuoteHint" class="purchase-quote-hint">--</p>
-        <label>实际买入价<input id="purchasePrice" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="按成交回报填写" required /></label>
-        <p id="purchasePriceError" class="form-error" role="alert"></p>
-        <div class="dialog-actions"><button type="button" id="purchaseCancel" class="dialog-cancel">取消</button><button type="submit" class="dialog-confirm">确认记录</button></div>
-      </form>
-    </dialog>
-    <script src="./app.js?v=20260810-taishan-v1"></script>
+    <dialog id="purchaseDialog" class="purchase-dialog"><form method="dialog" id="purchaseForm"><div class="dialog-head"><h2 id="purchaseDialogTitle">记录买入价</h2><button type="button" id="purchaseCancel" class="icon-button" title="关闭">×</button></div><label>实际成交价<input id="purchasePrice" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="按成交回报填写" required /></label><p id="purchasePriceError" class="form-error"></p><div class="dialog-actions"><button value="cancel" type="button" id="purchaseCancelSecondary" class="text-button">取消</button><button value="default" type="submit" class="primary-button">记录</button></div></form></dialog>
+
+    <script src="./app.js?v=20260810-researchdesk-v2"></script>
   </body>
 </html>
