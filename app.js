@@ -4,12 +4,12 @@ const OWNED_WATCH_STORAGE = "taishan-fusion-owned-watch-v1";
 const WATCH_MIGRATION_MARKER = "taishan-fusion-watch-ledgers-v1-migrated";
 const LEGACY_WATCH_STORAGES = ["taishan-fusion-watch-v4", "taishan-fusion-watch-v3", "taishan-fusion-watch-v2"];
 const VIEWS = {
-  overview: { title: "研究总览", subtitle: "融合后的单一模型、候选质量与风险状态。" },
-  sectors: { title: "每日强势板块", subtitle: "每日归档板块广度、领涨股与下一交易日的研究观察重点。" },
-  watch: { title: "我的观察栏", subtitle: "未买锁定观察价，已买填写真实成交价；两套账本独立记录。" },
-  history: { title: "历史候选库", subtitle: "按研究日期回看候选与已获得的后验记录。" },
+  overview: { title: "研究总览", subtitle: "一个融合模型，统一整理市场、板块、趋势质量与风险复核。" },
+  sectors: { title: "板块雷达", subtitle: "每日归档板块广度、领涨样本与下一交易日的研究核实重点。" },
+  watch: { title: "我的观察栏", subtitle: "未买锁定观察价，已买记录真实成交价；两本账本独立追踪。" },
+  history: { title: "历史候选", subtitle: "按研究日期回看候选与已形成的后验记录。" },
   holdings: { title: "我的持仓", subtitle: "公开持仓研究快照与风险复核记录。" },
-  limitup: { title: "涨停行业规律", subtitle: "只展示可回放的行业联动关联与证据边界，不输出交易指令。" },
+  limitup: { title: "行业规律", subtitle: "只展示可回放的行业联动关联与证据边界，不输出交易指令。" },
 };
 const WATCH_ROUTES = {
   "watch-only": {
@@ -330,13 +330,13 @@ function formatTime(value) {
 }
 
 function installBrandAndNavigation() {
-  document.title = "磐石 A 股研究台";
+  document.title = "泰山 A 股研究台";
   const brandName = document.querySelector(".brand span");
   const brandTitle = document.querySelector(".brand strong");
   const eyebrow = document.querySelector(".topbar .eyebrow");
-  if (brandName) brandName.textContent = "PANSHI";
-  if (brandTitle) brandTitle.textContent = "磐石 A 股研究台";
-  if (eyebrow) eyebrow.textContent = "PANSHI / FUSION RESEARCH MODEL";
+  if (brandName) brandName.textContent = "TAISHAN / RESEARCH DESK";
+  if (brandTitle) brandTitle.textContent = "泰山 A 股研究台";
+  if (eyebrow) eyebrow.textContent = "TAISHAN / UNIFIED RESEARCH MODEL";
   if (!document.querySelector('[data-view="sectors"]')) {
     const overview = document.querySelector('[data-view="overview"]');
     if (overview) {
@@ -1121,8 +1121,12 @@ async function load() {
     await refreshVisibleQuotes();
     await refreshTrackedQuotes();
     renderAllLocal();
-    await loadHistoryIndex();
-    await loadSectorHistoryIndex();
+    // Archives are only loaded after their page is opened.  Reloading every
+    // archive every 30 seconds made the dashboard sluggish without improving
+    // the visible overview.
+    const route = location.hash.replace("#", "");
+    if (route === "history") await loadHistoryIndex();
+    if (route === "sectors") await loadSectorHistoryIndex();
   } catch (error) {
     console.error("Dashboard render failed", error);
     $("coreTitle").textContent = "快照已读取，但页面渲染异常";

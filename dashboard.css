@@ -1,1 +1,4 @@
-.dense-panel{padding-bottom:12px}.view{animation:fade-in .16s ease-out}@keyframes fade-in{from{opacity:.4}to{opacity:1}}
+/* Intentionally small: the visual system lives in styles.css so the public page
+   has one source of layout truth and never drifts into competing themes. */
+.view { animation: desk-enter .16s ease-out; }
+@keyframes desk-enter { from { opacity: .2; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }

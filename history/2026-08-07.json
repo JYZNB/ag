@@ -12879,8 +12879,8 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "收盘后 18:30",
-  "publicSnapshotBuiltAt": "2026-08-07T19:05:48+08:00",
+  "phase": "界面重构本地验证",
+  "publicSnapshotBuiltAt": "2026-08-10T00:51:25+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
