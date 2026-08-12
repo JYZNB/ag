@@ -1,30 +1,30 @@
 {
   "version": "research-institute-v1",
-  "generatedAt": "2026-08-12T09:46:14+08:00",
+  "generatedAt": "2026-08-12T10:01:17+08:00",
   "asOf": "2026-08-12",
-  "phase": "开盘15分钟 09:45",
+  "phase": "开盘30分钟 10:00",
   "headline": "先看市场许可，再看板块延续，最后核实个股",
   "summary": "研究所日报只输出可证伪的研究任务和数据边界；板块雷达才负责展示板块排序与样本。",
   "marketRegime": {
-    "status": "偏弱，先做验证",
-    "tone": "risk",
-    "rule": "市场广度不足时不把板块强势直接转换为行动结论；只安排周一开盘后的确认观察。"
+    "status": "可研究，仍需逐只复核",
+    "tone": "positive",
+    "rule": "允许板块内样本进入确认队列；高开和放量过度的样本仍不追。"
   },
   "marketSnapshot": {
     "quoteCount": 2747,
     "quoteSource": "新浪财经公开行情（非L2）",
-    "quoteTradeTime": "2026-08-12T09:46:15+08:00",
-    "upRatio": 0.4368,
-    "medianPct": -0.0824,
-    "strongCount": 116,
-    "limitLikeCount": 29
+    "quoteTradeTime": "2026-08-12T10:01:18+08:00",
+    "upRatio": 0.711,
+    "medianPct": 0.5102,
+    "strongCount": 154,
+    "limitLikeCount": 39
   },
   "tasks": [
     {
       "order": "01",
       "title": "先判市场，而不是先挑股票",
-      "state": "偏弱，先做验证",
-      "detail": "最近快照上涨广度 43.7%，中位涨幅 -0.08%。市场广度不足时不把板块强势直接转换为行动结论；只安排周一开盘后的确认观察。"
+      "state": "可研究，仍需逐只复核",
+      "detail": "最近快照上涨广度 71.1%，中位涨幅 0.51%。允许板块内样本进入确认队列；高开和放量过度的样本仍不追。"
     },
     {
       "order": "02",
