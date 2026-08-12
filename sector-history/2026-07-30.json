@@ -2686,7 +2686,7 @@
   "forecastPerformance": {
     "version": "sector-forecast-performance-v1",
     "signalDate": "2026-07-30",
-    "asOf": "2026-08-10",
+    "asOf": "2026-08-11",
     "measurement": "收盘档案端点收益；缺少目标日价格时不补算",
     "horizons": [
       1,
