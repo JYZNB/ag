@@ -1,8 +1,8 @@
 {
   "version": "research-institute-v1",
-  "generatedAt": "2026-08-12T11:34:06+08:00",
+  "generatedAt": "2026-08-13T08:57:37+08:00",
   "asOf": "2026-08-12",
-  "phase": "午间 11:30",
+  "phase": "盘前最终发布 08:55",
   "headline": "先看市场许可，再看板块延续，最后核实个股",
   "summary": "研究所日报只输出可证伪的研究任务和数据边界；板块雷达才负责展示板块排序与样本。",
   "marketRegime": {
@@ -13,18 +13,18 @@
   "marketSnapshot": {
     "quoteCount": 2747,
     "quoteSource": "新浪财经公开行情（非L2）",
-    "quoteTradeTime": "2026-08-12T11:34:02+08:00",
-    "upRatio": 0.6068,
-    "medianPct": 0.3401,
-    "strongCount": 228,
-    "limitLikeCount": 57
+    "quoteTradeTime": "2026-08-12T15:36:00+08:00",
+    "upRatio": 0.7208,
+    "medianPct": 0.6879,
+    "strongCount": 287,
+    "limitLikeCount": 74
   },
   "tasks": [
     {
       "order": "01",
       "title": "先判市场，而不是先挑股票",
       "state": "可研究，仍需逐只复核",
-      "detail": "最近快照上涨广度 60.7%，中位涨幅 0.34%。允许板块内样本进入确认队列；高开和放量过度的样本仍不追。"
+      "detail": "最近快照上涨广度 72.1%，中位涨幅 0.69%。允许板块内样本进入确认队列；高开和放量过度的样本仍不追。"
     },
     {
       "order": "02",
