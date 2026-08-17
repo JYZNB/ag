@@ -1,8 +1,8 @@
 {
   "version": "research-institute-v1",
-  "generatedAt": "2026-08-17T09:27:32+08:00",
+  "generatedAt": "2026-08-17T09:46:31+08:00",
   "asOf": "2026-08-17",
-  "phase": "集合竞价 09:25",
+  "phase": "开盘15分钟 09:45",
   "headline": "先看市场许可，再看板块延续，最后核实个股",
   "summary": "研究所日报只输出可证伪的研究任务和数据边界；板块雷达才负责展示板块排序与样本。",
   "marketRegime": {
@@ -11,20 +11,20 @@
     "rule": "只保留板块广度和个股走势同时成立的样本，不能因为单一题材上榜。"
   },
   "marketSnapshot": {
-    "quoteCount": 2739,
+    "quoteCount": 2746,
     "quoteSource": "新浪财经公开行情（非L2）",
-    "quoteTradeTime": "2026-08-17T09:27:44+08:00",
-    "upRatio": 0.4819,
+    "quoteTradeTime": "2026-08-17T09:46:43+08:00",
+    "upRatio": 0.4548,
     "medianPct": 0.0,
-    "strongCount": 41,
-    "limitLikeCount": 4
+    "strongCount": 131,
+    "limitLikeCount": 25
   },
   "tasks": [
     {
       "order": "01",
       "title": "先判市场，而不是先挑股票",
       "state": "中性，择强观察",
-      "detail": "最近快照上涨广度 48.2%，中位涨幅 0.00%。只保留板块广度和个股走势同时成立的样本，不能因为单一题材上榜。"
+      "detail": "最近快照上涨广度 45.5%，中位涨幅 0.00%。只保留板块广度和个股走势同时成立的样本，不能因为单一题材上榜。"
     },
     {
       "order": "02",
@@ -45,7 +45,7 @@
       "category": "市场结构",
       "status": "已接入",
       "weight": "结构主证据",
-      "note": "新浪财经公开行情（非L2）；样本 2,739 只。"
+      "note": "新浪财经公开行情（非L2）；样本 2,746 只。"
     },
     {
       "name": "板块广度与领涨股",
