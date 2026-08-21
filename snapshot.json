@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T09:26:51+08:00",
+  "generatedAt": "2026-08-21T09:45:52+08:00",
   "latestDate": "2026-08-21",
   "modelName": "swing_quality_v31_clean_sizing_tilt_035_target_108",
   "formalVersion": "正式模型 V31",
@@ -12869,8 +12869,8 @@
   },
   "intradayQuote": {
     "version": "intraday_quote_v1",
-    "capturedAt": "2026-08-21T09:26:51+08:00",
-    "phase": "集合竞价 09:25",
+    "capturedAt": "2026-08-21T09:45:52+08:00",
+    "phase": "开盘15分钟 09:45",
     "source": "tushare_rt",
     "candidateCodeCount": 36,
     "requestedCodeCount": 38,
@@ -12879,14 +12879,14 @@
     "brokerHoldingsNotice": "券商持仓核验不是当日记录；请以已登录券商页面为准。",
     "quotes": {}
   },
-  "phase": "集合竞价 09:25",
-  "publicSnapshotBuiltAt": "2026-08-21T09:26:57+08:00",
+  "phase": "开盘15分钟 09:45",
+  "publicSnapshotBuiltAt": "2026-08-21T09:45:58+08:00",
   "unifiedSwingModel": {
     "modelName": "磐石融合研究模型",
     "researchState": "每日板块强度已更新；历史模型作为验证层",
     "productionReady": false,
     "latestDate": "2026-08-21",
-    "generatedAt": "2026-08-21T09:26:51+08:00",
+    "generatedAt": "2026-08-21T09:45:52+08:00",
     "horizonDays": [
       15,
       45
@@ -13852,182 +13852,74 @@
     ],
     "candidates": [
       {
-        "code": "603193",
-        "name": "润本股份",
-        "sector": "洗护用品",
+        "code": "605111",
+        "name": "新洁能",
+        "sector": "功率半导体",
         "close": null,
-        "live_price": 22.46,
-        "live_pct": 5.1498,
-        "quote_trade_time": "2026-08-21T09:27:15+08:00",
+        "live_price": 62.05,
+        "live_pct": 4.3734,
+        "quote_trade_time": "2026-08-21T09:46:18+08:00",
         "quote_source": "新浪财经公开行情（非L2）",
         "research_tier": 1,
         "model_status": "WATCH",
-        "model_reason": "洗护用品：上涨广度 57%；强势股 1 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 22.12,
-        "entry_high": 22.8,
-        "risk_line": 21.34,
+        "model_reason": "功率半导体：上涨广度 100%；强势股 3 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 61.12,
+        "entry_high": 62.98,
+        "risk_line": 58.95,
         "target1": null,
         "research_horizon": "下一交易日强度复核",
         "historyAsOf": "2026-07-10",
-        "ret5": -0.041089,
-        "ret10": 0.017993,
-        "ret20": -0.113485,
-        "ret60": -0.226274,
-        "sector_strength_tier": 2,
-        "sector_rank": 1,
-        "leader_rank": 1,
+        "ret5": -0.09199,
+        "ret10": -0.117767,
+        "ret20": 0.256037,
+        "ret60": 0.935092,
+        "sector_strength_tier": 1,
+        "sector_rank": 2,
+        "leader_rank": 2,
         "research_score": 99.0
       },
       {
-        "code": "601069",
-        "name": "西部黄金",
-        "sector": "黄金",
+        "code": "600961",
+        "name": "株冶集团",
+        "sector": "铅锌",
         "close": null,
-        "live_price": 31.52,
-        "live_pct": 2.0065,
-        "quote_trade_time": "2026-08-21T09:27:15+08:00",
+        "live_price": 28.42,
+        "live_pct": 4.9096,
+        "quote_trade_time": "2026-08-21T09:46:20+08:00",
         "quote_source": "新浪财经公开行情（非L2）",
         "research_tier": 1,
         "model_status": "WATCH",
-        "model_reason": "黄金：上涨广度 100%；强势股 0 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 31.05,
-        "entry_high": 31.99,
-        "risk_line": 29.94,
+        "model_reason": "铅锌：上涨广度 100%；强势股 3 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 27.99,
+        "entry_high": 28.85,
+        "risk_line": 27.0,
         "target1": null,
         "research_horizon": "下一交易日强度复核",
         "historyAsOf": "2026-07-10",
-        "ret5": -0.038981,
-        "ret10": 0.108144,
-        "ret20": -0.002004,
-        "ret60": -0.269795,
-        "sector_strength_tier": 2,
-        "sector_rank": 2,
-        "leader_rank": 1,
-        "research_score": 98.0
-      },
-      {
-        "code": "000968",
-        "name": "蓝焰控股",
-        "sector": "油气开采",
-        "close": null,
-        "live_price": 7.08,
-        "live_pct": 1.4327,
-        "quote_trade_time": "2026-08-21T09:25:00+08:00",
-        "quote_source": "新浪财经公开行情（非L2）",
-        "research_tier": 1,
-        "model_status": "WATCH",
-        "model_reason": "油气开采：上涨广度 100%；强势股 0 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 6.97,
-        "entry_high": 7.19,
-        "risk_line": 6.73,
-        "target1": null,
-        "research_horizon": "下一交易日强度复核",
-        "historyAsOf": "2026-07-10",
-        "ret5": 0.0,
-        "ret10": 0.039933,
-        "ret20": -0.115983,
-        "ret60": -0.386051,
-        "sector_strength_tier": 2,
+        "ret5": -0.115705,
+        "ret10": -0.226597,
+        "ret20": 0.148052,
+        "ret60": 0.458746,
+        "sector_strength_tier": 1,
         "sector_rank": 3,
         "leader_rank": 1,
-        "research_score": 97.0
-      },
-      {
-        "code": "603666",
-        "name": "亿嘉和",
-        "sector": "机器人",
-        "close": null,
-        "live_price": 26.28,
-        "live_pct": 0.8055,
-        "quote_trade_time": "2026-08-21T09:27:05+08:00",
-        "quote_source": "新浪财经公开行情（非L2）",
-        "research_tier": 2,
-        "model_status": "WATCH",
-        "model_reason": "机器人：上涨广度 100%；强势股 0 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 25.89,
-        "entry_high": 26.67,
-        "risk_line": 24.97,
-        "target1": null,
-        "research_horizon": "下一交易日强度复核",
-        "historyAsOf": "2026-07-10",
-        "ret5": -0.052893,
-        "ret10": 0.082357,
-        "ret20": 0.077068,
-        "ret60": 0.102771,
-        "sector_strength_tier": 2,
-        "sector_rank": 4,
-        "leader_rank": 1,
-        "research_score": 96.0
-      },
-      {
-        "code": "001328",
-        "name": "登康口腔",
-        "sector": "洗护用品",
-        "close": null,
-        "live_price": 29.62,
-        "live_pct": 1.0922,
-        "quote_trade_time": "2026-08-21T09:25:00+08:00",
-        "quote_source": "新浪财经公开行情（非L2）",
-        "research_tier": 2,
-        "model_status": "WATCH",
-        "model_reason": "洗护用品：上涨广度 57%；强势股 1 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 29.18,
-        "entry_high": 30.06,
-        "risk_line": 28.14,
-        "target1": null,
-        "research_horizon": "下一交易日强度复核",
-        "historyAsOf": "2026-07-10",
-        "ret5": -0.027951,
-        "ret10": 0.053828,
-        "ret20": -0.10102,
-        "ret60": -0.194207,
-        "sector_strength_tier": 2,
-        "sector_rank": 1,
-        "leader_rank": 2,
-        "research_score": 95.0
-      },
-      {
-        "code": "600315",
-        "name": "上海家化",
-        "sector": "洗护用品",
-        "close": null,
-        "live_price": 18.53,
-        "live_pct": 0.7065,
-        "quote_trade_time": "2026-08-21T09:27:05+08:00",
-        "quote_source": "新浪财经公开行情（非L2）",
-        "research_tier": 2,
-        "model_status": "WATCH",
-        "model_reason": "洗护用品：上涨广度 57%；强势股 1 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 18.25,
-        "entry_high": 18.81,
-        "risk_line": 17.6,
-        "target1": null,
-        "research_horizon": "下一交易日强度复核",
-        "historyAsOf": "2026-07-10",
-        "ret5": 0.013181,
-        "ret10": 0.074119,
-        "ret20": -0.000565,
-        "ret60": -0.131204,
-        "sector_strength_tier": 2,
-        "sector_rank": 1,
-        "leader_rank": 3,
-        "research_score": 94.0
+        "research_score": 98.0
       },
       {
         "code": "600988",
         "name": "赤峰黄金",
         "sector": "黄金",
         "close": null,
-        "live_price": 46.98,
-        "live_pct": 1.9089,
-        "quote_trade_time": "2026-08-21T09:26:54+08:00",
+        "live_price": 48.15,
+        "live_pct": 4.4469,
+        "quote_trade_time": "2026-08-21T09:46:18+08:00",
         "quote_source": "新浪财经公开行情（非L2）",
-        "research_tier": 2,
+        "research_tier": 1,
         "model_status": "WATCH",
-        "model_reason": "黄金：上涨广度 100%；强势股 0 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 46.28,
-        "entry_high": 47.68,
-        "risk_line": 44.63,
+        "model_reason": "黄金：上涨广度 100%；强势股 2 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 47.43,
+        "entry_high": 48.87,
+        "risk_line": 45.74,
         "target1": null,
         "research_horizon": "下一交易日强度复核",
         "historyAsOf": "2026-07-10",
@@ -14035,62 +13927,170 @@
         "ret10": 0.266487,
         "ret20": 0.162067,
         "ret60": -0.256677,
+        "sector_strength_tier": 1,
+        "sector_rank": 4,
+        "leader_rank": 1,
+        "research_score": 97.0
+      },
+      {
+        "code": "002815",
+        "name": "崇达技术",
+        "sector": "PCB",
+        "close": null,
+        "live_price": 13.53,
+        "live_pct": 4.6404,
+        "quote_trade_time": "2026-08-21T09:46:18+08:00",
+        "quote_source": "新浪财经公开行情（非L2）",
+        "research_tier": 2,
+        "model_status": "WATCH",
+        "model_reason": "PCB：上涨广度 86%；强势股 3 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "entry_low": 13.33,
+        "entry_high": 13.73,
+        "risk_line": 12.85,
+        "target1": null,
+        "research_horizon": "下一交易日强度复核",
+        "historyAsOf": "2026-07-10",
+        "ret5": 0.215871,
+        "ret10": 0.022624,
+        "ret20": 0.019741,
+        "ret60": 0.212609,
         "sector_strength_tier": 2,
+        "sector_rank": 5,
+        "leader_rank": 1,
+        "research_score": 96.0
+      },
+      {
+        "code": "001270",
+        "name": "铖昌科技",
+        "sector": "军工电子",
+        "close": null,
+        "live_price": 104.7,
+        "live_pct": 4.5327,
+        "quote_trade_time": "2026-08-21T09:46:18+08:00",
+        "quote_source": "新浪财经公开行情（非L2）",
+        "research_tier": 2,
+        "model_status": "WATCH",
+        "model_reason": "军工电子：上涨广度 75%；强势股 2 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "entry_low": 103.13,
+        "entry_high": 106.27,
+        "risk_line": 99.47,
+        "target1": null,
+        "research_horizon": "下一交易日强度复核",
+        "historyAsOf": "2026-07-10",
+        "ret5": 0.018246,
+        "ret10": 0.192713,
+        "ret20": 0.284964,
+        "ret60": 0.352252,
+        "sector_strength_tier": 2,
+        "sector_rank": 6,
+        "leader_rank": 1,
+        "research_score": 95.0
+      },
+      {
+        "code": "603290",
+        "name": "斯达半导",
+        "sector": "功率半导体",
+        "close": null,
+        "live_price": 98.82,
+        "live_pct": 3.3466,
+        "quote_trade_time": "2026-08-21T09:46:17+08:00",
+        "quote_source": "新浪财经公开行情（非L2）",
+        "research_tier": 2,
+        "model_status": "WATCH",
+        "model_reason": "功率半导体：上涨广度 100%；强势股 3 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 97.34,
+        "entry_high": 100.3,
+        "risk_line": 93.88,
+        "target1": null,
+        "research_horizon": "下一交易日强度复核",
+        "historyAsOf": "2026-07-10",
+        "ret5": -0.04283,
+        "ret10": -0.075078,
+        "ret20": 0.110902,
+        "ret60": 0.236122,
+        "sector_strength_tier": 1,
         "sector_rank": 2,
+        "leader_rank": 3,
+        "research_score": 94.0
+      },
+      {
+        "code": "000426",
+        "name": "兴业银锡",
+        "sector": "铅锌",
+        "close": null,
+        "live_price": 39.89,
+        "live_pct": 3.4492,
+        "quote_trade_time": "2026-08-21T09:46:18+08:00",
+        "quote_source": "新浪财经公开行情（非L2）",
+        "research_tier": 2,
+        "model_status": "WATCH",
+        "model_reason": "铅锌：上涨广度 100%；强势股 3 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 39.29,
+        "entry_high": 40.49,
+        "risk_line": 37.9,
+        "target1": null,
+        "research_horizon": "下一交易日强度复核",
+        "historyAsOf": "2026-07-10",
+        "ret5": -0.066214,
+        "ret10": -0.000303,
+        "ret20": -0.084605,
+        "ret60": -0.227528,
+        "sector_strength_tier": 1,
+        "sector_rank": 3,
         "leader_rank": 2,
         "research_score": 93.0
       },
       {
-        "code": "600489",
-        "name": "中金黄金",
-        "sector": "黄金",
+        "code": "600531",
+        "name": "豫光金铅",
+        "sector": "铅锌",
         "close": null,
-        "live_price": 26.79,
-        "live_pct": 1.5927,
-        "quote_trade_time": "2026-08-21T09:26:49+08:00",
+        "live_price": 13.54,
+        "live_pct": 3.4377,
+        "quote_trade_time": "2026-08-21T09:46:19+08:00",
         "quote_source": "新浪财经公开行情（非L2）",
         "research_tier": 2,
         "model_status": "WATCH",
-        "model_reason": "黄金：上涨广度 100%；强势股 0 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 26.39,
-        "entry_high": 27.19,
-        "risk_line": 25.45,
+        "model_reason": "铅锌：上涨广度 100%；强势股 3 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 13.34,
+        "entry_high": 13.74,
+        "risk_line": 12.86,
         "target1": null,
         "research_horizon": "下一交易日强度复核",
         "historyAsOf": "2026-07-10",
-        "ret5": 0.0,
-        "ret10": 0.111475,
-        "ret20": -0.014535,
-        "ret60": -0.244989,
-        "sector_strength_tier": 2,
-        "sector_rank": 2,
+        "ret5": -0.115486,
+        "ret10": -0.153798,
+        "ret20": 0.132773,
+        "ret60": -0.005166,
+        "sector_strength_tier": 1,
+        "sector_rank": 3,
         "leader_rank": 3,
         "research_score": 92.0
       },
       {
-        "code": "600938",
-        "name": "中国海油",
-        "sector": "油气开采",
+        "code": "601069",
+        "name": "西部黄金",
+        "sector": "黄金",
         "close": null,
-        "live_price": 33.55,
-        "live_pct": 0.7508,
-        "quote_trade_time": "2026-08-21T09:27:13+08:00",
+        "live_price": 32.09,
+        "live_pct": 3.8511,
+        "quote_trade_time": "2026-08-21T09:46:21+08:00",
         "quote_source": "新浪财经公开行情（非L2）",
         "research_tier": 2,
         "model_status": "WATCH",
-        "model_reason": "油气开采：上涨广度 100%；强势股 0 只。；下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "entry_low": 33.05,
-        "entry_high": 34.05,
-        "risk_line": 31.87,
+        "model_reason": "黄金：上涨广度 100%；强势股 2 只。；下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "entry_low": 31.61,
+        "entry_high": 32.57,
+        "risk_line": 30.49,
         "target1": null,
         "research_horizon": "下一交易日强度复核",
         "historyAsOf": "2026-07-10",
-        "ret5": 0.016612,
-        "ret10": 0.028498,
-        "ret20": -0.167652,
-        "ret60": -0.261349,
-        "sector_strength_tier": 2,
-        "sector_rank": 3,
+        "ret5": -0.038981,
+        "ret10": 0.108144,
+        "ret20": -0.002004,
+        "ret60": -0.269795,
+        "sector_strength_tier": 1,
+        "sector_rank": 4,
         "leader_rank": 2,
         "research_score": 91.0
       }
@@ -14108,868 +14108,1196 @@
   "dailySectorResearch": {
     "version": "daily-sector-strength-v1",
     "asOf": "2026-08-21",
-    "capturedAt": "2026-08-21T09:26:51+08:00",
-    "quoteTradeTime": "2026-08-21T09:27:22+08:00",
+    "capturedAt": "2026-08-21T09:45:52+08:00",
+    "quoteTradeTime": "2026-08-21T09:46:24+08:00",
     "quoteSource": "新浪财经公开行情（非L2）",
-    "quoteCount": 2735,
+    "quoteCount": 2744,
     "state": "已生成当日强势板块档案",
     "market": {
-      "mainboardQuoteCount": 2735,
-      "upRatio": 0.177,
-      "medianPct": -0.4049,
-      "strongCount": 29,
-      "limitLikeCount": 6
+      "mainboardQuoteCount": 2744,
+      "upRatio": 0.2762,
+      "medianPct": -0.5747,
+      "strongCount": 95,
+      "limitLikeCount": 24
     },
     "sectors": [
       {
-        "sector": "洗护用品",
-        "stockCount": 7,
-        "upCount": 4,
-        "upRatio": 0.5714,
-        "strongCount": 1,
-        "limitLikeCount": 0,
-        "medianPct": 0.1553,
-        "averagePct": 0.7627,
-        "amount": 13921871.0,
+        "sector": "通信终端及配件",
+        "stockCount": 10,
+        "upCount": 8,
+        "upRatio": 0.8,
+        "strongCount": 5,
+        "limitLikeCount": 3,
+        "medianPct": 3.8782,
+        "averagePct": 4.0809,
+        "amount": 2743032754.36,
         "leaders": [
           {
-            "code": "603193",
-            "name": "润本股份",
-            "price": 22.46,
-            "pct": 5.1498,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
+            "code": "603803",
+            "name": "瑞斯康达",
+            "price": 11.32,
+            "pct": 10.0097,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           },
           {
-            "code": "001328",
-            "name": "登康口腔",
-            "price": 29.62,
-            "pct": 1.0922,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002017",
+            "name": "东信和平",
+            "price": 14.53,
+            "pct": 9.9924,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "600315",
-            "name": "上海家化",
-            "price": 18.53,
-            "pct": 0.7065,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "003040",
+            "name": "楚天龙",
+            "price": 12.79,
+            "pct": 9.9742,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           }
         ],
         "members": [
           {
-            "code": "603193",
-            "name": "润本股份",
-            "price": 22.46,
-            "pct": 5.1498,
-            "amount": 4467294.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
+            "code": "603803",
+            "name": "瑞斯康达",
+            "price": 11.32,
+            "pct": 10.0097,
+            "amount": 197830330.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           },
           {
-            "code": "001328",
-            "name": "登康口腔",
-            "price": 29.62,
-            "pct": 1.0922,
-            "amount": 672374.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002017",
+            "name": "东信和平",
+            "price": 14.53,
+            "pct": 9.9924,
+            "amount": 274160195.19,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "600315",
-            "name": "上海家化",
-            "price": 18.53,
-            "pct": 0.7065,
-            "amount": 5153230.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "003040",
+            "name": "楚天龙",
+            "price": 12.79,
+            "pct": 9.9742,
+            "amount": 357690518.81,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "603059",
-            "name": "倍加洁",
-            "price": 25.8,
-            "pct": 0.1553,
-            "amount": 141900.0,
-            "tradeTime": "2026-08-21T09:27:02+08:00"
+            "code": "603118",
+            "name": "共进股份",
+            "price": 17.83,
+            "pct": 4.8824,
+            "amount": 1174294370.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "600249",
-            "name": "两面针",
-            "price": 5.27,
-            "pct": 0.0,
-            "amount": 63767.0,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
+            "code": "002104",
+            "name": "恒宝股份",
+            "price": 10.49,
+            "pct": 4.7952,
+            "amount": 356723647.36,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "002637",
-            "name": "赞宇科技",
-            "price": 12.04,
-            "pct": -0.4959,
-            "amount": 2733080.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002313",
+            "name": "日海智能",
+            "price": 9.04,
+            "pct": 2.9613,
+            "amount": 156497574.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "603630",
-            "name": "拉芳家化",
-            "price": 14.78,
-            "pct": -1.2692,
-            "amount": 690226.0,
-            "tradeTime": "2026-08-21T09:27:21+08:00"
+            "code": "603341",
+            "name": "龙旗科技",
+            "price": 36.87,
+            "pct": 0.7377,
+            "amount": 51101139.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "002369",
+            "name": "卓翼科技",
+            "price": 5.71,
+            "pct": 0.5282,
+            "amount": 16214856.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600775",
+            "name": "南京熊猫",
+            "price": 9.34,
+            "pct": -1.2685,
+            "amount": 18828980.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603236",
+            "name": "移远通信",
+            "price": 58.8,
+            "pct": -1.8036,
+            "amount": 139691144.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           }
         ],
-        "visibleMemberCount": 7,
-        "tier": 2,
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "visibleMemberCount": 10,
+        "tier": 1,
+        "nextSessionObservation": "下一交易日仅观察分歧：热度已高，等待确认，不追高。",
         "rank": 1
+      },
+      {
+        "sector": "功率半导体",
+        "stockCount": 4,
+        "upCount": 4,
+        "upRatio": 1.0,
+        "strongCount": 3,
+        "limitLikeCount": 1,
+        "medianPct": 3.86,
+        "averagePct": 4.7491,
+        "amount": 3371504402.0,
+        "leaders": [
+          {
+            "code": "600460",
+            "name": "士兰微",
+            "price": 35.89,
+            "pct": 9.9908,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "605111",
+            "name": "新洁能",
+            "price": 62.05,
+            "pct": 4.3734,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603290",
+            "name": "斯达半导",
+            "price": 98.82,
+            "pct": 3.3466,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "600460",
+            "name": "士兰微",
+            "price": 35.89,
+            "pct": 9.9908,
+            "amount": 2130079610.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "605111",
+            "name": "新洁能",
+            "price": 62.05,
+            "pct": 4.3734,
+            "amount": 397735133.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603290",
+            "name": "斯达半导",
+            "price": 98.82,
+            "pct": 3.3466,
+            "amount": 610991974.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          },
+          {
+            "code": "600360",
+            "name": "华微电子",
+            "price": 11.03,
+            "pct": 1.2856,
+            "amount": 232697685.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          }
+        ],
+        "visibleMemberCount": 4,
+        "tier": 1,
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "rank": 2
+      },
+      {
+        "sector": "铅锌",
+        "stockCount": 12,
+        "upCount": 12,
+        "upRatio": 1.0,
+        "strongCount": 3,
+        "limitLikeCount": 0,
+        "medianPct": 1.3265,
+        "averagePct": 1.6927,
+        "amount": 2808208464.67,
+        "leaders": [
+          {
+            "code": "600961",
+            "name": "株冶集团",
+            "price": 28.42,
+            "pct": 4.9096,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "000426",
+            "name": "兴业银锡",
+            "price": 39.89,
+            "pct": 3.4492,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600531",
+            "name": "豫光金铅",
+            "price": 13.54,
+            "pct": 3.4377,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "600961",
+            "name": "株冶集团",
+            "price": 28.42,
+            "pct": 4.9096,
+            "amount": 658031313.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "000426",
+            "name": "兴业银锡",
+            "price": 39.89,
+            "pct": 3.4492,
+            "amount": 1183325694.09,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600531",
+            "name": "豫光金铅",
+            "price": 13.54,
+            "pct": 3.4377,
+            "amount": 283991246.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600338",
+            "name": "西藏珠峰",
+            "price": 13.32,
+            "pct": 1.6794,
+            "amount": 91867545.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "000688",
+            "name": "国城矿业",
+            "price": 31.24,
+            "pct": 1.5605,
+            "amount": 75661806.68,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600497",
+            "name": "驰宏锌锗",
+            "price": 9.89,
+            "pct": 1.4359,
+            "amount": 223079757.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "000751",
+            "name": "锌业股份",
+            "price": 4.99,
+            "pct": 1.217,
+            "amount": 44865103.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603132",
+            "name": "XD金徽股",
+            "price": 18.43,
+            "pct": 0.8758,
+            "amount": 23083842.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "601020",
+            "name": "华钰矿业",
+            "price": 21.41,
+            "pct": 0.6582,
+            "amount": 84963386.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "000060",
+            "name": "中金岭南",
+            "price": 6.55,
+            "pct": 0.6144,
+            "amount": 105599002.9,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "000758",
+            "name": "中色股份",
+            "price": 5.97,
+            "pct": 0.3361,
+            "amount": 23759688.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002114",
+            "name": "罗平锌电",
+            "price": 7.2,
+            "pct": 0.1391,
+            "amount": 9980081.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          }
+        ],
+        "visibleMemberCount": 12,
+        "tier": 1,
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "rank": 3
       },
       {
         "sector": "黄金",
         "stockCount": 8,
         "upCount": 8,
         "upRatio": 1.0,
-        "strongCount": 0,
+        "strongCount": 2,
         "limitLikeCount": 0,
-        "medianPct": 1.4959,
-        "averagePct": 1.3933,
-        "amount": 203791512.0,
+        "medianPct": 1.4984,
+        "averagePct": 1.923,
+        "amount": 5494451083.49,
         "leaders": [
           {
-            "code": "601069",
-            "name": "西部黄金",
-            "price": 31.52,
-            "pct": 2.0065,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
-          },
-          {
             "code": "600988",
             "name": "赤峰黄金",
-            "price": 46.98,
-            "pct": 1.9089,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
+            "price": 48.15,
+            "pct": 4.4469,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
-          {
-            "code": "600489",
-            "name": "中金黄金",
-            "price": 26.79,
-            "pct": 1.5927,
-            "tradeTime": "2026-08-21T09:26:49+08:00"
-          }
-        ],
-        "members": [
           {
             "code": "601069",
             "name": "西部黄金",
-            "price": 31.52,
-            "pct": 2.0065,
-            "amount": 8998960.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
-          },
-          {
-            "code": "600988",
-            "name": "赤峰黄金",
-            "price": 46.98,
-            "pct": 1.9089,
-            "amount": 50686863.0,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
-          },
-          {
-            "code": "600489",
-            "name": "中金黄金",
-            "price": 26.79,
-            "pct": 1.5927,
-            "amount": 31521114.0,
-            "tradeTime": "2026-08-21T09:26:49+08:00"
+            "price": 32.09,
+            "pct": 3.8511,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
             "code": "600547",
             "name": "XD山东黄",
-            "price": 35.85,
-            "pct": 1.5581,
-            "amount": 55814865.0,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
+            "price": 36.15,
+            "pct": 2.4079,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "600988",
+            "name": "赤峰黄金",
+            "price": 48.15,
+            "pct": 4.4469,
+            "amount": 1522278220.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "601069",
+            "name": "西部黄金",
+            "price": 32.09,
+            "pct": 3.8511,
+            "amount": 399794928.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600547",
+            "name": "XD山东黄",
+            "price": 36.15,
+            "pct": 2.4079,
+            "amount": 1299812634.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600489",
+            "name": "中金黄金",
+            "price": 26.82,
+            "pct": 1.7065,
+            "amount": 740214872.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
             "code": "000975",
             "name": "山金国际",
-            "price": 28.3,
-            "pct": 1.4337,
-            "amount": 17492230.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "price": 28.26,
+            "pct": 1.2903,
+            "amount": 354798068.17,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
             "code": "000506",
             "name": "招金黄金",
-            "price": 19.65,
-            "pct": 1.0283,
-            "amount": 25095015.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "price": 19.62,
+            "pct": 0.874,
+            "amount": 678103802.12,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
             "code": "001337",
             "name": "四川黄金",
-            "price": 49.0,
-            "pct": 0.8853,
-            "amount": 10231200.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "price": 48.8,
+            "pct": 0.4735,
+            "amount": 376969153.98,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
             "code": "002237",
             "name": "恒邦股份",
-            "price": 15.11,
-            "pct": 0.7333,
-            "amount": 3951265.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "price": 15.05,
+            "pct": 0.3333,
+            "amount": 122479405.22,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           }
         ],
         "visibleMemberCount": 8,
+        "tier": 1,
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "rank": 4
+      },
+      {
+        "sector": "PCB",
+        "stockCount": 22,
+        "upCount": 19,
+        "upRatio": 0.8636,
+        "strongCount": 3,
+        "limitLikeCount": 0,
+        "medianPct": 0.6679,
+        "averagePct": 0.86,
+        "amount": 7001148397.29,
+        "leaders": [
+          {
+            "code": "002815",
+            "name": "崇达技术",
+            "price": 13.53,
+            "pct": 4.6404,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002141",
+            "name": "贤丰控股",
+            "price": 6.49,
+            "pct": 3.5088,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603228",
+            "name": "景旺电子",
+            "price": 92.01,
+            "pct": 3.1271,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "002815",
+            "name": "崇达技术",
+            "price": 13.53,
+            "pct": 4.6404,
+            "amount": 147938757.3,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002141",
+            "name": "贤丰控股",
+            "price": 6.49,
+            "pct": 3.5088,
+            "amount": 278090222.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603228",
+            "name": "景旺电子",
+            "price": 92.01,
+            "pct": 3.1271,
+            "amount": 846277416.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002436",
+            "name": "兴森科技",
+            "price": 34.73,
+            "pct": 2.7211,
+            "amount": 768973553.4,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603920",
+            "name": "世运电路",
+            "price": 38.9,
+            "pct": 2.0194,
+            "amount": 208006332.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "600183",
+            "name": "生益科技",
+            "price": 128.13,
+            "pct": 1.465,
+            "amount": 1258913108.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603175",
+            "name": "超颖电子",
+            "price": 90.87,
+            "pct": 1.4401,
+            "amount": 30136141.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "002463",
+            "name": "沪电股份",
+            "price": 115.9,
+            "pct": 1.3821,
+            "amount": 491399508.9,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002636",
+            "name": "金安国纪",
+            "price": 62.37,
+            "pct": 1.0695,
+            "amount": 400156193.74,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002913",
+            "name": "奥士康",
+            "price": 59.35,
+            "pct": 0.9525,
+            "amount": 59374436.38,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600601",
+            "name": "方正科技",
+            "price": 12.41,
+            "pct": 0.7305,
+            "amount": 344774246.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002938",
+            "name": "鹏鼎控股",
+            "price": 88.1,
+            "pct": 0.6052,
+            "amount": 273735992.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "605258",
+            "name": "协和电子",
+            "price": 27.09,
+            "pct": 0.4449,
+            "amount": 7912801.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "603936",
+            "name": "博敏电子",
+            "price": 17.61,
+            "pct": 0.3991,
+            "amount": 260689974.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "603328",
+            "name": "依顿电子",
+            "price": 11.13,
+            "pct": 0.2703,
+            "amount": 38000781.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "605058",
+            "name": "澳弘电子",
+            "price": 26.71,
+            "pct": 0.2628,
+            "amount": 9149514.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "000823",
+            "name": "超声电子",
+            "price": 14.72,
+            "pct": 0.2042,
+            "amount": 91136901.57,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603459",
+            "name": "红板科技",
+            "price": 87.17,
+            "pct": 0.1954,
+            "amount": 136072825.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          },
+          {
+            "code": "002134",
+            "name": "天津普林",
+            "price": 21.17,
+            "pct": 0.1893,
+            "amount": 24711795.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603386",
+            "name": "骏亚科技",
+            "price": 13.68,
+            "pct": 0.0,
+            "amount": 17739244.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          }
+        ],
+        "visibleMemberCount": 20,
         "tier": 2,
         "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "rank": 2
+        "rank": 5
+      },
+      {
+        "sector": "军工电子",
+        "stockCount": 20,
+        "upCount": 15,
+        "upRatio": 0.75,
+        "strongCount": 2,
+        "limitLikeCount": 0,
+        "medianPct": 0.2009,
+        "averagePct": 0.5646,
+        "amount": 1574462266.86,
+        "leaders": [
+          {
+            "code": "001270",
+            "name": "铖昌科技",
+            "price": 104.7,
+            "pct": 4.5327,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603678",
+            "name": "火炬电子",
+            "price": 47.57,
+            "pct": 3.413,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002935",
+            "name": "天奥电子",
+            "price": 15.82,
+            "pct": 1.2804,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "001270",
+            "name": "铖昌科技",
+            "price": 104.7,
+            "pct": 4.5327,
+            "amount": 361097686.09,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603678",
+            "name": "火炬电子",
+            "price": 47.57,
+            "pct": 3.413,
+            "amount": 210059414.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002935",
+            "name": "天奥电子",
+            "price": 15.82,
+            "pct": 1.2804,
+            "amount": 14603141.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600990",
+            "name": "四创电子",
+            "price": 18.0,
+            "pct": 1.1236,
+            "amount": 9452437.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002465",
+            "name": "海格通信",
+            "price": 9.87,
+            "pct": 0.7143,
+            "amount": 67362697.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002214",
+            "name": "大立科技",
+            "price": 14.43,
+            "pct": 0.5575,
+            "amount": 36674505.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600590",
+            "name": "泰豪科技",
+            "price": 8.21,
+            "pct": 0.3667,
+            "amount": 32922125.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "000547",
+            "name": "航天发展",
+            "price": 13.89,
+            "pct": 0.2165,
+            "amount": 157866640.86,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002179",
+            "name": "中航光电",
+            "price": 34.26,
+            "pct": 0.2047,
+            "amount": 64303718.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "000733",
+            "name": "振华科技",
+            "price": 39.24,
+            "pct": 0.2043,
+            "amount": 61161742.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002025",
+            "name": "航天电器",
+            "price": 60.9,
+            "pct": 0.1974,
+            "amount": 176420958.35,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002151",
+            "name": "北斗星通",
+            "price": 27.99,
+            "pct": 0.1431,
+            "amount": 49375657.36,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002413",
+            "name": "雷科防务",
+            "price": 7.72,
+            "pct": 0.1297,
+            "amount": 53156534.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002338",
+            "name": "奥普光电",
+            "price": 42.84,
+            "pct": 0.0935,
+            "amount": 29568913.97,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600855",
+            "name": "航天长峰",
+            "price": 11.93,
+            "pct": 0.0839,
+            "amount": 12016917.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "002414",
+            "name": "高德红外",
+            "price": 13.08,
+            "pct": -0.0764,
+            "amount": 99901149.23,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603712",
+            "name": "七一二",
+            "price": 11.19,
+            "pct": -0.0893,
+            "amount": 15404492.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603267",
+            "name": "鸿远电子",
+            "price": 48.52,
+            "pct": -0.1851,
+            "amount": 50440437.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "002446",
+            "name": "盛路通信",
+            "price": 8.49,
+            "pct": -0.3521,
+            "amount": 29492970.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600562",
+            "name": "国睿科技",
+            "price": 25.74,
+            "pct": -1.2658,
+            "amount": 43180132.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          }
+        ],
+        "visibleMemberCount": 20,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "rank": 6
+      },
+      {
+        "sector": "燃气",
+        "stockCount": 24,
+        "upCount": 14,
+        "upRatio": 0.5833,
+        "strongCount": 2,
+        "limitLikeCount": 1,
+        "medianPct": 0.5493,
+        "averagePct": 1.0545,
+        "amount": 1209765075.9,
+        "leaders": [
+          {
+            "code": "603318",
+            "name": "水发燃气",
+            "price": 9.54,
+            "pct": 10.0346,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "603393",
+            "name": "新天然气",
+            "price": 24.69,
+            "pct": 3.7395,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "605090",
+            "name": "九丰能源",
+            "price": 35.98,
+            "pct": 2.6241,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "603318",
+            "name": "水发燃气",
+            "price": 9.54,
+            "pct": 10.0346,
+            "amount": 309245007.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "603393",
+            "name": "新天然气",
+            "price": 24.69,
+            "pct": 3.7395,
+            "amount": 107036253.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "605090",
+            "name": "九丰能源",
+            "price": 35.98,
+            "pct": 2.6241,
+            "amount": 167831503.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "600903",
+            "name": "贵州燃气",
+            "price": 6.31,
+            "pct": 2.4351,
+            "amount": 124496679.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "001331",
+            "name": "胜通能源",
+            "price": 45.55,
+            "pct": 2.0614,
+            "amount": 65596119.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "605169",
+            "name": "洪通燃气",
+            "price": 11.16,
+            "pct": 1.732,
+            "amount": 24230347.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002700",
+            "name": "万憬能源",
+            "price": 6.4,
+            "pct": 1.4263,
+            "amount": 8136870.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002259",
+            "name": "升达林业",
+            "price": 3.81,
+            "pct": 1.3298,
+            "amount": 13167670.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "001299",
+            "name": "美能能源",
+            "price": 10.03,
+            "pct": 1.2109,
+            "amount": 5843407.32,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603080",
+            "name": "新疆火炬",
+            "price": 19.52,
+            "pct": 0.8786,
+            "amount": 8082522.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600803",
+            "name": "新奥股份",
+            "price": 17.76,
+            "pct": 0.7946,
+            "amount": 20817616.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600635",
+            "name": "大众公用",
+            "price": 4.52,
+            "pct": 0.6682,
+            "amount": 27642892.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002267",
+            "name": "陕天然气",
+            "price": 7.0,
+            "pct": 0.4304,
+            "amount": 8485015.0,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
+          },
+          {
+            "code": "600333",
+            "name": "长春燃气",
+            "price": 6.26,
+            "pct": 0.16,
+            "amount": 14817596.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600681",
+            "name": "百川能源",
+            "price": 3.43,
+            "pct": 0.0,
+            "amount": 10452709.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603689",
+            "name": "皖天然气",
+            "price": 7.58,
+            "pct": 0.0,
+            "amount": 6057406.0,
+            "tradeTime": "2026-08-21T09:46:23+08:00"
+          },
+          {
+            "code": "600956",
+            "name": "新天绿能",
+            "price": 7.04,
+            "pct": 0.0,
+            "amount": 5383600.0,
+            "tradeTime": "2026-08-21T09:46:16+08:00"
+          },
+          {
+            "code": "605368",
+            "name": "蓝天燃气",
+            "price": 6.73,
+            "pct": 0.0,
+            "amount": 3877504.0,
+            "tradeTime": "2026-08-21T09:46:23+08:00"
+          },
+          {
+            "code": "603706",
+            "name": "东方环宇",
+            "price": 19.67,
+            "pct": -0.1016,
+            "amount": 3886258.0,
+            "tradeTime": "2026-08-21T09:46:23+08:00"
+          },
+          {
+            "code": "002911",
+            "name": "佛燃能源",
+            "price": 10.74,
+            "pct": -0.1859,
+            "amount": 16450902.08,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
+          }
+        ],
+        "visibleMemberCount": 20,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "rank": 7
       },
       {
         "sector": "油气开采",
         "stockCount": 4,
         "upCount": 4,
         "upRatio": 1.0,
-        "strongCount": 0,
+        "strongCount": 1,
         "limitLikeCount": 0,
-        "medianPct": 0.6484,
-        "averagePct": 0.8043,
-        "amount": 21906320.0,
+        "medianPct": 2.7467,
+        "averagePct": 3.0034,
+        "amount": 1180668456.01,
         "leaders": [
           {
             "code": "000968",
             "name": "蓝焰控股",
-            "price": 7.08,
-            "pct": 1.4327,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600938",
-            "name": "中国海油",
-            "price": 33.55,
-            "pct": 0.7508,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
+            "price": 7.35,
+            "pct": 5.3009,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
             "code": "601857",
             "name": "中国石油",
-            "price": 11.05,
-            "pct": 0.546,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
+            "price": 11.3,
+            "pct": 2.8207,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "600938",
+            "name": "中国海油",
+            "price": 34.19,
+            "pct": 2.6727,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           }
         ],
         "members": [
           {
             "code": "000968",
             "name": "蓝焰控股",
-            "price": 7.08,
-            "pct": 1.4327,
-            "amount": 1722564.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600938",
-            "name": "中国海油",
-            "price": 33.55,
-            "pct": 0.7508,
-            "amount": 9769760.0,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
+            "price": 7.35,
+            "pct": 5.3009,
+            "amount": 176204009.01,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
             "code": "601857",
             "name": "中国石油",
-            "price": 11.05,
-            "pct": 0.546,
-            "amount": 9825660.0,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
+            "price": 11.3,
+            "pct": 2.8207,
+            "amount": 486027299.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "600938",
+            "name": "中国海油",
+            "price": 34.19,
+            "pct": 2.6727,
+            "amount": 505467680.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
             "code": "600777",
             "name": "新潮能源",
-            "price": 4.12,
-            "pct": 0.4878,
-            "amount": 588336.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
+            "price": 4.15,
+            "pct": 1.2195,
+            "amount": 12969468.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
           }
         ],
         "visibleMemberCount": 4,
-        "tier": 2,
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "rank": 3
-      },
-      {
-        "sector": "机器人",
-        "stockCount": 3,
-        "upCount": 3,
-        "upRatio": 1.0,
-        "strongCount": 0,
-        "limitLikeCount": 0,
-        "medianPct": 0.3357,
-        "averagePct": 0.4317,
-        "amount": 25721736.0,
-        "leaders": [
-          {
-            "code": "603666",
-            "name": "亿嘉和",
-            "price": 26.28,
-            "pct": 0.8055,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "002747",
-            "name": "埃斯顿",
-            "price": 32.88,
-            "pct": 0.3357,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600215",
-            "name": "派斯林",
-            "price": 6.51,
-            "pct": 0.1538,
-            "tradeTime": "2026-08-21T09:27:06+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "603666",
-            "name": "亿嘉和",
-            "price": 26.28,
-            "pct": 0.8055,
-            "amount": 1666152.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "002747",
-            "name": "埃斯顿",
-            "price": 32.88,
-            "pct": 0.3357,
-            "amount": 23982672.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600215",
-            "name": "派斯林",
-            "price": 6.51,
-            "pct": 0.1538,
-            "amount": 72912.0,
-            "tradeTime": "2026-08-21T09:27:06+08:00"
-          }
-        ],
-        "visibleMemberCount": 3,
-        "tier": 2,
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "rank": 4
-      },
-      {
-        "sector": "保险",
-        "stockCount": 5,
-        "upCount": 4,
-        "upRatio": 0.8,
-        "strongCount": 0,
-        "limitLikeCount": 0,
-        "medianPct": 0.2652,
-        "averagePct": 0.5049,
-        "amount": 159413375.0,
-        "leaders": [
-          {
-            "code": "601318",
-            "name": "中国平安",
-            "price": 53.01,
-            "pct": 1.6686,
-            "tradeTime": "2026-08-21T09:27:17+08:00"
-          },
-          {
-            "code": "601336",
-            "name": "新华保险",
-            "price": 58.36,
-            "pct": 0.4821,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "601601",
-            "name": "中国太保",
-            "price": 30.25,
-            "pct": 0.2652,
-            "tradeTime": "2026-08-21T09:26:50+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "601318",
-            "name": "中国平安",
-            "price": 53.01,
-            "pct": 1.6686,
-            "amount": 132773087.0,
-            "tradeTime": "2026-08-21T09:27:17+08:00"
-          },
-          {
-            "code": "601336",
-            "name": "新华保险",
-            "price": 58.36,
-            "pct": 0.4821,
-            "amount": 10154640.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "601601",
-            "name": "中国太保",
-            "price": 30.25,
-            "pct": 0.2652,
-            "amount": 8221950.0,
-            "tradeTime": "2026-08-21T09:26:50+08:00"
-          },
-          {
-            "code": "601628",
-            "name": "中国人寿",
-            "price": 36.93,
-            "pct": 0.1084,
-            "amount": 7038858.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "601319",
-            "name": "中国人保",
-            "price": 6.92,
-            "pct": 0.0,
-            "amount": 1224840.0,
-            "tradeTime": "2026-08-21T09:27:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 5,
-        "tier": 2,
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "rank": 5
-      },
-      {
-        "sector": "油气工程",
-        "stockCount": 4,
-        "upCount": 3,
-        "upRatio": 0.75,
-        "strongCount": 0,
-        "limitLikeCount": 0,
-        "medianPct": 0.4767,
-        "averagePct": 0.3624,
-        "amount": 3991664.0,
-        "leaders": [
-          {
-            "code": "600583",
-            "name": "海油工程",
-            "price": 6.17,
-            "pct": 1.1475,
-            "tradeTime": "2026-08-21T09:27:19+08:00"
-          },
-          {
-            "code": "600339",
-            "name": "中油工程",
-            "price": 3.36,
-            "pct": 0.5988,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
-          },
-          {
-            "code": "002554",
-            "name": "惠博普",
-            "price": 2.83,
-            "pct": 0.3546,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "600583",
-            "name": "海油工程",
-            "price": 6.17,
-            "pct": 1.1475,
-            "amount": 2775266.0,
-            "tradeTime": "2026-08-21T09:27:19+08:00"
-          },
-          {
-            "code": "600339",
-            "name": "中油工程",
-            "price": 3.36,
-            "pct": 0.5988,
-            "amount": 955248.0,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
-          },
-          {
-            "code": "002554",
-            "name": "惠博普",
-            "price": 2.83,
-            "pct": 0.3546,
-            "amount": 195270.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603727",
-            "name": "博迈科",
-            "price": 18.3,
-            "pct": -0.6515,
-            "amount": 65880.0,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
-          }
-        ],
-        "visibleMemberCount": 4,
-        "tier": 2,
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "rank": 6
-      },
-      {
-        "sector": "铅锌",
-        "stockCount": 12,
-        "upCount": 9,
-        "upRatio": 0.75,
-        "strongCount": 0,
-        "limitLikeCount": 0,
-        "medianPct": 0.1661,
-        "averagePct": 0.4188,
-        "amount": 70432736.0,
-        "leaders": [
-          {
-            "code": "000426",
-            "name": "兴业银锡",
-            "price": 39.58,
-            "pct": 2.6452,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600531",
-            "name": "豫光金铅",
-            "price": 13.23,
-            "pct": 1.0695,
-            "tradeTime": "2026-08-21T09:27:16+08:00"
-          },
-          {
-            "code": "601020",
-            "name": "华钰矿业",
-            "price": 21.43,
-            "pct": 0.7522,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "000426",
-            "name": "兴业银锡",
-            "price": 39.58,
-            "pct": 2.6452,
-            "amount": 40320146.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600531",
-            "name": "豫光金铅",
-            "price": 13.23,
-            "pct": 1.0695,
-            "amount": 3908142.0,
-            "tradeTime": "2026-08-21T09:27:16+08:00"
-          },
-          {
-            "code": "601020",
-            "name": "华钰矿业",
-            "price": 21.43,
-            "pct": 0.7522,
-            "amount": 3158782.0,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
-          },
-          {
-            "code": "600497",
-            "name": "驰宏锌锗",
-            "price": 9.8,
-            "pct": 0.5128,
-            "amount": 6786500.0,
-            "tradeTime": "2026-08-21T09:26:55+08:00"
-          },
-          {
-            "code": "600338",
-            "name": "西藏珠峰",
-            "price": 13.15,
-            "pct": 0.3817,
-            "amount": 971785.0,
-            "tradeTime": "2026-08-21T09:26:55+08:00"
-          },
-          {
-            "code": "000758",
-            "name": "中色股份",
-            "price": 5.96,
-            "pct": 0.1681,
-            "amount": 1352920.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603132",
-            "name": "XD金徽股",
-            "price": 18.3,
-            "pct": 0.1642,
-            "amount": 497760.0,
-            "tradeTime": "2026-08-21T09:27:09+08:00"
-          },
-          {
-            "code": "000060",
-            "name": "中金岭南",
-            "price": 6.52,
-            "pct": 0.1536,
-            "amount": 2871408.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000688",
-            "name": "国城矿业",
-            "price": 30.78,
-            "pct": 0.065,
-            "amount": 1320462.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600961",
-            "name": "株冶集团",
-            "price": 27.09,
-            "pct": 0.0,
-            "amount": 7885899.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "002114",
-            "name": "罗平锌电",
-            "price": 7.17,
-            "pct": -0.2782,
-            "amount": 169212.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000751",
-            "name": "锌业股份",
-            "price": 4.9,
-            "pct": -0.6085,
-            "amount": 1189720.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 12,
-        "tier": 2,
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "rank": 7
-      },
-      {
-        "sector": "铜",
-        "stockCount": 14,
-        "upCount": 9,
-        "upRatio": 0.6429,
-        "strongCount": 0,
-        "limitLikeCount": 0,
-        "medianPct": 0.4939,
-        "averagePct": 0.4215,
-        "amount": 148689421.62,
-        "leaders": [
-          {
-            "code": "601212",
-            "name": "白银有色",
-            "price": 5.64,
-            "pct": 1.8051,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
-          },
-          {
-            "code": "600490",
-            "name": "鹏欣资源",
-            "price": 7.35,
-            "pct": 1.3793,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
-          },
-          {
-            "code": "601899",
-            "name": "XD紫金矿",
-            "price": 34.25,
-            "pct": 1.2415,
-            "tradeTime": "2026-08-21T09:26:49+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "601212",
-            "name": "白银有色",
-            "price": 5.64,
-            "pct": 1.8051,
-            "amount": 4986324.0,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
-          },
-          {
-            "code": "600490",
-            "name": "鹏欣资源",
-            "price": 7.35,
-            "pct": 1.3793,
-            "amount": 2135910.0,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
-          },
-          {
-            "code": "601899",
-            "name": "XD紫金矿",
-            "price": 34.25,
-            "pct": 1.2415,
-            "amount": 78706500.0,
-            "tradeTime": "2026-08-21T09:26:49+08:00"
-          },
-          {
-            "code": "601168",
-            "name": "西部矿业",
-            "price": 37.0,
-            "pct": 0.9274,
-            "amount": 30240100.0,
-            "tradeTime": "2026-08-21T09:26:57+08:00"
-          },
-          {
-            "code": "603979",
-            "name": "金诚信",
-            "price": 75.58,
-            "pct": 0.9079,
-            "amount": 1118584.0,
-            "tradeTime": "2026-08-21T09:26:56+08:00"
-          },
-          {
-            "code": "000737",
-            "name": "北方铜业",
-            "price": 14.18,
-            "pct": 0.8535,
-            "amount": 7080074.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600362",
-            "name": "江西铜业",
-            "price": 44.86,
-            "pct": 0.6507,
-            "amount": 9137982.0,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
-          },
-          {
-            "code": "002295",
-            "name": "精艺股份",
-            "price": 8.93,
-            "pct": 0.3371,
-            "amount": 127699.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000878",
-            "name": "云南铜业",
-            "price": 16.1,
-            "pct": 0.0622,
-            "amount": 1236480.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "601609",
-            "name": "金田股份",
-            "price": 12.86,
-            "pct": -0.0777,
-            "amount": 4903518.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "002203",
-            "name": "海亮股份",
-            "price": 18.35,
-            "pct": -0.1089,
-            "amount": 576190.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000630",
-            "name": "铜陵有色",
-            "price": 6.39,
-            "pct": -0.312,
-            "amount": 6479830.62,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603527",
-            "name": "众源新材",
-            "price": 9.72,
-            "pct": -0.715,
-            "amount": 180792.0,
-            "tradeTime": "2026-08-21T09:26:53+08:00"
-          },
-          {
-            "code": "002171",
-            "name": "楚江新材",
-            "price": 9.42,
-            "pct": -1.0504,
-            "amount": 1779438.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 14,
         "tier": 2,
         "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 8
       },
       {
-        "sector": "石油贸易",
+        "sector": "油田服务",
         "stockCount": 5,
-        "upCount": 3,
-        "upRatio": 0.6,
-        "strongCount": 0,
+        "upCount": 5,
+        "upRatio": 1.0,
+        "strongCount": 1,
         "limitLikeCount": 0,
-        "medianPct": 0.7825,
-        "averagePct": 0.4367,
-        "amount": 7873372.0,
+        "medianPct": 0.8936,
+        "averagePct": 1.635,
+        "amount": 498825043.0,
         "leaders": [
           {
-            "code": "600256",
-            "name": "广汇能源",
-            "price": 6.2,
-            "pct": 1.3072,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "603619",
+            "name": "中曼石油",
+            "price": 23.43,
+            "pct": 4.3188,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603353",
-            "name": "和顺石油",
-            "price": 30.53,
-            "pct": 1.0927,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
+            "code": "002828",
+            "name": "贝肯能源",
+            "price": 12.27,
+            "pct": 1.8257,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000554",
-            "name": "泰山石油",
-            "price": 6.44,
-            "pct": 0.7825,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "601808",
+            "name": "中海油服",
+            "price": 12.42,
+            "pct": 0.8936,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           }
         ],
         "members": [
           {
-            "code": "600256",
-            "name": "广汇能源",
-            "price": 6.2,
-            "pct": 1.3072,
-            "amount": 6783420.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "603619",
+            "name": "中曼石油",
+            "price": 23.43,
+            "pct": 4.3188,
+            "amount": 352423968.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603353",
-            "name": "和顺石油",
-            "price": 30.53,
-            "pct": 1.0927,
-            "amount": 259505.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
+            "code": "002828",
+            "name": "贝肯能源",
+            "price": 12.27,
+            "pct": 1.8257,
+            "amount": 53054372.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000554",
-            "name": "泰山石油",
-            "price": 6.44,
-            "pct": 0.7825,
-            "amount": 356776.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "601808",
+            "name": "中海油服",
+            "price": 12.42,
+            "pct": 0.8936,
+            "amount": 48005075.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000096",
-            "name": "广聚能源",
-            "price": 7.91,
-            "pct": -0.1263,
-            "amount": 114695.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002629",
+            "name": "仁智股份",
+            "price": 4.73,
+            "pct": 0.6383,
+            "amount": 11455852.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000159",
-            "name": "国际实业",
-            "price": 5.68,
-            "pct": -0.8726,
-            "amount": 358976.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600968",
+            "name": "海油发展",
+            "price": 4.03,
+            "pct": 0.4988,
+            "amount": 33885776.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           }
         ],
         "visibleMemberCount": 5,
@@ -14978,2068 +15306,1836 @@
         "rank": 9
       },
       {
-        "sector": "油田服务",
-        "stockCount": 5,
-        "upCount": 3,
-        "upRatio": 0.6,
-        "strongCount": 0,
-        "limitLikeCount": 0,
-        "medianPct": 0.4988,
-        "averagePct": 0.5767,
-        "amount": 7883570.0,
+        "sector": "铜",
+        "stockCount": 14,
+        "upCount": 12,
+        "upRatio": 0.8571,
+        "strongCount": 1,
+        "limitLikeCount": 1,
+        "medianPct": 0.716,
+        "averagePct": 1.3685,
+        "amount": 5611392841.3,
         "leaders": [
           {
-            "code": "603619",
-            "name": "中曼石油",
-            "price": 22.85,
-            "pct": 1.7364,
-            "tradeTime": "2026-08-21T09:27:06+08:00"
+            "code": "601212",
+            "name": "白银有色",
+            "price": 6.09,
+            "pct": 9.9278,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "601808",
-            "name": "中海油服",
-            "price": 12.4,
-            "pct": 0.7311,
-            "tradeTime": "2026-08-21T09:27:09+08:00"
+            "code": "601609",
+            "name": "金田股份",
+            "price": 13.16,
+            "pct": 2.2533,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "600968",
-            "name": "海油发展",
-            "price": 4.03,
-            "pct": 0.4988,
-            "tradeTime": "2026-08-21T09:27:19+08:00"
+            "code": "601168",
+            "name": "西部矿业",
+            "price": 37.26,
+            "pct": 1.6367,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
         "members": [
           {
-            "code": "603619",
-            "name": "中曼石油",
-            "price": 22.85,
-            "pct": 1.7364,
-            "amount": 6249475.0,
-            "tradeTime": "2026-08-21T09:27:06+08:00"
+            "code": "601212",
+            "name": "白银有色",
+            "price": 6.09,
+            "pct": 9.9278,
+            "amount": 1526962486.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "601808",
-            "name": "中海油服",
-            "price": 12.4,
-            "pct": 0.7311,
-            "amount": 856840.0,
-            "tradeTime": "2026-08-21T09:27:09+08:00"
+            "code": "601609",
+            "name": "金田股份",
+            "price": 13.16,
+            "pct": 2.2533,
+            "amount": 434453091.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "600968",
-            "name": "海油发展",
-            "price": 4.03,
-            "pct": 0.4988,
-            "amount": 159991.0,
-            "tradeTime": "2026-08-21T09:27:19+08:00"
+            "code": "601168",
+            "name": "西部矿业",
+            "price": 37.26,
+            "pct": 1.6367,
+            "amount": 400208699.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002629",
-            "name": "仁智股份",
-            "price": 4.7,
-            "pct": 0.0,
-            "amount": 74260.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "000737",
+            "name": "北方铜业",
+            "price": 14.22,
+            "pct": 1.138,
+            "amount": 209774371.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002828",
-            "name": "贝肯能源",
-            "price": 12.04,
-            "pct": -0.083,
-            "amount": 543004.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "601899",
+            "name": "XD紫金矿",
+            "price": 34.2,
+            "pct": 1.0937,
+            "amount": 2037833930.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600362",
+            "name": "江西铜业",
+            "price": 45.05,
+            "pct": 1.077,
+            "amount": 391641891.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "000878",
+            "name": "云南铜业",
+            "price": 16.22,
+            "pct": 0.808,
+            "amount": 98571395.78,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "000630",
+            "name": "铜陵有色",
+            "price": 6.45,
+            "pct": 0.624,
+            "amount": 261635784.52,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603527",
+            "name": "众源新材",
+            "price": 9.84,
+            "pct": 0.5107,
+            "amount": 8247682.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "600490",
+            "name": "鹏欣资源",
+            "price": 7.28,
+            "pct": 0.4138,
+            "amount": 80264371.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "603979",
+            "name": "金诚信",
+            "price": 75.13,
+            "pct": 0.3071,
+            "amount": 51783754.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "002171",
+            "name": "楚江新材",
+            "price": 9.54,
+            "pct": 0.2101,
+            "amount": 59241468.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002203",
+            "name": "海亮股份",
+            "price": 18.36,
+            "pct": -0.0544,
+            "amount": 45506416.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002295",
+            "name": "精艺股份",
+            "price": 8.83,
+            "pct": -0.7865,
+            "amount": 5267502.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           }
         ],
-        "visibleMemberCount": 5,
+        "visibleMemberCount": 14,
         "tier": 2,
         "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 10
       },
       {
-        "sector": "钟表珠宝",
-        "stockCount": 9,
-        "upCount": 5,
-        "upRatio": 0.5556,
-        "strongCount": 1,
-        "limitLikeCount": 1,
-        "medianPct": 0.0983,
-        "averagePct": 1.396,
-        "amount": 29871719.0,
-        "leaders": [
-          {
-            "code": "000017",
-            "name": "深中华A",
-            "price": 7.11,
-            "pct": 10.0619,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "605599",
-            "name": "菜百股份",
-            "price": 16.18,
-            "pct": 2.4699,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
-          },
-          {
-            "code": "600612",
-            "name": "老凤祥",
-            "price": 35.14,
-            "pct": 0.5149,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "000017",
-            "name": "深中华A",
-            "price": 7.11,
-            "pct": 10.0619,
-            "amount": 21558231.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "605599",
-            "name": "菜百股份",
-            "price": 16.18,
-            "pct": 2.4699,
-            "amount": 464366.0,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
-          },
-          {
-            "code": "600612",
-            "name": "老凤祥",
-            "price": 35.14,
-            "pct": 0.5149,
-            "amount": 664146.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "600916",
-            "name": "中国黄金",
-            "price": 7.72,
-            "pct": 0.3901,
-            "amount": 2426396.0,
-            "tradeTime": "2026-08-21T09:26:53+08:00"
-          },
-          {
-            "code": "002345",
-            "name": "潮宏基",
-            "price": 10.18,
-            "pct": 0.0983,
-            "amount": 2664106.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603900",
-            "name": "莱绅通灵",
-            "price": 6.19,
-            "pct": 0.0,
-            "amount": 207984.0,
-            "tradeTime": "2026-08-21T09:26:57+08:00"
-          },
-          {
-            "code": "002867",
-            "name": "周大生",
-            "price": 12.33,
-            "pct": 0.0,
-            "amount": 92475.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002574",
-            "name": "明牌珠宝",
-            "price": 4.65,
-            "pct": -0.2146,
-            "amount": 88815.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000026",
-            "name": "飞亚达",
-            "price": 21.0,
-            "pct": -0.7561,
-            "amount": 1705200.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 9,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
-        "rank": 11
-      },
-      {
-        "sector": "高速公路",
-        "stockCount": 16,
-        "upCount": 7,
-        "upRatio": 0.4375,
-        "strongCount": 1,
-        "limitLikeCount": 0,
-        "medianPct": 0.0,
-        "averagePct": 0.2234,
-        "amount": 17447093.0,
-        "leaders": [
-          {
-            "code": "600368",
-            "name": "五洲交通",
-            "price": 4.1,
-            "pct": 3.5354,
-            "tradeTime": "2026-08-21T09:26:53+08:00"
-          },
-          {
-            "code": "600012",
-            "name": "皖通高速",
-            "price": 15.7,
-            "pct": 0.3195,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
-          },
-          {
-            "code": "600350",
-            "name": "山东高速",
-            "price": 10.54,
-            "pct": 0.2854,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "600368",
-            "name": "五洲交通",
-            "price": 4.1,
-            "pct": 3.5354,
-            "amount": 12981420.0,
-            "tradeTime": "2026-08-21T09:26:53+08:00"
-          },
-          {
-            "code": "600012",
-            "name": "皖通高速",
-            "price": 15.7,
-            "pct": 0.3195,
-            "amount": 689230.0,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
-          },
-          {
-            "code": "600350",
-            "name": "山东高速",
-            "price": 10.54,
-            "pct": 0.2854,
-            "amount": 459449.0,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
-          },
-          {
-            "code": "601107",
-            "name": "四川成渝",
-            "price": 5.57,
-            "pct": 0.1799,
-            "amount": 218901.0,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
-          },
-          {
-            "code": "000429",
-            "name": "粤高速Ａ",
-            "price": 13.1,
-            "pct": 0.1529,
-            "amount": 322260.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000828",
-            "name": "东莞控股",
-            "price": 9.55,
-            "pct": 0.1048,
-            "amount": 280770.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600377",
-            "name": "宁沪高速",
-            "price": 12.03,
-            "pct": 0.0832,
-            "amount": 719406.0,
-            "tradeTime": "2026-08-21T09:27:20+08:00"
-          },
-          {
-            "code": "600269",
-            "name": "赣粤高速",
-            "price": 3.79,
-            "pct": 0.0,
-            "amount": 204281.0,
-            "tradeTime": "2026-08-21T09:27:08+08:00"
-          },
-          {
-            "code": "600033",
-            "name": "福建高速",
-            "price": 3.55,
-            "pct": 0.0,
-            "amount": 160105.0,
-            "tradeTime": "2026-08-21T09:27:18+08:00"
-          },
-          {
-            "code": "000900",
-            "name": "现代投资",
-            "price": 3.67,
-            "pct": 0.0,
-            "amount": 116706.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000548",
-            "name": "湖南投资",
-            "price": 4.49,
-            "pct": 0.0,
-            "amount": 51635.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600106",
-            "name": "重庆路桥",
-            "price": 4.32,
-            "pct": 0.0,
-            "amount": 25488.0,
-            "tradeTime": "2026-08-21T09:27:18+08:00"
-          },
-          {
-            "code": "001965",
-            "name": "招商公路",
-            "price": 9.16,
-            "pct": -0.1091,
-            "amount": 355408.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600020",
-            "name": "中原高速",
-            "price": 3.77,
-            "pct": -0.2646,
-            "amount": 307255.0,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
-          },
-          {
-            "code": "600035",
-            "name": "楚天高速",
-            "price": 3.37,
-            "pct": -0.2959,
-            "amount": 491683.0,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
-          },
-          {
-            "code": "000755",
-            "name": "山西高速",
-            "price": 4.78,
-            "pct": -0.4167,
-            "amount": 63096.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 16,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
-        "rank": 12
-      },
-      {
-        "sector": "鞋帽及其他",
-        "stockCount": 7,
-        "upCount": 3,
-        "upRatio": 0.4286,
-        "strongCount": 1,
-        "limitLikeCount": 0,
-        "medianPct": -0.1671,
-        "averagePct": 0.4241,
-        "amount": 29325436.0,
-        "leaders": [
-          {
-            "code": "603958",
-            "name": "哈森股份",
-            "price": 20.0,
-            "pct": 7.0664,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
-          },
-          {
-            "code": "603608",
-            "name": "天创时尚",
-            "price": 18.05,
-            "pct": 1.0073,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
-          },
-          {
-            "code": "603001",
-            "name": "奥康国际",
-            "price": 8.15,
-            "pct": 0.246,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "603958",
-            "name": "哈森股份",
-            "price": 20.0,
-            "pct": 7.0664,
-            "amount": 22918000.0,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
-          },
-          {
-            "code": "603608",
-            "name": "天创时尚",
-            "price": 18.05,
-            "pct": 1.0073,
-            "amount": 2420505.0,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
-          },
-          {
-            "code": "603001",
-            "name": "奥康国际",
-            "price": 8.15,
-            "pct": 0.246,
-            "amount": 2394470.0,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
-          },
-          {
-            "code": "600137",
-            "name": "浪莎股份",
-            "price": 17.92,
-            "pct": -0.1671,
-            "amount": 218624.0,
-            "tradeTime": "2026-08-21T09:27:16+08:00"
-          },
-          {
-            "code": "603116",
-            "name": "红蜻蜓",
-            "price": 6.31,
-            "pct": -0.9419,
-            "amount": 344526.0,
-            "tradeTime": "2026-08-21T09:27:08+08:00"
-          },
-          {
-            "code": "603665",
-            "name": "康隆达",
-            "price": 20.71,
-            "pct": -0.9565,
-            "amount": 316863.0,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
-          },
-          {
-            "code": "002763",
-            "name": "汇洁股份",
-            "price": 7.36,
-            "pct": -3.2852,
-            "amount": 712448.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 7,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
-        "rank": 13
-      },
-      {
-        "sector": "通信终端及配件",
-        "stockCount": 10,
-        "upCount": 4,
-        "upRatio": 0.4,
-        "strongCount": 1,
-        "limitLikeCount": 0,
-        "medianPct": -0.6123,
-        "averagePct": 0.3074,
-        "amount": 60412352.0,
-        "leaders": [
-          {
-            "code": "003040",
-            "name": "楚天龙",
-            "price": 12.48,
-            "pct": 7.3087,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002017",
-            "name": "东信和平",
-            "price": 13.42,
-            "pct": 1.5897,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603118",
-            "name": "共进股份",
-            "price": 17.17,
-            "pct": 1.0,
-            "tradeTime": "2026-08-21T09:27:01+08:00"
-          }
-        ],
-        "members": [
-          {
-            "code": "003040",
-            "name": "楚天龙",
-            "price": 12.48,
-            "pct": 7.3087,
-            "amount": 17025216.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002017",
-            "name": "东信和平",
-            "price": 13.42,
-            "pct": 1.5897,
-            "amount": 2086810.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603118",
-            "name": "共进股份",
-            "price": 17.17,
-            "pct": 1.0,
-            "amount": 24518760.0,
-            "tradeTime": "2026-08-21T09:27:01+08:00"
-          },
-          {
-            "code": "002104",
-            "name": "恒宝股份",
-            "price": 10.06,
-            "pct": 0.4995,
-            "amount": 5259368.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603341",
-            "name": "龙旗科技",
-            "price": 36.5,
-            "pct": -0.2732,
-            "amount": 1715500.0,
-            "tradeTime": "2026-08-21T09:27:17+08:00"
-          },
-          {
-            "code": "600775",
-            "name": "南京熊猫",
-            "price": 9.37,
-            "pct": -0.9514,
-            "amount": 292344.0,
-            "tradeTime": "2026-08-21T09:27:09+08:00"
-          },
-          {
-            "code": "603236",
-            "name": "移远通信",
-            "price": 59.28,
-            "pct": -1.002,
-            "amount": 2489760.0,
-            "tradeTime": "2026-08-21T09:26:56+08:00"
-          },
-          {
-            "code": "603803",
-            "name": "瑞斯康达",
-            "price": 10.18,
-            "pct": -1.069,
-            "amount": 277914.0,
-            "tradeTime": "2026-08-21T09:27:17+08:00"
-          },
-          {
-            "code": "002369",
-            "name": "卓翼科技",
-            "price": 5.6,
-            "pct": -1.4085,
-            "amount": 501760.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002313",
-            "name": "日海智能",
-            "price": 8.55,
-            "pct": -2.6196,
-            "amount": 6244920.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          }
-        ],
-        "visibleMemberCount": 10,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
-        "rank": 14
-      },
-      {
-        "sector": "基因药物",
+        "sector": "其他塑料制品",
         "stockCount": 5,
-        "upCount": 2,
-        "upRatio": 0.4,
+        "upCount": 3,
+        "upRatio": 0.6,
         "strongCount": 1,
-        "limitLikeCount": 1,
-        "medianPct": -1.6471,
-        "averagePct": 0.7919,
-        "amount": 93220221.24,
+        "limitLikeCount": 0,
+        "medianPct": 0.7264,
+        "averagePct": 1.211,
+        "amount": 131569829.0,
         "leaders": [
           {
-            "code": "002038",
-            "name": "双鹭药业",
-            "price": 7.08,
-            "pct": 9.9379,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "000920",
+            "name": "沃顿科技",
+            "price": 11.54,
+            "pct": 4.0577,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000518",
-            "name": "四环生物",
-            "price": 3.71,
-            "pct": 0.542,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "605488",
+            "name": "福莱新材",
+            "price": 29.84,
+            "pct": 2.0171,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "600867",
-            "name": "通化东宝",
-            "price": 8.36,
-            "pct": -1.6471,
-            "tradeTime": "2026-08-21T09:27:18+08:00"
+            "code": "603150",
+            "name": "万朗磁塑",
+            "price": 52.69,
+            "pct": 0.7264,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           }
         ],
         "members": [
           {
-            "code": "002038",
-            "name": "双鹭药业",
-            "price": 7.08,
-            "pct": 9.9379,
-            "amount": 47715327.24,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "000920",
+            "name": "沃顿科技",
+            "price": 11.54,
+            "pct": 4.0577,
+            "amount": 45624306.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000518",
-            "name": "四环生物",
-            "price": 3.71,
-            "pct": 0.542,
-            "amount": 6235397.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "605488",
+            "name": "福莱新材",
+            "price": 29.84,
+            "pct": 2.0171,
+            "amount": 60104674.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "600867",
-            "name": "通化东宝",
-            "price": 8.36,
-            "pct": -1.6471,
-            "amount": 4436652.0,
-            "tradeTime": "2026-08-21T09:27:18+08:00"
+            "code": "603150",
+            "name": "万朗磁塑",
+            "price": 52.69,
+            "pct": 0.7264,
+            "amount": 10189809.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           },
           {
-            "code": "000661",
-            "name": "长春高新",
-            "price": 82.35,
-            "pct": -2.3132,
-            "amount": 10812555.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002825",
+            "name": "纳尔股份",
+            "price": 9.0,
+            "pct": -0.3322,
+            "amount": 8052847.0,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
           },
           {
-            "code": "603087",
-            "name": "甘李药业",
-            "price": 70.03,
-            "pct": -2.5602,
-            "amount": 24020290.0,
-            "tradeTime": "2026-08-21T09:26:55+08:00"
+            "code": "600135",
+            "name": "乐凯胶片",
+            "price": 7.22,
+            "pct": -0.4138,
+            "amount": 7598193.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           }
         ],
         "visibleMemberCount": 5,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "rank": 11
+      },
+      {
+        "sector": "铝",
+        "stockCount": 25,
+        "upCount": 15,
+        "upRatio": 0.6,
+        "strongCount": 1,
+        "limitLikeCount": 0,
+        "medianPct": 0.2564,
+        "averagePct": 0.3879,
+        "amount": 2147361742.61,
+        "leaders": [
+          {
+            "code": "002988",
+            "name": "豪美新材",
+            "price": 22.93,
+            "pct": 4.6077,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603876",
+            "name": "鼎胜新材",
+            "price": 22.74,
+            "pct": 1.7905,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600888",
+            "name": "新疆众和",
+            "price": 9.95,
+            "pct": 1.4271,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "002988",
+            "name": "豪美新材",
+            "price": 22.93,
+            "pct": 4.6077,
+            "amount": 46487479.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603876",
+            "name": "鼎胜新材",
+            "price": 22.74,
+            "pct": 1.7905,
+            "amount": 157919070.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600888",
+            "name": "新疆众和",
+            "price": 9.95,
+            "pct": 1.4271,
+            "amount": 99984476.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "000807",
+            "name": "云铝股份",
+            "price": 25.62,
+            "pct": 1.4252,
+            "amount": 400234130.99,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002379",
+            "name": "宏桥控股",
+            "price": 17.82,
+            "pct": 1.25,
+            "amount": 184484462.99,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "601600",
+            "name": "中国铝业",
+            "price": 9.25,
+            "pct": 0.8724,
+            "amount": 298890794.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600595",
+            "name": "中孚实业",
+            "price": 6.03,
+            "pct": 0.8361,
+            "amount": 73630744.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600219",
+            "name": "南山铝业",
+            "price": 4.68,
+            "pct": 0.6452,
+            "amount": 181791782.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          },
+          {
+            "code": "002824",
+            "name": "和胜股份",
+            "price": 24.1,
+            "pct": 0.5843,
+            "amount": 77070877.4,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "000612",
+            "name": "焦作万方",
+            "price": 10.92,
+            "pct": 0.5525,
+            "amount": 38080562.02,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "000933",
+            "name": "神火股份",
+            "price": 25.37,
+            "pct": 0.4752,
+            "amount": 170494318.24,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603271",
+            "name": "永杰新材",
+            "price": 43.07,
+            "pct": 0.3495,
+            "amount": 8604016.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
+          },
+          {
+            "code": "002160",
+            "name": "常铝股份",
+            "price": 3.91,
+            "pct": 0.2564,
+            "amount": 8272407.95,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002532",
+            "name": "天山铝业",
+            "price": 12.42,
+            "pct": 0.1613,
+            "amount": 177076754.02,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600768",
+            "name": "富邦新材",
+            "price": 14.96,
+            "pct": 0.0669,
+            "amount": 11536942.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "601677",
+            "name": "明泰铝业",
+            "price": 16.62,
+            "pct": -0.1802,
+            "amount": 57897689.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002540",
+            "name": "亚太科技",
+            "price": 5.11,
+            "pct": -0.1953,
+            "amount": 6633194.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600361",
+            "name": "创新新材",
+            "price": 3.61,
+            "pct": -0.2762,
+            "amount": 19218272.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "605208",
+            "name": "永茂泰",
+            "price": 13.99,
+            "pct": -0.3561,
+            "amount": 39520661.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "002996",
+            "name": "顺博合金",
+            "price": 6.18,
+            "pct": -0.4831,
+            "amount": 6047550.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          }
+        ],
+        "visibleMemberCount": 20,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "rank": 12
+      },
+      {
+        "sector": "工业控制设备",
+        "stockCount": 15,
+        "upCount": 9,
+        "upRatio": 0.6,
+        "strongCount": 1,
+        "limitLikeCount": 0,
+        "medianPct": 0.155,
+        "averagePct": 0.3796,
+        "amount": 893900147.67,
+        "leaders": [
+          {
+            "code": "002957",
+            "name": "科瑞技术",
+            "price": 42.74,
+            "pct": 4.9607,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002979",
+            "name": "雷赛智能",
+            "price": 55.55,
+            "pct": 1.8519,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002975",
+            "name": "博杰股份",
+            "price": 97.0,
+            "pct": 1.3584,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "002957",
+            "name": "科瑞技术",
+            "price": 42.74,
+            "pct": 4.9607,
+            "amount": 240074433.1,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002979",
+            "name": "雷赛智能",
+            "price": 55.55,
+            "pct": 1.8519,
+            "amount": 160065913.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002975",
+            "name": "博杰股份",
+            "price": 97.0,
+            "pct": 1.3584,
+            "amount": 179513004.4,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "605288",
+            "name": "凯迪股份",
+            "price": 55.16,
+            "pct": 0.437,
+            "amount": 11942406.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "001266",
+            "name": "宏英智能",
+            "price": 33.89,
+            "pct": 0.4148,
+            "amount": 10961627.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603015",
+            "name": "弘讯科技",
+            "price": 10.95,
+            "pct": 0.2747,
+            "amount": 19544103.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002527",
+            "name": "新时达",
+            "price": 11.16,
+            "pct": 0.2695,
+            "amount": 11366454.17,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002334",
+            "name": "英威腾",
+            "price": 6.46,
+            "pct": 0.155,
+            "amount": 12585879.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603283",
+            "name": "赛腾股份",
+            "price": 46.83,
+            "pct": 0.0214,
+            "amount": 179622299.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603583",
+            "name": "捷昌驱动",
+            "price": 23.03,
+            "pct": -0.1301,
+            "amount": 7596746.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
+          },
+          {
+            "code": "603025",
+            "name": "大豪科技",
+            "price": 13.83,
+            "pct": -0.5036,
+            "amount": 22268821.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603275",
+            "name": "众辰科技",
+            "price": 35.23,
+            "pct": -0.5083,
+            "amount": 4249167.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600560",
+            "name": "金自天正",
+            "price": 11.03,
+            "pct": -0.6306,
+            "amount": 4014467.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
+          },
+          {
+            "code": "603416",
+            "name": "信捷电气",
+            "price": 45.35,
+            "pct": -0.7876,
+            "amount": 16928262.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
+          },
+          {
+            "code": "002184",
+            "name": "海得控制",
+            "price": 9.92,
+            "pct": -1.4896,
+            "amount": 13166566.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          }
+        ],
+        "visibleMemberCount": 15,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "rank": 13
+      },
+      {
+        "sector": "输变电设备",
+        "stockCount": 19,
+        "upCount": 10,
+        "upRatio": 0.5263,
+        "strongCount": 1,
+        "limitLikeCount": 0,
+        "medianPct": 0.1792,
+        "averagePct": 0.1549,
+        "amount": 1492620085.2,
+        "leaders": [
+          {
+            "code": "600312",
+            "name": "平高电气",
+            "price": 19.91,
+            "pct": 3.2141,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600885",
+            "name": "宏发股份",
+            "price": 35.22,
+            "pct": 1.0907,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600379",
+            "name": "宝光股份",
+            "price": 14.58,
+            "pct": 0.8997,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "600312",
+            "name": "平高电气",
+            "price": 19.91,
+            "pct": 3.2141,
+            "amount": 169430787.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600885",
+            "name": "宏发股份",
+            "price": 35.22,
+            "pct": 1.0907,
+            "amount": 75774655.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "600379",
+            "name": "宝光股份",
+            "price": 14.58,
+            "pct": 0.8997,
+            "amount": 65224382.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002270",
+            "name": "华明装备",
+            "price": 19.43,
+            "pct": 0.6736,
+            "amount": 29073324.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "603097",
+            "name": "江苏华辰",
+            "price": 18.59,
+            "pct": 0.5952,
+            "amount": 5254950.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
+          },
+          {
+            "code": "601179",
+            "name": "中国西电",
+            "price": 12.88,
+            "pct": 0.5464,
+            "amount": 198977691.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "002028",
+            "name": "思源电气",
+            "price": 174.48,
+            "pct": 0.4895,
+            "amount": 236291952.26,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600550",
+            "name": "保变电气",
+            "price": 11.02,
+            "pct": 0.4558,
+            "amount": 44903049.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "002298",
+            "name": "中电鑫龙",
+            "price": 8.0,
+            "pct": 0.2506,
+            "amount": 37766737.26,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002452",
+            "name": "长高电气",
+            "price": 11.18,
+            "pct": 0.1792,
+            "amount": 20822972.63,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600089",
+            "name": "特变电工",
+            "price": 20.04,
+            "pct": -0.0499,
+            "amount": 226731744.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "600192",
+            "name": "长城电工",
+            "price": 6.8,
+            "pct": -0.1468,
+            "amount": 9853464.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "002922",
+            "name": "伊戈尔",
+            "price": 25.19,
+            "pct": -0.4348,
+            "amount": 182646060.89,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "002358",
+            "name": "森源电气",
+            "price": 5.28,
+            "pct": -0.565,
+            "amount": 9538281.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "002112",
+            "name": "三变科技",
+            "price": 15.74,
+            "pct": -0.694,
+            "amount": 50622142.56,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "600212",
+            "name": "绿能慧充",
+            "price": 5.52,
+            "pct": -0.7194,
+            "amount": 6692373.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
+          },
+          {
+            "code": "603312",
+            "name": "西典新能",
+            "price": 30.6,
+            "pct": -0.8746,
+            "amount": 3360849.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "603191",
+            "name": "望变电气",
+            "price": 14.57,
+            "pct": -0.9517,
+            "amount": 20850888.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "000533",
+            "name": "顺钠股份",
+            "price": 10.72,
+            "pct": -1.0157,
+            "amount": 98803782.6,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          }
+        ],
+        "visibleMemberCount": 19,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "rank": 14
+      },
+      {
+        "sector": "系统设备",
+        "stockCount": 4,
+        "upCount": 2,
+        "upRatio": 0.5,
+        "strongCount": 1,
+        "limitLikeCount": 1,
+        "medianPct": 0.4922,
+        "averagePct": 2.2555,
+        "amount": 1912621879.58,
+        "leaders": [
+          {
+            "code": "002396",
+            "name": "星网锐捷",
+            "price": 33.17,
+            "pct": 10.0166,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600498",
+            "name": "烽火通信",
+            "price": 38.97,
+            "pct": 1.2208,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          },
+          {
+            "code": "000063",
+            "name": "中兴通讯",
+            "price": 33.76,
+            "pct": -0.2364,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          }
+        ],
+        "members": [
+          {
+            "code": "002396",
+            "name": "星网锐捷",
+            "price": 33.17,
+            "pct": 10.0166,
+            "amount": 1147910896.28,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600498",
+            "name": "烽火通信",
+            "price": 38.97,
+            "pct": 1.2208,
+            "amount": 397185315.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          },
+          {
+            "code": "000063",
+            "name": "中兴通讯",
+            "price": 33.76,
+            "pct": -0.2364,
+            "amount": 323012102.3,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600198",
+            "name": "大唐电信",
+            "price": 7.43,
+            "pct": -1.9789,
+            "amount": 44513566.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          }
+        ],
+        "visibleMemberCount": 4,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 15
       },
       {
-        "sector": "能源及重型设备",
-        "stockCount": 30,
-        "upCount": 11,
-        "upRatio": 0.3667,
+        "sector": "半导体封测",
+        "stockCount": 6,
+        "upCount": 3,
+        "upRatio": 0.5,
         "strongCount": 1,
         "limitLikeCount": 0,
-        "medianPct": -0.0663,
-        "averagePct": 0.2481,
-        "amount": 102641588.0,
+        "medianPct": 0.3107,
+        "averagePct": 0.8239,
+        "amount": 4919952270.23,
         "leaders": [
           {
-            "code": "001277",
-            "name": "速达股份",
-            "price": 38.07,
-            "pct": 4.9628,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600667",
+            "name": "太极实业",
+            "price": 21.86,
+            "pct": 3.0646,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "001360",
-            "name": "南矿集团",
-            "price": 18.62,
-            "pct": 2.8161,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002156",
+            "name": "通富微电",
+            "price": 64.13,
+            "pct": 1.5519,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603036",
-            "name": "如通股份",
-            "price": 15.8,
-            "pct": 2.0013,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
+            "code": "002185",
+            "name": "华天科技",
+            "price": 17.46,
+            "pct": 0.634,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
         "members": [
           {
-            "code": "001277",
-            "name": "速达股份",
-            "price": 38.07,
-            "pct": 4.9628,
-            "amount": 52418583.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600667",
+            "name": "太极实业",
+            "price": 21.86,
+            "pct": 3.0646,
+            "amount": 1358570240.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "001360",
-            "name": "南矿集团",
-            "price": 18.62,
-            "pct": 2.8161,
-            "amount": 4297496.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002156",
+            "name": "通富微电",
+            "price": 64.13,
+            "pct": 1.5519,
+            "amount": 1066809734.13,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603036",
-            "name": "如通股份",
-            "price": 15.8,
-            "pct": 2.0013,
-            "amount": 10143600.0,
-            "tradeTime": "2026-08-21T09:27:13+08:00"
+            "code": "002185",
+            "name": "华天科技",
+            "price": 17.46,
+            "pct": 0.634,
+            "amount": 518607565.49,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002490",
-            "name": "山东墨龙",
-            "price": 8.0,
-            "pct": 1.9108,
-            "amount": 4353600.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600584",
+            "name": "长电科技",
+            "price": 79.47,
+            "pct": -0.0126,
+            "amount": 1755568538.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "600980",
-            "name": "北矿科技",
-            "price": 19.9,
-            "pct": 1.5306,
-            "amount": 694510.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
+            "code": "002077",
+            "name": "大港股份",
+            "price": 12.26,
+            "pct": -0.0815,
+            "amount": 40553563.61,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603325",
-            "name": "博隆技术",
-            "price": 52.52,
-            "pct": 1.0778,
-            "amount": 267852.0,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
-          },
-          {
-            "code": "603698",
-            "name": "航天工程",
-            "price": 21.95,
-            "pct": 0.4577,
-            "amount": 906535.0,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
-          },
-          {
-            "code": "002730",
-            "name": "电光科技",
-            "price": 21.11,
-            "pct": 0.3327,
-            "amount": 572081.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603966",
-            "name": "法兰泰克",
-            "price": 7.79,
-            "pct": 0.2574,
-            "amount": 133988.0,
-            "tradeTime": "2026-08-21T09:27:00+08:00"
-          },
-          {
-            "code": "603169",
-            "name": "兰石重装",
-            "price": 6.27,
-            "pct": 0.1597,
-            "amount": 244530.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "601717",
-            "name": "中创智领",
-            "price": 15.0,
-            "pct": 0.0667,
-            "amount": 2158500.0,
-            "tradeTime": "2026-08-21T09:27:06+08:00"
-          },
-          {
-            "code": "600320",
-            "name": "振华重工",
-            "price": 4.04,
-            "pct": 0.0,
-            "amount": 523584.0,
-            "tradeTime": "2026-08-21T09:27:09+08:00"
-          },
-          {
-            "code": "603012",
-            "name": "创力集团",
-            "price": 8.73,
-            "pct": 0.0,
-            "amount": 329121.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
-          },
-          {
-            "code": "600582",
-            "name": "天地科技",
-            "price": 4.85,
-            "pct": 0.0,
-            "amount": 261900.0,
-            "tradeTime": "2026-08-21T09:26:57+08:00"
-          },
-          {
-            "code": "002204",
-            "name": "大连重工",
-            "price": 5.21,
-            "pct": 0.0,
-            "amount": 215694.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603800",
-            "name": "洪田股份",
-            "price": 67.8,
-            "pct": -0.1326,
-            "amount": 732240.0,
-            "tradeTime": "2026-08-21T09:26:56+08:00"
-          },
-          {
-            "code": "002366",
-            "name": "融发核电",
-            "price": 5.62,
-            "pct": -0.1776,
-            "amount": 415880.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002483",
-            "name": "润邦股份",
-            "price": 5.46,
-            "pct": -0.1828,
-            "amount": 165984.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "601106",
-            "name": "中国一重",
-            "price": 3.03,
-            "pct": -0.3289,
-            "amount": 471771.0,
-            "tradeTime": "2026-08-21T09:27:06+08:00"
-          },
-          {
-            "code": "000852",
-            "name": "石化机械",
-            "price": 5.22,
-            "pct": -0.3817,
-            "amount": 1269504.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603005",
+            "name": "晶方科技",
+            "price": 32.83,
+            "pct": -0.2128,
+            "amount": 179842629.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
-        "visibleMemberCount": 20,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 6,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 16
       },
       {
-        "sector": "多业态零售",
-        "stockCount": 11,
-        "upCount": 4,
-        "upRatio": 0.3636,
+        "sector": "橡胶制品",
+        "stockCount": 4,
+        "upCount": 2,
+        "upRatio": 0.5,
         "strongCount": 1,
-        "limitLikeCount": 1,
-        "medianPct": -0.2635,
-        "averagePct": 0.8362,
-        "amount": 14860226.0,
+        "limitLikeCount": 0,
+        "medianPct": 0.2569,
+        "averagePct": 0.5854,
+        "amount": 72009985.0,
         "leaders": [
           {
-            "code": "600785",
-            "name": "新华百货",
-            "price": 9.74,
-            "pct": 10.0565,
-            "tradeTime": "2026-08-21T09:26:59+08:00"
+            "code": "605008",
+            "name": "长鸿高科",
+            "price": 13.4,
+            "pct": 4.2802,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
           },
           {
-            "code": "600824",
-            "name": "益民集团",
-            "price": 3.67,
-            "pct": 1.1019,
-            "tradeTime": "2026-08-21T09:26:53+08:00"
+            "code": "603033",
+            "name": "三维股份",
+            "price": 7.58,
+            "pct": 1.2016,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
           },
           {
-            "code": "601366",
-            "name": "利群股份",
-            "price": 3.65,
-            "pct": 0.551,
-            "tradeTime": "2026-08-21T09:27:08+08:00"
+            "code": "001325",
+            "name": "元创股份",
+            "price": 37.54,
+            "pct": -0.6878,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
           }
         ],
         "members": [
           {
-            "code": "600785",
-            "name": "新华百货",
-            "price": 9.74,
-            "pct": 10.0565,
-            "amount": 10747311.0,
-            "tradeTime": "2026-08-21T09:26:59+08:00"
+            "code": "605008",
+            "name": "长鸿高科",
+            "price": 13.4,
+            "pct": 4.2802,
+            "amount": 40901653.0,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
           },
           {
-            "code": "600824",
-            "name": "益民集团",
-            "price": 3.67,
-            "pct": 1.1019,
-            "amount": 1076492.0,
-            "tradeTime": "2026-08-21T09:26:53+08:00"
+            "code": "603033",
+            "name": "三维股份",
+            "price": 7.58,
+            "pct": 1.2016,
+            "amount": 11155464.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
           },
           {
-            "code": "601366",
-            "name": "利群股份",
-            "price": 3.65,
-            "pct": 0.551,
-            "amount": 1208880.0,
-            "tradeTime": "2026-08-21T09:27:08+08:00"
+            "code": "001325",
+            "name": "元创股份",
+            "price": 37.54,
+            "pct": -0.6878,
+            "amount": 8302872.0,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
           },
           {
-            "code": "600729",
-            "name": "重百集团",
-            "price": 19.53,
-            "pct": 0.4113,
-            "amount": 281232.0,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
-          },
-          {
-            "code": "600778",
-            "name": "友好集团",
-            "price": 5.56,
-            "pct": 0.0,
-            "amount": 279668.0,
-            "tradeTime": "2026-08-21T09:27:09+08:00"
-          },
-          {
-            "code": "600827",
-            "name": "百联股份",
-            "price": 7.57,
-            "pct": -0.2635,
-            "amount": 360332.0,
-            "tradeTime": "2026-08-21T09:27:19+08:00"
-          },
-          {
-            "code": "600697",
-            "name": "欧亚集团",
-            "price": 10.72,
-            "pct": -0.3717,
-            "amount": 80400.0,
-            "tradeTime": "2026-08-21T09:27:04+08:00"
-          },
-          {
-            "code": "000419",
-            "name": "通程控股",
-            "price": 4.96,
-            "pct": -0.4016,
-            "amount": 20832.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600694",
-            "name": "大商股份",
-            "price": 14.48,
-            "pct": -0.4811,
-            "amount": 253400.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "600858",
-            "name": "银座股份",
-            "price": 4.92,
-            "pct": -0.6061,
-            "amount": 352764.0,
-            "tradeTime": "2026-08-21T09:26:55+08:00"
-          },
-          {
-            "code": "600838",
-            "name": "上海九百",
-            "price": 7.45,
-            "pct": -0.7989,
-            "amount": 198915.0,
-            "tradeTime": "2026-08-21T09:26:55+08:00"
+            "code": "002224",
+            "name": "三 力 士",
+            "price": 3.58,
+            "pct": -2.4523,
+            "amount": 11649996.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           }
         ],
-        "visibleMemberCount": 11,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 4,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 17
       },
       {
-        "sector": "家电零部件",
-        "stockCount": 17,
-        "upCount": 6,
-        "upRatio": 0.3529,
-        "strongCount": 1,
+        "sector": "钨钼",
+        "stockCount": 8,
+        "upCount": 8,
+        "upRatio": 1.0,
+        "strongCount": 0,
         "limitLikeCount": 0,
-        "medianPct": 0.0,
-        "averagePct": -0.0615,
-        "amount": 37302909.71,
+        "medianPct": 1.6393,
+        "averagePct": 1.4564,
+        "amount": 2954226363.29,
         "leaders": [
           {
-            "code": "002290",
-            "name": "禾盛新材",
-            "price": 67.89,
-            "pct": 3.5066,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603399",
+            "name": "永杉锂业",
+            "price": 14.45,
+            "pct": 2.7008,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "603657",
-            "name": "春光科技",
-            "price": 27.47,
-            "pct": 0.7704,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
+            "code": "600549",
+            "name": "厦门钨业",
+            "price": 54.44,
+            "pct": 2.158,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "603578",
-            "name": "三星新材",
-            "price": 13.8,
-            "pct": 0.3636,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
+            "code": "002842",
+            "name": "翔鹭钨业",
+            "price": 38.15,
+            "pct": 2.0599,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
         "members": [
           {
-            "code": "002290",
-            "name": "禾盛新材",
-            "price": 67.89,
-            "pct": 3.5066,
-            "amount": 12134590.71,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603399",
+            "name": "永杉锂业",
+            "price": 14.45,
+            "pct": 2.7008,
+            "amount": 269878056.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "603657",
-            "name": "春光科技",
-            "price": 27.47,
-            "pct": 0.7704,
-            "amount": 648292.0,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
+            "code": "600549",
+            "name": "厦门钨业",
+            "price": 54.44,
+            "pct": 2.158,
+            "amount": 606572113.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "603578",
-            "name": "三星新材",
-            "price": 13.8,
-            "pct": 0.3636,
-            "amount": 3258180.0,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
+            "code": "002842",
+            "name": "翔鹭钨业",
+            "price": 38.15,
+            "pct": 2.0599,
+            "amount": 249251824.83,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "600619",
-            "name": "海立股份",
-            "price": 13.83,
-            "pct": 0.2901,
-            "amount": 1093953.0,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
+            "code": "000657",
+            "name": "中钨高新",
+            "price": 65.54,
+            "pct": 1.6912,
+            "amount": 906225591.46,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002676",
-            "name": "顺威股份",
-            "price": 5.07,
-            "pct": 0.1976,
-            "amount": 386334.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002378",
+            "name": "章源钨业",
+            "price": 25.6,
+            "pct": 1.5873,
+            "amount": 113967839.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002011",
-            "name": "盾安环境",
-            "price": 9.91,
-            "pct": 0.101,
-            "amount": 393427.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603993",
+            "name": "洛阳钼业",
+            "price": 18.42,
+            "pct": 0.821,
+            "amount": 654214213.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "603519",
-            "name": "立霸股份",
-            "price": 16.53,
-            "pct": 0.0,
-            "amount": 9714681.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
+            "code": "601958",
+            "name": "金钼股份",
+            "price": 21.92,
+            "pct": 0.5505,
+            "amount": 116064089.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "000404",
-            "name": "长虹华意",
-            "price": 7.08,
-            "pct": 0.0,
-            "amount": 108324.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603677",
-            "name": "奇精机械",
-            "price": 13.67,
-            "pct": 0.0,
-            "amount": 102525.0,
-            "tradeTime": "2026-08-21T09:26:59+08:00"
-          },
-          {
-            "code": "601956",
-            "name": "东贝集团",
-            "price": 4.95,
-            "pct": 0.0,
-            "amount": 61380.0,
-            "tradeTime": "2026-08-21T09:27:10+08:00"
-          },
-          {
-            "code": "002050",
-            "name": "三花智控",
-            "price": 35.98,
-            "pct": -0.4427,
-            "amount": 5263874.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603075",
-            "name": "热威股份",
-            "price": 18.91,
-            "pct": -0.526,
-            "amount": 94550.0,
-            "tradeTime": "2026-08-21T09:26:59+08:00"
-          },
-          {
-            "code": "603726",
-            "name": "朗迪集团",
-            "price": 22.77,
-            "pct": -0.7843,
-            "amount": 145728.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "603311",
-            "name": "金海高科",
-            "price": 28.72,
-            "pct": -0.9655,
-            "amount": 511216.0,
-            "tradeTime": "2026-08-21T09:27:03+08:00"
-          },
-          {
-            "code": "002420",
-            "name": "毅昌科技",
-            "price": 5.77,
-            "pct": -1.0292,
-            "amount": 174254.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002860",
-            "name": "星帅尔",
-            "price": 17.62,
-            "pct": -1.1223,
-            "amount": 2461514.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002418",
-            "name": "康盛股份",
-            "price": 3.51,
-            "pct": -1.4045,
-            "amount": 750087.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "001257",
+            "name": "盛龙股份",
+            "price": 24.17,
+            "pct": 0.0828,
+            "amount": 38052637.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
-        "visibleMemberCount": 17,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 8,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 18
       },
       {
-        "sector": "贸易",
-        "stockCount": 16,
-        "upCount": 5,
-        "upRatio": 0.3125,
-        "strongCount": 1,
+        "sector": "锂",
+        "stockCount": 9,
+        "upCount": 9,
+        "upRatio": 1.0,
+        "strongCount": 0,
         "limitLikeCount": 0,
-        "medianPct": -0.3671,
-        "averagePct": 0.1371,
-        "amount": 30079271.0,
+        "medianPct": 1.3262,
+        "averagePct": 1.3534,
+        "amount": 1884131642.69,
         "leaders": [
           {
-            "code": "600250",
-            "name": "南京商旅",
-            "price": 9.8,
-            "pct": 6.0606,
-            "tradeTime": "2026-08-21T09:26:57+08:00"
+            "code": "002192",
+            "name": "融捷股份",
+            "price": 67.8,
+            "pct": 2.8519,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "601061",
-            "name": "中信金属",
-            "price": 12.2,
-            "pct": 2.0067,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "002466",
+            "name": "天齐锂业",
+            "price": 46.91,
+            "pct": 1.9118,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "600058",
-            "name": "五矿发展",
-            "price": 10.7,
-            "pct": 0.9434,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
+            "code": "002460",
+            "name": "赣锋锂业",
+            "price": 52.25,
+            "pct": 1.9114,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
         "members": [
           {
-            "code": "600250",
-            "name": "南京商旅",
-            "price": 9.8,
-            "pct": 6.0606,
-            "amount": 23192680.0,
-            "tradeTime": "2026-08-21T09:26:57+08:00"
+            "code": "002192",
+            "name": "融捷股份",
+            "price": 67.8,
+            "pct": 2.8519,
+            "amount": 317116134.76,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "601061",
-            "name": "中信金属",
-            "price": 12.2,
-            "pct": 2.0067,
-            "amount": 2188680.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "002466",
+            "name": "天齐锂业",
+            "price": 46.91,
+            "pct": 1.9118,
+            "amount": 466831323.63,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "600058",
-            "name": "五矿发展",
-            "price": 10.7,
-            "pct": 0.9434,
-            "amount": 108070.0,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
+            "code": "002460",
+            "name": "赣锋锂业",
+            "price": 52.25,
+            "pct": 1.9114,
+            "amount": 422490820.87,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "000151",
-            "name": "中成股份",
-            "price": 10.02,
-            "pct": 0.0999,
-            "amount": 215430.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "000762",
+            "name": "西藏矿业",
+            "price": 22.48,
+            "pct": 1.3526,
+            "amount": 55617298.29,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "600710",
-            "name": "苏美达",
-            "price": 10.22,
-            "pct": 0.0979,
-            "amount": 266742.0,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
+            "code": "002240",
+            "name": "盛新锂能",
+            "price": 32.09,
+            "pct": 1.3262,
+            "amount": 185152887.35,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "600128",
-            "name": "苏豪弘业",
-            "price": 8.25,
-            "pct": -0.1211,
-            "amount": 195525.0,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
+            "code": "002738",
+            "name": "中矿资源",
+            "price": 52.08,
+            "pct": 0.8716,
+            "amount": 194524008.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002091",
-            "name": "江苏国泰",
-            "price": 7.77,
-            "pct": -0.1285,
-            "amount": 334887.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002497",
+            "name": "雅化集团",
+            "price": 18.76,
+            "pct": 0.8602,
+            "amount": 95626727.43,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "600278",
-            "name": "东方创业",
-            "price": 6.21,
-            "pct": -0.321,
-            "amount": 61479.0,
-            "tradeTime": "2026-08-21T09:27:00+08:00"
+            "code": "002176",
+            "name": "江特电机",
+            "price": 8.91,
+            "pct": 0.7919,
+            "amount": 75935129.87,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002072",
-            "name": "凯瑞德",
-            "price": 7.23,
-            "pct": -0.4132,
-            "amount": 83145.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603071",
-            "name": "物产环能",
-            "price": 12.35,
-            "pct": -0.4835,
-            "amount": 417430.0,
-            "tradeTime": "2026-08-21T09:27:00+08:00"
-          },
-          {
-            "code": "600725",
-            "name": "云维股份",
-            "price": 3.14,
-            "pct": -0.6329,
-            "amount": 91060.0,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
-          },
-          {
-            "code": "000652",
-            "name": "泰达股份",
-            "price": 3.42,
-            "pct": -0.8696,
-            "amount": 161424.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "001316",
-            "name": "润贝航科",
-            "price": 25.81,
-            "pct": -0.8833,
-            "amount": 165184.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000626",
-            "name": "远大控股",
-            "price": 8.26,
-            "pct": -0.9592,
-            "amount": 1365378.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000701",
-            "name": "厦门信达",
-            "price": 5.06,
-            "pct": -0.9785,
-            "amount": 461472.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "002758",
-            "name": "浙农股份",
-            "price": 8.07,
-            "pct": -1.224,
-            "amount": 770685.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002756",
+            "name": "永兴材料",
+            "price": 46.34,
+            "pct": 0.303,
+            "amount": 70837312.49,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
-        "visibleMemberCount": 16,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 9,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 19
       },
       {
-        "sector": "风力发电",
-        "stockCount": 14,
+        "sector": "油气工程",
+        "stockCount": 4,
         "upCount": 4,
-        "upRatio": 0.2857,
-        "strongCount": 1,
+        "upRatio": 1.0,
+        "strongCount": 0,
         "limitLikeCount": 0,
-        "medianPct": -0.1824,
-        "averagePct": -0.0251,
-        "amount": 30390724.0,
+        "medianPct": 1.1707,
+        "averagePct": 1.0825,
+        "amount": 164293322.0,
         "leaders": [
           {
-            "code": "001258",
-            "name": "立新能源",
-            "price": 12.7,
-            "pct": 3.1682,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600339",
+            "name": "中油工程",
+            "price": 3.39,
+            "pct": 1.497,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "000507",
-            "name": "珠海港",
-            "price": 5.02,
-            "pct": 0.1996,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002554",
+            "name": "惠博普",
+            "price": 2.86,
+            "pct": 1.4184,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000595",
-            "name": "新能股份",
-            "price": 5.48,
-            "pct": 0.1828,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603727",
+            "name": "博迈科",
+            "price": 18.59,
+            "pct": 0.9229,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           }
         ],
         "members": [
           {
-            "code": "001258",
-            "name": "立新能源",
-            "price": 12.7,
-            "pct": 3.1682,
-            "amount": 19739610.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600339",
+            "name": "中油工程",
+            "price": 3.39,
+            "pct": 1.497,
+            "amount": 65969693.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "000507",
-            "name": "珠海港",
-            "price": 5.02,
-            "pct": 0.1996,
-            "amount": 421178.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002554",
+            "name": "惠博普",
+            "price": 2.86,
+            "pct": 1.4184,
+            "amount": 15063307.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000595",
-            "name": "新能股份",
-            "price": 5.48,
-            "pct": 0.1828,
-            "amount": 755144.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603727",
+            "name": "博迈科",
+            "price": 18.59,
+            "pct": 0.9229,
+            "amount": 8511845.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "603693",
-            "name": "江苏新能",
-            "price": 11.3,
-            "pct": 0.0886,
-            "amount": 85880.0,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
-          },
-          {
-            "code": "601016",
-            "name": "节能风电",
-            "price": 3.38,
-            "pct": 0.0,
-            "amount": 1644708.0,
-            "tradeTime": "2026-08-21T09:27:07+08:00"
-          },
-          {
-            "code": "600163",
-            "name": "中闽能源",
-            "price": 4.94,
-            "pct": 0.0,
-            "amount": 148694.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "002053",
-            "name": "云南能投",
-            "price": 9.16,
-            "pct": -0.1091,
-            "amount": 180452.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "600930",
-            "name": "华电新能",
-            "price": 3.9,
-            "pct": -0.2558,
-            "amount": 3573180.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
-          },
-          {
-            "code": "600905",
-            "name": "三峡能源",
-            "price": 3.71,
-            "pct": -0.2688,
-            "amount": 790972.0,
-            "tradeTime": "2026-08-21T09:26:56+08:00"
-          },
-          {
-            "code": "001289",
-            "name": "龙源电力",
-            "price": 15.58,
-            "pct": -0.3199,
-            "amount": 143336.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "601619",
-            "name": "嘉泽新能",
-            "price": 4.07,
-            "pct": -0.7317,
-            "amount": 820105.0,
-            "tradeTime": "2026-08-21T09:27:04+08:00"
-          },
-          {
-            "code": "000537",
-            "name": "绿发电力",
-            "price": 7.85,
-            "pct": -0.7585,
-            "amount": 657045.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000155",
-            "name": "川能动力",
-            "price": 11.67,
-            "pct": -0.7653,
-            "amount": 1106316.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "000862",
-            "name": "银星能源",
-            "price": 5.08,
-            "pct": -0.7812,
-            "amount": 324104.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600583",
+            "name": "海油工程",
+            "price": 6.13,
+            "pct": 0.4918,
+            "amount": 74748477.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           }
         ],
-        "visibleMemberCount": 14,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 4,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 20
       },
       {
-        "sector": "底盘与发动机系统",
-        "stockCount": 53,
-        "upCount": 14,
-        "upRatio": 0.2642,
-        "strongCount": 1,
+        "sector": "光纤光缆",
+        "stockCount": 7,
+        "upCount": 6,
+        "upRatio": 0.8571,
+        "strongCount": 0,
         "limitLikeCount": 0,
-        "medianPct": -0.0748,
-        "averagePct": -0.3776,
-        "amount": 103470391.0,
+        "medianPct": 1.287,
+        "averagePct": 1.0884,
+        "amount": 6877068914.19,
         "leaders": [
           {
-            "code": "002536",
-            "name": "飞龙股份",
-            "price": 44.83,
-            "pct": 4.9883,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002491",
+            "name": "通鼎互联",
+            "price": 19.83,
+            "pct": 2.9061,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603926",
-            "name": "铁流股份",
-            "price": 15.55,
-            "pct": 1.369,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
+            "code": "000070",
+            "name": "特发信息",
+            "price": 14.84,
+            "pct": 1.6438,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603166",
-            "name": "福达股份",
-            "price": 10.89,
-            "pct": 0.9268,
-            "tradeTime": "2026-08-21T09:26:56+08:00"
+            "code": "603042",
+            "name": "华脉科技",
+            "price": 13.94,
+            "pct": 1.4556,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           }
         ],
         "members": [
           {
-            "code": "002536",
-            "name": "飞龙股份",
-            "price": 44.83,
-            "pct": 4.9883,
-            "amount": 63725845.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "002491",
+            "name": "通鼎互联",
+            "price": 19.83,
+            "pct": 2.9061,
+            "amount": 2538571894.19,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603926",
-            "name": "铁流股份",
-            "price": 15.55,
-            "pct": 1.369,
-            "amount": 334325.0,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
+            "code": "000070",
+            "name": "特发信息",
+            "price": 14.84,
+            "pct": 1.6438,
+            "amount": 165793763.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603166",
-            "name": "福达股份",
-            "price": 10.89,
-            "pct": 0.9268,
-            "amount": 241758.0,
-            "tradeTime": "2026-08-21T09:26:56+08:00"
+            "code": "603042",
+            "name": "华脉科技",
+            "price": 13.94,
+            "pct": 1.4556,
+            "amount": 32025411.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "605133",
-            "name": "嵘泰股份",
-            "price": 27.84,
-            "pct": 0.5054,
-            "amount": 1082976.0,
-            "tradeTime": "2026-08-21T09:27:11+08:00"
+            "code": "600105",
+            "name": "永鼎股份",
+            "price": 39.35,
+            "pct": 1.287,
+            "amount": 817412959.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "603013",
-            "name": "亚普股份",
-            "price": 16.25,
-            "pct": 0.4947,
-            "amount": 221000.0,
-            "tradeTime": "2026-08-21T09:27:02+08:00"
+            "code": "000586",
+            "name": "汇源通信",
+            "price": 12.59,
+            "pct": 0.6395,
+            "amount": 9843589.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "002448",
-            "name": "中原内配",
-            "price": 12.42,
-            "pct": 0.4854,
-            "amount": 4351968.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600522",
+            "name": "中天科技",
+            "price": 32.88,
+            "pct": 0.1218,
+            "amount": 891629408.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "603009",
-            "name": "北特科技",
-            "price": 45.19,
-            "pct": 0.4222,
-            "amount": 1807600.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "001380",
-            "name": "华纬科技",
-            "price": 16.56,
-            "pct": 0.3028,
-            "amount": 76176.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603809",
-            "name": "豪能股份",
-            "price": 8.88,
-            "pct": 0.2257,
-            "amount": 331224.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "600933",
-            "name": "爱柯迪",
-            "price": 13.68,
-            "pct": 0.2198,
-            "amount": 279072.0,
-            "tradeTime": "2026-08-21T09:27:19+08:00"
-          },
-          {
-            "code": "603788",
-            "name": "宁波高发",
-            "price": 13.89,
-            "pct": 0.2165,
-            "amount": 120843.0,
-            "tradeTime": "2026-08-21T09:27:14+08:00"
-          },
-          {
-            "code": "000581",
-            "name": "威孚高科",
-            "price": 17.41,
-            "pct": 0.1726,
-            "amount": 67899.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
-          },
-          {
-            "code": "603121",
-            "name": "华培动力",
-            "price": 12.2,
-            "pct": 0.1642,
-            "amount": 95160.0,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
-          },
-          {
-            "code": "600148",
-            "name": "长春一东",
-            "price": 15.35,
-            "pct": 0.1305,
-            "amount": 73680.0,
-            "tradeTime": "2026-08-21T09:27:15+08:00"
-          },
-          {
-            "code": "603319",
-            "name": "美湖股份",
-            "price": 24.61,
-            "pct": 0.0,
-            "amount": 1232961.0,
-            "tradeTime": "2026-08-21T09:26:50+08:00"
-          },
-          {
-            "code": "603161",
-            "name": "科华控股",
-            "price": 15.55,
-            "pct": 0.0,
-            "amount": 488270.0,
-            "tradeTime": "2026-08-21T09:26:52+08:00"
-          },
-          {
-            "code": "600698",
-            "name": "湖南天雁",
-            "price": 6.64,
-            "pct": 0.0,
-            "amount": 415664.0,
-            "tradeTime": "2026-08-21T09:26:58+08:00"
-          },
-          {
-            "code": "603586",
-            "name": "金麒麟",
-            "price": 13.46,
-            "pct": 0.0,
-            "amount": 269200.0,
-            "tradeTime": "2026-08-21T09:27:12+08:00"
-          },
-          {
-            "code": "603982",
-            "name": "泉峰汽车",
-            "price": 6.07,
-            "pct": 0.0,
-            "amount": 154178.0,
-            "tradeTime": "2026-08-21T09:27:08+08:00"
-          },
-          {
-            "code": "002434",
-            "name": "万里扬",
-            "price": 5.78,
-            "pct": 0.0,
-            "amount": 142188.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600487",
+            "name": "亨通光电",
+            "price": 61.75,
+            "pct": -0.4353,
+            "amount": 2421791890.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           }
         ],
-        "visibleMemberCount": 20,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 7,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 21
       },
       {
-        "sector": "印刷包装机械",
-        "stockCount": 4,
-        "upCount": 1,
-        "upRatio": 0.25,
-        "strongCount": 1,
-        "limitLikeCount": 1,
-        "medianPct": -0.6503,
-        "averagePct": 1.8942,
-        "amount": 29849100.0,
+        "sector": "其他金属新材料",
+        "stockCount": 7,
+        "upCount": 6,
+        "upRatio": 0.8571,
+        "strongCount": 0,
+        "limitLikeCount": 0,
+        "medianPct": 0.9721,
+        "averagePct": 0.793,
+        "amount": 307764200.75,
         "leaders": [
           {
-            "code": "002209",
-            "name": "达 意 隆",
-            "price": 13.16,
-            "pct": 10.0334,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603045",
+            "name": "福达合金",
+            "price": 53.37,
+            "pct": 2.5557,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002611",
-            "name": "东方精工",
-            "price": 14.7,
-            "pct": -0.339,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603124",
+            "name": "江南新材",
+            "price": 131.76,
+            "pct": 1.4319,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "603901",
-            "name": "永创智能",
-            "price": 9.27,
-            "pct": -0.9615,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "601137",
+            "name": "博威合金",
+            "price": 19.1,
+            "pct": 1.0048,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           }
         ],
         "members": [
           {
-            "code": "002209",
-            "name": "达 意 隆",
-            "price": 13.16,
-            "pct": 10.0334,
-            "amount": 27717592.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603045",
+            "name": "福达合金",
+            "price": 53.37,
+            "pct": 2.5557,
+            "amount": 66906080.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
           },
           {
-            "code": "002611",
-            "name": "东方精工",
-            "price": 14.7,
-            "pct": -0.339,
-            "amount": 1417080.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603124",
+            "name": "江南新材",
+            "price": 131.76,
+            "pct": 1.4319,
+            "amount": 88763214.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "603901",
-            "name": "永创智能",
-            "price": 9.27,
-            "pct": -0.9615,
-            "amount": 419004.0,
-            "tradeTime": "2026-08-21T09:27:05+08:00"
+            "code": "601137",
+            "name": "博威合金",
+            "price": 19.1,
+            "pct": 1.0048,
+            "amount": 44562758.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
           },
           {
-            "code": "001256",
-            "name": "炜冈科技",
-            "price": 23.08,
-            "pct": -1.1563,
-            "amount": 295424.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "000969",
+            "name": "安泰科技",
+            "price": 16.62,
+            "pct": 0.9721,
+            "amount": 52701678.75,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "600255",
+            "name": "鑫科材料",
+            "price": 3.2,
+            "pct": 0.3135,
+            "amount": 25027982.0,
+            "tradeTime": "2026-08-21T09:46:18+08:00"
+          },
+          {
+            "code": "603978",
+            "name": "深圳新星",
+            "price": 18.54,
+            "pct": 0.2162,
+            "amount": 21710819.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
+          },
+          {
+            "code": "000633",
+            "name": "合金投资",
+            "price": 5.25,
+            "pct": -0.9434,
+            "amount": 8091669.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           }
         ],
-        "visibleMemberCount": 4,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 7,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 22
       },
       {
-        "sector": "其他金融服务",
-        "stockCount": 4,
-        "upCount": 1,
-        "upRatio": 0.25,
-        "strongCount": 1,
+        "sector": "有机硅",
+        "stockCount": 6,
+        "upCount": 5,
+        "upRatio": 0.8333,
+        "strongCount": 0,
         "limitLikeCount": 0,
-        "medianPct": -0.7045,
-        "averagePct": 0.2383,
-        "amount": 22238988.0,
+        "medianPct": 0.439,
+        "averagePct": 0.4487,
+        "amount": 154465871.0,
         "leaders": [
           {
-            "code": "603123",
-            "name": "翠微股份",
-            "price": 9.54,
-            "pct": 3.3586,
-            "tradeTime": "2026-08-21T09:27:01+08:00"
+            "code": "603281",
+            "name": "江瀚新材",
+            "price": 19.38,
+            "pct": 1.0955,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "002316",
-            "name": "亚联发展",
-            "price": 4.42,
-            "pct": -0.4505,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603155",
+            "name": "新亚强",
+            "price": 13.66,
+            "pct": 0.5151,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "002647",
-            "name": "仁东控股",
-            "price": 12.4,
-            "pct": -0.9585,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "605366",
+            "name": "宏柏新材",
+            "price": 8.07,
+            "pct": 0.4981,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           }
         ],
         "members": [
           {
-            "code": "603123",
-            "name": "翠微股份",
-            "price": 9.54,
-            "pct": 3.3586,
-            "amount": 19447290.0,
-            "tradeTime": "2026-08-21T09:27:01+08:00"
+            "code": "603281",
+            "name": "江瀚新材",
+            "price": 19.38,
+            "pct": 1.0955,
+            "amount": 19944328.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "002316",
-            "name": "亚联发展",
-            "price": 4.42,
-            "pct": -0.4505,
-            "amount": 330174.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603155",
+            "name": "新亚强",
+            "price": 13.66,
+            "pct": 0.5151,
+            "amount": 20134330.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "002647",
-            "name": "仁东控股",
-            "price": 12.4,
-            "pct": -0.9585,
-            "amount": 2295240.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "605366",
+            "name": "宏柏新材",
+            "price": 8.07,
+            "pct": 0.4981,
+            "amount": 23318359.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
           },
           {
-            "code": "000567",
-            "name": "海德股份",
-            "price": 5.96,
-            "pct": -0.9967,
-            "amount": 166284.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "600596",
+            "name": "新安股份",
+            "price": 10.57,
+            "pct": 0.3799,
+            "amount": 42761429.0,
+            "tradeTime": "2026-08-21T09:46:17+08:00"
+          },
+          {
+            "code": "605399",
+            "name": "晨光新材",
+            "price": 10.71,
+            "pct": 0.3749,
+            "amount": 5745901.0,
+            "tradeTime": "2026-08-21T09:46:20+08:00"
+          },
+          {
+            "code": "603260",
+            "name": "合盛硅业",
+            "price": 35.0,
+            "pct": -0.1711,
+            "amount": 42561524.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           }
         ],
-        "visibleMemberCount": 4,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 6,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 23
       },
       {
-        "sector": "粮油加工",
-        "stockCount": 4,
-        "upCount": 1,
-        "upRatio": 0.25,
-        "strongCount": 1,
+        "sector": "工程机械零件",
+        "stockCount": 5,
+        "upCount": 4,
+        "upRatio": 0.8,
+        "strongCount": 0,
         "limitLikeCount": 0,
-        "medianPct": -2.6076,
-        "averagePct": -0.2756,
-        "amount": 173353131.0,
+        "medianPct": 0.8176,
+        "averagePct": 0.7492,
+        "amount": 206154634.0,
         "leaders": [
           {
-            "code": "600127",
-            "name": "金健米业",
-            "price": 9.39,
-            "pct": 9.186,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
+            "code": "601100",
+            "name": "恒立液压",
+            "price": 104.05,
+            "pct": 2.6134,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "002852",
-            "name": "道道全",
-            "price": 8.27,
-            "pct": -2.5913,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "001226",
+            "name": "拓山重工",
+            "price": 46.81,
+            "pct": 1.2327,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000019",
-            "name": "深粮控股",
-            "price": 6.68,
-            "pct": -2.6239,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "605389",
+            "name": "长龄液压",
+            "price": 70.29,
+            "pct": 0.8176,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
           }
         ],
         "members": [
           {
-            "code": "600127",
-            "name": "金健米业",
-            "price": 9.39,
-            "pct": 9.186,
-            "amount": 151871043.0,
-            "tradeTime": "2026-08-21T09:26:54+08:00"
+            "code": "601100",
+            "name": "恒立液压",
+            "price": 104.05,
+            "pct": 2.6134,
+            "amount": 157397172.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
           },
           {
-            "code": "002852",
-            "name": "道道全",
-            "price": 8.27,
-            "pct": -2.5913,
-            "amount": 2569489.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "001226",
+            "name": "拓山重工",
+            "price": 46.81,
+            "pct": 1.2327,
+            "amount": 10411704.0,
+            "tradeTime": "2026-08-21T09:46:21+08:00"
           },
           {
-            "code": "000019",
-            "name": "深粮控股",
-            "price": 6.68,
-            "pct": -2.6239,
-            "amount": 2209076.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "605389",
+            "name": "长龄液压",
+            "price": 70.29,
+            "pct": 0.8176,
+            "amount": 14395695.0,
+            "tradeTime": "2026-08-21T09:46:22+08:00"
           },
           {
-            "code": "000505",
-            "name": "京粮控股",
-            "price": 7.11,
-            "pct": -5.0734,
-            "amount": 16703523.0,
-            "tradeTime": "2026-08-21T09:25:00+08:00"
+            "code": "603638",
+            "name": "艾迪精密",
+            "price": 18.93,
+            "pct": 0.1587,
+            "amount": 19240651.0,
+            "tradeTime": "2026-08-21T09:46:19+08:00"
+          },
+          {
+            "code": "001239",
+            "name": "永达股份",
+            "price": 11.95,
+            "pct": -1.0762,
+            "amount": 4709412.0,
+            "tradeTime": "2026-08-21T09:46:24+08:00"
           }
         ],
-        "visibleMemberCount": 4,
-        "tier": 3,
-        "nextSessionObservation": "仅留档：当前不是强势板块观察方向。",
+        "visibleMemberCount": 5,
+        "tier": 2,
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "rank": 24
       }
     ],
     "watchCandidates": [
       {
-        "code": "603193",
-        "name": "润本股份",
-        "price": 22.46,
-        "pct": 5.1498,
-        "tradeTime": "2026-08-21T09:27:15+08:00",
-        "sector": "洗护用品",
-        "tier": 2,
-        "sectorRank": 1,
-        "leaderRank": 1,
-        "researchReason": "洗护用品：上涨广度 57%；强势股 1 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "001328",
-        "name": "登康口腔",
-        "price": 29.62,
-        "pct": 1.0922,
-        "tradeTime": "2026-08-21T09:25:00+08:00",
-        "sector": "洗护用品",
-        "tier": 2,
-        "sectorRank": 1,
-        "leaderRank": 2,
-        "researchReason": "洗护用品：上涨广度 57%；强势股 1 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "600315",
-        "name": "上海家化",
-        "price": 18.53,
-        "pct": 0.7065,
-        "tradeTime": "2026-08-21T09:27:05+08:00",
-        "sector": "洗护用品",
-        "tier": 2,
-        "sectorRank": 1,
-        "leaderRank": 3,
-        "researchReason": "洗护用品：上涨广度 57%；强势股 1 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "601069",
-        "name": "西部黄金",
-        "price": 31.52,
-        "pct": 2.0065,
-        "tradeTime": "2026-08-21T09:27:15+08:00",
-        "sector": "黄金",
-        "tier": 2,
+        "code": "605111",
+        "name": "新洁能",
+        "price": 62.05,
+        "pct": 4.3734,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
+        "sector": "功率半导体",
+        "tier": 1,
         "sectorRank": 2,
+        "leaderRank": 2,
+        "researchReason": "功率半导体：上涨广度 100%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "603290",
+        "name": "斯达半导",
+        "price": 98.82,
+        "pct": 3.3466,
+        "tradeTime": "2026-08-21T09:46:17+08:00",
+        "sector": "功率半导体",
+        "tier": 1,
+        "sectorRank": 2,
+        "leaderRank": 3,
+        "researchReason": "功率半导体：上涨广度 100%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "600961",
+        "name": "株冶集团",
+        "price": 28.42,
+        "pct": 4.9096,
+        "tradeTime": "2026-08-21T09:46:20+08:00",
+        "sector": "铅锌",
+        "tier": 1,
+        "sectorRank": 3,
         "leaderRank": 1,
-        "researchReason": "黄金：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "researchReason": "铅锌：上涨广度 100%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "000426",
+        "name": "兴业银锡",
+        "price": 39.89,
+        "pct": 3.4492,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
+        "sector": "铅锌",
+        "tier": 1,
+        "sectorRank": 3,
+        "leaderRank": 2,
+        "researchReason": "铅锌：上涨广度 100%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "600531",
+        "name": "豫光金铅",
+        "price": 13.54,
+        "pct": 3.4377,
+        "tradeTime": "2026-08-21T09:46:19+08:00",
+        "sector": "铅锌",
+        "tier": 1,
+        "sectorRank": 3,
+        "leaderRank": 3,
+        "researchReason": "铅锌：上涨广度 100%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
         "evidenceMode": "盘中强势板块筛选"
       },
       {
         "code": "600988",
         "name": "赤峰黄金",
-        "price": 46.98,
-        "pct": 1.9089,
-        "tradeTime": "2026-08-21T09:26:54+08:00",
+        "price": 48.15,
+        "pct": 4.4469,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
         "sector": "黄金",
-        "tier": 2,
-        "sectorRank": 2,
-        "leaderRank": 2,
-        "researchReason": "黄金：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "600489",
-        "name": "中金黄金",
-        "price": 26.79,
-        "pct": 1.5927,
-        "tradeTime": "2026-08-21T09:26:49+08:00",
-        "sector": "黄金",
-        "tier": 2,
-        "sectorRank": 2,
-        "leaderRank": 3,
-        "researchReason": "黄金：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "000968",
-        "name": "蓝焰控股",
-        "price": 7.08,
-        "pct": 1.4327,
-        "tradeTime": "2026-08-21T09:25:00+08:00",
-        "sector": "油气开采",
-        "tier": 2,
-        "sectorRank": 3,
-        "leaderRank": 1,
-        "researchReason": "油气开采：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "600938",
-        "name": "中国海油",
-        "price": 33.55,
-        "pct": 0.7508,
-        "tradeTime": "2026-08-21T09:27:13+08:00",
-        "sector": "油气开采",
-        "tier": 2,
-        "sectorRank": 3,
-        "leaderRank": 2,
-        "researchReason": "油气开采：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "601857",
-        "name": "中国石油",
-        "price": 11.05,
-        "pct": 0.546,
-        "tradeTime": "2026-08-21T09:27:14+08:00",
-        "sector": "油气开采",
-        "tier": 2,
-        "sectorRank": 3,
-        "leaderRank": 3,
-        "researchReason": "油气开采：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
-        "evidenceMode": "盘中强势板块筛选"
-      },
-      {
-        "code": "603666",
-        "name": "亿嘉和",
-        "price": 26.28,
-        "pct": 0.8055,
-        "tradeTime": "2026-08-21T09:27:05+08:00",
-        "sector": "机器人",
-        "tier": 2,
+        "tier": 1,
         "sectorRank": 4,
         "leaderRank": 1,
-        "researchReason": "机器人：上涨广度 100%；强势股 0 只。",
-        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "researchReason": "黄金：上涨广度 100%；强势股 2 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
         "evidenceMode": "盘中强势板块筛选"
       },
       {
-        "code": "002747",
-        "name": "埃斯顿",
-        "price": 32.88,
-        "pct": 0.3357,
-        "tradeTime": "2026-08-21T09:25:00+08:00",
-        "sector": "机器人",
-        "tier": 2,
+        "code": "601069",
+        "name": "西部黄金",
+        "price": 32.09,
+        "pct": 3.8511,
+        "tradeTime": "2026-08-21T09:46:21+08:00",
+        "sector": "黄金",
+        "tier": 1,
         "sectorRank": 4,
         "leaderRank": 2,
-        "researchReason": "机器人：上涨广度 100%；强势股 0 只。",
+        "researchReason": "黄金：上涨广度 100%；强势股 2 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "600547",
+        "name": "XD山东黄",
+        "price": 36.15,
+        "pct": 2.4079,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
+        "sector": "黄金",
+        "tier": 1,
+        "sectorRank": 4,
+        "leaderRank": 3,
+        "researchReason": "黄金：上涨广度 100%；强势股 2 只。",
+        "nextSessionObservation": "下一交易日优先观察：开盘后看广度是否维持，不追高。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "002815",
+        "name": "崇达技术",
+        "price": 13.53,
+        "pct": 4.6404,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
+        "sector": "PCB",
+        "tier": 2,
+        "sectorRank": 5,
+        "leaderRank": 1,
+        "researchReason": "PCB：上涨广度 86%；强势股 3 只。",
         "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "evidenceMode": "盘中强势板块筛选"
       },
       {
-        "code": "600215",
-        "name": "派斯林",
-        "price": 6.51,
-        "pct": 0.1538,
-        "tradeTime": "2026-08-21T09:27:06+08:00",
-        "sector": "机器人",
+        "code": "002141",
+        "name": "贤丰控股",
+        "price": 6.49,
+        "pct": 3.5088,
+        "tradeTime": "2026-08-21T09:46:21+08:00",
+        "sector": "PCB",
         "tier": 2,
-        "sectorRank": 4,
+        "sectorRank": 5,
+        "leaderRank": 2,
+        "researchReason": "PCB：上涨广度 86%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "603228",
+        "name": "景旺电子",
+        "price": 92.01,
+        "pct": 3.1271,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
+        "sector": "PCB",
+        "tier": 2,
+        "sectorRank": 5,
         "leaderRank": 3,
-        "researchReason": "机器人：上涨广度 100%；强势股 0 只。",
+        "researchReason": "PCB：上涨广度 86%；强势股 3 只。",
+        "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
+        "evidenceMode": "盘中强势板块筛选"
+      },
+      {
+        "code": "001270",
+        "name": "铖昌科技",
+        "price": 104.7,
+        "pct": 4.5327,
+        "tradeTime": "2026-08-21T09:46:18+08:00",
+        "sector": "军工电子",
+        "tier": 2,
+        "sectorRank": 6,
+        "leaderRank": 1,
+        "researchReason": "军工电子：上涨广度 75%；强势股 2 只。",
         "nextSessionObservation": "下一交易日继续跟踪：若上涨广度扩大，再上调研究级别。",
         "evidenceMode": "盘中强势板块筛选"
       }
@@ -17049,12 +17145,12 @@
       "notice": "盘中只记录板块强度，不锁定下一交易日预测队列；收盘后会按最终广度、拥挤度和成交额生成并归档。",
       "sectors": [],
       "signalDate": "2026-08-21",
-      "generatedAt": "2026-08-21T09:26:51+08:00",
-      "quoteTradeTime": "2026-08-21T09:27:22+08:00",
+      "generatedAt": "2026-08-21T09:45:52+08:00",
+      "quoteTradeTime": "2026-08-21T09:46:24+08:00",
       "forecastFor": "盘中不锁定下一交易日"
     },
     "notice": "按板块上涨广度、强势股数量、涨幅中位数和成交额排序。下一交易日字段是研究观察，不是收益承诺或下单指令。",
-    "phase": "集合竞价 09:25",
+    "phase": "开盘15分钟 09:45",
     "archive": {
       "archived": false,
       "reason": "盘中快照仅更新当前面板；收盘后才写入每日历史与后验队列。"
@@ -17178,9 +17274,9 @@
   },
   "dailyResearchBrief": {
     "version": "research-institute-v1",
-    "generatedAt": "2026-08-21T09:26:56+08:00",
+    "generatedAt": "2026-08-21T09:45:57+08:00",
     "asOf": "2026-08-21",
-    "phase": "集合竞价 09:25",
+    "phase": "开盘15分钟 09:45",
     "headline": "先看市场许可，再看板块延续，最后核实个股",
     "summary": "研究所日报只输出可证伪的研究任务和数据边界；板块雷达才负责展示板块排序与样本。",
     "marketRegime": {
@@ -17189,20 +17285,20 @@
       "rule": "市场广度不足时不把板块强势直接转换为行动结论；只安排周一开盘后的确认观察。"
     },
     "marketSnapshot": {
-      "quoteCount": 2735,
+      "quoteCount": 2744,
       "quoteSource": "新浪财经公开行情（非L2）",
-      "quoteTradeTime": "2026-08-21T09:27:22+08:00",
-      "upRatio": 0.177,
-      "medianPct": -0.4049,
-      "strongCount": 29,
-      "limitLikeCount": 6
+      "quoteTradeTime": "2026-08-21T09:46:24+08:00",
+      "upRatio": 0.2762,
+      "medianPct": -0.5747,
+      "strongCount": 95,
+      "limitLikeCount": 24
     },
     "tasks": [
       {
         "order": "01",
         "title": "先判市场，而不是先挑股票",
         "state": "偏弱，先做验证",
-        "detail": "最近快照上涨广度 17.7%，中位涨幅 -0.40%。市场广度不足时不把板块强势直接转换为行动结论；只安排周一开盘后的确认观察。"
+        "detail": "最近快照上涨广度 27.6%，中位涨幅 -0.57%。市场广度不足时不把板块强势直接转换为行动结论；只安排周一开盘后的确认观察。"
       },
       {
         "order": "02",
@@ -17223,7 +17319,7 @@
         "category": "市场结构",
         "status": "已接入",
         "weight": "结构主证据",
-        "note": "新浪财经公开行情（非L2）；样本 2,735 只。"
+        "note": "新浪财经公开行情（非L2）；样本 2,744 只。"
       },
       {
         "name": "板块广度与领涨股",
@@ -17620,7 +17716,7 @@
         "price": 83.26,
         "pnlValue": -288.0,
         "pnlPct": -0.017001180637544275,
-        "reviewPhase": "集合竞价 09:25",
+        "reviewPhase": "开盘15分钟 09:45",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -17638,7 +17734,7 @@
         "price": 37.63,
         "pnlValue": -1727.0499999999997,
         "pnlPct": -0.3145781914554512,
-        "reviewPhase": "集合竞价 09:25",
+        "reviewPhase": "开盘15分钟 09:45",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -17656,7 +17752,7 @@
         "price": 2.75,
         "pnlValue": null,
         "pnlPct": null,
-        "reviewPhase": "集合竞价 09:25",
+        "reviewPhase": "开盘15分钟 09:45",
         "researchStatus": "实时数据不足，待复核",
         "riskLine": "下一交易日风险线待可靠实时数据确认",
         "firstTarget": "第一目标待可靠实时数据确认",
@@ -17675,7 +17771,7 @@
       "costBasisComplete": false
     },
     "sourceUpdatedAt": "2026-07-13T13:51:52+08:00",
-    "quoteUpdatedAt": "2026-08-21T09:26:51+08:00",
+    "quoteUpdatedAt": "2026-08-21T09:45:52+08:00",
     "brokerHoldingsStatus": "stale_local_reference",
     "notice": "价格优先取 Tushare RT 行情；仓位数量、可卖数量仍来自本地参考文件，必须以已登录券商实际持仓为准。 有持仓成本未核验，组合盈亏不汇总显示。 券商持仓核验不是当日记录；请以已登录券商页面为准。"
   },
